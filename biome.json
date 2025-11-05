@@ -17,11 +17,31 @@
   "linter": {
     "enabled": true,
     "rules": {
-      "recommended": true
+      "recommended": true,
+      "suspicious": {
+        "noUnknownAtRules": "off",
+        "noConsole": {
+          "options": {
+            "allow": ["error", "info", "warn"]
+          }
+        }
+      },
+      "style": {
+        "useImportType": "warn",
+        "noMagicNumbers": "error"
+      },
+      "correctness": {
+        "noUnusedImports": "error"
+      }
     },
     "domains": {
       "next": "recommended",
       "react": "recommended"
+    }
+  },
+  "javascript": {
+    "formatter": {
+      "quoteStyle": "single"
     }
   },
   "assist": {
