@@ -1,3 +1,4 @@
+/** biome-ignore-all lint/style/noMagicNumbers: <styling> */
 'use client';
 import { Avatar, Box, Paper, styled } from '@mui/material';
 

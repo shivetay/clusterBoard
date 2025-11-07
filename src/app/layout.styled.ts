@@ -9,7 +9,7 @@ export const LayoutContainer = styled(Box)(() => ({
     "footer footer footer"
   `,
   gridTemplateRows: 'auto 1fr auto',
-  gridTemplateColumns: '250px 1fr',
+  gridTemplateColumns: '196px 1fr',
   width: '100vw',
   height: '100vh',
   overflow: 'hidden',
