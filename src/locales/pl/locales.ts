@@ -8,6 +8,12 @@ export const TRANSLATIONS = {
   ZADANIA: 'Zadania',
   KALENDARZ: 'Kalendarz',
   FINANSE: 'Finanse',
+  WIADOMOSCI: 'Wiadomości',
+  CLUSTER: 'Klaster',
+  AKTYWNE_PROJEKTY: 'Aktualne projekty: ',
+  AKTYWNE_ZADANIA: 'Aktywne zadania: ',
+  OCZEKUJACE_WIADOMOSCI: 'Masz: ',
+  ADD_NEW_PROJECT: 'Dodaj nowy projekt',
 };
 
 export default TRANSLATIONS;

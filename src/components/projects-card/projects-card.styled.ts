@@ -1,5 +1,3 @@
-/** biome-ignore-all lint/style/noMagicNumbers: <styling> */
-'use client';
 import { Box, Card, styled } from '@mui/material';
 
 export const CardWrapper = styled(Box)<{ cardColor: string }>(

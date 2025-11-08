@@ -1,2 +1,1 @@
-export * from './cluster-view';
 export * from './projects-view';
