@@ -13,10 +13,6 @@ interface CardComponentProps {
 export function CardComponent({ ...props }: CardComponentProps) {
   const { color, header, href, description, count } = props;
 
-  if (!props) {
-    return null;
-  }
-
   return (
     <Link href={href}>
       <CardWrapper cardColor={color}>
