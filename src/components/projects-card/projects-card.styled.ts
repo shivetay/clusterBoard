@@ -1,13 +1,17 @@
 /** biome-ignore-all lint/style/noMagicNumbers: <styling> */
 'use client';
-import { Box, Card, styled } from '@mui/material';
+import { Box, Card, styled, Typography } from '@mui/material';
+import Link from 'next/link';
+
+export const ProjectsCardWrapper = styled(Link)(({ theme }) => ({
+  margin: theme.spacing(3, 0),
+}));
 
 export const CardWrapper = styled(Box)<{ cardColor: string }>(
   ({ theme, cardColor }) => ({
     position: 'relative',
-    maxWidth: theme.spacing(24),
-    minHeight: theme.spacing(24),
-    width: theme.spacing(24),
+    // maxWidth: theme.spacing(48),
+    width: theme.spacing(48),
     borderRadius: '2.25rem',
     backdropFilter: 'blur(7px)',
     WebkitBackdropFilter: 'blur(7px)',
@@ -26,9 +30,8 @@ export const CardContainer = styled(Card, {
   shouldForwardProp: (prop) => prop !== 'cardColor',
 })<{ cardColor: string }>(({ cardColor, theme }) => ({
   position: 'relative',
-  width: theme.spacing(24),
+  width: theme.spacing(48),
   height: '100%',
-  minHeight: theme.spacing(24),
   display: 'grid',
   placeContent: 'center',
   placeItems: 'center',
@@ -47,5 +50,24 @@ rgba(21, 20, 25, 0.4) 100%
   '& .MuiCardActionArea-root': {
     borderRadius: '2.25rem',
     height: '100%',
+  },
+}));
+
+export const ProjectTitle = styled(Typography)(({ theme }) => ({
+  fontSize: theme.spacing(3),
+}));
+
+export const ProjectInfoContainer = styled(Box)(() => ({
+  display: 'flex',
+  alignContent: 'space-between',
+  justifyContent: 'center',
+}));
+
+export const ProjectInvestors = styled(Box)(({ theme }) => ({
+  display: 'flex',
+  alignSelf: 'center',
+  margin: theme.spacing(0, 1),
+  '& span': {
+    marginLeft: theme.spacing(1),
   },
 }));

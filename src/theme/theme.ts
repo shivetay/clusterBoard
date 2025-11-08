@@ -5,7 +5,7 @@ import { createTheme } from '@mui/material';
 const colors = {
   background: '#344285',
   backgroundTransparent: 'rgba(52, 66, 133, 0.28)',
-  backgroundTransparentSecondary: '#CEA7167D',
+  backgroundTransparentSecondary: '#CEA71624',
   backgroundLight: '#dfe4e9',
   textSecondary: '#aaaabc',
   textMain: '#FCFCFA',
@@ -96,6 +96,9 @@ export const mainTheme = createTheme({
       styleOverrides: {
         html: {
           fontSize: '16px', // Ensure 1 rem = 16px
+        },
+        a: {
+          textDecoration: 'none',
         },
       },
     },

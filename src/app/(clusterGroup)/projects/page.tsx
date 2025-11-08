@@ -1,3 +1,5 @@
+import { ProjectsView } from '@/views';
+
 export default function ProjectsPage() {
-  return <div>projekty</div>;
+  return <ProjectsView />;
 }
