@@ -1,14 +1,14 @@
 import { Chip } from '@mui/material';
 
 type TStatusTagProps = 'zakończony' | 'w toku' | 'w przygotowaniu';
-type TStausTagColor = 'primary' | 'success' | 'warning' | 'error';
+type TStatusTagColor = 'primary' | 'success' | 'warning' | 'error';
 
 interface IStatusTagsProps {
   status: TStatusTagProps;
 }
 
 export function StatusTags({ status }: IStatusTagsProps) {
-  const getTagColor = (): TStausTagColor => {
+  const getTagColor = (): TStatusTagColor => {
     switch (status) {
       case 'zakończony':
         return 'success';

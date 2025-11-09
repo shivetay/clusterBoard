@@ -10,7 +10,6 @@ export const ProjectsCardWrapper = styled(Link)(({ theme }) => ({
 export const CardWrapper = styled(Box)<{ cardColor: string }>(
   ({ theme, cardColor }) => ({
     position: 'relative',
-    // maxWidth: theme.spacing(48),
     width: theme.spacing(48),
     borderRadius: '2.25rem',
     backdropFilter: 'blur(7px)',
