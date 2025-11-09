@@ -24,7 +24,8 @@
           "options": {
             "allow": ["error", "info", "warn"]
           }
-        }
+        },
+        "noCommentText": "warn"
       },
       "style": {
         "useImportType": "warn",
