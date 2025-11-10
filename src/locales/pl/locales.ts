@@ -14,6 +14,11 @@ export const TRANSLATIONS = {
   AKTYWNE_ZADANIA: 'Aktywne zadania: ',
   OCZEKUJACE_WIADOMOSCI: 'Masz: ',
   ADD_NEW_PROJECT: 'Dodaj nowy projekt',
+  PLIKI: 'Pliki',
+  INSPIRACJE: 'Inspiracje',
+  WIDOMOSCI: 'Wiadomosci',
+  ADD_STAGE: 'Dodaj etap',
+  END_PROJECT: 'Zakończ projekt',
 };
 
 export default TRANSLATIONS;
