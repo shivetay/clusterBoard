@@ -1,10 +1,9 @@
 'use client';
 import { Step, StepButton, Stepper, Typography } from '@mui/material';
-import { useContext } from 'react';
 import { useTranslation } from 'react-i18next';
 import { PageContainer, StatusTags } from '@/components';
 import { TRANSLATIONS } from '@/locales';
-import { ModalContext } from '@/providers';
+import { useModal } from '@/providers';
 import { DUMMY_DATA } from './dummy_data';
 import {
   ProjectAddStageButton,
@@ -23,8 +22,11 @@ interface IProjectDetailsViewProps {
 
 export function ProjectDetailsView({ projectId }: IProjectDetailsViewProps) {
   const { t } = useTranslation();
-  const { setIsOpen } = useContext(ModalContext);
-  const projectData = DUMMY_DATA[projectId as keyof typeof DUMMY_DATA];
+  const { setIsOpen } = useModal();
+  const projectData =
+    projectId in DUMMY_DATA
+      ? DUMMY_DATA[projectId as keyof typeof DUMMY_DATA]
+      : undefined;
 
   if (!projectData) {
     return (
