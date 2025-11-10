@@ -29,7 +29,7 @@ const PROJECT_INFO_DATA: ProjectData[] = [
     project_status: 'zakończony',
   },
   {
-    id: '1235',
+    id: '1275',
     project_name: 'Kuchnia w przyczepie 2',
     investors: ['Jan Wilczur'],
     color: '#c301a8',

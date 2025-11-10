@@ -4,10 +4,9 @@ import { Box, Stack, styled } from '@mui/material';
 
 export const ActionContainer = styled(Box)(({ theme }) => ({
   display: 'flex',
-  padding: theme.spacing(3.75, 1),
   justifyContent: 'flex-end',
   alignItems: 'center',
-  marginRight: theme.spacing(6.5),
+  marginRight: theme.spacing(3),
 }));
 
 export const ProjectsContainer = styled(Stack)(({ theme }) => ({
