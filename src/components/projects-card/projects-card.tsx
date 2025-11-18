@@ -1,16 +1,16 @@
-import { CardActionArea, CardContent } from '@mui/material';
+import { Box, CardActionArea } from '@mui/material';
+import Link from 'next/link';
 import { StatusTags } from '../tags';
 import {
   CardContainer,
-  CardWrapper,
+  ProjectCardContent,
   ProjectInfoContainer,
   ProjectInvestors,
-  ProjectsCardWrapper,
   ProjectTitle,
+  ProjectTitleContainer,
 } from './projects-card.styled';
 
 interface IProjectsCardProps {
-  color: string;
   project_name: string;
   investors: string[];
   id: string;
@@ -18,27 +18,31 @@ interface IProjectsCardProps {
 }
 
 export function ProjectsCard({ ...props }: IProjectsCardProps) {
-  const { id, color, project_name, investors, project_status } = props;
+  const { id, project_name, investors, project_status } = props;
   return (
-    <ProjectsCardWrapper href={`/project/${id}`}>
-      <CardWrapper cardColor={color}>
+    <Link href={`/project/${id}`}>
+      <Box>
         <CardActionArea>
-          <CardContainer cardColor={color}>
-            <CardContent>
-              <ProjectTitle as="h1">{project_name}</ProjectTitle>
+          <CardContainer>
+            <ProjectCardContent>
+              <ProjectTitleContainer>
+                <ProjectTitle variant="h3" as="h1">
+                  {project_name}
+                </ProjectTitle>
+                <StatusTags status={project_status} />
+              </ProjectTitleContainer>
               <ProjectInfoContainer>
                 <ProjectInvestors>
                   {investors.map((investor) => (
                     <span key={investor}>{investor}</span>
                   ))}
                 </ProjectInvestors>
-                <StatusTags status={project_status} />
               </ProjectInfoContainer>
-            </CardContent>
+            </ProjectCardContent>
           </CardContainer>
         </CardActionArea>
-      </CardWrapper>
-    </ProjectsCardWrapper>
+      </Box>
+    </Link>
   );
 }
 

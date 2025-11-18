@@ -1,8 +1,12 @@
 'use client';
 import CloseIcon from '@mui/icons-material/Close';
-import { Dialog, DialogContent, IconButton } from '@mui/material';
+import { DialogContent, IconButton } from '@mui/material';
 import { useModal } from '@/providers';
-import { CloseButtonWrapper, ModalContentWrapper } from './modal.styled';
+import {
+  CloseButtonWrapper,
+  ModalContainer,
+  ModalContentWrapper,
+} from './modal.styled';
 
 export function Modal() {
   const { isOpen, setIsOpen, modalContent } = useModal();
@@ -12,20 +16,7 @@ export function Modal() {
   };
 
   return (
-    <Dialog
-      open={isOpen}
-      onClose={handleClose}
-      maxWidth="md"
-      fullWidth
-      PaperProps={{
-        sx: {
-          borderRadius: '1rem',
-          background: 'rgba(35, 34, 40, 0.95)',
-          backdropFilter: 'blur(10px)',
-          WebkitBackdropFilter: 'blur(10px)',
-        },
-      }}
-    >
+    <ModalContainer open={isOpen} onClose={handleClose} maxWidth="md" fullWidth>
       <CloseButtonWrapper>
         <IconButton
           onClick={handleClose}
@@ -42,7 +33,7 @@ export function Modal() {
       <DialogContent>
         <ModalContentWrapper>{modalContent}</ModalContentWrapper>
       </DialogContent>
-    </Dialog>
+    </ModalContainer>
   );
 }
 

@@ -1,35 +1,43 @@
-import { Box, CardActionArea, CardContent, Typography } from '@mui/material';
+import { Box, CardActionArea, CardContent } from '@mui/material';
 import Link from 'next/link';
-import { CardContainer, CardWrapper } from './card.styled';
+import { TRANSLATIONS } from '@/locales';
+import {
+  CardContainer,
+  CardHeader,
+  CardWrapper,
+  CountHeader,
+  DescriptionHeader,
+} from './card.styled';
 
 interface CardComponentProps {
-  color: string;
   header: string;
   description?: string | number;
   count?: number;
+  maxCount?: number;
   href: string;
 }
 
 export function CardComponent({ ...props }: CardComponentProps) {
-  const { color, header, href, description, count } = props;
+  const { header, href, description, count, maxCount = 5 } = props;
 
   return (
     <Link href={href}>
-      <CardWrapper cardColor={color}>
+      <CardWrapper>
         <CardActionArea>
-          <CardContainer cardColor={color}>
+          <CardContainer>
             <CardContent>
-              <Typography gutterBottom variant="h4" component="h4">
+              <CardHeader variant="h4" as="h4">
                 {header}
-              </Typography>
+              </CardHeader>
               {description ? (
                 <Box>
-                  <Typography variant="h5" component="h5">
+                  <DescriptionHeader variant="h4" as="h4">
                     {description}
-                  </Typography>
-                  <Typography variant="h4" component="h4">
+                  </DescriptionHeader>
+                  <CountHeader variant="h4" as="h4">
                     {count}
-                  </Typography>
+                    {header === TRANSLATIONS.PROJEKTY ? `/${maxCount}` : ''}
+                  </CountHeader>
                 </Box>
               ) : null}
             </CardContent>

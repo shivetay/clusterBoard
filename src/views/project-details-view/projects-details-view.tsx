@@ -1,11 +1,12 @@
 'use client';
-import { Step, StepButton, Stepper, Typography } from '@mui/material';
+import { Stack, Step, StepButton, Stepper } from '@mui/material';
 import { useTranslation } from 'react-i18next';
-import { PageContainer, StatusTags } from '@/components';
+import { PageContainer, StatusModal, StatusTags } from '@/components';
 import { TRANSLATIONS } from '@/locales';
 import { useModal } from '@/providers';
 import { DUMMY_DATA } from './dummy_data';
 import {
+  Header,
   ProjectAddStageButton,
   ProjectInfoContainer,
   ProjectInvestorContainer,
@@ -22,7 +23,7 @@ interface IProjectDetailsViewProps {
 
 export function ProjectDetailsView({ projectId }: IProjectDetailsViewProps) {
   const { t } = useTranslation();
-  const { setIsOpen } = useModal();
+  const { setModalContent } = useModal();
   const projectData =
     projectId in DUMMY_DATA
       ? DUMMY_DATA[projectId as keyof typeof DUMMY_DATA]
@@ -38,26 +39,28 @@ export function ProjectDetailsView({ projectId }: IProjectDetailsViewProps) {
 
   return (
     <PageContainer>
-      <ProjectInfoContainer cardColor={projectData.color}>
-        <Typography gutterBottom variant="h3" component="h1">
-          {projectData.project_title}
-        </Typography>
+      <ProjectInfoContainer>
+        <Stack direction="row" alignItems="center" spacing={2}>
+          <Header gutterBottom variant="h3" as="h1">
+            {projectData.project_title}
+          </Header>
+          <StatusTags status={projectData.project_status as TStatusTagProps} />
+        </Stack>
         <ProjectInvestorContainer>
           {projectData.investors.map((investor) => {
             return (
-              <Typography key={investor} component="h6" variant="h6">
+              <Header key={investor} as="h6" variant="h6">
                 <span>{investor}</span>
-              </Typography>
+              </Header>
             );
           })}
-          <StatusTags status={projectData.project_status as TStatusTagProps} />
         </ProjectInvestorContainer>
       </ProjectInfoContainer>
       <ProjectStageContainer>
-        <ProjectAddStageButton onClick={() => setIsOpen(true)}>
+        <ProjectAddStageButton>
           {t(TRANSLATIONS.ADD_STAGE)}
         </ProjectAddStageButton>
-        <ProjectAddStageButton>
+        <ProjectAddStageButton onClick={() => setModalContent(<StatusModal />)}>
           {t(TRANSLATIONS.END_PROJECT)}
         </ProjectAddStageButton>
         <ProjectStepperContainer>

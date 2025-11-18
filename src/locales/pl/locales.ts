@@ -12,13 +12,14 @@ export const TRANSLATIONS = {
   CLUSTER: 'Klaster',
   AKTYWNE_PROJEKTY: 'Aktualne projekty: ',
   AKTYWNE_ZADANIA: 'Aktywne zadania: ',
-  OCZEKUJACE_WIADOMOSCI: 'Masz: ',
+  OCZEKUJACE_WIADOMOSCI: 'Nowe wiadomości: ',
   ADD_NEW_PROJECT: 'Dodaj nowy projekt',
   PLIKI: 'Pliki',
   INSPIRACJE: 'Inspiracje',
   WIDOMOSCI: 'Wiadomosci',
   ADD_STAGE: 'Dodaj etap',
   END_PROJECT: 'Zakończ projekt',
+  STATUS_CHANGE: 'Zmień',
 };
 
 export default TRANSLATIONS;

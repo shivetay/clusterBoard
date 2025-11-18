@@ -2,9 +2,13 @@
 import { Stack, styled } from '@mui/material';
 import { CustomButton } from '../button';
 
-export const MenuContainer = styled(Stack)(() => ({
+export const MenuContainer = styled(Stack)(({ theme }) => ({
   gridArea: 'menu',
   width: '74px',
+
+  [theme.breakpoints.down('sm')]: {
+    display: 'none',
+  },
 }));
 
 export const MenuButton = styled(CustomButton)(({ theme }) => ({

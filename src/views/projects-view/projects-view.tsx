@@ -1,6 +1,8 @@
 'use client';
+import AddCircleOutlineOutlinedIcon from '@mui/icons-material/AddCircleOutlineOutlined';
 import { CustomButton, PageContainer, ProjectsCard } from '@/components';
-import { TRANSLATIONS } from '@/locales';
+import AddProjectModal from '@/components/modal/modals/add-project';
+import { useModal } from '@/providers';
 import { ActionContainer, ProjectsContainer } from './projects-view.styled';
 
 type ProjectStatus = 'zakończony' | 'w toku' | 'w przygotowaniu';
@@ -8,7 +10,6 @@ type ProjectStatus = 'zakończony' | 'w toku' | 'w przygotowaniu';
 interface ProjectData {
   id: string;
   project_name: string;
-  color: string;
   investors: string[];
   project_status: ProjectStatus;
 }
@@ -17,7 +18,6 @@ const PROJECT_INFO_DATA: ProjectData[] = [
   {
     id: '1234',
     project_name: 'Projekt mieszkanie m3',
-    color: '#01c3a8',
     investors: ['Jan Kowalski', 'Grażyna Kowalska'],
     project_status: 'w toku',
   },
@@ -25,31 +25,35 @@ const PROJECT_INFO_DATA: ProjectData[] = [
     id: '1235',
     project_name: 'Kuchnia w przyczepie',
     investors: ['Adam Potocki', 'Jan Wilczur'],
-    color: '#c301a8',
     project_status: 'zakończony',
   },
   {
     id: '1275',
     project_name: 'Kuchnia w przyczepie 2',
     investors: ['Jan Wilczur'],
-    color: '#c301a8',
     project_status: 'zakończony',
   },
   {
     id: '3235',
     project_name: 'Kuchnia w przyczepie 3',
     investors: ['Jan Wilczur'],
-    color: '#c301a8',
     project_status: 'zakończony',
   },
 ];
 
 export function ProjectsView() {
+  const { setModalContent } = useModal();
+
+  const handleModalOpen = () => {
+    setModalContent(<AddProjectModal />);
+  };
   return (
     <PageContainer>
       <ActionContainer>
         <span>2/5</span>
-        <CustomButton>{TRANSLATIONS.ADD_NEW_PROJECT}</CustomButton>
+        <CustomButton onClick={handleModalOpen}>
+          <AddCircleOutlineOutlinedIcon />
+        </CustomButton>
       </ActionContainer>
       <ProjectsContainer>
         {PROJECT_INFO_DATA.map((data) => {
@@ -57,7 +61,6 @@ export function ProjectsView() {
             <ProjectsCard
               key={data.id}
               id={data.id}
-              color={data.color}
               investors={data.investors}
               project_status={data.project_status}
               project_name={data.project_name}

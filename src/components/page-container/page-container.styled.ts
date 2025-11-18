@@ -6,7 +6,6 @@ export const Container = styled(Box)(({ theme }) => ({
   width: '100%',
   height: '100%',
   gridArea: 'main',
-  // marginLeft: theme.spacing(4),
   marginRight: theme.spacing(4),
-  padding: theme.spacing(3.75, 1),
+  marginTop: theme.spacing(3),
 }));
