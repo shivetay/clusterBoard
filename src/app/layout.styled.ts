@@ -15,7 +15,7 @@ export const LayoutContainer = styled(Box)(({ theme }) => ({
   overflow: 'hidden',
 
   [theme.breakpoints.down('sm')]: {
-    overflow: 'auto',
+    overflowY: 'auto',
     padding: theme.spacing(2, 0),
     gridTemplateAreas: `
       "header header header"

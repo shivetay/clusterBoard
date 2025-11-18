@@ -41,7 +41,7 @@ export function ProjectDetailsView({ projectId }: IProjectDetailsViewProps) {
     <PageContainer>
       <ProjectInfoContainer>
         <Stack direction="row" alignItems="center" spacing={2}>
-          <Header gutterBottom variant="h3" as="h1">
+          <Header variant="h3" as="h1">
             {projectData.project_title}
           </Header>
           <StatusTags status={projectData.project_status as TStatusTagProps} />

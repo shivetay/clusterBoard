@@ -8,4 +8,9 @@ export const HeaderContainer = styled('header')(({ theme }) => ({
   width: '100%',
   height: '64px',
   alignItems: 'center',
+
+  [theme.breakpoints.down('sm')]: {
+    width: '100%',
+    paddingRight: 0,
+  },
 }));

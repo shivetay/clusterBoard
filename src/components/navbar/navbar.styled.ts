@@ -7,6 +7,10 @@ export const NavbarContainer = styled(Box)(({ theme }) => ({
   justifyContent: 'flex-end',
   width: '100%',
   paddingRight: theme.spacing(4),
+
+  [theme.breakpoints.down('sm')]: {
+    paddingRight: theme.spacing(2),
+  },
 }));
 
 export const UserAvatar = styled(Avatar)(() => ({

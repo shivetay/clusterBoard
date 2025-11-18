@@ -7,7 +7,7 @@ type TPageProps = PropsWithChildren & {
 
 export function PageContainer(props: TPageProps) {
   const { children } = props;
-  return <Container>{children}</Container>;
+  return <Container className="page-container">{children}</Container>;
 }
 
 export default PageContainer;

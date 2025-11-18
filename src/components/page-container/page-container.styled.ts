@@ -8,4 +8,9 @@ export const Container = styled(Box)(({ theme }) => ({
   gridArea: 'main',
   marginRight: theme.spacing(4),
   marginTop: theme.spacing(3),
+
+  [theme.breakpoints.down('sm')]: {
+    marginRight: 0,
+    width: '100vw',
+  },
 }));

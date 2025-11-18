@@ -8,6 +8,12 @@ export const ProjectInfoContainer = styled(Stack)(({ theme }) => ({
   padding: theme.spacing(3.75, 2),
   borderRadius: '10px',
   background: `linear-gradient(150deg, ${theme.palette.background.bgSecondary} 15%, ${theme.palette.background.transparent} 65%, ${theme.palette.background.default} 85%)`,
+
+  [theme.breakpoints.down('sm')]: {
+    margin: '0 auto',
+    width: '400px',
+    background: `linear-gradient(150deg, ${theme.palette.background.bgSecondary} 25%, ${theme.palette.background.transparent} 85%, ${theme.palette.background.default} 100%)`,
+  },
 }));
 
 export const ProjectInvestorContainer = styled(Stack)(({ theme }) => ({
@@ -22,6 +28,9 @@ export const ProjectInvestorContainer = styled(Stack)(({ theme }) => ({
 
 export const Header = styled(Typography)(({ theme }) => ({
   color: theme.palette.text.secondary,
+  [theme.breakpoints.down('sm')]: {
+    fontSize: theme.spacing(2),
+  },
 }));
 
 export const ProjectStageContainer = styled(Box)(({ theme }) => ({

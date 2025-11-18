@@ -13,6 +13,7 @@ export const ClusterCardContainer = styled(Box)(({ theme }) => ({
   gap: theme.spacing(3.75),
 
   [theme.breakpoints.down('sm')]: {
-    gridTemplateColumns: 'repeat(1, 1fr)',
+    gridTemplateColumns: '1fr',
+    gridTemplateRows: 'repeat(5, 1fr)',
   },
 }));

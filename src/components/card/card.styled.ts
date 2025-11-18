@@ -2,12 +2,16 @@
 'use client';
 import { Box, Card, styled, Typography } from '@mui/material';
 
-export const CardWrapper = styled(Box)(() => ({
+export const CardWrapper = styled(Box)(({ theme }) => ({
   width: '500px',
-  height: '150px',
+  maxHeight: '150px',
   background: 'transparent',
   backdropFilter: 'blur(7px)',
   WebkitBackdropFilter: 'blur(7px)',
+
+  [theme.breakpoints.down('sm')]: {
+    width: '400px',
+  },
 }));
 
 export const CardContainer = styled(Card)(({ theme }) => ({
@@ -21,6 +25,9 @@ export const CardHeader = styled(Typography)(({ theme }) => ({
   fontWeight: 600,
   color: theme.palette.text.secondary,
   margin: 0,
+  [theme.breakpoints.down('sm')]: {
+    fontSize: theme.spacing(2.75),
+  },
 }));
 
 export const DescriptionHeader = styled(Typography)(({ theme }) => ({
@@ -28,6 +35,9 @@ export const DescriptionHeader = styled(Typography)(({ theme }) => ({
   fontWeight: 600,
   color: theme.palette.text.secondary,
   margin: theme.spacing(1, 0),
+  [theme.breakpoints.down('sm')]: {
+    fontSize: theme.spacing(2.5),
+  },
 }));
 
 export const CountHeader = styled(Typography)(({ theme }) => ({
@@ -35,4 +45,7 @@ export const CountHeader = styled(Typography)(({ theme }) => ({
   fontWeight: 600,
   color: theme.palette.text.secondary,
   margin: 0,
+  [theme.breakpoints.down('sm')]: {
+    fontSize: theme.spacing(2.5),
+  },
 }));

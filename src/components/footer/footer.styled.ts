@@ -8,19 +8,25 @@ const FOOTER_HEIGHT = 12;
 export const FooterContainer = styled('footer')(({ theme }) => ({
   gridArea: 'footer',
   display: 'flex',
-  justifyContent: 'center',
+  justifyContent: 'space-around',
   alignItems: 'center',
-  position: 'relative',
   height: theme.spacing(FOOTER_HEIGHT),
   width: '100%',
-  minWidth: '100%',
   borderTop: `1px solid ${theme.palette.border.main}`,
+
+  [theme.breakpoints.down('sm')]: {
+    flexDirection: 'column',
+    width: '100%',
+    paddingRight: theme.spacing(2),
+  },
 }));
 
 export const FooterContent = styled(Stack)(({ theme }) => ({
   flexDirection: 'column',
   justifyContent: 'center',
   alignItems: 'center',
+  justifySelf: 'flex-end',
+  flex: '0 0 75%',
   '& span': {
     fontSize: theme.spacing(FOOTER_FONT_SIZE),
     padding: theme.spacing(FOOTER_PADDING),
@@ -29,8 +35,7 @@ export const FooterContent = styled(Stack)(({ theme }) => ({
 
 export const FooterContact = styled(Stack)(({ theme }) => ({
   flexDirection: 'column',
-  position: 'absolute',
-  right: '1rem',
+  flex: '0 0 25%',
   '& span': {
     fontSize: theme.spacing(FOOTER_FONT_SIZE),
   },
