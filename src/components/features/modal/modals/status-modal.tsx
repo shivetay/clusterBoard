@@ -8,7 +8,7 @@ import {
 } from '@mui/material';
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { CustomButton } from '@/components/button';
+import { CustomButton } from '@/components/ui/button';
 import { TRANSLATIONS } from '@/locales';
 
 export function StatusModal() {

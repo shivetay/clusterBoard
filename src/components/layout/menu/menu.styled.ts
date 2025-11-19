@@ -1,6 +1,6 @@
 'use client';
 import { Stack, styled } from '@mui/material';
-import { CustomButton } from '../button';
+import { CustomButton } from '../ui/button';
 
 export const MenuContainer = styled(Stack)(({ theme }) => ({
   gridArea: 'menu',

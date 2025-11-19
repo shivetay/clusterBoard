@@ -2,7 +2,7 @@
 import { Box } from '@mui/material';
 import { useTranslation } from 'react-i18next';
 import { TRANSLATIONS } from '@/locales';
-import { CustomButton } from '../button';
+import { CustomButton } from '../../ui/button';
 
 export function LoginBar() {
   const { t } = useTranslation();
