@@ -12,13 +12,19 @@ export const TRANSLATIONS = {
   CLUSTER: 'Klaster',
   AKTYWNE_PROJEKTY: 'Aktualne projekty: ',
   AKTYWNE_ZADANIA: 'Aktywne zadania: ',
-  OCZEKUJACE_WIADOMOSCI: 'Masz: ',
+  OCZEKUJACE_WIADOMOSCI: 'Nowe wiadomości: ',
   ADD_NEW_PROJECT: 'Dodaj nowy projekt',
   PLIKI: 'Pliki',
   INSPIRACJE: 'Inspiracje',
   WIDOMOSCI: 'Wiadomosci',
   ADD_STAGE: 'Dodaj etap',
   END_PROJECT: 'Zakończ projekt',
+  STATUS_CHANGE: 'Zmień',
+  ADD_PROJECT_MODAL_TITLE: 'Dodaj nowy projekt',
+  ADD_PROJECT_MODAL_BTN: 'Dodaj projekt',
+  PROJECT_CREATED_SUCCESSFULLY: 'Projekt został utworzony pomyślnie',
+  PROJECT_NAME: 'Nazwa projektu',
+  PROJECT_NAME_HELPER_TEXT: 'Max 25 znaków',
 };
 
 export default TRANSLATIONS;

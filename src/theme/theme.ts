@@ -3,17 +3,18 @@ import { createTheme } from '@mui/material';
 
 // Define custom colors based on your globals.css
 const colors = {
-  background: '#344285',
-  backgroundTransparent: 'rgba(52, 66, 133, 0.28)',
-  backgroundTransparentSecondary: '#CEA71624',
-  backgroundLight: '#dfe4e9',
-  textSecondary: '#aaaabc',
-  textMain: '#FCFCFA',
+  background: '#343D47',
+  backgroundSecondary: '#F8E0E0',
+  backgroundTransparent: '#343D47B5',
+  backgroundTransparentSecondary: '#F8E0E0D1',
+  backgroundLight: '#6F7579',
+  textSecondary: '#343D47',
+  textMain: '#A7A9AC',
   gray: '#767587',
-  error: '#812730',
-  errorSecondary: '#bb5a5e',
-  borders: '#cea716',
-  warning: '#cea716',
+  error: '#FF453A',
+  errorSecondary: '#FF453A',
+  borders: '#6F7579',
+  warning: '#FF9500',
 };
 
 export const mainTheme = createTheme({
@@ -28,9 +29,12 @@ export const mainTheme = createTheme({
       default: colors.background,
       transparent: colors.backgroundTransparent,
       buttonBg: colors.backgroundTransparentSecondary,
+      bgSecondary: colors.backgroundSecondary,
+      bgSecondaryTransparent: colors.backgroundTransparentSecondary,
     },
     text: {
       primary: colors.textMain,
+      secondary: colors.textSecondary,
     },
     error: {
       main: colors.error,
@@ -111,24 +115,30 @@ export const mainTheme = createTheme({
           fontFamily: '"Poppins", Arial, Helvetica, sans-serif',
           textTransform: 'none',
           fontWeight: 400,
-          borderRadius: '16px',
-          background: colors.backgroundTransparentSecondary,
-          boxShadow: '0 4px 30px rgba(0, 0, 0, 0.1)',
-          backdropFilter: 'blur(7px)',
-          WebkitBackdropFilter: 'blur(7px)',
-          transition: 'all 0.2s ease',
+          transition:
+            'transform 0.15s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.15s cubic-bezier(0.4, 0, 0.2, 1)',
           '&:hover': {
-            transform: 'translateY(-2px)',
+            transform: 'translateY(-3px)',
+            background: '#404A54',
+            boxShadow:
+              '0 8px 16px rgba(0, 0, 0, 0.25), 0 4px 8px rgba(0, 0, 0, 0.15)',
+            backdropFilter: 'blur(7px)',
+            WebkitBackdropFilter: 'blur(7px)',
           },
           '&:active': {
-            transform: 'translateY(0)',
+            transform: 'translateY(3px)',
+            boxShadow: '0 4px 8px rgba(0, 0, 0, 0.2)',
           },
         },
-        contained: {
-          boxShadow: '0 2px 4px rgba(0,0,0,0.1)',
-          '&:active': {
-            transform: 'translateY(0)',
-          },
+      },
+    },
+    MuiCardActionArea: {
+      defaultProps: {
+        disableRipple: true,
+      },
+      styleOverrides: {
+        focusHighlight: {
+          background: 'transparent',
         },
       },
     },

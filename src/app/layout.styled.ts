@@ -1,7 +1,7 @@
 'use client';
 import { Box, styled } from '@mui/material';
 
-export const LayoutContainer = styled(Box)(() => ({
+export const LayoutContainer = styled(Box)(({ theme }) => ({
   display: 'grid',
   gridTemplateAreas: `
     "header header header"
@@ -13,4 +13,14 @@ export const LayoutContainer = styled(Box)(() => ({
   width: '100vw',
   height: '100vh',
   overflow: 'hidden',
+
+  [theme.breakpoints.down('sm')]: {
+    overflowY: 'auto',
+    padding: theme.spacing(2, 0),
+    gridTemplateAreas: `
+      "header header header"
+      "main main main"
+      "footer footer footer"
+    `,
+  },
 }));

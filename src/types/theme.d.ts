@@ -4,6 +4,8 @@ declare module '@mui/material/styles' {
     default?: string;
     transparent?: string;
     buttonBg?: string;
+    bgSecondary?: string;
+    bgSecondaryTransparent?: string;
   }
 
   interface PaletteOptions {
@@ -14,6 +16,8 @@ declare module '@mui/material/styles' {
       default?: string;
       transparent?: string;
       buttonBg?: string;
+      bgSecondary?: string;
+      bgSecondaryTransparent?: string;
     };
   }
 
@@ -25,6 +29,8 @@ declare module '@mui/material/styles' {
       default?: string;
       transparent?: string;
       buttonBg?: string;
+      bgSecondary?: string;
+      bgSecondaryTransparent?: string;
     };
   }
 }

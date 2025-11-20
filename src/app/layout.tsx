@@ -1,7 +1,13 @@
 import type { Metadata } from 'next';
 import { Poppins } from 'next/font/google';
-import { Footer, Header, Modal } from '@/components';
-import { I18nProvider, ModalProvider } from '@/providers';
+import { AlertPopup, Footer, Header, Modal } from '@/components';
+import {
+  AlertProvider,
+  I18nProvider,
+  ModalProvider,
+  QueryProvider,
+  UserProvider,
+} from '@/providers';
 import { ThemeProvider } from '@/theme';
 import { LayoutContainer } from './layout.styled';
 
@@ -25,16 +31,23 @@ export default function RootLayout({
     <html lang="pl" className={poppins.variable}>
       <body>
         <ThemeProvider>
-          <ModalProvider>
-            <I18nProvider locale="pl">
-              <LayoutContainer>
-                <Header />
-                {children}
-                <Footer />
-              </LayoutContainer>
-            </I18nProvider>
-            <Modal />
-          </ModalProvider>
+          <AlertProvider>
+            <ModalProvider>
+              <QueryProvider>
+                <UserProvider>
+                  <I18nProvider locale="pl">
+                    <LayoutContainer>
+                      <Header />
+                      {children}
+                      <Footer />
+                    </LayoutContainer>
+                  </I18nProvider>
+                  <Modal />
+                  <AlertPopup />
+                </UserProvider>
+              </QueryProvider>
+            </ModalProvider>
+          </AlertProvider>
         </ThemeProvider>
       </body>
     </html>
