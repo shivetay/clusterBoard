@@ -1,5 +1,6 @@
 'use client';
-import { Box, Dialog, styled } from '@mui/material';
+import { Box, Dialog, FormHelperText, styled, Typography } from '@mui/material';
+import { FormComponent } from '@/components/ui';
 
 export const ModalContainer = styled(Dialog)(({ theme }) => ({
   borderRadius: '16px',
@@ -24,3 +25,27 @@ export const CloseButtonWrapper = styled(Box)({
   right: '0.5rem',
   zIndex: 1,
 });
+
+export const AddProjectModalContainer = styled(Box)(({ theme }) => ({
+  display: 'flex',
+  flexDirection: 'column',
+  gap: theme.spacing(2),
+}));
+
+export const AddProjectModalTitle = styled(Typography)(({ theme }) => ({
+  fontSize: '1.5rem',
+  fontWeight: 600,
+  color: theme.palette.text.primary,
+}));
+
+export const AddProjectModalForm = styled(FormComponent)(({ theme }) => ({
+  display: 'flex',
+  flexDirection: 'column',
+  gap: theme.spacing(2),
+}));
+
+export const HelperText = styled(FormHelperText)(({ theme }) => ({
+  fontSize: '0.875rem',
+  color: theme.palette.text.primary,
+  marginLeft: 0,
+}));

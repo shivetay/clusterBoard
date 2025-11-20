@@ -18,7 +18,7 @@ interface CardComponentProps {
 }
 
 export function CardComponent({ ...props }: CardComponentProps) {
-  const { header, href, description, count, maxCount = 5 } = props;
+  const { header, href, description, count, maxCount } = props;
 
   return (
     <Link href={href}>

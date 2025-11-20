@@ -1,3 +1,4 @@
+import { getProjectById } from '@/lib';
 import { ProjectDetailsView } from '@/views';
 
 interface IProjectPageProps {
@@ -8,6 +9,11 @@ interface IProjectPageProps {
 
 export default async function ProjectPage({ params }: IProjectPageProps) {
   const { id } = await params;
+  const projectData = await getProjectById(id);
 
-  return <ProjectDetailsView projectId={id} />;
+  if (!projectData) {
+    return <div>Project not found</div>;
+  }
+
+  return <ProjectDetailsView projectData={projectData} />;
 }
