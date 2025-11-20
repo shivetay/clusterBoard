@@ -3,6 +3,7 @@ import { Poppins } from 'next/font/google';
 import { AlertPopup, Footer, Header, Modal } from '@/components';
 import {
   AlertProvider,
+  AuthSessionProvider,
   I18nProvider,
   ModalProvider,
   QueryProvider,
@@ -31,23 +32,25 @@ export default function RootLayout({
     <html lang="pl" className={poppins.variable}>
       <body>
         <ThemeProvider>
-          <AlertProvider>
-            <ModalProvider>
-              <QueryProvider>
-                <UserProvider>
-                  <I18nProvider locale="pl">
-                    <LayoutContainer>
-                      <Header />
-                      {children}
-                      <Footer />
-                    </LayoutContainer>
-                  </I18nProvider>
-                  <Modal />
-                  <AlertPopup />
-                </UserProvider>
-              </QueryProvider>
-            </ModalProvider>
-          </AlertProvider>
+          <AuthSessionProvider>
+            <AlertProvider>
+              <ModalProvider>
+                <QueryProvider>
+                  <UserProvider>
+                    <I18nProvider locale="pl">
+                      <LayoutContainer>
+                        <Header />
+                        {children}
+                        <Footer />
+                      </LayoutContainer>
+                    </I18nProvider>
+                    <Modal />
+                    <AlertPopup />
+                  </UserProvider>
+                </QueryProvider>
+              </ModalProvider>
+            </AlertProvider>
+          </AuthSessionProvider>
         </ThemeProvider>
       </body>
     </html>

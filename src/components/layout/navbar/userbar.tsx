@@ -6,14 +6,33 @@ import {
   ListItemIcon,
   Menu,
   MenuItem,
+  Typography,
   useTheme,
 } from '@mui/material';
+import { useRouter } from 'next/navigation';
+import { useSession } from 'next-auth/react';
 import { useState } from 'react';
+import { logoutUser } from '@/lib/api/user/login';
+import { useUser } from '@/stores';
 import { UserAvatar } from './navbar.styled';
 
 export function UserBar() {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const theme = useTheme();
+  const { userInfo } = useUser();
+  const { status } = useSession();
+  const router = useRouter();
+
+  if (status !== 'authenticated') {
+    return null;
+  }
+
+  const initials =
+    userInfo?.name
+      ?.split(' ')
+      .map((chunk) => chunk.charAt(0).toUpperCase())
+      .slice(0, 2)
+      .join('') ?? 'CB';
 
   const handleOpenMenu = (e: React.MouseEvent<HTMLElement>) => {
     setAnchorEl(e.currentTarget);
@@ -23,11 +42,17 @@ export function UserBar() {
     setAnchorEl(null);
   };
 
+  const handleLogout = async () => {
+    await logoutUser();
+    handleCloseMenu();
+    router.replace('/login');
+  };
+
   return (
     <>
       <Box sx={{ display: 'flex', alignItems: 'center', textAlign: 'center' }}>
         <IconButton onClick={handleOpenMenu}>
-          <UserAvatar />
+          <UserAvatar>{initials}</UserAvatar>
         </IconButton>
       </Box>
       <Menu
@@ -35,7 +60,6 @@ export function UserBar() {
         id="account-menu"
         open={!!anchorEl}
         onClose={handleCloseMenu}
-        onClick={() => {}}
         slotProps={{
           paper: {
             sx: {
@@ -58,10 +82,15 @@ export function UserBar() {
         transformOrigin={{ horizontal: 'right', vertical: 'top' }}
         anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
       >
-        <MenuItem onClick={() => {}}>
-          <UserAvatar /> Profile
+        <MenuItem onClick={handleCloseMenu}>
+          <Box display="flex" flexDirection="column">
+            <Typography fontWeight={600}>{userInfo?.name}</Typography>
+            <Typography variant="caption" color="text.secondary">
+              {userInfo?.email}
+            </Typography>
+          </Box>
         </MenuItem>
-        <MenuItem onClick={() => {}}>
+        <MenuItem onClick={handleLogout}>
           <ListItemIcon>
             <Logout fontSize="small" />
           </ListItemIcon>

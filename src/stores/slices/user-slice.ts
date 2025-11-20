@@ -20,5 +20,15 @@ export const createUserSlice: StateCreator<StoreType, [], [], IUserSlice> = (
           },
         },
       })),
+    clearUser: () =>
+      set((state) => ({
+        UserSlice: {
+          ...state.UserSlice,
+          user: {
+            ...state.UserSlice.user,
+            userInfo: null,
+          },
+        },
+      })),
   },
 });

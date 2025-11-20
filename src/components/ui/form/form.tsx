@@ -1,9 +1,10 @@
+import type { FormEvent, ReactNode } from 'react';
 import { Form } from './form.styled';
 
 type TFormComponentProps = {
-  children: React.ReactNode;
+  children: ReactNode;
   formId: string;
-  onSubmit: (data: any) => void;
+  onSubmit: (event: FormEvent<HTMLFormElement>) => void;
 };
 
 export function FormComponent({
@@ -11,7 +12,7 @@ export function FormComponent({
   formId,
   onSubmit,
 }: TFormComponentProps) {
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     onSubmit(event);
   };

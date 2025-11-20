@@ -1,5 +1,6 @@
 'use client';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
+import type { AxiosError } from 'axios';
 import { TRANSLATIONS } from '@/locales';
 import { useAlert, useModal } from '@/providers';
 import type { TFormData } from '@/types';
@@ -17,12 +18,16 @@ export const useCreateNewProject = () => {
     mutationFn: async (data: TFormData) => {
       try {
         await apiClient.post('/projects/create', data);
-      } catch (error: any) {
+      } catch (error: unknown) {
+        const message =
+          (error as AxiosError<{ message?: string }>).response?.data?.message ??
+          (error as Error).message ??
+          'Unexpected error';
         showAlert({
-          message: error?.response?.data?.message,
+          message,
           severity: 'error',
         });
-        throw new Error(error?.response?.data?.message);
+        throw new Error(message);
       }
     },
     onSuccess: () => {

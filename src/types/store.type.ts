@@ -6,6 +6,7 @@ export interface IUserState {
 
 export interface IUserActions {
   setUser: (user: IUserData) => void;
+  clearUser: () => void;
 }
 
 export interface IUserSlice {

@@ -21,7 +21,7 @@ export function AlertPopup() {
 
   return (
     <>
-      {alerts.map((alert, index) => (
+      {alerts.map((alert) => (
         <Snackbar
           key={alert.id}
           open={true}

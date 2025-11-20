@@ -2,55 +2,36 @@
 'use client';
 
 import { useQuery } from '@tanstack/react-query';
+import { useSession } from 'next-auth/react';
 import { useEffect } from 'react';
-import apiClient from '@/lib/api/apiClient';
-import { useUser, useUserActions } from '@/stores';
+import { getUserData } from '@/lib/api/user';
+import { useUserActions } from '@/stores';
 import type { IUserData } from '@/types';
 
 export function UserProvider({ children }: { children: React.ReactNode }) {
-  const { setUser } = useUserActions();
-  const user = useUser();
+  const { setUser, clearUser } = useUserActions();
+  const { status } = useSession();
 
-  // Fetch user data using React Query
   const { data: userData } = useQuery<IUserData | null>({
-    queryKey: ['user'],
-    queryFn: async () => {
-      // TODO: Replace hardcoded user ID with actual authentication
-      const response = await apiClient.get('/users/6919058568c55331a48e4314');
-
-      if (!response.data) {
-        return null;
-      }
-
-      const rawUser =
-        response.data.data?.user || response.data.user || response.data;
-
-      if (!rawUser) {
-        return null;
-      }
-
-      const transformedUserData: IUserData = {
-        id: rawUser.id || rawUser._id,
-        name: rawUser.name || rawUser.user_name,
-        email: rawUser.email,
-        role: rawUser.role,
-        cluster_projects: rawUser.cluster_projects || [],
-        projects_limit: rawUser.projects_limit || 0,
-      };
-
-      return transformedUserData;
-    },
-    staleTime: 5 * 60 * 1000, // 5 minutes
-    gcTime: 10 * 60 * 1000, // 10 minutes
+    queryKey: ['user-profile'],
+    queryFn: async () => getUserData(),
+    enabled: status === 'authenticated',
+    staleTime: 5 * 60 * 1000,
+    gcTime: 10 * 60 * 1000,
     retry: 1,
   });
 
-  // Sync React Query cache with Zustand store
   useEffect(() => {
-    if (userData && (!user.userInfo || user.userInfo.id !== userData.id)) {
+    if (status === 'unauthenticated') {
+      clearUser();
+    }
+  }, [status, clearUser]);
+
+  useEffect(() => {
+    if (userData) {
       setUser(userData);
     }
-  }, [userData, user.userInfo, setUser]);
+  }, [userData, setUser]);
 
   return <>{children}</>;
 }

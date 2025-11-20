@@ -1,5 +1,8 @@
 import { Box } from '@mui/material';
+import { redirect } from 'next/navigation';
+import { getServerSession } from 'next-auth';
 import { Menu } from '@/components';
+import { authOptions } from '@/lib/auth/nextAuthOptions';
 import { TRANSLATIONS } from '@/locales';
 
 const MENU_ITEMS = [
@@ -30,11 +33,17 @@ const MENU_ITEMS = [
   },
 ];
 
-export default function ClusterLayout({
+export default async function ClusterLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const session = await getServerSession(authOptions);
+
+  if (!session?.user) {
+    redirect('/login');
+  }
+
   return (
     <>
       <Box
