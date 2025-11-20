@@ -22,7 +22,7 @@ export const ProjectsContainer = styled(Stack)(({ theme }) => ({
 
   [theme.breakpoints.down('sm')]: {
     gridTemplateColumns: '1fr',
-    gridTemplateRows: 'repeat(auto, 1fr)',
+    gridTemplateRows: 'repeat(auto-fill, 1fr)',
     padding: theme.spacing(0, 2),
   },
 }));

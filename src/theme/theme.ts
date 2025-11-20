@@ -98,7 +98,6 @@ export const mainTheme = createTheme({
   components: {
     MuiCssBaseline: {
       styleOverrides: {
-        disableRipple: true,
         html: {
           fontSize: '16px', // Ensure 1 rem = 16px
         },

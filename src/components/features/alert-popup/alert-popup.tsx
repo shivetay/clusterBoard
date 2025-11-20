@@ -21,15 +21,19 @@ export function AlertPopup() {
 
   return (
     <>
-      {alerts.map((alert, index) => (
+      {alerts.map((alert) => (
         <Snackbar
           key={alert.id}
           open={true}
           autoHideDuration={alert.duration}
-          onClose={(event, reason) => handleClose(alert, event, reason)}
+          onClose={(event, reason) => {
+            handleClose(alert, event, reason);
+          }}
         >
           <Alert
-            onClose={(event) => handleClose(alert, event)}
+            onClose={(event) => {
+              handleClose(alert, event);
+            }}
             severity={alert.severity}
             variant="filled"
             sx={{ width: '100%' }}
