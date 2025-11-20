@@ -2,3 +2,4 @@ export * from './button';
 export * from './card';
 export * from './form';
 export * from './loader';
+export * from './logout-button';
