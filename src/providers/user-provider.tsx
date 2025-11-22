@@ -1,22 +1,26 @@
 /** biome-ignore-all lint/style/noMagicNumbers: <time> */
 'use client';
 
+import { useUser } from '@clerk/nextjs';
 import { useQuery } from '@tanstack/react-query';
 import { useEffect } from 'react';
 import apiClient from '@/lib/api/apiClient';
-import { useUser, useUserActions } from '@/stores';
+import { useUserActions } from '@/stores';
 import type { IUserData } from '@/types';
 
 export function UserProvider({ children }: { children: React.ReactNode }) {
   const { setUser } = useUserActions();
+  // const user = useUser();
   const user = useUser();
+
+  const userId = user.user?.id;
 
   // Fetch user data using React Query
   const { data: userData } = useQuery<IUserData | null>({
     queryKey: ['user'],
     queryFn: async () => {
       // TODO: Replace hardcoded user ID with actual authentication
-      const response = await apiClient.get('/users/6919058568c55331a48e4314');
+      const response = await apiClient.get(`/users/${userId}`);
 
       if (!response.data) {
         return null;
@@ -47,10 +51,10 @@ export function UserProvider({ children }: { children: React.ReactNode }) {
 
   // Sync React Query cache with Zustand store
   useEffect(() => {
-    if (userData && (!user.userInfo || user.userInfo.id !== userData.id)) {
+    if (userData && (!user.user || user.user.id !== userData.id)) {
       setUser(userData);
     }
-  }, [userData, user.userInfo, setUser]);
+  }, [userData, user.user, setUser]);
 
   return <>{children}</>;
 }
