@@ -1,23 +1,35 @@
 /** biome-ignore-all lint/style/noMagicNumbers: <time> */
 'use client';
 
-import { useUser } from '@clerk/nextjs';
+import { useAuth, useUser } from '@clerk/nextjs';
 import { useQuery } from '@tanstack/react-query';
 import { useEffect } from 'react';
-import apiClient from '@/lib/api/apiClient';
+import apiClient, { setTokenGetter } from '@/lib/api/apiClient';
 import { useUserActions } from '@/stores';
 import type { IUserData } from '@/types';
 
 export function UserProvider({ children }: { children: React.ReactNode }) {
   const { setUser } = useUserActions();
-  // const user = useUser();
   const user = useUser();
+  const { getToken } = useAuth();
 
   const userId = user.user?.id;
 
+  // Set up the token getter for apiClient
+  useEffect(() => {
+    setTokenGetter(async () => {
+      try {
+        return await getToken();
+      } catch (error) {
+        console.error('Failed to get token:', error);
+        return null;
+      }
+    });
+  }, [getToken]);
+
   // Fetch user data using React Query
   const { data: userData } = useQuery<IUserData | null>({
-    queryKey: ['user'],
+    queryKey: ['user', userId],
     queryFn: async () => {
       // TODO: Replace hardcoded user ID with actual authentication
       const response = await apiClient.get(`/users/${userId}`);
@@ -34,7 +46,7 @@ export function UserProvider({ children }: { children: React.ReactNode }) {
       }
 
       const transformedUserData: IUserData = {
-        id: rawUser.id || rawUser._id,
+        id: userId || rawUser.id || rawUser._id,
         name: rawUser.name || rawUser.user_name,
         email: rawUser.email,
         role: rawUser.role,
@@ -44,6 +56,7 @@ export function UserProvider({ children }: { children: React.ReactNode }) {
 
       return transformedUserData;
     },
+    enabled: !!userId, // Only run query when userId is available
     staleTime: 5 * 60 * 1000, // 5 minutes
     gcTime: 10 * 60 * 1000, // 10 minutes
     retry: 1,
@@ -51,10 +64,10 @@ export function UserProvider({ children }: { children: React.ReactNode }) {
 
   // Sync React Query cache with Zustand store
   useEffect(() => {
-    if (userData && (!user.user || user.user.id !== userData.id)) {
+    if (userData) {
       setUser(userData);
     }
-  }, [userData, user.user, setUser]);
+  }, [userData, setUser]);
 
   return <>{children}</>;
 }

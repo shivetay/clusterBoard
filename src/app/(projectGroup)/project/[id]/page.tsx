@@ -1,3 +1,4 @@
+import { auth } from '@clerk/nextjs/server';
 import { getProjectById } from '@/lib';
 import { ProjectDetailsView } from '@/views';
 
@@ -9,7 +10,10 @@ interface IProjectPageProps {
 
 export default async function ProjectPage({ params }: IProjectPageProps) {
   const { id } = await params;
-  const projectData = await getProjectById(id);
+  const { getToken } = await auth();
+  const token = await getToken();
+
+  const projectData = await getProjectById(id, token);
 
   if (!projectData) {
     return <div>Project not found</div>;

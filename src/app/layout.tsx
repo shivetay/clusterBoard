@@ -1,3 +1,4 @@
+import { plPL } from '@clerk/localizations';
 import { ClerkProvider } from '@clerk/nextjs';
 import type { Metadata } from 'next';
 import { Poppins } from 'next/font/google';
@@ -29,7 +30,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <ClerkProvider>
+    <ClerkProvider localization={plPL}>
       <html lang="pl" className={poppins.variable}>
         <body>
           <ThemeProvider>
