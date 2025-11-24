@@ -64,7 +64,7 @@ export async function serverPost<T = unknown>(
   config?: AxiosRequestConfig,
 ): Promise<T> {
   const client = await getServerApiClient(config);
-  const response = await client.post(url, data, config);
+  const response = await client.post(url, data);
   return response.data;
 }
 
@@ -82,7 +82,7 @@ export async function serverPut<T = unknown>(
   config?: AxiosRequestConfig,
 ): Promise<T> {
   const client = await getServerApiClient(config);
-  const response = await client.put(url, data, config);
+  const response = await client.put(url, data);
   return response.data;
 }
 
@@ -98,6 +98,6 @@ export async function serverDelete<T = unknown>(
   config?: AxiosRequestConfig,
 ): Promise<T> {
   const client = await getServerApiClient(config);
-  const response = await client.delete(url, config);
+  const response = await client.delete(url);
   return response.data;
 }

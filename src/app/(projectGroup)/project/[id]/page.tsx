@@ -12,7 +12,9 @@ interface IProjectPageProps {
 export default async function ProjectPage({ params }: IProjectPageProps) {
   const { id } = await params;
 
-  const response = await serverGet<{ data: { project: IProjectData } }>(id);
+  const response = await serverGet<{ data: { project: IProjectData } }>(
+    `/projects/${id}`,
+  );
 
   const projectData = response.data.project;
 

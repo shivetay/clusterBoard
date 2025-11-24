@@ -17,3 +17,8 @@ const handleMiddleware = async (
 };
 
 export default clerkMiddleware(handleMiddleware);
+
+// only applies this middleware to files in the app directory
+export const config = {
+  matcher: '/((?!api|static|.*\\..*|_next).*)',
+};
