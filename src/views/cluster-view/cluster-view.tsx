@@ -1,5 +1,5 @@
 'use client';
-import { ClerkLoaded, ClerkLoading, useAuth } from '@clerk/nextjs';
+import { ClerkLoaded, useAuth } from '@clerk/nextjs';
 import { CardComponent, Loader, PageContainer } from '@/components';
 import { TRANSLATIONS } from '@/locales';
 import { useUser } from '@/stores';
@@ -14,11 +14,7 @@ export function ClusterView() {
   const messageCount = 0;
 
   if (!isLoaded) {
-    return (
-      <ClerkLoading>
-        <Loader />
-      </ClerkLoading>
-    );
+    return <Loader />;
   }
 
   return (

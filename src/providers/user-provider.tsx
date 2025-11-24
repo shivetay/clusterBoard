@@ -3,36 +3,59 @@
 
 import { useAuth, useUser } from '@clerk/nextjs';
 import { useQuery } from '@tanstack/react-query';
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 import { Loader } from '@/components';
 import apiClient, { setTokenGetter } from '@/lib/api/apiClient';
+import { TRANSLATIONS } from '@/locales';
 import { useUserActions } from '@/stores';
 import type { IUserData } from '@/types';
+import { useAlert } from './alert';
 
 export function UserProvider({ children }: { children: React.ReactNode }) {
   const { setUser } = useUserActions();
   const user = useUser();
-  const { getToken } = useAuth();
+  const { getToken, isLoaded } = useAuth();
+  const { showAlert } = useAlert();
 
   const userId = user.user?.id;
 
-  // Set up the token getter for apiClient
-  useEffect(() => {
+  // Use refs to store the latest values so the token getter always has access to them
+  const getTokenRef = useRef(getToken);
+  const isLoadedRef = useRef(isLoaded);
+  const isTokenGetterSetRef = useRef(false);
+
+  // Update refs on every render to ensure they always have the latest values
+  getTokenRef.current = getToken;
+  isLoadedRef.current = isLoaded;
+
+  // Set up the token getter for apiClient synchronously to avoid race conditions
+  // This ensures the token getter is available before any API calls are made
+  // The getter uses refs to access the latest values, avoiding stale closures
+  // Only set it once to avoid recreating the function on every render
+  if (!isTokenGetterSetRef.current) {
     setTokenGetter(async () => {
+      // Only attempt to get token if Clerk is loaded
+      if (!isLoadedRef.current) {
+        return null;
+      }
       try {
-        return await getToken();
+        return await getTokenRef.current();
       } catch (error) {
         console.error('Failed to get token:', error);
+        showAlert({
+          message: TRANSLATIONS.AUTHENTICATION_ERROR,
+          severity: 'error',
+        });
         return null;
       }
     });
-  }, [getToken]);
+    isTokenGetterSetRef.current = true;
+  }
 
   // Fetch user data using React Query
   const { data: userData, isLoading } = useQuery<IUserData | null>({
     queryKey: ['user', userId],
     queryFn: async () => {
-      // TODO: Replace hardcoded user ID with actual authentication
       const response = await apiClient.get(`/users/${userId}`);
 
       if (!response.data) {
@@ -70,5 +93,7 @@ export function UserProvider({ children }: { children: React.ReactNode }) {
     }
   }, [userData, setUser]);
 
-  return <>{isLoading ? <Loader /> : children}</>;
+  const loading = isLoading || !isLoaded;
+
+  return <>{loading ? <Loader /> : children}</>;
 }

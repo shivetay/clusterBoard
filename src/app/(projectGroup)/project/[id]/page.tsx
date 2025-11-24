@@ -1,6 +1,6 @@
 import { ClerkLoaded } from '@clerk/nextjs';
-import { auth } from '@clerk/nextjs/server';
-import { getProjectById } from '@/lib';
+import { serverGet } from '@/lib/api/projects/serverApiClient';
+import type { IProjectData } from '@/types';
 import { ProjectDetailsView } from '@/views';
 
 interface IProjectPageProps {
@@ -11,10 +11,10 @@ interface IProjectPageProps {
 
 export default async function ProjectPage({ params }: IProjectPageProps) {
   const { id } = await params;
-  const { getToken } = await auth();
-  const token = await getToken();
 
-  const projectData = await getProjectById(id, token);
+  const response = await serverGet<{ data: { project: IProjectData } }>(id);
+
+  const projectData = response.data.project;
 
   if (!projectData) {
     return <div>Project not found</div>;

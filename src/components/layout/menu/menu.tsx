@@ -14,7 +14,12 @@ export function Menu(props: TMenuProps) {
   const { t } = useTranslation();
 
   const menuItems = useMemo(
-    () => MENU_ITEM_LIST.filter((item) => item.type.includes(items)),
+    () =>
+      MENU_ITEM_LIST.filter((item) =>
+        Array.isArray(item.type)
+          ? item.type.includes(items)
+          : item.type === items,
+      ),
     [items],
   );
 

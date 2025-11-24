@@ -25,10 +25,6 @@ export function ProjectsView() {
     setModalContent(<AddProjectModal />);
   };
 
-  if (isLoading || !isLoaded) {
-    return <Loader />;
-  }
-
   return (
     <PageContainer>
       <ClerkLoaded>
@@ -41,7 +37,7 @@ export function ProjectsView() {
           </CustomButton>
         </ActionContainer>
         <ProjectsContainer>
-          {isLoading ? (
+          {isLoading || !isLoaded ? (
             <Loader />
           ) : (
             userProjects?.map((data) => {
