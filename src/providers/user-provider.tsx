@@ -4,6 +4,7 @@
 import { useAuth, useUser } from '@clerk/nextjs';
 import { useQuery } from '@tanstack/react-query';
 import { useEffect } from 'react';
+import { Loader } from '@/components';
 import apiClient, { setTokenGetter } from '@/lib/api/apiClient';
 import { useUserActions } from '@/stores';
 import type { IUserData } from '@/types';
@@ -28,7 +29,7 @@ export function UserProvider({ children }: { children: React.ReactNode }) {
   }, [getToken]);
 
   // Fetch user data using React Query
-  const { data: userData } = useQuery<IUserData | null>({
+  const { data: userData, isLoading } = useQuery<IUserData | null>({
     queryKey: ['user', userId],
     queryFn: async () => {
       // TODO: Replace hardcoded user ID with actual authentication
@@ -69,5 +70,5 @@ export function UserProvider({ children }: { children: React.ReactNode }) {
     }
   }, [userData, setUser]);
 
-  return <>{children}</>;
+  return <>{isLoading ? <Loader /> : children}</>;
 }

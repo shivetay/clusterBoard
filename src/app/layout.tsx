@@ -30,7 +30,14 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <ClerkProvider localization={plPL}>
+    <ClerkProvider
+      localization={plPL}
+      afterSignOutUrl="/sign-in"
+      signInUrl="/sign-in"
+      signUpUrl="/sign-up"
+      signInForceRedirectUrl="/cluster"
+      signUpForceRedirectUrl="/cluster"
+    >
       <html lang="pl" className={poppins.variable}>
         <body>
           <ThemeProvider>

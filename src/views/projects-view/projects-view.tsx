@@ -1,4 +1,5 @@
 'use client';
+import { ClerkLoaded, useAuth } from '@clerk/nextjs';
 import AddCircleOutlineOutlinedIcon from '@mui/icons-material/AddCircleOutlineOutlined';
 import {
   AddProjectModal,
@@ -16,39 +17,47 @@ export function ProjectsView() {
   const { setModalContent } = useModal();
   const { userInfo } = useUser();
   const { data: userProjects, isLoading } = useGetUserProjects();
+  const { isLoaded } = useAuth();
 
   const projectsCount = userInfo?.cluster_projects?.length || 0;
   const projectsLimit = userInfo?.projects_limit || 0;
   const handleModalOpen = () => {
     setModalContent(<AddProjectModal />);
   };
+
+  if (isLoading || !isLoaded) {
+    return <Loader />;
+  }
+
   return (
     <PageContainer>
-      <ActionContainer>
-        <span>
-          {projectsCount}/{projectsLimit}
-        </span>
-        <CustomButton onClick={handleModalOpen}>
-          <AddCircleOutlineOutlinedIcon />
-        </CustomButton>
-      </ActionContainer>
-      <ProjectsContainer>
-        {isLoading ? (
-          <Loader />
-        ) : (
-          userProjects?.map((data) => {
-            return (
-              <ProjectsCard
-                key={data.id}
-                id={data.id}
-                investors={data.investors}
-                project_status={data.project_status}
-                project_name={data.project_name}
-              />
-            );
-          })
-        )}
-      </ProjectsContainer>
+      <ClerkLoaded>
+        <ActionContainer>
+          <span>
+            {projectsCount}/{projectsLimit}
+          </span>
+          <CustomButton onClick={handleModalOpen}>
+            <AddCircleOutlineOutlinedIcon />
+          </CustomButton>
+        </ActionContainer>
+        <ProjectsContainer>
+          {isLoading ? (
+            <Loader />
+          ) : (
+            userProjects?.map((data) => {
+              return (
+                <ProjectsCard
+                  key={data.id}
+                  id={data.id}
+                  investors={data.investors}
+                  project_status={data.project_status}
+                  project_name={data.project_name}
+                />
+              );
+            })
+          )}
+        </ProjectsContainer>
+      </ClerkLoaded>
     </PageContainer>
   );
 }

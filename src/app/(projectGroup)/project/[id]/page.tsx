@@ -1,3 +1,4 @@
+import { ClerkLoaded } from '@clerk/nextjs';
 import { auth } from '@clerk/nextjs/server';
 import { getProjectById } from '@/lib';
 import { ProjectDetailsView } from '@/views';
@@ -19,5 +20,9 @@ export default async function ProjectPage({ params }: IProjectPageProps) {
     return <div>Project not found</div>;
   }
 
-  return <ProjectDetailsView projectData={projectData} />;
+  return (
+    <ClerkLoaded>
+      <ProjectDetailsView projectData={projectData} />
+    </ClerkLoaded>
+  );
 }
