@@ -25,7 +25,7 @@ export const TRANSLATIONS = {
   PROJECT_CREATED_SUCCESSFULLY: 'Projekt został utworzony pomyślnie',
   PROJECT_NAME: 'Nazwa projektu',
   PROJECT_NAME_HELPER_TEXT: 'Max 25 znaków',
-  AUTHENTICATION_ERROR: 'Authentication error. Please try logging in again.',
+  AUTHENTICATION_ERROR: 'Błąd uwierzytelniania. Spróbuj zalogować się ponownie',
 };
 
 export default TRANSLATIONS;

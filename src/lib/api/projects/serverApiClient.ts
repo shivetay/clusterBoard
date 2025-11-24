@@ -45,9 +45,11 @@ export async function serverGet<T = unknown>(
   url: string,
   config?: AxiosRequestConfig,
 ): Promise<T> {
-  const client = await getServerApiClient(config);
-  const response = await client.get(url);
-  return response.data;
+  try {
+    return (await getServerApiClient(config)).get(url);
+  } catch (error) {
+    throw new Error('Failed to get project');
+  }
 }
 
 /**
@@ -63,9 +65,11 @@ export async function serverPost<T = unknown>(
   data?: unknown,
   config?: AxiosRequestConfig,
 ): Promise<T> {
-  const client = await getServerApiClient(config);
-  const response = await client.post(url, data);
-  return response.data;
+  try {
+    return (await getServerApiClient(config)).post(url, data);
+  } catch (error) {
+    throw new Error('Failed to post project');
+  }
 }
 
 /**
@@ -81,9 +85,11 @@ export async function serverPut<T = unknown>(
   data?: unknown,
   config?: AxiosRequestConfig,
 ): Promise<T> {
-  const client = await getServerApiClient(config);
-  const response = await client.put(url, data);
-  return response.data;
+  try {
+    return (await getServerApiClient(config)).put(url, data);
+  } catch (error) {
+    throw new Error('Failed to put project');
+  }
 }
 
 /**
@@ -97,7 +103,9 @@ export async function serverDelete<T = unknown>(
   url: string,
   config?: AxiosRequestConfig,
 ): Promise<T> {
-  const client = await getServerApiClient(config);
-  const response = await client.delete(url);
-  return response.data;
+  try {
+    return (await getServerApiClient(config)).delete(url);
+  } catch (error) {
+    throw new Error('Failed to delete project');
+  }
 }

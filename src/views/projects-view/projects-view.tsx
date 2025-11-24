@@ -1,5 +1,5 @@
 'use client';
-import { ClerkLoaded, useAuth } from '@clerk/nextjs';
+import { useAuth } from '@clerk/nextjs';
 import AddCircleOutlineOutlinedIcon from '@mui/icons-material/AddCircleOutlineOutlined';
 import {
   AddProjectModal,
@@ -27,33 +27,31 @@ export function ProjectsView() {
 
   return (
     <PageContainer>
-      <ClerkLoaded>
-        <ActionContainer>
-          <span>
-            {projectsCount}/{projectsLimit}
-          </span>
-          <CustomButton onClick={handleModalOpen}>
-            <AddCircleOutlineOutlinedIcon />
-          </CustomButton>
-        </ActionContainer>
-        <ProjectsContainer>
-          {isLoading || !isLoaded ? (
-            <Loader />
-          ) : (
-            userProjects?.map((data) => {
-              return (
-                <ProjectsCard
-                  key={data.id}
-                  id={data.id}
-                  investors={data.investors}
-                  project_status={data.project_status}
-                  project_name={data.project_name}
-                />
-              );
-            })
-          )}
-        </ProjectsContainer>
-      </ClerkLoaded>
+      <ActionContainer>
+        <span>
+          {projectsCount}/{projectsLimit}
+        </span>
+        <CustomButton onClick={handleModalOpen}>
+          <AddCircleOutlineOutlinedIcon />
+        </CustomButton>
+      </ActionContainer>
+      <ProjectsContainer>
+        {isLoading || !isLoaded ? (
+          <Loader />
+        ) : (
+          userProjects?.map((data) => {
+            return (
+              <ProjectsCard
+                key={data.id}
+                id={data.id}
+                investors={data.investors}
+                project_status={data.project_status}
+                project_name={data.project_name}
+              />
+            );
+          })
+        )}
+      </ProjectsContainer>
     </PageContainer>
   );
 }

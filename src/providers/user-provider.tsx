@@ -22,11 +22,13 @@ export function UserProvider({ children }: { children: React.ReactNode }) {
   // Use refs to store the latest values so the token getter always has access to them
   const getTokenRef = useRef(getToken);
   const isLoadedRef = useRef(isLoaded);
+  const showAlertRef = useRef(showAlert);
   const isTokenGetterSetRef = useRef(false);
 
   // Update refs on every render to ensure they always have the latest values
   getTokenRef.current = getToken;
   isLoadedRef.current = isLoaded;
+  showAlertRef.current = showAlert;
 
   // Set up the token getter for apiClient synchronously to avoid race conditions
   // This ensures the token getter is available before any API calls are made
@@ -42,7 +44,7 @@ export function UserProvider({ children }: { children: React.ReactNode }) {
         return await getTokenRef.current();
       } catch (error) {
         console.error('Failed to get token:', error);
-        showAlert({
+        showAlertRef.current({
           message: TRANSLATIONS.AUTHENTICATION_ERROR,
           severity: 'error',
         });

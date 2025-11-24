@@ -1,3 +1,4 @@
 export * from './apiClient';
 export * from './hooks';
-export * from './projects';
+// Note: serverApiClient is server-only and should be imported directly
+// from '@/lib/api/projects/serverApiClient' in server components
