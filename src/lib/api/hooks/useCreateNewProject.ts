@@ -27,6 +27,7 @@ export const useCreateNewProject = () => {
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['user-projects'] });
+      queryClient.invalidateQueries({ queryKey: ['user'] });
       setIsOpen(false);
       showAlert({
         message: TRANSLATIONS.PROJECT_CREATED_SUCCESSFULLY,

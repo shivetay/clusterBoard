@@ -1,13 +1,19 @@
+import type { SxProps, Theme } from '@mui/material';
 import type { PropsWithChildren, ReactNode } from 'react';
 import { Container } from './page-container.styled';
 
 type TPageProps = PropsWithChildren & {
   children: ReactNode;
+  sx?: SxProps<Theme>;
 };
 
 export function PageContainer(props: TPageProps) {
-  const { children } = props;
-  return <Container className="page-container">{children}</Container>;
+  const { children, sx } = props;
+  return (
+    <Container className="page-container" sx={sx}>
+      {children}
+    </Container>
+  );
 }
 
 export default PageContainer;

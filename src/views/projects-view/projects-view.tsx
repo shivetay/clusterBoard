@@ -1,4 +1,5 @@
 'use client';
+import { useAuth } from '@clerk/nextjs';
 import AddCircleOutlineOutlinedIcon from '@mui/icons-material/AddCircleOutlineOutlined';
 import {
   AddProjectModal,
@@ -16,12 +17,14 @@ export function ProjectsView() {
   const { setModalContent } = useModal();
   const { userInfo } = useUser();
   const { data: userProjects, isLoading } = useGetUserProjects();
+  const { isLoaded } = useAuth();
 
   const projectsCount = userInfo?.cluster_projects?.length || 0;
   const projectsLimit = userInfo?.projects_limit || 0;
   const handleModalOpen = () => {
     setModalContent(<AddProjectModal />);
   };
+
   return (
     <PageContainer>
       <ActionContainer>
@@ -33,7 +36,7 @@ export function ProjectsView() {
         </CustomButton>
       </ActionContainer>
       <ProjectsContainer>
-        {isLoading ? (
+        {isLoading || !isLoaded ? (
           <Loader />
         ) : (
           userProjects?.map((data) => {

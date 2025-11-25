@@ -1,22 +1,64 @@
 /** biome-ignore-all lint/style/noMagicNumbers: <time> */
 'use client';
 
+import { useAuth, useUser } from '@clerk/nextjs';
 import { useQuery } from '@tanstack/react-query';
-import { useEffect } from 'react';
-import apiClient from '@/lib/api/apiClient';
-import { useUser, useUserActions } from '@/stores';
+import { useEffect, useRef } from 'react';
+import { Loader } from '@/components';
+import apiClient, { setTokenGetter } from '@/lib/api/apiClient';
+import { TRANSLATIONS } from '@/locales';
+import { useUserActions } from '@/stores';
 import type { IUserData } from '@/types';
+import { useAlert } from './alert';
 
 export function UserProvider({ children }: { children: React.ReactNode }) {
   const { setUser } = useUserActions();
   const user = useUser();
+  const { getToken, isLoaded } = useAuth();
+  const { showAlert } = useAlert();
+
+  const userId = user.user?.id;
+
+  // Use refs to store the latest values so the token getter always has access to them
+  const getTokenRef = useRef(getToken);
+  const isLoadedRef = useRef(isLoaded);
+  const showAlertRef = useRef(showAlert);
+  const isTokenGetterSetRef = useRef(false);
+
+  // Update refs on every render to ensure they always have the latest values
+  getTokenRef.current = getToken;
+  isLoadedRef.current = isLoaded;
+  showAlertRef.current = showAlert;
+
+  // Set up the token getter for apiClient synchronously to avoid race conditions
+  // This ensures the token getter is available before any API calls are made
+  // The getter uses refs to access the latest values, avoiding stale closures
+  // Only set it once to avoid recreating the function on every render
+  if (!isTokenGetterSetRef.current) {
+    setTokenGetter(async () => {
+      // Only attempt to get token if Clerk is loaded
+      if (!isLoadedRef.current) {
+        return null;
+      }
+      try {
+        return await getTokenRef.current();
+      } catch (error) {
+        console.error('Failed to get token:', error);
+        showAlertRef.current({
+          message: TRANSLATIONS.AUTHENTICATION_ERROR,
+          severity: 'error',
+        });
+        return null;
+      }
+    });
+    isTokenGetterSetRef.current = true;
+  }
 
   // Fetch user data using React Query
-  const { data: userData } = useQuery<IUserData | null>({
-    queryKey: ['user'],
+  const { data: userData, isLoading } = useQuery<IUserData | null>({
+    queryKey: ['user', userId],
     queryFn: async () => {
-      // TODO: Replace hardcoded user ID with actual authentication
-      const response = await apiClient.get('/users/6919058568c55331a48e4314');
+      const response = await apiClient.get(`/users/${userId}`);
 
       if (!response.data) {
         return null;
@@ -30,7 +72,7 @@ export function UserProvider({ children }: { children: React.ReactNode }) {
       }
 
       const transformedUserData: IUserData = {
-        id: rawUser.id || rawUser._id,
+        id: userId || rawUser.id || rawUser._id,
         name: rawUser.name || rawUser.user_name,
         email: rawUser.email,
         role: rawUser.role,
@@ -40,6 +82,7 @@ export function UserProvider({ children }: { children: React.ReactNode }) {
 
       return transformedUserData;
     },
+    enabled: !!userId, // Only run query when userId is available
     staleTime: 5 * 60 * 1000, // 5 minutes
     gcTime: 10 * 60 * 1000, // 10 minutes
     retry: 1,
@@ -47,10 +90,12 @@ export function UserProvider({ children }: { children: React.ReactNode }) {
 
   // Sync React Query cache with Zustand store
   useEffect(() => {
-    if (userData && (!user.userInfo || user.userInfo.id !== userData.id)) {
+    if (userData) {
       setUser(userData);
     }
-  }, [userData, user.userInfo, setUser]);
+  }, [userData, setUser]);
 
-  return <>{children}</>;
+  const loading = isLoading || !isLoaded;
+
+  return <>{loading ? <Loader /> : children}</>;
 }

@@ -1,5 +1,6 @@
 'use client';
-import { Box } from '@mui/material';
+import { SignedOut } from '@clerk/nextjs';
+import Link from 'next/link';
 import { useTranslation } from 'react-i18next';
 import { TRANSLATIONS } from '@/locales';
 import { CustomButton } from '../../ui/button';
@@ -8,10 +9,15 @@ export function LoginBar() {
   const { t } = useTranslation();
 
   return (
-    <Box>
-      <CustomButton>{t(TRANSLATIONS.LOGIN_BTN)}</CustomButton>
-      <CustomButton>{t(TRANSLATIONS.REGISTER_BTN)}</CustomButton>
-    </Box>
+    <SignedOut>
+      <Link href="/sign-in">
+        <CustomButton>{t(TRANSLATIONS.LOGIN_BTN)}</CustomButton>
+      </Link>
+
+      <Link href="/sign-up">
+        <CustomButton>{t(TRANSLATIONS.REGISTER_BTN)}</CustomButton>
+      </Link>
+    </SignedOut>
   );
 }
 

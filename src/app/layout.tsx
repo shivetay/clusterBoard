@@ -1,3 +1,5 @@
+import { plPL } from '@clerk/localizations';
+import { ClerkProvider } from '@clerk/nextjs';
 import type { Metadata } from 'next';
 import { Poppins } from 'next/font/google';
 import { AlertPopup, Footer, Header, Modal } from '@/components';
@@ -28,28 +30,37 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="pl" className={poppins.variable}>
-      <body>
-        <ThemeProvider>
-          <AlertProvider>
-            <ModalProvider>
-              <QueryProvider>
-                <UserProvider>
-                  <I18nProvider locale="pl">
-                    <LayoutContainer>
-                      <Header />
-                      {children}
-                      <Footer />
-                    </LayoutContainer>
-                  </I18nProvider>
-                  <Modal />
-                  <AlertPopup />
-                </UserProvider>
-              </QueryProvider>
-            </ModalProvider>
-          </AlertProvider>
-        </ThemeProvider>
-      </body>
-    </html>
+    <ClerkProvider
+      localization={plPL}
+      afterSignOutUrl="/sign-in"
+      signInUrl="/sign-in"
+      signUpUrl="/sign-up"
+      signInForceRedirectUrl="/cluster"
+      signUpForceRedirectUrl="/cluster"
+    >
+      <html lang="pl" className={poppins.variable}>
+        <body>
+          <ThemeProvider>
+            <AlertProvider>
+              <ModalProvider>
+                <QueryProvider>
+                  <UserProvider>
+                    <I18nProvider locale="pl">
+                      <LayoutContainer>
+                        <Header />
+                        {children}
+                        <Footer />
+                      </LayoutContainer>
+                    </I18nProvider>
+                    <Modal />
+                    <AlertPopup />
+                  </UserProvider>
+                </QueryProvider>
+              </ModalProvider>
+            </AlertProvider>
+          </ThemeProvider>
+        </body>
+      </html>
+    </ClerkProvider>
   );
 }

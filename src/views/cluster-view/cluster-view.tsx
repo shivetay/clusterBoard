@@ -1,16 +1,21 @@
 'use client';
-import { CardComponent, PageContainer } from '@/components';
+import { useAuth } from '@clerk/nextjs';
+import { CardComponent, Loader, PageContainer } from '@/components';
 import { TRANSLATIONS } from '@/locales';
 import { useUser } from '@/stores';
-
 import { ClusterCardContainer } from './cluster-view.styled';
 
 export function ClusterView() {
   const user = useUser();
+  const { isLoaded } = useAuth();
   const projectsCount = user?.userInfo?.cluster_projects?.length || 0;
   const projectsLimit = user?.userInfo?.projects_limit || 0;
   const taskCount = 0;
   const messageCount = 0;
+
+  if (!isLoaded) {
+    return <Loader />;
+  }
 
   return (
     <PageContainer>
