@@ -19,6 +19,7 @@ const colors = {
   bordersSecondary: '#252f3740',
   inputBorder: '#0e121699',
   warning: '#F2B437',
+  primaryTransparent: '#F2B4371A',
 };
 
 export const mainTheme = createTheme({
@@ -34,8 +35,10 @@ export const mainTheme = createTheme({
       default: colors.background,
       transparent: colors.backgroundTransparent,
       bgSecondary: colors.backgroundSecondary,
+      //TODO fix this in txt
       gradientText: colors.primary,
       gradientTextSecondary: colors.secondary,
+      primaryTransparent: colors.primaryTransparent,
     },
     text: {
       primary: colors.textMain,
@@ -55,37 +58,37 @@ export const mainTheme = createTheme({
     fontFamily: '"Poppins", Arial, Helvetica, sans-serif',
     h1: {
       fontFamily: '"Poppins", Arial, Helvetica, sans-serif',
-      fontSize: '2.5rem',
+      fontSize: '2.25rem',
       fontWeight: 400,
       color: colors.textMain,
     },
     h2: {
       fontFamily: '"Poppins", Arial, Helvetica, sans-serif',
-      fontSize: '2rem',
+      fontSize: '1.75rem',
       fontWeight: 400,
       color: colors.textMain,
     },
     h3: {
       fontFamily: '"Poppins", Arial, Helvetica, sans-serif',
-      fontSize: '1.75rem',
+      fontSize: '1.5rem',
       fontWeight: 400,
       color: colors.textMain,
     },
     h4: {
       fontFamily: '"Poppins", Arial, Helvetica, sans-serif',
-      fontSize: '1.5rem',
+      fontSize: '1.25rem',
       fontWeight: 400,
       color: colors.textMain,
     },
     h5: {
       fontFamily: '"Poppins", Arial, Helvetica, sans-serif',
-      fontSize: '1.25rem',
+      fontSize: '1rem',
       fontWeight: 400,
       color: colors.textMain,
     },
     h6: {
       fontFamily: '"Poppins", Arial, Helvetica, sans-serif',
-      fontSize: '1rem',
+      fontSize: '.75rem',
       fontWeight: 400,
       color: colors.textMain,
     },
@@ -124,18 +127,18 @@ export const mainTheme = createTheme({
           fontWeight: 400,
           transition:
             'transform 0.15s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.15s cubic-bezier(0.4, 0, 0.2, 1)',
-          '&:hover': {
-            transform: 'translateY(-3px)',
-            background: '#404A54',
-            boxShadow:
-              '0 8px 16px rgba(0, 0, 0, 0.25), 0 4px 8px rgba(0, 0, 0, 0.15)',
-            backdropFilter: 'blur(7px)',
-            WebkitBackdropFilter: 'blur(7px)',
-          },
-          '&:active': {
-            transform: 'translateY(3px)',
-            boxShadow: '0 4px 8px rgba(0, 0, 0, 0.2)',
-          },
+          // '&:hover': {
+          //   transform: 'translateY(-3px)',
+          //   background: '#404A54',
+          //   boxShadow:
+          //     '0 8px 16px rgba(0, 0, 0, 0.25), 0 4px 8px rgba(0, 0, 0, 0.15)',
+          //   backdropFilter: 'blur(7px)',
+          //   WebkitBackdropFilter: 'blur(7px)',
+          // },
+          // '&:active': {
+          //   transform: 'translateY(3px)',
+          //   boxShadow: '0 4px 8px rgba(0, 0, 0, 0.2)',
+          // },
         },
       },
     },

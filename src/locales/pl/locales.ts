@@ -11,7 +11,7 @@ export const TRANSLATIONS = {
   WIADOMOSCI: 'Wiadomości',
   AKTYWNE_SPOTKANIA: 'Nadchodzące spotkania',
   CLUSTER: 'Klaster',
-  AKTYWNE_PROJEKTY: 'Aktualne projekty',
+  AKTYWNE_PROJEKTY: 'Aktywne projekty',
   AKTYWNE_ZADANIA: 'Aktywne zadania',
   OCZEKUJACE_WIADOMOSCI: 'Nowe wiadomości',
   ADD_NEW_PROJECT: 'Dodaj nowy projekt',
@@ -27,6 +27,7 @@ export const TRANSLATIONS = {
   PROJECT_NAME: 'Nazwa projektu',
   PROJECT_NAME_HELPER_TEXT: 'Max 25 znaków',
   AUTHENTICATION_ERROR: 'Błąd uwierzytelniania. Spróbuj zalogować się ponownie',
+  DETAILS: 'Szczegóły',
 };
 
 export default TRANSLATIONS;

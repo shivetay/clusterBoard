@@ -1,5 +1,5 @@
 import SubdirectoryArrowRightOutlinedIcon from '@mui/icons-material/SubdirectoryArrowRightOutlined';
-import { CardActionArea, CardContent } from '@mui/material';
+import { Box, CardActionArea, CardContent } from '@mui/material';
 import {
   CardContainer,
   CardHeader,
@@ -59,10 +59,12 @@ export function LargeCard({ ...props }: CardComponentProps) {
               {description ? (
                 <CountHeaderContainer>
                   <SpannedCountHeader>{count}</SpannedCountHeader>
-                  <SpannedMaxCountHeaderCount variant="h3" as="h3">
-                    / {`${maxCount}`}
-                  </SpannedMaxCountHeaderCount>
-                  <CardHelperText>{description}</CardHelperText>
+                  <Box>
+                    <SpannedMaxCountHeaderCount variant="h3" as="h3">
+                      / {`${maxCount}`}
+                    </SpannedMaxCountHeaderCount>
+                    <CardHelperText>{description}</CardHelperText>
+                  </Box>
                 </CountHeaderContainer>
               ) : null}
             </CardContent>

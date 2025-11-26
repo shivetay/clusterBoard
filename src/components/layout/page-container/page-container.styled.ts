@@ -9,5 +9,7 @@ export const Container = styled(Box)(({ theme }) => ({
   maxWidth: theme.spacing(160),
   width: '100%',
 
-  [theme.breakpoints.down('sm')]: {},
+  [theme.breakpoints.down('sm')]: {
+    padding: 0,
+  },
 }));

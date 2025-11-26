@@ -11,9 +11,11 @@ export const ClusterCardContainer = styled(Box)(({ theme }) => ({
 
   [theme.breakpoints.down('md')]: {
     gridTemplateColumns: 'repeat(2, minmax(0, 1fr))',
+    padding: theme.spacing(0, '1.5rem', '1.5rem', '1.5rem'),
   },
 
   [theme.breakpoints.down('sm')]: {
     gridTemplateColumns: 'repeat(1, minmax(0, 1fr))',
+    padding: theme.spacing(0, '1.5rem', '1.5rem', '1.5rem'),
   },
 }));
