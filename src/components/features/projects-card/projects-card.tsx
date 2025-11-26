@@ -1,9 +1,16 @@
-import { Box, CardActionArea } from '@mui/material';
-import Link from 'next/link';
+'use client';
+import CalendarMonthOutlinedIcon from '@mui/icons-material/CalendarMonthOutlined';
+import GroupsOutlinedIcon from '@mui/icons-material/GroupsOutlined';
+import KeyboardArrowRightOutlinedIcon from '@mui/icons-material/KeyboardArrowRightOutlined';
+import { Box, CardActionArea, CardContent } from '@mui/material';
+import { useTranslation } from 'react-i18next';
+import { HexDecor } from '@/components/ui';
+import { TRANSLATIONS } from '@/locales';
 import { StatusTags } from '../tags';
 import {
   CardContainer,
-  ProjectCardContent,
+  ProjectCardLink,
+  ProjectDateContainer,
   ProjectInfoContainer,
   ProjectInvestors,
   ProjectTitle,
@@ -15,34 +22,48 @@ interface IProjectsCardProps {
   investors: string[];
   id: string;
   project_status: 'zakończony' | 'w toku' | 'w przygotowaniu';
+  start_date?: string;
+  end_date?: string;
 }
 
 export function ProjectsCard({ ...props }: IProjectsCardProps) {
-  const { id, project_name, investors, project_status } = props;
+  const { id, project_name, investors, project_status, start_date, end_date } =
+    props;
+  const { t } = useTranslation();
   return (
-    <Link href={`/project/${id}`}>
-      <Box>
-        <CardActionArea>
-          <CardContainer>
-            <ProjectCardContent>
-              <ProjectTitleContainer>
-                <ProjectTitle variant="h3" as="h1">
-                  {project_name}
-                </ProjectTitle>
-                <StatusTags status={project_status} />
-              </ProjectTitleContainer>
-              <ProjectInfoContainer>
-                <ProjectInvestors>
-                  {investors.map((investor) => (
-                    <span key={investor}>{investor}</span>
-                  ))}
-                </ProjectInvestors>
-              </ProjectInfoContainer>
-            </ProjectCardContent>
-          </CardContainer>
-        </CardActionArea>
-      </Box>
-    </Link>
+    <ProjectCardLink href={`/project/${id}`}>
+      <CardActionArea>
+        <CardContainer>
+          <HexDecor />
+          <CardContent>
+            <ProjectTitleContainer>
+              <ProjectTitle variant="h4" component="h4">
+                {project_name}
+              </ProjectTitle>
+              <StatusTags status={project_status} />
+            </ProjectTitleContainer>
+            <ProjectInfoContainer>
+              <ProjectInvestors>
+                <GroupsOutlinedIcon />
+                {/*// TODO check with actual investors for styling issues */}
+                {investors.map((investor) => (
+                  <span key={investor}>{investor}</span>
+                ))}
+              </ProjectInvestors>
+              <ProjectDateContainer>
+                {/* // TODO check with actual dates for styling issues */}
+                <CalendarMonthOutlinedIcon />
+                <span>{start_date ? start_date : 'N/A'}</span>
+                <span>{end_date ? end_date : 'N/A'}</span>
+              </ProjectDateContainer>
+            </ProjectInfoContainer>
+            <Box display="flex" alignItems="center" gap={1}>
+              {t(TRANSLATIONS.DETAILS)} <KeyboardArrowRightOutlinedIcon />
+            </Box>
+          </CardContent>
+        </CardContainer>
+      </CardActionArea>
+    </ProjectCardLink>
   );
 }
 

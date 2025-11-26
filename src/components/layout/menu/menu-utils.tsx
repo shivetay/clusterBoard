@@ -1,3 +1,9 @@
+import CalendarMonthOutlinedIcon from '@mui/icons-material/CalendarMonthOutlined';
+import ChecklistOutlinedIcon from '@mui/icons-material/ChecklistOutlined';
+import CurrencyExchangeOutlinedIcon from '@mui/icons-material/CurrencyExchangeOutlined';
+import HiveOutlinedIcon from '@mui/icons-material/HiveOutlined';
+import TokenOutlinedIcon from '@mui/icons-material/TokenOutlined';
+
 import { TRANSLATIONS } from '@/locales';
 
 type TMenuItem = {
@@ -5,53 +11,59 @@ type TMenuItem = {
   href: string;
   label: string;
   type: Array<'cluster' | 'projects'> | 'cluster' | 'projects';
+  icon?: React.ReactNode;
 };
 
 export const MENU_ITEM_LIST: TMenuItem[] = [
   {
-    id: 'Klaster',
+    id: 'cluster',
     href: '/cluster',
     label: TRANSLATIONS.CLUSTER,
     type: ['cluster', 'projects'],
+    icon: <HiveOutlinedIcon />,
   },
   {
-    id: 'projekty',
+    id: 'projects',
     href: '/projects',
     label: TRANSLATIONS.PROJEKTY,
     type: ['cluster', 'projects'],
+    icon: <TokenOutlinedIcon />,
   },
   {
-    id: 'zadania',
+    id: 'tasks',
     href: '/zadania',
     label: TRANSLATIONS.ZADANIA,
     type: 'cluster',
+    icon: <ChecklistOutlinedIcon />,
   },
   {
-    id: 'kalendarz',
+    id: 'calendar',
     href: '/kalendarz',
     label: TRANSLATIONS.KALENDARZ,
     type: 'cluster',
+    icon: <CalendarMonthOutlinedIcon />,
   },
   {
-    id: 'finanse',
+    id: 'finance',
     href: '/finanse',
     label: TRANSLATIONS.FINANSE,
     type: 'cluster',
+    icon: <CurrencyExchangeOutlinedIcon />,
   },
   {
-    id: 'pliki',
+    id: 'files',
     href: '/pliki',
     label: TRANSLATIONS.PLIKI,
     type: 'projects',
   },
   {
-    id: 'inspiracje',
+    id: 'inspirations',
     href: '/inspiracje',
     label: TRANSLATIONS.INSPIRACJE,
     type: 'projects',
   },
   {
-    id: 'widomosci',
+    id: 'messages',
     href: '/wiadomoscie',
     label: TRANSLATIONS.WIADOMOSCI,
     type: 'projects',

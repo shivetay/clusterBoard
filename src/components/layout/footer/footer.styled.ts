@@ -6,13 +6,14 @@ const FOOTER_PADDING = 1;
 const FOOTER_HEIGHT = 12;
 
 export const FooterContainer = styled('footer')(({ theme }) => ({
-  gridArea: 'footer',
   display: 'flex',
   justifyContent: 'space-around',
   alignItems: 'center',
   height: theme.spacing(FOOTER_HEIGHT),
+  backdropFilter: 'blur(16px)',
   width: '100%',
-  borderTop: `1px solid ${theme.palette.border.main}`,
+  borderTop: `1px solid ${theme.palette.border?.secondary}`,
+  backgroundColor: theme.palette.background.transparent,
 
   [theme.breakpoints.down('sm')]: {
     flexDirection: 'column',
