@@ -6,11 +6,21 @@ declare module '@mui/material/styles' {
     buttonBg?: string;
     bgSecondary?: string;
     bgSecondaryTransparent?: string;
+    gradientText?: string;
+    gradientTextSecondary?: string;
+  }
+
+  interface TypeText {
+    primary: string;
+    secondary: string;
+    dark: string;
+    tertiary: string;
   }
 
   interface PaletteOptions {
     border?: {
-      main: string;
+      main?: string;
+      secondary?: string;
     };
     background?: {
       default?: string;
@@ -18,12 +28,21 @@ declare module '@mui/material/styles' {
       buttonBg?: string;
       bgSecondary?: string;
       bgSecondaryTransparent?: string;
+      gradientText?: string;
+      gradientTextSecondary?: string;
+    };
+    text: {
+      primary: string;
+      secondary: string;
+      dark: string;
+      tertiary: string;
     };
   }
 
   interface Palette {
     border: {
       main: string;
+      secondary: string;
     };
     background: {
       default?: string;
@@ -31,6 +50,14 @@ declare module '@mui/material/styles' {
       buttonBg?: string;
       bgSecondary?: string;
       bgSecondaryTransparent?: string;
+      gradientText?: string;
+      gradientTextSecondary?: string;
+    };
+    text: {
+      primary: string;
+      secondary: string;
+      dark: string;
+      tertiary: string;
     };
   }
 }

@@ -3,18 +3,22 @@ import { createTheme } from '@mui/material';
 
 // Define custom colors based on your globals.css
 const colors = {
-  background: '#343D47',
-  backgroundSecondary: '#F8E0E0',
-  backgroundTransparent: '#343D47B5',
-  backgroundTransparentSecondary: '#F8E0E0D1',
-  backgroundLight: '#6F7579',
-  textSecondary: '#343D47',
-  textMain: '#A7A9AC',
-  gray: '#767587',
+  primary: '#F2B437',
+  secondary: '#0FA3B1',
+  background: '#0F1113',
+  backgroundSecondary: '#080c0e',
+  backgroundTransparent: '#080c0e66',
+  backgroundLight: '#1F2225',
+  textTertiary: '#76828b',
+  textMain: '#f3f2f5',
+  textDark: '#020304',
+  textAcent: '#F2B437',
   error: '#FF453A',
   errorSecondary: '#FF453A',
-  borders: '#6F7579',
-  warning: '#FF9500',
+  borders: '#1b232866',
+  bordersSecondary: '#252f3740',
+  inputBorder: '#0e121699',
+  warning: '#F2B437',
 };
 
 export const mainTheme = createTheme({
@@ -24,17 +28,20 @@ export const mainTheme = createTheme({
     },
     border: {
       main: colors.borders,
+      secondary: colors.bordersSecondary,
     },
     background: {
       default: colors.background,
       transparent: colors.backgroundTransparent,
-      buttonBg: colors.backgroundTransparentSecondary,
       bgSecondary: colors.backgroundSecondary,
-      bgSecondaryTransparent: colors.backgroundTransparentSecondary,
+      gradientText: colors.primary,
+      gradientTextSecondary: colors.secondary,
     },
     text: {
       primary: colors.textMain,
-      secondary: colors.textSecondary,
+      secondary: colors.textAcent,
+      dark: colors.textDark,
+      tertiary: colors.textTertiary,
     },
     error: {
       main: colors.error,

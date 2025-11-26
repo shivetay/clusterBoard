@@ -1,5 +1,5 @@
 import { Box } from '@mui/material';
-import { Menu } from '@/components';
+// import { Menu } from '@/components';
 
 export default function ClusterLayout({
   children,
@@ -14,7 +14,7 @@ export default function ClusterLayout({
           padding: '1rem 2rem',
         }}
       >
-        <Menu items="cluster" />
+        {/* <Menu items="cluster" /> */}
       </Box>
       {children}
     </>

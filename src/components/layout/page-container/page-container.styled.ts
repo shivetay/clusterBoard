@@ -3,14 +3,11 @@
 import { Box, styled } from '@mui/material';
 
 export const Container = styled(Box)(({ theme }) => ({
+  flex: 1,
+  margin: theme.spacing(0, 'auto'),
+  padding: theme.spacing(0, '1.5rem', '1.5rem', '1.5rem'),
+  maxWidth: theme.spacing(160),
   width: '100%',
-  height: '100%',
-  gridArea: 'main',
-  marginRight: theme.spacing(4),
-  marginTop: theme.spacing(3),
 
-  [theme.breakpoints.down('sm')]: {
-    marginRight: 0,
-    width: '100vw',
-  },
+  [theme.breakpoints.down('sm')]: {},
 }));
