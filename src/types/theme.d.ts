@@ -9,6 +9,8 @@ declare module '@mui/material/styles' {
     gradientText?: string;
     gradientTextSecondary?: string;
     primaryTransparent?: string;
+    bgLight?: string;
+    bgLightTransparent?: string;
   }
 
   interface TypeText {
@@ -32,6 +34,7 @@ declare module '@mui/material/styles' {
       gradientText?: string;
       gradientTextSecondary?: string;
       primaryTransparent?: string;
+      bgLight?: string;
     };
     text: {
       primary: string;
@@ -55,6 +58,8 @@ declare module '@mui/material/styles' {
       gradientText?: string;
       gradientTextSecondary?: string;
       primaryTransparent?: string;
+      bgLight?: string;
+      bgLightTransparent?: string;
     };
     text: {
       primary: string;

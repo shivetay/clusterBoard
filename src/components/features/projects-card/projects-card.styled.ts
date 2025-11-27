@@ -16,11 +16,13 @@ export const ProjectHex = styled('div')(({ theme }) => ({
 
 export const ProjectCardLink = styled(Link)(({ theme }) => ({
   textDecoration: 'none',
-  padding: theme.spacing(3),
   transition: 'all 0.3s ease-in-out',
 
   '&:hover': {
     scale: 1.03,
+  },
+  [theme.breakpoints.down('md')]: {
+    marginTop: theme.spacing(1.5),
   },
 }));
 
@@ -28,7 +30,7 @@ export const CardContainer = styled(Card)(({ theme }) => ({
   background: theme.palette.background.transparent,
   backdropFilter: 'blur(12px)',
   color: theme.palette.text.secondary,
-  borderRadius: '10px',
+
   border: `1px solid ${theme.palette.border.main}`,
 }));
 
@@ -56,7 +58,7 @@ export const ProjectInfoContainer = styled(Box)(() => ({
 export const ProjectInvestors = styled(Box)(({ theme }) => ({
   display: 'flex',
 
-  margin: theme.spacing(1, 0, 2, 0),
+  margin: theme.spacing(1, 0, 1.5, 0),
   fontSize: theme.spacing(1.5),
   fontWeight: 400,
   color: theme.palette.text.tertiary,
@@ -69,7 +71,7 @@ export const ProjectInvestors = styled(Box)(({ theme }) => ({
 
 export const ProjectDateContainer = styled(Box)(({ theme }) => ({
   display: 'flex',
-  margin: theme.spacing(1, 0, 2, 0),
+  margin: theme.spacing(1, 0, 1.5, 0),
   fontSize: theme.spacing(1.5),
   fontWeight: 400,
   color: theme.palette.text.tertiary,

@@ -52,6 +52,8 @@ export default function RootLayout({
                         <Footer />
                       </LayoutContainer>
                     </I18nProvider>
+
+                    <div id="modal-root" />
                     <Modal />
                     <AlertPopup />
                   </UserProvider>

@@ -9,7 +9,7 @@ export const ActionContainer = styled(Box)(({ theme }) => ({
   alignItems: 'center',
   [theme.breakpoints.down('sm')]: {
     padding: theme.spacing(0, 1),
-    justifyContent: 'space-around',
+    justifyContent: 'flex-start',
   },
 }));
 
@@ -57,7 +57,7 @@ export const ProjectAddButton = styled(CustomButton)(({ theme }) => ({
 
 export const ProjectsContainer = styled(Stack)(({ theme }) => ({
   display: 'grid',
-  gridTemplateColumns: 'repeat(3, 1fr)',
+  gridTemplateColumns: 'repeat(3,minmax(0, 1fr))',
   gap: theme.spacing(3),
   paddingRight: theme.spacing(3),
 

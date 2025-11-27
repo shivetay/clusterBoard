@@ -7,7 +7,7 @@ export const StatusTagStyled = styled(Chip)(({ theme }) => ({
   fontWeight: 500,
   color: theme.palette.background.gradientText,
   backgroundColor: theme.palette.background.primaryTransparent,
-  borderRadius: 0,
+  borderRadius: '1px',
   border: `1px solid ${theme.palette.background.gradientText}`,
   padding: theme.spacing(0, 1),
   marginTop: theme.spacing(1),

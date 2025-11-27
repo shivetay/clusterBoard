@@ -9,6 +9,7 @@ const colors = {
   backgroundSecondary: '#080c0e',
   backgroundTransparent: '#080c0e66',
   backgroundLight: '#1F2225',
+  backgroundLightTransparent: '#1F222566',
   textTertiary: '#76828b',
   textMain: '#f3f2f5',
   textDark: '#020304',
@@ -39,6 +40,8 @@ export const mainTheme = createTheme({
       gradientText: colors.primary,
       gradientTextSecondary: colors.secondary,
       primaryTransparent: colors.primaryTransparent,
+      bgLight: colors.backgroundLight,
+      bgLightTransparent: colors.backgroundLightTransparent,
     },
     text: {
       primary: colors.textMain,
@@ -127,18 +130,11 @@ export const mainTheme = createTheme({
           fontWeight: 400,
           transition:
             'transform 0.15s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.15s cubic-bezier(0.4, 0, 0.2, 1)',
-          // '&:hover': {
-          //   transform: 'translateY(-3px)',
-          //   background: '#404A54',
-          //   boxShadow:
-          //     '0 8px 16px rgba(0, 0, 0, 0.25), 0 4px 8px rgba(0, 0, 0, 0.15)',
-          //   backdropFilter: 'blur(7px)',
-          //   WebkitBackdropFilter: 'blur(7px)',
-          // },
-          // '&:active': {
-          //   transform: 'translateY(3px)',
-          //   boxShadow: '0 4px 8px rgba(0, 0, 0, 0.2)',
-          // },
+          '&:hover': {
+            background: 'transparent',
+            boxShadow:
+              '0 8px 16px rgba(0, 0, 0, 0.25), 0 4px 8px rgba(0, 0, 0, 0.15)',
+          },
         },
       },
     },
