@@ -37,7 +37,7 @@ export function ProjectsCard({ ...props }: IProjectsCardProps) {
           <ProjectHex />
           <CardContent>
             <ProjectTitleContainer>
-              <ProjectTitle variant="h3" as="h3">
+              <ProjectTitle variant="h4" component="h4">
                 {project_name}
               </ProjectTitle>
               <StatusTags status={project_status} />

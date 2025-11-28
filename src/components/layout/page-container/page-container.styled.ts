@@ -4,8 +4,8 @@ import { Box, styled } from '@mui/material';
 
 export const Container = styled(Box)(({ theme }) => ({
   flex: 1,
-  margin: theme.spacing(0, 'auto'),
-  padding: theme.spacing(0, '1.5rem', '1.5rem', '1.5rem'),
+  margin: '0 auto',
+  padding: theme.spacing(0, 3, 3, 3),
   maxWidth: theme.spacing(160),
   width: '100%',
 

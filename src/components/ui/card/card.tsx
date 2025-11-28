@@ -1,5 +1,5 @@
 import SubdirectoryArrowRightOutlinedIcon from '@mui/icons-material/SubdirectoryArrowRightOutlined';
-import { CardActionArea, CardContent } from '@mui/material';
+import { CardContent } from '@mui/material';
 import {
   CardContainer,
   CardHeader,
@@ -30,32 +30,35 @@ export function CardComponent({ ...props }: CardComponentProps) {
   return (
     <GridCardContainer href={href}>
       <CardWrapper>
-        <CardActionArea sx={{ height: '100%' }}>
-          <CardContainer>
-            <CardContent>
-              <CardHeader iconColor={iconColor}>
-                <MainIconContainer>{icon}</MainIconContainer>
-                <IconContainer>
-                  <SubdirectoryArrowRightOutlinedIcon />
-                </IconContainer>
-              </CardHeader>
-              {description ? (
-                <>
-                  <DescriptionHeader variant="h3" as="h3">
-                    {header}
-                  </DescriptionHeader>
-                  <CountHeaderContainer>
-                    <CountHeader>{count}</CountHeader>
-                    {maxCount && (
-                      <CountHeaderCount>{`${maxCount}`}</CountHeaderCount>
-                    )}
-                  </CountHeaderContainer>
-                </>
-              ) : null}
-              <CardHelperText>{description}</CardHelperText>
-            </CardContent>
-          </CardContainer>
-        </CardActionArea>
+        <CardContainer>
+          <CardContent
+            sx={{
+              padding: 0,
+              marginBottom: 0,
+            }}
+          >
+            <CardHeader iconColor={iconColor}>
+              <MainIconContainer>{icon}</MainIconContainer>
+              <IconContainer>
+                <SubdirectoryArrowRightOutlinedIcon />
+              </IconContainer>
+            </CardHeader>
+            {description ? (
+              <>
+                <DescriptionHeader variant="h3" as="h3">
+                  {header}
+                </DescriptionHeader>
+                <CountHeaderContainer>
+                  <CountHeader>{count}</CountHeader>
+                  {maxCount && (
+                    <CountHeaderCount>{`${maxCount}`}</CountHeaderCount>
+                  )}
+                </CountHeaderContainer>
+              </>
+            ) : null}
+            <CardHelperText>{description}</CardHelperText>
+          </CardContent>
+        </CardContainer>
       </CardWrapper>
     </GridCardContainer>
   );

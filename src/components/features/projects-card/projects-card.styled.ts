@@ -2,6 +2,7 @@
 'use client';
 import { Box, Card, styled, Typography } from '@mui/material';
 import Link from 'next/link';
+import { glassEffects } from '@/theme';
 
 export const ProjectHex = styled('div')(({ theme }) => ({
   position: 'absolute',
@@ -16,7 +17,7 @@ export const ProjectHex = styled('div')(({ theme }) => ({
 
 export const ProjectCardLink = styled(Link)(({ theme }) => ({
   textDecoration: 'none',
-  transition: 'all 0.3s ease-in-out',
+  transition: 'all 0.15s cubic-bezier(0.4, 0, 0.2, 1)',
 
   '&:hover': {
     scale: 1.03,
@@ -27,11 +28,8 @@ export const ProjectCardLink = styled(Link)(({ theme }) => ({
 }));
 
 export const CardContainer = styled(Card)(({ theme }) => ({
-  background: theme.palette.background.transparent,
-  backdropFilter: 'blur(12px)',
+  ...glassEffects.light,
   color: theme.palette.text.secondary,
-
-  border: `1px solid ${theme.palette.border.main}`,
 }));
 
 export const ProjectTitleContainer = styled(Box)(({ theme }) => ({
@@ -41,12 +39,9 @@ export const ProjectTitleContainer = styled(Box)(({ theme }) => ({
   marginBottom: theme.spacing(2),
 }));
 
-export const ProjectTitle = styled(Typography)(({ theme }) => ({
-  fontSize: theme.spacing(2.5),
-  fontWeight: 600,
+export const ProjectTitle = styled(Typography)(() => ({
   marginTop: 0,
-  color: theme.palette.text.primary,
-}));
+})) as typeof Typography;
 
 export const ProjectInfoContainer = styled(Box)(() => ({
   display: 'flex',
@@ -58,9 +53,11 @@ export const ProjectInfoContainer = styled(Box)(() => ({
 export const ProjectInvestors = styled(Box)(({ theme }) => ({
   display: 'flex',
 
-  margin: theme.spacing(1, 0, 1.5, 0),
-  fontSize: theme.spacing(1.5),
-  fontWeight: 400,
+  margin: theme.spacing(0, 0, 1.5, 0),
+  fontSize: theme.typography.body1.fontSize,
+  fontWeight: theme.typography.body1.fontWeight,
+  lineHeight: theme.typography.body1.lineHeight,
+  letterSpacing: theme.typography.body1.letterSpacing,
   color: theme.palette.text.tertiary,
   gap: theme.spacing(2),
 
@@ -71,6 +68,7 @@ export const ProjectInvestors = styled(Box)(({ theme }) => ({
 
 export const ProjectDateContainer = styled(Box)(({ theme }) => ({
   display: 'flex',
+  alignItems: 'center',
   margin: theme.spacing(1, 0, 1.5, 0),
   fontSize: theme.spacing(1.5),
   fontWeight: 400,

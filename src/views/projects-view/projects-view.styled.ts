@@ -2,6 +2,7 @@
 'use client';
 import { Box, Stack, styled } from '@mui/material';
 import { CustomButton } from '@/components';
+import { glassEffects } from '@/theme';
 
 export const ActionContainer = styled(Box)(({ theme }) => ({
   display: 'flex',
@@ -28,16 +29,15 @@ export const ProjectsCount = styled(Box)(({ theme }) => ({
   fontSize: theme.spacing(1.75),
   padding: theme.spacing(0.5, 1.5, 0.5, 1.5),
   lineHeight: 2,
-  borderRadius: '10px',
-  border: `1px solid ${theme.palette.border.main}`,
-  backdropFilter: 'blur(12px)',
+  borderRadius: '12px',
+  ...glassEffects.light,
   color: theme.palette.background.gradientText,
   backgroundColor: theme.palette.background.default,
 }));
 
 export const ProjectAddButton = styled(CustomButton)(({ theme }) => ({
   '& svg': {
-    transition: 'all 0.3s ease-in-out',
+    transition: 'all 0.15s cubic-bezier(0.4, 0, 0.2, 1)',
     color: theme.palette.background.gradientText,
     width: theme.spacing(4),
     height: theme.spacing(4),

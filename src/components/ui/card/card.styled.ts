@@ -1,49 +1,26 @@
 /** biome-ignore-all lint/style/noMagicNumbers: <styling> */
 'use client';
-import { Box, Card, keyframes, styled, Typography } from '@mui/material';
+import { Box, Card, CardActionArea, styled, Typography } from '@mui/material';
 import Link from 'next/link';
-
-const borderGlow = keyframes`
-  0%, 100% {
-  
-    border-color: #F2B437;
-    box-shadow: 0 0 12px #f2b437;
-  }
-  50% {
-    border-color: #0FA3B1;
-    box-shadow: 0 0 20px #0FA3B1;
-  }
-`;
-
-const borderGlowAnimation = () => {
-  return {
-    background: 'linear-gradient(to right, #FFD77F, #68B7FF, #68B7FF)',
-    border: '1px solid',
-    transition: 'all 0.3s ease-in-out',
-
-    animation: `${borderGlow} 3s ease-in-out infinite`,
-  };
-};
+import { glassEffects, glowAnimation } from '@/theme';
 
 export const GridCardContainer = styled(Link, {
   shouldForwardProp: (prop) => prop !== 'extended' && prop !== 'span',
 })<{ extended?: boolean; span?: number }>(({ extended, span, theme }) => ({
   gridColumn: extended ? `span ${span} / span ${span}` : 'span 1 / span 1',
-  borderRadius: '16px',
+  borderRadius: '12px',
 
-  ...(extended ? borderGlowAnimation() : {}),
+  ...(extended ? glowAnimation : {}),
 
   [theme.breakpoints.down('md')]: {
     gridColumn: 'span 1 / span 1',
   },
 }));
 
-export const CardWrapper = styled(Box)(({ theme }) => ({
-  background: theme.palette.background.transparent,
-  border: `1px solid ${theme.palette.border.secondary}`,
-  backdropFilter: 'blur(12px)',
-  borderRadius: '16px',
-  transition: 'all .3s cubic-bezier(.4, 0, .2, 1)',
+export const CardWrapper = styled(CardActionArea)(({ theme }) => ({
+  ...glassEffects.light,
+  borderRadius: '12px',
+  transition: 'all 0.15s cubic-bezier(0.4, 0, 0.2, 1)',
   height: '100%',
   '&:hover': {
     scale: 1.02,
@@ -51,16 +28,15 @@ export const CardWrapper = styled(Box)(({ theme }) => ({
       color: theme.palette.background.gradientText,
     },
   },
-
-  [theme.breakpoints.down('sm')]: {
-    // width: '400px',
-  },
 }));
 
 export const CardContainer = styled(Card)(({ theme }) => ({
   background: theme.palette.background.transparent,
-  borderRadius: '16px',
+  borderRadius: '12px',
   height: '100%',
+  '& .MuiCardContent-root:last-child': {
+    paddingBottom: 0,
+  },
 }));
 
 export const CardHeader = styled(Box, {
@@ -100,56 +76,47 @@ export const IconContainer = styled('svg')(({ theme }) => ({
 }));
 
 export const DescriptionHeader = styled(Typography)(({ theme }) => ({
-  fontSize: theme.spacing(2.5),
-  fontWeight: 700,
-  color: theme.palette.text.primary,
-  lineHeight: theme.spacing(1.75),
   marginBottom: theme.spacing(0.5),
   marginTop: 0,
-
-  [theme.breakpoints.down('sm')]: {
-    // fontSize: theme.spacing(2.5),
-  },
 }));
 
 export const CountHeaderContainer = styled(Box)(({ theme }) => ({
   display: 'flex',
   alignItems: 'flex-end',
   marginBottom: theme.spacing(1),
-  [theme.breakpoints.down('sm')]: {
-    // fontSize: theme.spacing(2.5),
-  },
 }));
 export const CountHeader = styled(Typography)(({ theme }) => ({
-  fontSize: theme.spacing(3.75),
-  fontWeight: 600,
+  fontSize: theme.typography.h3.fontSize,
+  fontWeight: theme.typography.h3.fontWeight,
   color: theme.palette.text.secondary,
+  lineHeight: theme.typography.h3.lineHeight,
+  letterSpacing: theme.typography.h3.letterSpacing,
   margin: 0,
-  [theme.breakpoints.down('sm')]: {
-    // fontSize: theme.spacing(2.5),
-  },
 }));
 
 export const CountHeaderCount = styled('span')(({ theme }) => ({
-  fontSize: theme.spacing(4.5),
-  fontWeight: 600,
+  fontSize: theme.typography.h2.fontSize,
+  fontWeight: theme.typography.h2.fontWeight,
   color: theme.palette.text.secondary,
+  lineHeight: theme.typography.h2.lineHeight,
+  letterSpacing: theme.typography.h2.letterSpacing,
   margin: 0,
-  [theme.breakpoints.down('sm')]: {
-    // fontSize: theme.spacing(2.5),
-  },
 }));
 
 export const CardHelperText = styled('span')(({ theme }) => ({
-  fontSize: theme.spacing(1.5),
+  fontSize: theme.typography.caption.fontSize,
+  fontWeight: theme.typography.caption.fontWeight,
   color: theme.palette.text.tertiary,
+  lineHeight: theme.typography.caption.lineHeight,
+  letterSpacing: theme.typography.caption.letterSpacing,
 }));
 
 export const SpannedCardDescriptionHeader = styled(Typography)(({ theme }) => ({
-  fontSize: theme.spacing(3.75),
-  fontWeight: 700,
+  fontSize: theme.typography.h3.fontSize,
+  fontWeight: theme.typography.h3.fontWeight,
   color: theme.palette.text.primary,
-  lineHeight: theme.spacing(1.75),
+  lineHeight: theme.typography.h3.lineHeight,
+  letterSpacing: theme.typography.h3.letterSpacing,
   marginLeft: theme.spacing(2),
 }));
 
@@ -158,18 +125,18 @@ export const SpannedCountHeader = styled(Typography)(({ theme }) => ({
   backgroundClip: 'text',
   WebkitBackgroundClip: 'text',
   color: 'transparent',
-  fontSize: theme.spacing(6),
-  fontWeight: 700,
-  lineHeight: 1,
+  fontSize: theme.typography.h1.fontSize,
+  fontWeight: theme.typography.h1.fontWeight,
+  lineHeight: theme.typography.h1.lineHeight,
+  letterSpacing: theme.typography.h1.letterSpacing,
 }));
 
 export const SpannedMaxCountHeaderCount = styled(Typography)(({ theme }) => ({
-  fontSize: theme.spacing(4.5),
+  fontSize: theme.typography.h2.fontSize,
   fontWeight: 400,
   color: theme.palette.text.tertiary,
+  lineHeight: theme.typography.h2.lineHeight,
+  letterSpacing: theme.typography.h2.letterSpacing,
   margin: theme.spacing(0, 1),
   display: 'inline',
-  [theme.breakpoints.down('sm')]: {
-    // fontSize: theme.spacing(2.5),
-  },
 }));
