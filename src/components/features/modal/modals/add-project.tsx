@@ -1,17 +1,18 @@
 'use client';
-import { FormControl, InputLabel, TextField } from '@mui/material';
+import { Box } from '@mui/material';
 import { useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
-import { CustomButton, Loader } from '@/components/ui';
-import { useCreateNewProject } from '@/lib/api/hooks';
-import { TRANSLATIONS } from '@/locales/pl/locales';
+import { FormHelperText, FormInput, Loader } from '@/components/ui';
+import { useCreateNewProject } from '@/lib';
+import { TRANSLATIONS } from '@/locales';
 import { useUser } from '@/stores';
 import type { TFormData } from '@/types';
 import {
+  AddButton,
   AddProjectModalContainer,
   AddProjectModalForm,
+  AddProjectModalHeader,
   AddProjectModalTitle,
-  HelperText,
 } from '../modal.styled';
 
 export function AddProjectModal() {
@@ -21,7 +22,10 @@ export function AddProjectModal() {
   const { register, handleSubmit } = useForm<TFormData>({
     defaultValues: {
       project_name: '',
+      project_description: '',
       owner: userInfo?.id || '',
+      start_date: '',
+      end_date: '',
     },
   });
 
@@ -35,28 +39,46 @@ export function AddProjectModal() {
         <Loader />
       ) : (
         <>
-          <AddProjectModalTitle>
-            {t(TRANSLATIONS.ADD_PROJECT_MODAL_TITLE)}
-          </AddProjectModalTitle>
+          <AddProjectModalHeader>
+            <AddProjectModalTitle as="h2" variant="h2">
+              {t(TRANSLATIONS.ADD_PROJECT_MODAL_TITLE)}
+            </AddProjectModalTitle>
+            <FormHelperText>
+              {t(TRANSLATIONS.ADD_PROJECT_MODAL_HELPER_TEXT)}
+            </FormHelperText>
+          </AddProjectModalHeader>
+
           <AddProjectModalForm
             formId="add-project-form"
             onSubmit={handleSubmit(handleOnSubmit)}
           >
-            <InputLabel>{t(TRANSLATIONS.PROJECT_NAME)}</InputLabel>
-            <FormControl>
-              <TextField
-                {...register('project_name')}
-                required
-                fullWidth
-                type="text"
+            <FormInput
+              {...register('project_name')}
+              name="project_name"
+              label={t(TRANSLATIONS.PROJECT_NAME)}
+              type="text"
+              placeholder={t(TRANSLATIONS.ADD_PROJECT_FORM_PLACEHOLDER)}
+              helperText={t(TRANSLATIONS.PROJECT_NAME_HELPER_TEXT)}
+            />
+
+            <Box display="flex" flexDirection="row" gap={2} width="100%">
+              <FormInput
+                {...register('start_date')}
+                name="start_date"
+                label={t(TRANSLATIONS.START_DATE)}
+                type="date"
               />
-              <HelperText>
-                {t(TRANSLATIONS.PROJECT_NAME_HELPER_TEXT)}
-              </HelperText>
-            </FormControl>
-            <CustomButton type="submit" variant="contained" color="primary">
+              <FormInput
+                {...register('end_date')}
+                name="end_date"
+                label={t(TRANSLATIONS.END_DATE)}
+                type="date"
+              />
+            </Box>
+
+            <AddButton type="submit" variant="contained" color="primary">
               {t(TRANSLATIONS.ADD_PROJECT_MODAL_BTN)}
-            </CustomButton>
+            </AddButton>
           </AddProjectModalForm>
         </>
       )}

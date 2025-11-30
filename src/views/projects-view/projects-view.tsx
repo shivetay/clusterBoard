@@ -3,15 +3,22 @@ import { useAuth } from '@clerk/nextjs';
 import AddCircleOutlineOutlinedIcon from '@mui/icons-material/AddCircleOutlineOutlined';
 import {
   AddProjectModal,
-  CustomButton,
   Loader,
   PageContainer,
+  PageHeader,
   ProjectsCard,
 } from '@/components';
 import { useGetUserProjects } from '@/lib';
+import { TRANSLATIONS } from '@/locales';
 import { useModal } from '@/providers';
 import { useUser } from '@/stores';
-import { ActionContainer, ProjectsContainer } from './projects-view.styled';
+import {
+  ActionContainer,
+  ActionContainerHeader,
+  ProjectAddButton,
+  ProjectsContainer,
+  ProjectsCount,
+} from './projects-view.styled';
 
 export function ProjectsView() {
   const { setModalContent } = useModal();
@@ -28,12 +35,15 @@ export function ProjectsView() {
   return (
     <PageContainer>
       <ActionContainer>
-        <span>
-          {projectsCount}/{projectsLimit}
-        </span>
-        <CustomButton onClick={handleModalOpen}>
+        <ActionContainerHeader>
+          <PageHeader title={TRANSLATIONS.AKTYWNE_PROJEKTY} />
+          <ProjectsCount>
+            {projectsCount}/{projectsLimit}
+          </ProjectsCount>
+        </ActionContainerHeader>
+        <ProjectAddButton onClick={handleModalOpen}>
           <AddCircleOutlineOutlinedIcon />
-        </CustomButton>
+        </ProjectAddButton>
       </ActionContainer>
       <ProjectsContainer>
         {isLoading || !isLoaded ? (

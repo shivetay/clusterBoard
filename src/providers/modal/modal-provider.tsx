@@ -7,6 +7,8 @@ interface ModalContextType {
   setIsOpen: (open: boolean) => void;
   modalContent: ReactNode | null;
   setModalContent: (content: ReactNode | null) => void;
+  showCloseButton: boolean;
+  setShowCloseButton: (show: boolean) => void;
 }
 
 export const ModalContext = createContext<ModalContextType | undefined>(
@@ -16,7 +18,7 @@ export const ModalContext = createContext<ModalContextType | undefined>(
 export function ModalProvider({ children }: Readonly<{ children: ReactNode }>) {
   const [isOpen, setIsOpen] = useState(false);
   const [modalContent, setModalContent] = useState<ReactNode | null>(null);
-
+  const [showCloseButton, setShowCloseButton] = useState(true);
   const handleSetIsOpen = (open: boolean) => {
     setIsOpen(open);
     if (!open) {
@@ -39,6 +41,8 @@ export function ModalProvider({ children }: Readonly<{ children: ReactNode }>) {
         setIsOpen: handleSetIsOpen,
         modalContent,
         setModalContent: handleSetModalContent,
+        showCloseButton,
+        setShowCloseButton,
       }}
     >
       {children}

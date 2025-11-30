@@ -9,10 +9,11 @@ export const TRANSLATIONS = {
   KALENDARZ: 'Kalendarz',
   FINANSE: 'Finanse',
   WIADOMOSCI: 'Wiadomości',
+  AKTYWNE_SPOTKANIA: 'Nadchodzące spotkania',
   CLUSTER: 'Klaster',
-  AKTYWNE_PROJEKTY: 'Aktualne projekty: ',
-  AKTYWNE_ZADANIA: 'Aktywne zadania: ',
-  OCZEKUJACE_WIADOMOSCI: 'Nowe wiadomości: ',
+  AKTYWNE_PROJEKTY: 'Aktywne projekty',
+  AKTYWNE_ZADANIA: 'Aktywne zadania',
+  OCZEKUJACE_WIADOMOSCI: 'Nowe wiadomości',
   ADD_NEW_PROJECT: 'Dodaj nowy projekt',
   PLIKI: 'Pliki',
   INSPIRACJE: 'Inspiracje',
@@ -26,6 +27,15 @@ export const TRANSLATIONS = {
   PROJECT_NAME: 'Nazwa projektu',
   PROJECT_NAME_HELPER_TEXT: 'Max 25 znaków',
   AUTHENTICATION_ERROR: 'Błąd uwierzytelniania. Spróbuj zalogować się ponownie',
+  DETAILS: 'Szczegóły',
+  ADD_PROJECT_MODAL_HELPER_TEXT:
+    'Utwórz nowy projekt, aby rozpocząć śledzenie postępów i współpracę z inwestorami.',
+  ADD_PROJECT_DETAILS: 'Szczegóły',
+  ADD_PROJECT_FORM_PLACEHOLDER: 'Podaj nazwę projektu',
+  ADD_PROJECT_FORM_DETAILS:
+    'Opisz projekt, aby pomóc inwestorom zrozumieć jego cel i zakres.',
+  START_DATE: 'Data rozpoczęcia',
+  END_DATE: 'Data końcowa',
 };
 
 export default TRANSLATIONS;

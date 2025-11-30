@@ -7,6 +7,7 @@ import {
   AlertProvider,
   I18nProvider,
   ModalProvider,
+  NavigationProvider,
   QueryProvider,
   UserProvider,
 } from '@/providers';
@@ -42,21 +43,24 @@ export default function RootLayout({
         <body>
           <ThemeProvider>
             <AlertProvider>
-              <ModalProvider>
-                <QueryProvider>
-                  <UserProvider>
-                    <I18nProvider locale="pl">
-                      <LayoutContainer>
-                        <Header />
-                        {children}
-                        <Footer />
-                      </LayoutContainer>
-                    </I18nProvider>
-                    <Modal />
-                    <AlertPopup />
-                  </UserProvider>
-                </QueryProvider>
-              </ModalProvider>
+              <NavigationProvider>
+                <ModalProvider>
+                  <QueryProvider>
+                    <UserProvider>
+                      <I18nProvider locale="pl">
+                        <LayoutContainer>
+                          <Header />
+                          {children}
+                          <Footer />
+                        </LayoutContainer>
+                      </I18nProvider>
+                      <div id="modal-root" />
+                      <Modal />
+                      <AlertPopup />
+                    </UserProvider>
+                  </QueryProvider>
+                </ModalProvider>
+              </NavigationProvider>
             </AlertProvider>
           </ThemeProvider>
         </body>

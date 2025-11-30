@@ -1,17 +1,24 @@
 'use client';
-import { useEffect, useMemo } from 'react';
+
+import { useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useNavigation } from '@/providers';
-import { MenuButton, MenuContainer, NavLinkContainer } from './menu.styled';
+import { useModal, useNavigation } from '@/providers';
+import {
+  MenuButton,
+  MobileMenuContainer,
+  NavLinkContainer,
+} from './menu.styled';
 import { MENU_ITEM_LIST } from './menu-utils';
 
-type TMenuProps = {
+type TMobileMenuProps = {
   items: 'cluster' | 'projects';
 };
 
-export function Menu(props: TMenuProps) {
-  const { setActiveElement, isItemActive } = useNavigation();
+export function MobileMenu(props: TMobileMenuProps) {
   const { items } = props;
+  const { setIsOpen } = useModal();
+  const { setActiveElement } = useNavigation();
+  const { isItemActive } = useNavigation();
   const { t } = useTranslation();
 
   const menuItems = useMemo(
@@ -24,22 +31,22 @@ export function Menu(props: TMenuProps) {
     [items],
   );
 
-  // Set active element based on current pathname
-  useEffect(() => {
-    const activeItem = menuItems.find((item) => isItemActive(item.href));
-    const newActiveId = activeItem?.id ?? null;
-    setActiveElement(newActiveId);
-  }, [menuItems, isItemActive, setActiveElement]);
+  const handleMenuItemClick = (itemId: string) => {
+    setActiveElement(itemId);
+    setIsOpen(false);
+  };
 
   return (
-    <MenuContainer>
+    <MobileMenuContainer>
       {menuItems.map((item) => {
         const isActive = isItemActive(item.href);
 
         return (
           <NavLinkContainer key={item.id} href={item.href}>
             <MenuButton
-              onClick={() => setActiveElement(item.id)}
+              onClick={() => {
+                handleMenuItemClick(item.id);
+              }}
               active={isActive}
               startIcon={item.icon}
               key={item.id}
@@ -49,8 +56,8 @@ export function Menu(props: TMenuProps) {
           </NavLinkContainer>
         );
       })}
-    </MenuContainer>
+    </MobileMenuContainer>
   );
 }
 
-export default Menu;
+export default MobileMenu;
