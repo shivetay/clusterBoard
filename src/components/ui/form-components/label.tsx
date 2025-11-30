@@ -7,7 +7,11 @@ export function InputLabel({
   children: React.ReactNode;
   htmlFor: string;
 }) {
-  return <Label htmlFor={htmlFor}>{children}</Label>;
+  return (
+    <>
+      <Label htmlFor={htmlFor}>{children}</Label>
+    </>
+  );
 }
 
 export default InputLabel;
