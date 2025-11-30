@@ -3,6 +3,7 @@ import { useAuth } from '@clerk/nextjs';
 import CalendarMonthOutlinedIcon from '@mui/icons-material/CalendarMonthOutlined';
 import ChecklistOutlinedIcon from '@mui/icons-material/ChecklistOutlined';
 import CurrencyExchangeOutlinedIcon from '@mui/icons-material/CurrencyExchangeOutlined';
+import EmailOutlinedIcon from '@mui/icons-material/EmailOutlined';
 import TokenOutlinedIcon from '@mui/icons-material/TokenOutlined';
 import { CardComponent, LargeCard, Loader, PageContainer } from '@/components';
 import { useIsMobile } from '@/lib';
@@ -81,7 +82,7 @@ export function ClusterView() {
           count={messageCount}
           header={TRANSLATIONS.WIADOMOSCI}
           href={'/wiadomosci'}
-          icon={<CalendarMonthOutlinedIcon />}
+          icon={<EmailOutlinedIcon />}
         />
       </ClusterCardContainer>
     </PageContainer>

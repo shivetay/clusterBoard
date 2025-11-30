@@ -28,11 +28,11 @@ interface CardComponentProps {
 export function CardComponent({ ...props }: CardComponentProps) {
   const { header, href, description, count, maxCount, icon, iconColor } = props;
   const { setActiveElement } = useNavigation();
-  const getActiveElement = href.split('/').pop();
+  const elementId = href.split('/').pop();
 
   return (
     <GridCardContainer href={href}>
-      <CardWrapper onClick={() => setActiveElement(getActiveElement || '')}>
+      <CardWrapper onClick={() => setActiveElement(elementId || null)}>
         <CardContainer>
           <CardContent
             sx={{

@@ -12,7 +12,7 @@ export const FooterContainer = styled('footer')(({ theme }) => ({
   height: theme.spacing(FOOTER_HEIGHT),
   backdropFilter: 'blur(16px)',
   width: '100%',
-  borderTop: `1px solid ${theme.palette.border?.secondary}`,
+  borderTop: `1px solid ${theme.palette.border.secondary}`,
   backgroundColor: theme.palette.background.transparent,
 
   [theme.breakpoints.down('sm')]: {

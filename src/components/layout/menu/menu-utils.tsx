@@ -1,6 +1,7 @@
 import CalendarMonthOutlinedIcon from '@mui/icons-material/CalendarMonthOutlined';
 import ChecklistOutlinedIcon from '@mui/icons-material/ChecklistOutlined';
 import CurrencyExchangeOutlinedIcon from '@mui/icons-material/CurrencyExchangeOutlined';
+import EmailOutlinedIcon from '@mui/icons-material/EmailOutlined';
 import HiveOutlinedIcon from '@mui/icons-material/HiveOutlined';
 import TokenOutlinedIcon from '@mui/icons-material/TokenOutlined';
 
@@ -67,5 +68,6 @@ export const MENU_ITEM_LIST: TMenuItem[] = [
     href: '/wiadomoscie',
     label: TRANSLATIONS.WIADOMOSCI,
     type: 'projects',
+    icon: <EmailOutlinedIcon />,
   },
 ];

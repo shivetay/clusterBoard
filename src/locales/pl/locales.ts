@@ -30,12 +30,12 @@ export const TRANSLATIONS = {
   DETAILS: 'Szczegóły',
   ADD_PROJECT_MODAL_HELPER_TEXT:
     'Utwórz nowy projekt, aby rozpocząć śledzenie postępów i współpracę z inwestorami.',
-  ADD_PROJECT_DETAILS: 'Szczgóły',
+  ADD_PROJECT_DETAILS: 'Szczegóły',
   ADD_PROJECT_FORM_PLACEHOLDER: 'Podaj nazwę projektu',
   ADD_PROJECT_FORM_DETAILS:
     'Opisz projekt, aby pomóc inwestorom zrozumieć jego cel i zakres.',
-  START_DATE: 'Start data',
-  END_DATE: 'End data',
+  START_DATE: 'Data rozpoczęcia',
+  END_DATE: 'Data końcowa',
 };
 
 export default TRANSLATIONS;

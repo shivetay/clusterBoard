@@ -2,6 +2,7 @@
 import { SignedIn, UserButton } from '@clerk/nextjs';
 import MenuOutlinedIcon from '@mui/icons-material/MenuOutlined';
 import { usePathname } from 'next/navigation';
+import { useEffect } from 'react';
 import { CustomButton } from '@/components/ui';
 import { useIsMobile } from '@/lib';
 import { useModal } from '@/providers';
@@ -14,7 +15,11 @@ export function Navbar() {
   const { setModalContent, setShowCloseButton } = useModal();
   const pathname = usePathname();
   const menuItemsList = pathname.includes('/project/') ? 'projects' : 'cluster';
-  setShowCloseButton(false);
+
+  useEffect(() => {
+    setShowCloseButton(false);
+  }, [setShowCloseButton]);
+
   const handleMobileMenuOpen = () => {
     setModalContent(<MobileMenu items={menuItemsList} />);
   };

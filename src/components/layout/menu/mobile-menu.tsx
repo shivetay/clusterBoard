@@ -44,7 +44,9 @@ export function MobileMenu(props: TMobileMenuProps) {
         return (
           <NavLinkContainer key={item.id} href={item.href}>
             <MenuButton
-              onClick={() => handleMenuItemClick(item.id)}
+              onClick={() => {
+                handleMenuItemClick(item.id);
+              }}
               active={isActive}
               startIcon={item.icon}
               key={item.id}
