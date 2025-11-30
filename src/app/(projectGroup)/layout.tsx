@@ -1,5 +1,3 @@
-'use client';
-import { usePathname } from 'next/navigation';
 import { Menu } from '@/components';
 
 export default function ClusterLayout({
@@ -7,12 +5,9 @@ export default function ClusterLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const pathname = usePathname();
-  const menuItems = pathname.includes('/project/') ? 'projects' : 'cluster';
-
   return (
     <>
-      <Menu items={menuItems} />
+      <Menu />
       {children}
     </>
   );

@@ -8,6 +8,7 @@ interface NavigationContextType {
   setActiveElement: (element: string | null) => void;
   isItemActive: (href: string) => boolean;
   pathname: string;
+  menuItems: 'cluster' | 'projects';
 }
 
 export const NavigationContext = createContext<
@@ -38,6 +39,7 @@ export function NavigationProvider({
 }: Readonly<{ children: ReactNode }>) {
   const [activeElement, setActiveElement] = useState<string | null>(null);
   const pathname = usePathname();
+  const menuItems = pathname.includes('/project/') ? 'projects' : 'cluster';
 
   const handleSetActiveElement = (element: string | null) => {
     setActiveElement(element);
@@ -57,6 +59,7 @@ export function NavigationProvider({
         setActiveElement: handleSetActiveElement,
         isItemActive,
         pathname,
+        menuItems,
       }}
     >
       {children}

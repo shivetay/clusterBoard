@@ -10,25 +10,19 @@ import {
 } from './menu.styled';
 import { MENU_ITEM_LIST } from './menu-utils';
 
-type TMobileMenuProps = {
-  items: 'cluster' | 'projects';
-};
-
-export function MobileMenu(props: TMobileMenuProps) {
-  const { items } = props;
+export function MobileMenu() {
   const { setIsOpen } = useModal();
-  const { setActiveElement } = useNavigation();
-  const { isItemActive } = useNavigation();
+  const { setActiveElement, isItemActive, menuItems } = useNavigation();
   const { t } = useTranslation();
 
-  const menuItems = useMemo(
+  const filteredMenuItems = useMemo(
     () =>
       MENU_ITEM_LIST.filter((item) =>
         Array.isArray(item.type)
-          ? item.type.includes(items)
-          : item.type === items,
+          ? item.type.includes(menuItems)
+          : item.type === menuItems,
       ),
-    [items],
+    [menuItems],
   );
 
   const handleMenuItemClick = (itemId: string) => {
@@ -38,7 +32,7 @@ export function MobileMenu(props: TMobileMenuProps) {
 
   return (
     <MobileMenuContainer>
-      {menuItems.map((item) => {
+      {filteredMenuItems.map((item) => {
         const isActive = isItemActive(item.href);
 
         return (

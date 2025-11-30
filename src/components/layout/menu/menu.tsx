@@ -5,35 +5,32 @@ import { useNavigation } from '@/providers';
 import { MenuButton, MenuContainer, NavLinkContainer } from './menu.styled';
 import { MENU_ITEM_LIST } from './menu-utils';
 
-type TMenuProps = {
-  items: 'cluster' | 'projects';
-};
-
-export function Menu(props: TMenuProps) {
-  const { setActiveElement, isItemActive } = useNavigation();
-  const { items } = props;
+export function Menu() {
+  const { setActiveElement, isItemActive, menuItems } = useNavigation();
   const { t } = useTranslation();
 
-  const menuItems = useMemo(
+  const filteredMenuItems = useMemo(
     () =>
       MENU_ITEM_LIST.filter((item) =>
         Array.isArray(item.type)
-          ? item.type.includes(items)
-          : item.type === items,
+          ? item.type.includes(menuItems)
+          : item.type === menuItems,
       ),
-    [items],
+    [menuItems],
   );
 
   // Set active element based on current pathname
   useEffect(() => {
-    const activeItem = menuItems.find((item) => isItemActive(item.href));
+    const activeItem = filteredMenuItems.find((item) =>
+      isItemActive(item.href),
+    );
     const newActiveId = activeItem?.id ?? null;
     setActiveElement(newActiveId);
-  }, [menuItems, isItemActive, setActiveElement]);
+  }, [filteredMenuItems, isItemActive, setActiveElement]);
 
   return (
     <MenuContainer>
-      {menuItems.map((item) => {
+      {filteredMenuItems.map((item) => {
         const isActive = isItemActive(item.href);
 
         return (
