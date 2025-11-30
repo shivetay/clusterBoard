@@ -46,7 +46,7 @@ export const MenuButton = styled(CustomButton, {
   },
 }));
 
-export const MobileMenuContainer = styled('nav')(({ theme }) => ({
+export const MobileMenuContainer = styled('nav')(() => ({
   display: 'flex',
   flexDirection: 'column',
   minHeight: 'min-content',
