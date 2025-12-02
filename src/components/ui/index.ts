@@ -5,3 +5,4 @@ export * from './form-components';
 export * from './hex-decor';
 export * from './loader';
 export * from './page-header';
+export * from './stage-task';

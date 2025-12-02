@@ -39,6 +39,7 @@ export function ProjectDetailCard({
 }: IProjectDetailCardProps) {
   const { t } = useTranslation();
   const { setModalContent } = useModal();
+
   return (
     <ProjectInfoContainer>
       <ProjectHeaderContainer>

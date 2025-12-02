@@ -24,7 +24,6 @@ export const ProjectHeaderContainer = styled(Box)(({ theme }) => ({
 }));
 
 export const Header = styled(Typography)(({ theme }) => ({
-  // color: theme.palette.text.secondary,
   [theme.breakpoints.down('sm')]: {
     fontSize: theme.spacing(2),
   },
