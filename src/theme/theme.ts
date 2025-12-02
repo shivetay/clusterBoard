@@ -216,7 +216,7 @@ export const mainTheme = createTheme({
     },
     body2: {
       fontFamily: '"Geist Sans", "Poppins", Arial, Helvetica, sans-serif',
-      fontSize: '0.875rem', // 14px
+      fontSize: '0.75rem', // 12px
       fontWeight: 400,
       lineHeight: 1.429, // 20px
       letterSpacing: 0,
@@ -290,7 +290,6 @@ export const mainTheme = createTheme({
           fontSize: '0.875rem', // 14px
           fontWeight: 500,
           textTransform: 'none',
-          borderRadius: borderRadius.lg, // 6px
           padding: `${spacing.sm}px ${spacing.lg}px`, // 8px 16px
           minHeight: '36px', // h-9
           transition: 'all 0.15s cubic-bezier(0.4, 0, 0.2, 1)',

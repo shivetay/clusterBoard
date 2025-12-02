@@ -19,8 +19,9 @@ export const TRANSLATIONS = {
   INSPIRACJE: 'Inspiracje',
   WIDOMOSCI: 'Wiadomosci',
   ADD_STAGE: 'Dodaj etap',
+  ADD_INVESTOR: 'Dodaj inwestora',
   END_PROJECT: 'Zakończ projekt',
-  STATUS_CHANGE: 'Zmień',
+  STATUS_CHANGE: 'Zmień status',
   ADD_PROJECT_MODAL_TITLE: 'Dodaj nowy projekt',
   ADD_PROJECT_MODAL_BTN: 'Dodaj projekt',
   PROJECT_CREATED_SUCCESSFULLY: 'Projekt został utworzony pomyślnie',
@@ -36,6 +37,7 @@ export const TRANSLATIONS = {
     'Opisz projekt, aby pomóc inwestorom zrozumieć jego cel i zakres.',
   START_DATE: 'Data rozpoczęcia',
   END_DATE: 'Data końcowa',
+  PROJECT_STAGES: 'Etapy projektu',
 };
 
 export default TRANSLATIONS;

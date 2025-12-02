@@ -11,7 +11,7 @@ interface IApiProject {
   start_date?: string;
   end_date?: string;
   investors: string[];
-  status: 'planning' | 'active' | 'completed' | 'finished';
+  project_status: 'planning' | 'active' | 'completed' | 'finished';
 }
 
 // Map API status to frontend status format
@@ -52,7 +52,7 @@ export const useGetUserProjects = () => {
         start_date: project.start_date || '',
         end_date: project.end_date || '',
         investors: project.investors || [],
-        project_status: mapStatus(project.status || 'planning'),
+        project_status: mapStatus(project.project_status || 'planning'),
       }));
     },
     enabled: !!userId,
