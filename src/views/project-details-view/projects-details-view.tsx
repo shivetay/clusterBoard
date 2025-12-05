@@ -16,11 +16,14 @@ export function ProjectDetailsView({ projectData }: IProjectDetailsViewProps) {
     description,
     start_date,
     end_date,
+    project_stages,
+    id,
   } = projectData;
 
   return (
     <PageContainer>
       <ProjectDetailCard
+        projectId={id}
         project_name={project_name}
         project_status={project_status}
         investors={investors}
@@ -28,7 +31,7 @@ export function ProjectDetailsView({ projectData }: IProjectDetailsViewProps) {
         start_date={start_date}
         end_date={end_date}
       />
-      <ProjectStageContainer />
+      <ProjectStageContainer project_stages={project_stages} />
     </PageContainer>
   );
 }

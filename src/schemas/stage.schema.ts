@@ -1,0 +1,69 @@
+import { z } from 'zod';
+import { TRANSLATIONS } from '@/locales';
+
+const MAX_STAGE_NAME_LENGTH = 10;
+const MAX_STAGE_DESCRIPTION_LENGTH = 25;
+
+/**
+ * Schema for stage task validation
+ */
+
+const stageTaskSchema = z.object({
+  task_name: z
+    .string()
+    .min(1, TRANSLATIONS.ERROR_TASK_NAME)
+    .max(MAX_STAGE_DESCRIPTION_LENGTH, TRANSLATIONS.ERROR_TASK_NAME_HELPER_TEXT)
+    .trim(),
+});
+
+/**
+ * Schema for stage form validation
+ * Validates stage creation form data
+ */
+
+export const stageFormSchema = z.object({
+  stage_name: z
+    .string()
+    .min(1, TRANSLATIONS.ERROR_STAGE_NAME)
+    .max(MAX_STAGE_NAME_LENGTH, TRANSLATIONS.ERROR_STAGE_NAME_HELPER_TEXT)
+    .trim(),
+
+  stage_description: z
+    .string()
+    .max(
+      MAX_STAGE_DESCRIPTION_LENGTH,
+      TRANSLATIONS.ERROR_STAGE_DESCRIPTION_HELPER_TEXT,
+    ),
+
+  stage_tasks: z
+    .union([
+      z.string(), // Raw textarea input
+      z.array(stageTaskSchema), // Parsed array
+    ])
+    .transform((val) => {
+      // If it's a string, parse it into an array of task objects
+      if (typeof val === 'string') {
+        const lines = val
+          .split('\n')
+          .map((line) => line.trim())
+          .filter((line) => line.length > 0);
+
+        return lines.map((taskName) => ({
+          task_name: taskName,
+          is_done: false,
+          comments: null,
+        }));
+      }
+      // If it's already an array, return as is
+      return val;
+    })
+    .pipe(z.array(stageTaskSchema))
+    .default([])
+    .optional(),
+});
+
+/**
+ * Infer TypeScript type from schema
+ * This replaces your existing TStageFormData type
+ */
+export type StageFormData = z.infer<typeof stageFormSchema>;

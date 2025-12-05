@@ -1,7 +1,7 @@
 'use client';
 import { useQuery } from '@tanstack/react-query';
 import { useUser } from '@/stores';
-import type { IProjectData } from '@/types';
+import type { IProjectData, IProjectStage } from '@/types';
 import apiClient from '../apiClient';
 
 interface IApiProject {
@@ -11,6 +11,7 @@ interface IApiProject {
   start_date?: string;
   end_date?: string;
   investors: string[];
+  project_stages: IProjectStage[];
   project_status: 'planning' | 'active' | 'completed' | 'finished';
 }
 
@@ -52,6 +53,7 @@ export const useGetUserProjects = () => {
         start_date: project.start_date || '',
         end_date: project.end_date || '',
         investors: project.investors || [],
+        project_stages: project.project_stages || [],
         project_status: mapStatus(project.project_status || 'planning'),
       }));
     },

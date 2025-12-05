@@ -11,7 +11,15 @@ import { useUserActions } from '@/stores';
 import type { IUserData } from '@/types';
 import { useAlert } from './alert';
 
-export function UserProvider({ children }: { children: React.ReactNode }) {
+interface UserProviderClientProps {
+  children: React.ReactNode;
+  initialUserData?: IUserData | null;
+}
+
+export function UserProviderClient({
+  children,
+  initialUserData,
+}: UserProviderClientProps) {
   const { setUser } = useUserActions();
   const user = useUser();
   const { getToken, isLoaded } = useAuth();
@@ -54,26 +62,36 @@ export function UserProvider({ children }: { children: React.ReactNode }) {
     isTokenGetterSetRef.current = true;
   }
 
-  // Fetch user data using React Query
+  // Initialize store with server data if available
+  useEffect(() => {
+    if (initialUserData) {
+      setUser(initialUserData);
+    }
+  }, [initialUserData, setUser]);
+
+  // Fetch user data using React Query (for client-side updates/refreshes)
   const { data: userData, isLoading } = useQuery<IUserData | null>({
     queryKey: ['user', userId],
     queryFn: async () => {
-      const response = await apiClient.get(`/users/${userId}`);
+      const response = await apiClient.get<{ data: { user: IUserData } }>(
+        `/users/${userId}`,
+      );
 
       if (!response.data) {
         return null;
       }
 
-      const rawUser =
-        response.data.data?.user || response.data.user || response.data;
+      // apiClient.get returns AxiosResponse, so response.data is the API response
+      const apiResponse = response.data;
+      const rawUser = apiResponse.data?.user || apiResponse.data || apiResponse;
 
       if (!rawUser) {
         return null;
       }
 
       const transformedUserData: IUserData = {
-        id: userId || rawUser.id || rawUser._id,
-        name: rawUser.name || rawUser.user_name,
+        id: userId || rawUser.id,
+        name: rawUser.name,
         email: rawUser.email,
         role: rawUser.role,
         cluster_projects: rawUser.cluster_projects || [],
@@ -82,7 +100,8 @@ export function UserProvider({ children }: { children: React.ReactNode }) {
 
       return transformedUserData;
     },
-    enabled: !!userId, // Only run query when userId is available
+    enabled: !!userId && !initialUserData, // Only run if no initial data
+    initialData: initialUserData || undefined, // Use server data as initial
     staleTime: 5 * 60 * 1000, // 5 minutes
     gcTime: 10 * 60 * 1000, // 10 minutes
     retry: 1,
@@ -98,4 +117,9 @@ export function UserProvider({ children }: { children: React.ReactNode }) {
   const loading = isLoading || !isLoaded;
 
   return <>{loading ? <Loader /> : children}</>;
+}
+
+// Keep the old export for backward compatibility
+export function UserProvider({ children }: { children: React.ReactNode }) {
+  return <UserProviderClient>{children}</UserProviderClient>;
 }

@@ -12,3 +12,5 @@ export function CustomButton({ children, ...props }: ButtonProps) {
     </Button>
   );
 }
+
+export default CustomButton;

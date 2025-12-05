@@ -1,12 +1,14 @@
 'use client';
+import AddTaskOutlinedIcon from '@mui/icons-material/AddTaskOutlined';
 import EditNoteOutlinedIcon from '@mui/icons-material/EditNoteOutlined';
+import EditOutlinedIcon from '@mui/icons-material/EditOutlined';
 import PersonAddAltOutlinedIcon from '@mui/icons-material/PersonAddAltOutlined';
 import PostAddOutlinedIcon from '@mui/icons-material/PostAddOutlined';
 import { Box } from '@mui/material';
 import { useTranslation } from 'react-i18next';
 import { TRANSLATIONS } from '@/locales';
 import { useModal } from '@/providers';
-import { StatusModal } from '../modal';
+import { AddStageModal, StatusModal } from '../modal';
 import { StatusTags } from '../tags';
 import {
   Header,
@@ -27,6 +29,7 @@ interface IProjectDetailCardProps {
   investors: string[];
   start_date: string;
   end_date: string;
+  projectId: string;
 }
 
 export function ProjectDetailCard({
@@ -36,6 +39,7 @@ export function ProjectDetailCard({
   investors,
   start_date,
   end_date,
+  projectId,
 }: IProjectDetailCardProps) {
   const { t } = useTranslation();
   const { setModalContent } = useModal();
@@ -78,7 +82,9 @@ export function ProjectDetailCard({
           color="secondary"
           variant="outlined"
           startIcon={<PostAddOutlinedIcon />}
-          onClick={() => setModalContent(<StatusModal />)}
+          onClick={() =>
+            setModalContent(<AddStageModal projectId={projectId} />)
+          }
         >
           {t(TRANSLATIONS.ADD_STAGE)}
         </ProjectAddStageButton>
@@ -89,6 +95,20 @@ export function ProjectDetailCard({
           onClick={() => setModalContent(<StatusModal />)}
         >
           {t(TRANSLATIONS.STATUS_CHANGE)}
+        </ProjectAddStageButton>
+        <ProjectAddStageButton
+          color="secondary"
+          variant="outlined"
+          startIcon={<EditOutlinedIcon />}
+        >
+          {t(TRANSLATIONS.PROJECT_EDIT_BTN)}
+        </ProjectAddStageButton>
+        <ProjectAddStageButton
+          color="secondary"
+          variant="outlined"
+          startIcon={<AddTaskOutlinedIcon />}
+        >
+          {t(TRANSLATIONS.PROJECT_END_BTN)}
         </ProjectAddStageButton>
       </ProjectsActionsContainer>
     </ProjectInfoContainer>

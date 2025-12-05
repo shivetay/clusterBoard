@@ -1,6 +1,8 @@
 'use client';
 import { FormControl, Stack } from '@mui/material';
-import { HelperText, InputField } from './form-components.styled';
+import { useEffect } from 'react';
+import { useAlert } from '@/providers';
+import { HelperText, InputField, Textarea } from './form-components.styled';
 import { InputLabel } from './label';
 
 export function FormInput({
@@ -9,6 +11,8 @@ export function FormInput({
   type,
   placeholder,
   helperText,
+  error,
+  defaultValue,
   ...rest
 }: {
   label: string;
@@ -16,19 +20,45 @@ export function FormInput({
   type: 'text' | 'textarea' | 'date';
   placeholder?: string;
   helperText?: string;
-} & React.ComponentPropsWithoutRef<typeof InputField>) {
+  error?: string;
+  defaultValue?: string;
+} & Omit<React.ComponentPropsWithoutRef<typeof InputField>, 'error'>) {
+  const hasError = !!error;
+  const { showAlert } = useAlert();
+
+  useEffect(() => {
+    if (hasError && error) {
+      showAlert({
+        message: error,
+        severity: 'error',
+      });
+    }
+  }, [hasError, error, showAlert]);
+
   return (
     <Stack width="100%">
       <InputLabel htmlFor={name}>{label}</InputLabel>
-      <FormControl>
-        <InputField
-          id={name}
-          disableUnderline
-          name={name}
-          type={type}
-          placeholder={placeholder}
-          {...rest}
-        />
+      <FormControl error={hasError}>
+        {type === 'textarea' ? (
+          <Textarea
+            id={name}
+            name={name}
+            defaultValue={defaultValue}
+            placeholder={placeholder}
+            style={{ minHeight: '50px', width: '100%' }}
+            {...(rest as React.ComponentPropsWithoutRef<'textarea'>)}
+          />
+        ) : (
+          <InputField
+            id={name}
+            defaultValue={defaultValue}
+            disableUnderline
+            name={name}
+            type={type}
+            placeholder={placeholder}
+            {...rest}
+          />
+        )}
       </FormControl>
       {helperText && <HelperText>{helperText}</HelperText>}
     </Stack>

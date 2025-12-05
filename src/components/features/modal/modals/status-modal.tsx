@@ -1,5 +1,6 @@
 'use client';
 import {
+  Box,
   FormControlLabel,
   FormGroup,
   Radio,
@@ -8,11 +9,13 @@ import {
 } from '@mui/material';
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { CustomButton } from '@/components/ui/button';
 import { TRANSLATIONS } from '@/locales';
+import { useModal } from '@/providers';
+import { ModalButton } from '../modal.styled';
 
 export function StatusModal() {
   const { t } = useTranslation();
+  const { setIsOpen } = useModal();
   const [selectedStatus, setSelectedStatus] = useState<string>('');
 
   const handleSubmit = () => {
@@ -44,7 +47,24 @@ export function StatusModal() {
           />
         </RadioGroup>
       </FormGroup>
-      <CustomButton>{t(TRANSLATIONS.STATUS_CHANGE)}</CustomButton>
+      <Box
+        display="flex"
+        flexDirection="row"
+        gap={2}
+        width="100%"
+        marginTop="2rem"
+      >
+        <ModalButton
+          onClick={() => setIsOpen(false)}
+          variant="outlined"
+          color="secondary"
+        >
+          {t(TRANSLATIONS.CANCEL)}
+        </ModalButton>
+        <ModalButton variant="contained" color="primary">
+          {t(TRANSLATIONS.STATUS_CHANGE)}
+        </ModalButton>
+      </Box>
     </Stack>
   );
 }
