@@ -62,6 +62,9 @@ export const TRANSLATIONS = {
   PROJECT_EDIT_BTN: 'Edytuj projekt',
   PROJECT_END_BTN: 'Zakończ projekt',
   PROJECT_STAGE_ADDED_SUCCESSFULLY: 'Etap projektu został dodany.',
+  PROJECT_REMOVE_BTN: 'Usuń projekt',
+  REMOVE_PROJECT_MODAL_TITLE: 'Czy na pewno chcesz usunąć projekt?',
+  ERROR_REMOVE_PROJECT: 'Błąd podczas usuwania projektu',
 };
 
 export default TRANSLATIONS;

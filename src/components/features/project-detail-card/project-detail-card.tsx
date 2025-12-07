@@ -1,5 +1,6 @@
 'use client';
 import AddTaskOutlinedIcon from '@mui/icons-material/AddTaskOutlined';
+import DeleteForeverOutlinedIcon from '@mui/icons-material/DeleteForeverOutlined';
 import EditNoteOutlinedIcon from '@mui/icons-material/EditNoteOutlined';
 import EditOutlinedIcon from '@mui/icons-material/EditOutlined';
 import PersonAddAltOutlinedIcon from '@mui/icons-material/PersonAddAltOutlined';
@@ -8,7 +9,7 @@ import { Box } from '@mui/material';
 import { useTranslation } from 'react-i18next';
 import { TRANSLATIONS } from '@/locales';
 import { useModal } from '@/providers';
-import { AddStageModal, StatusModal } from '../modal';
+import { AddStageModal, RemoveProjectModal, StatusModal } from '../modal';
 import { StatusTags } from '../tags';
 import {
   Header,
@@ -109,6 +110,16 @@ export function ProjectDetailCard({
           startIcon={<AddTaskOutlinedIcon />}
         >
           {t(TRANSLATIONS.PROJECT_END_BTN)}
+        </ProjectAddStageButton>
+        <ProjectAddStageButton
+          color="secondary"
+          variant="outlined"
+          startIcon={<DeleteForeverOutlinedIcon />}
+          onClick={() =>
+            setModalContent(<RemoveProjectModal projectId={projectId} />)
+          }
+        >
+          {t(TRANSLATIONS.PROJECT_REMOVE_BTN)}
         </ProjectAddStageButton>
       </ProjectsActionsContainer>
     </ProjectInfoContainer>
