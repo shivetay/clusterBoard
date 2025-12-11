@@ -44,7 +44,9 @@ export const TRANSLATIONS = {
   STAGE_NAME_HELPER_TEXT: 'Max 25 znaków',
   STAGE_DESCRIPTION: 'Opis etapu',
   STAGE_DESCRIPTION_HELPER_TEXT: 'Max 250 znaków',
-  STAGE_TASKS: 'Zadania etapu (jeden w linii)',
+  STAGE_TASKS: 'Zadania etapu',
+  STAGE_TASKS_HELPER_TEXT:
+    'Podaj zadania etapu, oddzielając je przecinkiem lub nową linią. Każde zadanie zostanie utworzone osobno.',
   CANCEL: 'Anuluj',
   ERROR_TASK_NAME: 'Nazwa zadania jest wymagana',
   ERROR_TASK_NAME_HELPER_TEXT: 'Max 10 znaków',
@@ -65,6 +67,12 @@ export const TRANSLATIONS = {
   PROJECT_REMOVE_BTN: 'Usuń projekt',
   REMOVE_PROJECT_MODAL_TITLE: 'Czy na pewno chcesz usunąć projekt?',
   ERROR_REMOVE_PROJECT: 'Błąd podczas usuwania projektu',
+  REMOVE_STAGE_MODAL_TITLE: 'Czy na pewno chcesz usunąć etap?',
+  ERROR_REMOVE_STAGE: 'Błąd podczas usuwania etapu',
+  SUCCESS_REMOVE_STAGE: 'Etap projektu został usunięty.',
+  ADD_TASK_MODAL_TITLE: 'Dodaj nowe zadanie',
+  ADD_TASK_MODAL_BTN: 'Dodaj zadanie',
+  ADD_TASK_MODAL_HELPER_TEXT: 'Dodaj nowe zadanie do etapu',
 };
 
 export default TRANSLATIONS;

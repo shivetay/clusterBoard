@@ -19,9 +19,10 @@ export type TFormData = {
 };
 
 export interface IProjectStage {
+  id: string;
   stage_name: string;
   stage_description: string;
-  stage_tasks?: IStageTask[];
+  stage_tasks: IStageTask[];
 }
 
 export interface IStageTask {

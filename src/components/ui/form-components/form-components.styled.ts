@@ -27,4 +27,5 @@ export const Textarea = styled(TextareaAutosize)(({ theme }) => ({
   padding: theme.spacing(1),
   fontSize: theme.typography.pxToRem(10),
   backgroundColor: theme.palette.background.bgLight,
+  color: theme.palette.text.primary,
 }));

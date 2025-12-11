@@ -20,7 +20,7 @@ import {
   AddProjectModalHeader,
   AddProjectModalTitle,
   ModalButton,
-} from '../modal.styled';
+} from '../../modal.styled';
 
 type TAddStageProps = {
   projectId: string;

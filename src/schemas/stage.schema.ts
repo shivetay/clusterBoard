@@ -8,12 +8,14 @@ const MAX_STAGE_DESCRIPTION_LENGTH = 25;
  * Schema for stage task validation
  */
 
-const stageTaskSchema = z.object({
+export const stageTaskSchema = z.object({
   task_name: z
     .string()
     .min(1, TRANSLATIONS.ERROR_TASK_NAME)
-    .max(MAX_STAGE_DESCRIPTION_LENGTH, TRANSLATIONS.ERROR_TASK_NAME_HELPER_TEXT)
+    // .max(MAX_STAGE_DESCRIPTION_LENGTH, TRANSLATIONS.ERROR_TASK_NAME_HELPER_TEXT)
     .trim(),
+
+  is_done: z.boolean().default(false),
 });
 
 /**
@@ -57,7 +59,7 @@ export const stageFormSchema = z.object({
       // If it's already an array, return as is
       return val;
     })
-    .pipe(z.array(stageTaskSchema))
+    .pipe(z.array(z.object({ task_name: z.string(), is_done: z.boolean() })))
     .default([])
     .optional(),
 });
