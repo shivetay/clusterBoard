@@ -4,7 +4,7 @@ import { useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 import type z from 'zod';
 import { FormInput, Loader } from '@/components/ui';
-import { useAddStageTasks } from '@/lib';
+import { mapTaskNames, useAddStageTasks } from '@/lib';
 import { TRANSLATIONS } from '@/locales';
 import { stageTaskSchema } from '@/schemas';
 import {
@@ -40,15 +40,7 @@ export function AddStageTaskModal({ stage_id }: { stage_id: string }) {
   const handleOnSubmit = (data: z.input<typeof stageTaskSchema>) => {
     // Parse textarea input: support both newlines and comma-separated values
     // First split by newlines, then split each line by commas
-    const taskNames = data.task_name
-      .split('\n')
-      .flatMap((line) =>
-        line
-          .split(',')
-          .map((task) => task.trim())
-          .filter((task) => task.length > 0),
-      )
-      .filter((task) => task.length > 0);
+    const taskNames = mapTaskNames(data.task_name);
 
     // Send as array of strings - backend will create a separate task for each task name
     // Backend expects: { stage_task: ["task1", "task2", "task3"] } or { stage_task: "task1, task2, task3" }

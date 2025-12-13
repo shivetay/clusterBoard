@@ -7,9 +7,11 @@ import PersonAddAltOutlinedIcon from '@mui/icons-material/PersonAddAltOutlined';
 import PostAddOutlinedIcon from '@mui/icons-material/PostAddOutlined';
 import { Box } from '@mui/material';
 import { useTranslation } from 'react-i18next';
+import { formatDate } from '@/lib';
 import { TRANSLATIONS } from '@/locales';
 import { useModal } from '@/providers';
-import { AddStageModal, RemoveProjectModal, StatusModal } from '../modal';
+import type { IProjectData } from '@/types';
+import { AddStageModal, ProjectModal, StatusModal } from '../modal';
 import { StatusTags } from '../tags';
 import {
   Header,
@@ -24,24 +26,19 @@ import {
 } from './project-detail-card.styled';
 
 interface IProjectDetailCardProps {
-  project_name: string;
-  project_status: 'zakończony' | 'w toku' | 'w przygotowaniu';
-  description: string;
-  investors: string[];
-  start_date: string;
-  end_date: string;
-  projectId: string;
+  projectData: IProjectData;
 }
 
-export function ProjectDetailCard({
-  project_name,
-  project_status,
-  description,
-  investors,
-  start_date,
-  end_date,
-  projectId,
-}: IProjectDetailCardProps) {
+export function ProjectDetailCard({ projectData }: IProjectDetailCardProps) {
+  const {
+    id,
+    project_name,
+    project_status,
+    project_description,
+    investors,
+    start_date,
+    end_date,
+  } = projectData;
   const { t } = useTranslation();
   const { setModalContent } = useModal();
 
@@ -53,7 +50,7 @@ export function ProjectDetailCard({
         </Header>
         <StatusTags status={project_status} />
       </ProjectHeaderContainer>
-      <ProjectDescription>{description}'asdasda'</ProjectDescription>
+      <ProjectDescription>{project_description}</ProjectDescription>
       <SectionDivider />
       <ProjectInvestorContainer>
         <Box>
@@ -62,14 +59,18 @@ export function ProjectDetailCard({
             return <StatusTags investor={investor} key={investor} />;
           })}
         </Box>
-        <Box display="flex" flexDirection="column" gap={1}>
-          <Label>startDate</Label>
-          <Label>{start_date || Date.now()}</Label>
-        </Box>
-        <Box display="flex" flexDirection="column" gap={1}>
-          <Label>endDate</Label>
-          <Label>{end_date || Date.now()}</Label>
-        </Box>
+        {start_date && (
+          <Box display="flex" flexDirection="column" gap={1}>
+            <Label>startDate</Label>
+            <Label>{formatDate(start_date)}</Label>
+          </Box>
+        )}
+        {end_date && (
+          <Box display="flex" flexDirection="column" gap={1}>
+            <Label>endDate</Label>
+            <Label>{formatDate(end_date)}</Label>
+          </Box>
+        )}
       </ProjectInvestorContainer>
       <ProjectsActionsContainer>
         <ProjectAddStageButton
@@ -83,9 +84,7 @@ export function ProjectDetailCard({
           color="secondary"
           variant="outlined"
           startIcon={<PostAddOutlinedIcon />}
-          onClick={() =>
-            setModalContent(<AddStageModal projectId={projectId} />)
-          }
+          onClick={() => setModalContent(<AddStageModal projectId={id} />)}
         >
           {t(TRANSLATIONS.ADD_STAGE)}
         </ProjectAddStageButton>
@@ -101,6 +100,11 @@ export function ProjectDetailCard({
           color="secondary"
           variant="outlined"
           startIcon={<EditOutlinedIcon />}
+          onClick={() =>
+            setModalContent(
+              <ProjectModal type="edit-project" projectData={projectData} />,
+            )
+          }
         >
           {t(TRANSLATIONS.PROJECT_EDIT_BTN)}
         </ProjectAddStageButton>
@@ -116,7 +120,9 @@ export function ProjectDetailCard({
           variant="outlined"
           startIcon={<DeleteForeverOutlinedIcon />}
           onClick={() =>
-            setModalContent(<RemoveProjectModal projectId={projectId} />)
+            setModalContent(
+              <ProjectModal type="delete-project" projectData={projectData} />,
+            )
           }
         >
           {t(TRANSLATIONS.PROJECT_REMOVE_BTN)}

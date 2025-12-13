@@ -18,7 +18,7 @@ export function StageTaskComponent({ stage_tasks }: IStageTaskComponentProps) {
     <StageTaskContainer>
       {stage_tasks.map((task) => (
         <TaskRadio
-          key={task.task_name}
+          key={task.id}
           control={
             <Radio
               checked={selectedTask === task.task_name}

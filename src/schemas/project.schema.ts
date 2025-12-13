@@ -75,4 +75,7 @@ export const createProjectSchema = z
     },
   );
 
+export const editProjectSchema = createProjectSchema.partial();
+
 export type ProjectFormData = z.infer<typeof createProjectSchema>;
+export type EditProjectFormData = z.infer<typeof editProjectSchema>;

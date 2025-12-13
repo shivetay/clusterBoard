@@ -5,6 +5,7 @@ import KeyboardArrowRightOutlinedIcon from '@mui/icons-material/KeyboardArrowRig
 import { Box, CardActionArea, CardContent } from '@mui/material';
 import { useTranslation } from 'react-i18next';
 import { HexDecor } from '@/components/ui';
+import { formatDate } from '@/lib/utils';
 import { TRANSLATIONS } from '@/locales';
 import { StatusTags } from '../tags';
 import {
@@ -43,18 +44,20 @@ export function ProjectsCard({ ...props }: IProjectsCardProps) {
               <StatusTags status={project_status} />
             </ProjectTitleContainer>
             <ProjectInfoContainer>
-              <ProjectInvestors>
-                <GroupsOutlinedIcon />
-                {/*// TODO check with actual investors for styling issues */}
-                {investors.map((investor) => (
-                  <span key={investor}>{investor}</span>
-                ))}
-              </ProjectInvestors>
+              {investors.length > 0 && (
+                <ProjectInvestors>
+                  <GroupsOutlinedIcon />
+                  {/*// TODO check with actual investors for styling issues */}
+                  {investors.map((investor) => (
+                    <span key={investor}>{investor}</span>
+                  ))}
+                </ProjectInvestors>
+              )}
               <ProjectDateContainer>
                 {/* // TODO check with actual dates for styling issues */}
-                <CalendarMonthOutlinedIcon />
-                <span>{start_date ? start_date : 'N/A'}</span>
-                <span>{end_date ? end_date : 'N/A'}</span>
+                {(start_date || end_date) && <CalendarMonthOutlinedIcon />}
+                {start_date && <span>{formatDate(start_date)}</span>}
+                {end_date && <span>{formatDate(end_date)}</span>}
               </ProjectDateContainer>
             </ProjectInfoContainer>
             <Box display="flex" alignItems="center" gap={1}>

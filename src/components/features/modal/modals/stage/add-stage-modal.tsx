@@ -41,7 +41,6 @@ export function AddStageModal({ projectId }: TAddStageProps) {
     defaultValues: {
       stage_name: '',
       stage_description: '',
-      stage_tasks: [],
     },
     mode: 'onBlur',
     reValidateMode: 'onChange',
@@ -91,13 +90,6 @@ export function AddStageModal({ projectId }: TAddStageProps) {
               placeholder={t(TRANSLATIONS.ADD_STAGE_FORM_DETAILS)}
               helperText={t(TRANSLATIONS.STAGE_DESCRIPTION_HELPER_TEXT)}
               error={errors.stage_description?.message}
-            />
-            <FormInput
-              {...register('stage_tasks')}
-              name="stage_tasks"
-              label={t(TRANSLATIONS.STAGE_TASKS)}
-              type="textarea"
-              error={errors.stage_tasks?.message}
             />
             <Box display="flex" flexDirection="row" gap={2} width="100%">
               <ModalButton

@@ -73,6 +73,10 @@ export const TRANSLATIONS = {
   ADD_TASK_MODAL_TITLE: 'Dodaj nowe zadanie',
   ADD_TASK_MODAL_BTN: 'Dodaj zadanie',
   ADD_TASK_MODAL_HELPER_TEXT: 'Dodaj nowe zadanie do etapu',
+  PROJECT_DESCRIPTION: 'Opis projektu',
+  GENERAL_ERROR: 'Ups... coś poszło nie tak :(',
+  PROJECT_EDIT_HEADER: 'Edytuj projekt',
+  PROJECT_EDITED_SUCCESSFULLY: 'Projekt został edytowany pomyślnie',
 };
 
 export default TRANSLATIONS;

@@ -9,28 +9,11 @@ interface IProjectDetailsViewProps {
 }
 
 export function ProjectDetailsView({ projectData }: IProjectDetailsViewProps) {
-  const {
-    project_name,
-    project_status,
-    investors,
-    description,
-    start_date,
-    end_date,
-    project_stages,
-    id,
-  } = projectData;
+  const { project_stages } = projectData;
 
   return (
     <PageContainer>
-      <ProjectDetailCard
-        projectId={id}
-        project_name={project_name}
-        project_status={project_status}
-        investors={investors}
-        description={description}
-        start_date={start_date}
-        end_date={end_date}
-      />
+      <ProjectDetailCard projectData={projectData} />
       <ProjectStageContainer project_stages={project_stages} />
     </PageContainer>
   );

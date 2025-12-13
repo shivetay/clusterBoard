@@ -1,24 +1,23 @@
+'use client';
 import { useMutation } from '@tanstack/react-query';
 import { useRouter } from 'next/navigation';
-import { apiClient } from '@/lib';
 import { TRANSLATIONS } from '@/locales';
 import { useAlert, useModal } from '@/providers';
+import type { TFormData } from '@/types';
+import apiClient from '../apiClient';
 
-export const useAddStageTasks = (stageId: string) => {
+export const useEditProject = (projectId: string) => {
   const router = useRouter();
   const { showAlert } = useAlert();
   const { setIsOpen } = useModal();
-
   const {
-    mutate: addTasks,
-    error,
+    mutate: editProject,
     isPending,
+    error,
   } = useMutation({
-    mutationFn: async (data: string[]) => {
+    mutationFn: async (data: TFormData) => {
       try {
-        await apiClient.post(`/tasks/${stageId}/add-tasks`, {
-          stage_task: data,
-        });
+        await apiClient.patch(`/projects/${projectId}`, data);
       } catch (error: any) {
         showAlert({
           message: error?.response?.data?.message,
@@ -28,23 +27,18 @@ export const useAddStageTasks = (stageId: string) => {
     },
     onSuccess: () => {
       router.refresh();
+
       setIsOpen(false);
       showAlert({
-        message: TRANSLATIONS.PROJECT_STAGE_ADDED_SUCCESSFULLY,
+        message: TRANSLATIONS.PROJECT_EDITED_SUCCESSFULLY,
         severity: 'success',
-      });
-    },
-    onError: (error: any) => {
-      showAlert({
-        message: error?.response?.data?.message,
-        severity: 'error',
       });
     },
   });
 
   return {
-    addTasks,
-    error,
+    editProject,
     isPending,
+    error,
   };
 };

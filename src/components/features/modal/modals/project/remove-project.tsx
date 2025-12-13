@@ -13,7 +13,7 @@ import {
   AddProjectModalHeader,
   AddProjectModalTitle,
   ModalButton,
-} from '../modal.styled';
+} from '../../modal.styled';
 
 export function RemoveProjectModal({ projectId }: { projectId: string }) {
   const { t } = useTranslation();

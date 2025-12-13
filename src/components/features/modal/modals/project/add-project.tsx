@@ -14,7 +14,7 @@ import {
   AddProjectModalHeader,
   AddProjectModalTitle,
   ModalButton,
-} from '../modal.styled';
+} from '../../modal.styled';
 
 export function AddProjectModal() {
   const { t } = useTranslation();
@@ -80,7 +80,14 @@ export function AddProjectModal() {
               helperText={t(TRANSLATIONS.PROJECT_NAME_HELPER_TEXT)}
               error={errors.project_name?.message}
             />
-
+            <FormInput
+              {...register('project_description')}
+              name="project_description"
+              label={t(TRANSLATIONS.PROJECT_DESCRIPTION)}
+              type="textarea"
+              helperText={t(TRANSLATIONS.STAGE_DESCRIPTION_HELPER_TEXT)}
+              error={errors.project_description?.message}
+            />
             <Box display="flex" flexDirection="row" gap={2} width="100%">
               <FormInput
                 {...register('start_date')}

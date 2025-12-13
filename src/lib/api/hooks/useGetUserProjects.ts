@@ -7,7 +7,7 @@ import apiClient from '../apiClient';
 interface IApiProject {
   id?: string;
   project_name: string;
-  description?: string;
+  project_description: string;
   start_date?: string;
   end_date?: string;
   investors: string[];
@@ -49,7 +49,7 @@ export const useGetUserProjects = () => {
       return projects.map((project: IApiProject) => ({
         id: project.id || '',
         project_name: project.project_name || '',
-        description: project.description || '',
+        project_description: project.project_description || '',
         start_date: project.start_date || '',
         end_date: project.end_date || '',
         investors: project.investors || [],

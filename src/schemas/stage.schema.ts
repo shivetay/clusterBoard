@@ -36,32 +36,6 @@ export const stageFormSchema = z.object({
       MAX_STAGE_DESCRIPTION_LENGTH,
       TRANSLATIONS.ERROR_STAGE_DESCRIPTION_HELPER_TEXT,
     ),
-
-  stage_tasks: z
-    .union([
-      z.string(), // Raw textarea input
-      z.array(stageTaskSchema), // Parsed array
-    ])
-    .transform((val) => {
-      // If it's a string, parse it into an array of task objects
-      if (typeof val === 'string') {
-        const lines = val
-          .split('\n')
-          .map((line) => line.trim())
-          .filter((line) => line.length > 0);
-
-        return lines.map((taskName) => ({
-          task_name: taskName,
-          is_done: false,
-          comments: null,
-        }));
-      }
-      // If it's already an array, return as is
-      return val;
-    })
-    .pipe(z.array(z.object({ task_name: z.string(), is_done: z.boolean() })))
-    .default([])
-    .optional(),
 });
 
 /**
