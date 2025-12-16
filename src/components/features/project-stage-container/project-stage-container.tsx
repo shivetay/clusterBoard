@@ -8,8 +8,8 @@ import { useState } from 'react';
 import { PageHeader, StageTaskComponent } from '@/components/ui';
 import { TRANSLATIONS } from '@/locales';
 import { useModal } from '@/providers';
-import type { IProjectStage } from '@/types';
-import { AddStageTaskModal, RemoveStageModal } from '../modal/modals';
+import type { IStageData } from '@/types';
+import { StageModal } from '../modal/modals';
 import {
   ActionButtons,
   ProjectStageContainer as ProjectStageContainerStyled,
@@ -21,19 +21,27 @@ import {
 } from './project-stage-container.styled';
 
 interface IProjectStageData {
-  project_stages: IProjectStage[];
+  project_stages: IStageData[];
 }
 
 export function ProjectStageContainer({ project_stages }: IProjectStageData) {
   const [visibleStage, setVisibleStage] = useState<string | null>(null);
   const { setModalContent } = useModal();
 
-  const handleRemoveStage = (stage_id: string) => {
-    setModalContent(<RemoveStageModal stage_id={stage_id} />);
+  const handleRemoveStage = (stageData: IStageData) => {
+    setModalContent(<StageModal type="delete-stage" stageData={stageData} />);
   };
 
-  const handleAddStageTask = (stage_id: string) => {
-    setModalContent(<AddStageTaskModal stage_id={stage_id} />);
+  const handleAddStageTask = (stageData: IStageData) => {
+    setModalContent(<StageModal type="add-stage-task" stageData={stageData} />);
+  };
+
+  const handleEditStage = (stageData: IStageData) => {
+    setModalContent(<StageModal type="edit-stage" stageData={stageData} />);
+  };
+
+  const handleCloseStage = (stageData: IStageData) => {
+    setModalContent(<StageModal type="close-stage" stageData={stageData} />);
   };
 
   return (
@@ -44,6 +52,7 @@ export function ProjectStageContainer({ project_stages }: IProjectStageData) {
           <ProjectStageListContainer key={stage.stage_name}>
             <ProjectStageHeaderContainer>
               <StageButton
+                isDisabled={stage.is_done}
                 onClick={() => {
                   setVisibleStage((prev) =>
                     prev === stage.stage_name ? null : stage.stage_name,
@@ -53,18 +62,28 @@ export function ProjectStageContainer({ project_stages }: IProjectStageData) {
                 {stage.stage_name}
               </StageButton>
               <ActionButtons
+                disabled={stage.is_done}
                 startIcon={<PlaylistAddOutlinedIcon />}
-                onClick={() => handleAddStageTask(stage.id)}
+                onClick={() => handleAddStageTask(stage)}
               />
-              <StageDivider />
+              <StageDivider isDisabled={stage.is_done} />
               <Box display="flex" flexDirection="row">
-                <ActionButtons startIcon={<EditOutlinedIcon />} />
-                <ActionButtons startIcon={<CheckCircleOutlineOutlinedIcon />} />
                 <ActionButtons
+                  disabled={stage.is_done}
+                  startIcon={<EditOutlinedIcon />}
+                  onClick={() => handleEditStage(stage)}
+                />
+                <ActionButtons
+                  disabled={stage.is_done}
+                  startIcon={<CheckCircleOutlineOutlinedIcon />}
+                  onClick={() => handleCloseStage(stage)}
+                />
+                <ActionButtons
+                  disabled={stage.is_done}
                   startIcon={
                     <DeleteForeverOutlinedIcon
                       onClick={() => {
-                        handleRemoveStage(stage.id);
+                        handleRemoveStage(stage);
                       }}
                     />
                   }

@@ -11,7 +11,7 @@ import { formatDate } from '@/lib';
 import { TRANSLATIONS } from '@/locales';
 import { useModal } from '@/providers';
 import type { IProjectData } from '@/types';
-import { AddStageModal, ProjectModal, StatusModal } from '../modal';
+import { ProjectModal, StageModal } from '../modal';
 import { StatusTags } from '../tags';
 import {
   Header,
@@ -41,6 +41,7 @@ export function ProjectDetailCard({ projectData }: IProjectDetailCardProps) {
   } = projectData;
   const { t } = useTranslation();
   const { setModalContent } = useModal();
+  const isDisabled = project_status === 'zakończony';
 
   return (
     <ProjectInfoContainer>
@@ -74,6 +75,7 @@ export function ProjectDetailCard({ projectData }: IProjectDetailCardProps) {
       </ProjectInvestorContainer>
       <ProjectsActionsContainer>
         <ProjectAddStageButton
+          disabled={isDisabled}
           color="primary"
           variant="contained"
           startIcon={<PersonAddAltOutlinedIcon />}
@@ -81,10 +83,13 @@ export function ProjectDetailCard({ projectData }: IProjectDetailCardProps) {
           {t(TRANSLATIONS.ADD_INVESTOR)}
         </ProjectAddStageButton>
         <ProjectAddStageButton
+          disabled={isDisabled}
           color="secondary"
           variant="outlined"
           startIcon={<PostAddOutlinedIcon />}
-          onClick={() => setModalContent(<AddStageModal projectId={id} />)}
+          onClick={() =>
+            setModalContent(<StageModal type="add-stage" projectId={id} />)
+          }
         >
           {t(TRANSLATIONS.ADD_STAGE)}
         </ProjectAddStageButton>
@@ -92,11 +97,17 @@ export function ProjectDetailCard({ projectData }: IProjectDetailCardProps) {
           color="secondary"
           variant="outlined"
           startIcon={<EditNoteOutlinedIcon />}
-          onClick={() => setModalContent(<StatusModal />)}
+          onClick={() =>
+            setModalContent(
+              <ProjectModal type="change-status" projectData={projectData} />,
+            )
+          }
         >
           {t(TRANSLATIONS.STATUS_CHANGE)}
         </ProjectAddStageButton>
+
         <ProjectAddStageButton
+          disabled={isDisabled}
           color="secondary"
           variant="outlined"
           startIcon={<EditOutlinedIcon />}
@@ -108,14 +119,23 @@ export function ProjectDetailCard({ projectData }: IProjectDetailCardProps) {
         >
           {t(TRANSLATIONS.PROJECT_EDIT_BTN)}
         </ProjectAddStageButton>
+
         <ProjectAddStageButton
+          disabled={isDisabled}
           color="secondary"
           variant="outlined"
           startIcon={<AddTaskOutlinedIcon />}
+          onClick={() =>
+            setModalContent(
+              <ProjectModal type="end-project" projectData={projectData} />,
+            )
+          }
         >
           {t(TRANSLATIONS.PROJECT_END_BTN)}
         </ProjectAddStageButton>
+
         <ProjectAddStageButton
+          disabled={isDisabled}
           color="secondary"
           variant="outlined"
           startIcon={<DeleteForeverOutlinedIcon />}

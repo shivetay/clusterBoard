@@ -14,7 +14,7 @@ import { useAddProjectStage } from '@/lib';
 import { TRANSLATIONS } from '@/locales';
 import { useModal } from '@/providers';
 import { stageFormSchema } from '@/schemas';
-import type { IProjectStage } from '@/types';
+import type { IStageData } from '@/types';
 import {
   AddProjectModalContainer,
   AddProjectModalHeader,
@@ -49,7 +49,7 @@ export function AddStageModal({ projectId }: TAddStageProps) {
     Object.keys(errors).length > 0 || watch('stage_name') === '';
 
   const handleOnSubmit = (data: z.input<typeof stageFormSchema>) => {
-    addStage(data as IProjectStage);
+    addStage(data as IStageData);
   };
 
   return (

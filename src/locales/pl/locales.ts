@@ -77,6 +77,14 @@ export const TRANSLATIONS = {
   GENERAL_ERROR: 'Ups... coś poszło nie tak :(',
   PROJECT_EDIT_HEADER: 'Edytuj projekt',
   PROJECT_EDITED_SUCCESSFULLY: 'Projekt został edytowany pomyślnie',
+  PROJECT_END_MODAL_TITLE: 'Czy na pewno chcesz zakończyć projekt?',
+  PROJECT_ENDED_SUCCESSFULLY: 'Projekt został zakończony pomyślnie',
+  STAGE_EDITED_SUCCESSFULLY: 'Etap projektu został edytowany pomyślnie',
+  ERROR_EDIT_STAGE: 'Błąd podczas edytowania etapu',
+  CLOSE_STAGE_MODAL_TITLE: 'Czy na pewno chcesz zamknąć etap?',
+  CLOSE_STAGE_MODAL_HELPER:
+    'Etap zostanie zamknięty i nie będzie można go edytować.',
+  CLOSE_STAGE_BTN: 'Zamknij etap',
 };
 
 export default TRANSLATIONS;

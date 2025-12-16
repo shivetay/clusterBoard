@@ -1,7 +1,7 @@
 'use client';
 import { useQuery } from '@tanstack/react-query';
 import { useUser } from '@/stores';
-import type { IProjectData, IProjectStage } from '@/types';
+import type { IProjectData, IStageData } from '@/types';
 import apiClient from '../apiClient';
 
 interface IApiProject {
@@ -11,22 +11,30 @@ interface IApiProject {
   start_date?: string;
   end_date?: string;
   investors: string[];
-  project_stages: IProjectStage[];
-  project_status: 'planning' | 'active' | 'completed' | 'finished';
+  project_stages: IStageData[];
+  project_status:
+    | 'planning'
+    | 'active'
+    | 'completed'
+    | 'finished'
+    | 'zakonczony'
+    | 'zakonczone'
+    | 'zakończony'
+    | 'w toku'
+    | 'w przygotowaniu';
 }
 
 // Map API status to frontend status format
 const mapStatus = (
   status: string,
 ): 'zakończony' | 'w toku' | 'w przygotowaniu' => {
-  switch (status) {
-    case 'active':
-      return 'w toku';
-    case 'planning':
-      return 'w przygotowaniu';
-    case 'completed':
-    case 'finished':
+  switch (status?.toLowerCase()) {
+    case 'zakończony':
       return 'zakończony';
+    case 'w toku':
+      return 'w toku';
+    case 'w przygotowaniu':
+      return 'w przygotowaniu';
     default:
       return 'w przygotowaniu';
   }

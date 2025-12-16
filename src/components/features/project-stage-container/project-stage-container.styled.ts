@@ -23,29 +23,39 @@ export const ProjectStageHeaderContainer = styled(Box)(({ theme }) => ({
   gap: theme.spacing(1),
 }));
 
-export const StageButton = styled(CustomButton)(({ theme }) => ({
+export const StageButton = styled(CustomButton, {
+  shouldForwardProp: (prop) => prop !== 'isDisabled',
+})<{ isDisabled: boolean }>(({ theme, isDisabled }) => ({
   padding: 0,
   margin: 0,
 
   maxHeight: '22px !important',
   height: '22px !important',
   minHeight: '22px !important',
-  backgroundColor: theme.palette.background.gradientText,
+  backgroundColor: isDisabled
+    ? theme.palette.background.primaryTransparent
+    : theme.palette.background.gradientText,
   color: theme.palette.text.dark,
   fontSize: theme.typography.body2.fontSize,
 
   '&:hover': {
-    backgroundColor: theme.palette.background.gradientText,
+    backgroundColor: isDisabled
+      ? theme.palette.background.primaryTransparent
+      : theme.palette.background.gradientText,
     color: theme.palette.text.dark,
   },
 }));
 
-export const StageDivider = styled(Divider)(({ theme }) => {
+export const StageDivider = styled(Divider, {
+  shouldForwardProp: (prop) => prop !== 'isDisabled',
+})<{ isDisabled: boolean }>(({ theme, isDisabled }) => {
   const primaryColor = theme.palette.text.secondary;
   const faded = theme.palette.background.primaryTransparent;
   return {
     width: '83%',
-    backgroundImage: `linear-gradient(to right, ${primaryColor}, ${faded})`,
+    backgroundImage: isDisabled
+      ? `linear-gradient(to right, ${faded}, ${faded})`
+      : `linear-gradient(to right, ${primaryColor}, ${faded})`,
     borderColor: primaryColor,
     height: '1px',
     border: 'none',

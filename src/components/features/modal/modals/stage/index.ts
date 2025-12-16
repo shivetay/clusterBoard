@@ -1,3 +1,1 @@
-export * from './add-stage-modal';
-export * from './add-stage-task';
-export * from './remove-stage';
+export * from './stage-modal';
