@@ -95,7 +95,10 @@ export function ProjectStageContainer({ project_stages }: IProjectStageData) {
             </StageDescription>
 
             {visibleStage === stage.stage_name && (
-              <StageTaskComponent stage_tasks={stage.stage_tasks} />
+              <StageTaskComponent
+                stage_tasks={stage.stage_tasks}
+                isStageClosed={stage.is_done}
+              />
             )}
           </ProjectStageListContainer>
         );

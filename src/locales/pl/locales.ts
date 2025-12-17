@@ -85,6 +85,11 @@ export const TRANSLATIONS = {
   CLOSE_STAGE_MODAL_HELPER:
     'Etap zostanie zamknięty i nie będzie można go edytować.',
   CLOSE_STAGE_BTN: 'Zamknij etap',
+  TASK_EDITED_SUCCESSFULLY: 'Zadanie zostało edytowane pomyślnie',
+  TASK_NAME: 'Nazwa zadania',
+  TASK_NAME_HELPER_TEXT: 'Max 25 znaków',
+  TASK_REMOVED_SUCCESSFULLY: 'Zadanie zostało usunięte pomyślnie',
+  ERROR_REMOVE_TASK: 'Błąd podczas usuwania zadania',
 };
 
 export default TRANSLATIONS;

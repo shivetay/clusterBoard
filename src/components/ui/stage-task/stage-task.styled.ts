@@ -11,6 +11,7 @@ export const StageTaskContainer = styled('div')(({ theme }) => ({
 
 export const TaskRadio = styled(FormControlLabel)(({ theme }) => ({
   marginLeft: 0,
+  width: 'max-content',
   '& .MuiRadio-root': {
     width: '20px',
     height: '20px',
