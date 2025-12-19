@@ -40,10 +40,7 @@ export function EditStageModal({ stageData }: IEditStageModalProps) {
     reValidateMode: 'onChange',
   });
 
-  const disabled =
-    Object.keys(errors).length > 0 ||
-    watch('stage_name') === '' ||
-    watch('stage_description') === '';
+  const disabled = Object.keys(errors).length > 0 || watch('stage_name') === '';
 
   useEffect(() => {
     if (stageData) {
@@ -86,7 +83,7 @@ export function EditStageModal({ stageData }: IEditStageModalProps) {
             />
             <FormInput
               {...register('stage_description')}
-              name="project_description"
+              name="stage_description"
               label={t(TRANSLATIONS.STAGE_DESCRIPTION)}
               type="textarea"
               helperText={t(TRANSLATIONS.STAGE_DESCRIPTION_HELPER_TEXT)}

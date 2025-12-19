@@ -55,20 +55,20 @@ export function ProjectDetailCard({ projectData }: IProjectDetailCardProps) {
       <SectionDivider />
       <ProjectInvestorContainer>
         <Box>
-          <Label>Investors</Label>
+          <Label>{t(TRANSLATIONS.INVESTORS)}</Label>
           {investors.map((investor) => {
             return <StatusTags investor={investor} key={investor} />;
           })}
         </Box>
         {start_date && (
           <Box display="flex" flexDirection="column" gap={1}>
-            <Label>startDate</Label>
+            <Label>{t(TRANSLATIONS.START_DATE)}</Label>
             <Label>{formatDate(start_date)}</Label>
           </Box>
         )}
         {end_date && (
           <Box display="flex" flexDirection="column" gap={1}>
-            <Label>endDate</Label>
+            <Label>{t(TRANSLATIONS.END_DATE)}</Label>
             <Label>{formatDate(end_date)}</Label>
           </Box>
         )}

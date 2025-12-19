@@ -33,8 +33,9 @@ export function StageTaskComponent({
   const { editTask } = useEditTask(selectedTask || '');
 
   const handleToggle = (task: IStageTask) => {
-    editTask({ is_done: !task.is_done });
     setSelectedTask((prev) => (prev === task.id ? null : task.id));
+
+    editTask({ is_done: !task.is_done });
   };
 
   const handleTaskEdit = (task: IStageTask) => {
@@ -91,13 +92,10 @@ export function StageTaskComponent({
             />
             <ActionButtons
               disabled={task.is_done || isStageClosed}
-              startIcon={
-                <DeleteForeverOutlinedIcon
-                  onClick={() => {
-                    handleTaskDelete(task.id);
-                  }}
-                />
-              }
+              startIcon={<DeleteForeverOutlinedIcon />}
+              onClick={() => {
+                handleTaskDelete(task.id);
+              }}
             />
           </Box>
         </Box>

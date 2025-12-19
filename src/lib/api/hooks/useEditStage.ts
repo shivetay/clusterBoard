@@ -34,9 +34,10 @@ export const useEditStage = (stage_id: string) => {
         severity: 'success',
       });
     },
-    onError: () => {
+    onError: (error: any) => {
+      setIsOpen(true);
       showAlert({
-        message: TRANSLATIONS.ERROR_EDIT_STAGE,
+        message: error?.response?.data?.message,
         severity: 'error',
       });
     },

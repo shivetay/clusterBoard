@@ -13,11 +13,6 @@ export default async function ProjectPage({ params }: IProjectPageProps) {
 
   const response = await serverGet<{ data: { project: IProjectData } }>(
     `/projects/${id}`,
-    {
-      params: {
-        next: { revalidate: 0 },
-      },
-    },
   );
 
   const projectData = response.data.project;

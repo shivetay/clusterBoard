@@ -34,6 +34,13 @@ export const useEditProject = (projectId: string) => {
         severity: 'success',
       });
     },
+    onError: (error: any) => {
+      setIsOpen(true);
+      showAlert({
+        message: error?.response?.data?.message,
+        severity: 'error',
+      });
+    },
   });
 
   return {

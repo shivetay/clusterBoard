@@ -54,7 +54,7 @@ export const TRANSLATIONS = {
   ERROR_STAGE_NAME_HELPER_TEXT: 'Max 10 znaków',
   ERROR_STAGE_DESCRIPTION_HELPER_TEXT: 'Max 10 znaków',
   ERROR_PROJECT_NAME: 'Nazwa projektu jest wymagana',
-  ERROR_PROJECT_NAME_HELPER_TEXT: 'Nazwa nie może przekraczać 10 znaków',
+  ERROR_PROJECT_NAME_HELPER_TEXT: 'Nazwa nie może przekraczać 25 znaków',
   ERROR_PROJECT_DESCRIPTION_HELPER_TEXT: 'Max 25 znaków',
   ERROR_START_DATE: 'Data rozpoczęcia jest wymagana',
   ERROR_END_DATE: 'Data zakończenia jest wymagana',
@@ -90,6 +90,7 @@ export const TRANSLATIONS = {
   TASK_NAME_HELPER_TEXT: 'Max 25 znaków',
   TASK_REMOVED_SUCCESSFULLY: 'Zadanie zostało usunięte pomyślnie',
   ERROR_REMOVE_TASK: 'Błąd podczas usuwania zadania',
+  INVESTORS: 'Inwestorzy',
 };
 
 export default TRANSLATIONS;

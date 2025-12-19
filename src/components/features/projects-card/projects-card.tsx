@@ -32,8 +32,6 @@ export function ProjectsCard({ ...props }: IProjectsCardProps) {
     props;
   const { t } = useTranslation();
 
-  console.log(project_status);
-
   return (
     <ProjectCardLink href={`/project/${id}`}>
       <CardActionArea>
