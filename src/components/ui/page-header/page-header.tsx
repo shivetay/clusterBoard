@@ -10,3 +10,5 @@ export function PageHeader({ title }: { title: string }) {
     </PageHeaderStyled>
   );
 }
+
+export default PageHeader;

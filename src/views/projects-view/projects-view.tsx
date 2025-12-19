@@ -2,10 +2,10 @@
 import { useAuth } from '@clerk/nextjs';
 import AddCircleOutlineOutlinedIcon from '@mui/icons-material/AddCircleOutlineOutlined';
 import {
-  AddProjectModal,
   Loader,
   PageContainer,
   PageHeader,
+  ProjectModal,
   ProjectsCard,
 } from '@/components';
 import { useGetUserProjects } from '@/lib';
@@ -29,7 +29,7 @@ export function ProjectsView() {
   const projectsCount = userInfo?.cluster_projects?.length || 0;
   const projectsLimit = userInfo?.projects_limit || 0;
   const handleModalOpen = () => {
-    setModalContent(<AddProjectModal />);
+    setModalContent(<ProjectModal type="add-project" />);
   };
 
   return (
@@ -57,6 +57,8 @@ export function ProjectsView() {
                 investors={data.investors}
                 project_status={data.project_status}
                 project_name={data.project_name}
+                start_date={data.start_date}
+                end_date={data.end_date}
               />
             );
           })

@@ -90,11 +90,12 @@ export const AddProjectModalHeader = styled(Stack)(() => ({
   textAlign: 'center',
 }));
 
-export const AddButton = styled(CustomButton)(({ theme }) => ({
+export const ModalButton = styled(CustomButton)(({ theme }) => ({
   transition: 'background-color 0.3s ease, color 0.3s ease',
   width: '100%',
   margin: 0,
   '&:hover': {
-    backgroundColor: theme.palette.background.gradientText,
+    backgroundColor: `${theme.palette.primary.main}AA`,
+    color: theme.palette.text.primary,
   },
 }));

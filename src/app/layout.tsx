@@ -9,8 +9,8 @@ import {
   ModalProvider,
   NavigationProvider,
   QueryProvider,
-  UserProvider,
 } from '@/providers';
+import { ServerUserProvider } from '@/providers/server-user-provider';
 import { ThemeProvider } from '@/theme';
 import { LayoutContainer } from './layout.styled';
 
@@ -46,7 +46,7 @@ export default function RootLayout({
               <NavigationProvider>
                 <ModalProvider>
                   <QueryProvider>
-                    <UserProvider>
+                    <ServerUserProvider>
                       <I18nProvider locale="pl">
                         <LayoutContainer>
                           <Header />
@@ -57,7 +57,7 @@ export default function RootLayout({
                       <div id="modal-root" />
                       <Modal />
                       <AlertPopup />
-                    </UserProvider>
+                    </ServerUserProvider>
                   </QueryProvider>
                 </ModalProvider>
               </NavigationProvider>

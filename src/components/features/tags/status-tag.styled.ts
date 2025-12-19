@@ -11,6 +11,11 @@ export const StatusTagStyled = styled(Chip)(({ theme }) => ({
   backgroundColor: theme.palette.background.primaryTransparent,
   borderRadius: '1px',
   border: `1px solid ${theme.palette.background.gradientText}`,
-  padding: theme.spacing(0, 1),
+  padding: theme.spacing(1.5, 1),
   marginTop: theme.spacing(1),
+  height: '16px',
+  '& .MuiChip-label': {
+    padding: 0,
+    marginRight: 0,
+  },
 }));

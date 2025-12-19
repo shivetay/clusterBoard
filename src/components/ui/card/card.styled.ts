@@ -117,7 +117,7 @@ export const SpannedCardDescriptionHeader = styled(Typography)(({ theme }) => ({
   color: theme.palette.text.primary,
   lineHeight: theme.typography.h3.lineHeight,
   letterSpacing: theme.typography.h3.letterSpacing,
-  marginLeft: theme.spacing(2),
+  margin: theme.spacing(1, 2, 1, 3),
 }));
 
 export const SpannedCountHeader = styled(Typography)(({ theme }) => ({
