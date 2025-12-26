@@ -24,7 +24,7 @@ export async function ServerUserProvider({
         if (rawUser) {
           userData = {
             id: userId || rawUser.id,
-            name: rawUser.name,
+            user_name: rawUser.user_name,
             email: rawUser.email,
             role: rawUser.role,
             cluster_projects: rawUser.cluster_projects || [],

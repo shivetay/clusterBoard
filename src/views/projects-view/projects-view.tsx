@@ -31,7 +31,8 @@ export function ProjectsView() {
   const handleModalOpen = () => {
     setModalContent(<ProjectModal type="add-project" />);
   };
-
+  console.log(userProjects);
+  console.log(userInfo);
   return (
     <PageContainer>
       <ActionContainer>

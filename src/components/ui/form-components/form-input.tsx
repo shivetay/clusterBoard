@@ -17,7 +17,7 @@ export function FormInput({
 }: {
   label: string;
   name: string;
-  type: 'text' | 'textarea' | 'date';
+  type: 'text' | 'textarea' | 'date' | 'email';
   placeholder?: string;
   helperText?: string;
   error?: string;

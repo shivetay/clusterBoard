@@ -91,7 +91,7 @@ export function UserProviderClient({
 
       const transformedUserData: IUserData = {
         id: userId || rawUser.id,
-        name: rawUser.name,
+        user_name: rawUser.user_name,
         email: rawUser.email,
         role: rawUser.role,
         cluster_projects: rawUser.cluster_projects || [],

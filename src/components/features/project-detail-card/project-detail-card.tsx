@@ -11,7 +11,7 @@ import { formatDate } from '@/lib';
 import { TRANSLATIONS } from '@/locales';
 import { useModal } from '@/providers';
 import type { IProjectData } from '@/types';
-import { ProjectModal, StageModal } from '../modal';
+import { InvestorModal, ProjectModal, StageModal } from '../modal';
 import { StatusTags } from '../tags';
 import {
   Header,
@@ -79,6 +79,7 @@ export function ProjectDetailCard({ projectData }: IProjectDetailCardProps) {
           color="primary"
           variant="contained"
           startIcon={<PersonAddAltOutlinedIcon />}
+          onClick={() => setModalContent(<InvestorModal projectId={id} />)}
         >
           {t(TRANSLATIONS.ADD_INVESTOR)}
         </ProjectAddStageButton>

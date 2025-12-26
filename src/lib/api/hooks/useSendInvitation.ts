@@ -1,40 +1,31 @@
-import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { useRouter } from 'next/navigation';
+import { useMutation } from '@tanstack/react-query';
 import { TRANSLATIONS } from '@/locales';
 import { useAlert, useModal } from '@/providers';
-import type { TStageFormData } from '@/types';
 import apiClient from '../apiClient';
 
-export const useAddProjectStage = (projectId: string) => {
-  const queryClient = useQueryClient();
-  const router = useRouter();
+export const useSendInvitation = () => {
   const { showAlert } = useAlert();
   const { setIsOpen } = useModal();
-
   const {
-    mutate: addStage,
+    mutate: sendInvitation,
     isPending,
     error,
   } = useMutation({
-    mutationFn: async (data: TStageFormData) => {
+    mutationFn: async (data: any) => {
       try {
-        await apiClient.patch(`/projects/${projectId}/add-stage`, data);
+        await apiClient.post('/invitations/invite', data);
       } catch (error: any) {
         showAlert({
           message: error?.response?.data?.message,
           severity: 'error',
         });
-        throw new Error(error?.response?.data?.message);
+        throw new Error(error);
       }
     },
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ['user-projects'] });
-
-      router.refresh();
-
       setIsOpen(false);
       showAlert({
-        message: TRANSLATIONS.PROJECT_STAGE_ADDED_SUCCESSFULLY,
+        message: TRANSLATIONS.INVITATION_SENT_SUCCESSFULLY,
         severity: 'success',
       });
     },
@@ -47,7 +38,7 @@ export const useAddProjectStage = (projectId: string) => {
   });
 
   return {
-    addStage,
+    sendInvitation,
     isPending,
     error,
   };

@@ -14,7 +14,7 @@ export interface IProjectData {
 export type TFormData = {
   project_name: string;
   project_description: string;
-  owner: string;
+  owner: { owner_id: string; owner_name: string };
   start_date: string;
   end_date: string;
   project_stages?: IStageData[];
