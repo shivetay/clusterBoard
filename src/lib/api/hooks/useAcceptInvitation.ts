@@ -16,7 +16,6 @@ export const useAcceptInvitation = () => {
   return useMutation({
     mutationFn: async (token: string) => {
       const response = await apiClient.post('/invitations/accept', { token });
-      console.log(response.data);
       return response.data;
     },
     onSuccess: (data) => {

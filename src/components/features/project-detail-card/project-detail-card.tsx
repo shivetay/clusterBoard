@@ -11,10 +11,16 @@ import { formatDate } from '@/lib';
 import { TRANSLATIONS } from '@/locales';
 import { useModal } from '@/providers';
 import type { IProjectData } from '@/types';
-import { InvestorModal, ProjectModal, StageModal } from '../modal';
+import {
+  InvestorModal,
+  ProjectModal,
+  RemoveInvestorModal,
+  StageModal,
+} from '../modal';
 import { StatusTags } from '../tags';
 import {
   Header,
+  InvestorButton,
   Label,
   ProjectAddStageButton,
   ProjectDescription,
@@ -44,6 +50,13 @@ export function ProjectDetailCard({ projectData }: IProjectDetailCardProps) {
   const { setModalContent } = useModal();
   const isDisabled = project_status === 'zakończony';
 
+  const handleInvestorRemove = (index: number) => {
+    const investorId = investors[index];
+    setModalContent(
+      <RemoveInvestorModal projectId={id} investorId={investorId} />,
+    );
+  };
+
   return (
     <ProjectInfoContainer>
       <ProjectHeaderContainer>
@@ -58,12 +71,17 @@ export function ProjectDetailCard({ projectData }: IProjectDetailCardProps) {
         {investors && (
           <Box>
             <Label>{t(TRANSLATIONS.INVESTORS)}</Label>
-            {investors_name.map((investor) => {
+            {investors_name.map((investor, index) => {
               return (
-                <StatusTags
-                  investor={investor.user_name}
-                  key={investor.id || investor._id}
-                />
+                <InvestorButton
+                  key={investor.user_name}
+                  onClick={() => handleInvestorRemove(index)}
+                >
+                  <StatusTags
+                    investor={investor.user_name}
+                    key={investor.user_name}
+                  />
+                </InvestorButton>
               );
             })}
           </Box>

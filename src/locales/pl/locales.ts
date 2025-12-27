@@ -117,6 +117,10 @@ export const TRANSLATIONS = {
     'Jesteś już inwestorem w tym projekcie',
   INVITATION_ACCEPTED_ERROR_ALREADY_INVESTOR_MESSAGE_3:
     'Jesteś już inwestorem w tym projekcie',
+  REMOVE_INVESTOR_MODAL_TITLE: 'Czy na pewno chcesz usunąć inwestora?',
+  ERROR_REMOVE_INVESTOR: 'Błąd podczas usuwania inwestora',
+  INVESTOR_REMOVE_BTN: 'Usuń inwestora',
+  INVESTOR_REMOVED_SUCCESSFULLY: 'Inwestor został usunięty pomyślnie',
 };
 
 export default TRANSLATIONS;

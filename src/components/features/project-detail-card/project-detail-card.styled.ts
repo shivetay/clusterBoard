@@ -63,3 +63,11 @@ export const ProjectAddStageButton = styled(CustomButton)(({ theme }) => ({
   marginBottom: theme.spacing(2),
   marginLeft: 0,
 }));
+
+export const InvestorButton = styled(CustomButton)(({ theme }) => ({
+  margin: 0,
+  padding: 0,
+  '&:hover': {
+    backgroundColor: 'transparent',
+  },
+}));

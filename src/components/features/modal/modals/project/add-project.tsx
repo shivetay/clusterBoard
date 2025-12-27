@@ -21,7 +21,6 @@ export function AddProjectModal() {
   const { createProject, isPending } = useCreateNewProject();
   const { userInfo } = useUser();
 
-  console.log(userInfo);
   const {
     register,
     handleSubmit,
