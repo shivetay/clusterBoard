@@ -31,8 +31,7 @@ export function ProjectsView() {
   const handleModalOpen = () => {
     setModalContent(<ProjectModal type="add-project" />);
   };
-  console.log(userProjects);
-  console.log(userInfo);
+
   return (
     <PageContainer>
       <ActionContainer>
@@ -60,6 +59,7 @@ export function ProjectsView() {
                 project_name={data.project_name}
                 start_date={data.start_date}
                 end_date={data.end_date}
+                investors_name={data.investors_name}
               />
             );
           })

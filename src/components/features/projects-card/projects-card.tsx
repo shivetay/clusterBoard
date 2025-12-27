@@ -7,6 +7,7 @@ import { useTranslation } from 'react-i18next';
 import { HexDecor } from '@/components/ui';
 import { formatDate } from '@/lib/utils';
 import { TRANSLATIONS } from '@/locales';
+import type { IInvestorData } from '@/types';
 import { StatusTags } from '../tags';
 import {
   CardContainer,
@@ -25,11 +26,19 @@ interface IProjectsCardProps {
   project_status: 'zakończony' | 'w toku' | 'w przygotowaniu';
   start_date?: string;
   end_date?: string;
+  investors_name: IInvestorData[];
 }
 
 export function ProjectsCard({ ...props }: IProjectsCardProps) {
-  const { id, project_name, investors, project_status, start_date, end_date } =
-    props;
+  const {
+    id,
+    project_name,
+    investors,
+    project_status,
+    start_date,
+    end_date,
+    investors_name,
+  } = props;
   const { t } = useTranslation();
 
   return (
@@ -49,8 +58,10 @@ export function ProjectsCard({ ...props }: IProjectsCardProps) {
                 <ProjectInvestors>
                   <GroupsOutlinedIcon />
                   {/*// TODO check with actual investors for styling issues */}
-                  {investors.map((investor) => (
-                    <span key={investor}>{investor}</span>
+                  {investors_name.map((investor) => (
+                    <span key={investor.id || investor._id}>
+                      {investor.user_name}
+                    </span>
                   ))}
                 </ProjectInvestors>
               )}

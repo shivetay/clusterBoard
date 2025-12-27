@@ -1,5 +1,12 @@
 import type { IStageData } from './stage.type';
 
+export interface IInvestorData {
+  _id: string;
+  clerk_id: string;
+  user_name: string;
+  id: string;
+}
+
 export interface IProjectData {
   id: string;
   project_name: string;
@@ -9,6 +16,7 @@ export interface IProjectData {
   investors: string[];
   project_status: 'zakończony' | 'w toku' | 'w przygotowaniu';
   project_stages: IStageData[];
+  investors_name: IInvestorData[];
 }
 
 export type TFormData = {

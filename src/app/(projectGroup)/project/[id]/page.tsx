@@ -16,7 +16,6 @@ export default async function ProjectPage({ params }: IProjectPageProps) {
   );
 
   const projectData = response.data.project;
-
   if (!projectData) {
     return <div>Project not found</div>;
   }

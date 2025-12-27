@@ -38,6 +38,7 @@ export function ProjectDetailCard({ projectData }: IProjectDetailCardProps) {
     investors,
     start_date,
     end_date,
+    investors_name,
   } = projectData;
   const { t } = useTranslation();
   const { setModalContent } = useModal();
@@ -54,12 +55,19 @@ export function ProjectDetailCard({ projectData }: IProjectDetailCardProps) {
       <ProjectDescription>{project_description}</ProjectDescription>
       <SectionDivider />
       <ProjectInvestorContainer>
-        <Box>
-          <Label>{t(TRANSLATIONS.INVESTORS)}</Label>
-          {investors.map((investor) => {
-            return <StatusTags investor={investor} key={investor} />;
-          })}
-        </Box>
+        {investors && (
+          <Box>
+            <Label>{t(TRANSLATIONS.INVESTORS)}</Label>
+            {investors_name.map((investor) => {
+              return (
+                <StatusTags
+                  investor={investor.user_name}
+                  key={investor.id || investor._id}
+                />
+              );
+            })}
+          </Box>
+        )}
         {start_date && (
           <Box display="flex" flexDirection="column" gap={1}>
             <Label>{t(TRANSLATIONS.START_DATE)}</Label>

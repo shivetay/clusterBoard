@@ -1,7 +1,7 @@
 'use client';
 import { useQuery } from '@tanstack/react-query';
 import { useUser } from '@/stores';
-import type { IProjectData, IStageData } from '@/types';
+import type { IInvestorData, IProjectData, IStageData } from '@/types';
 import apiClient from '../apiClient';
 
 interface IApiProject {
@@ -11,6 +11,7 @@ interface IApiProject {
   start_date?: string;
   end_date?: string;
   investors: string[];
+  investors_name?: IInvestorData[];
   project_stages: IStageData[];
   project_status:
     | 'planning'
@@ -40,7 +41,11 @@ const mapStatus = (
   }
 };
 
-export const useGetUserProjects = () => {
+export const useGetUserProjects = (): {
+  data: IProjectData[];
+  isLoading: boolean;
+  error: Error | null;
+} => {
   const user = useUser();
   const userId = user.userInfo?.id;
 
@@ -61,6 +66,7 @@ export const useGetUserProjects = () => {
         start_date: project.start_date || '',
         end_date: project.end_date || '',
         investors: project.investors || [],
+        investors_name: project.investors_name || [],
         project_stages: project.project_stages || [],
         project_status: mapStatus(project.project_status || 'planning'),
       }));
@@ -68,5 +74,5 @@ export const useGetUserProjects = () => {
     enabled: !!userId,
   });
 
-  return { data: data || [], isLoading, error };
+  return { data: data || [], isLoading, error: error || null };
 };
