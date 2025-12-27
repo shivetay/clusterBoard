@@ -41,7 +41,9 @@ export function EditProjectModal({ projectData }: IEditProjectModalProps) {
     defaultValues: {
       project_name: projectData?.project_name || '',
       project_description: projectData?.project_description || '',
-      owner: userInfo?.id,
+      owner: {
+        owner_id: userInfo?.id || '',
+      },
       start_date: formatDateForInput(projectData?.start_date),
       end_date: formatDateForInput(projectData?.end_date),
     },
@@ -57,12 +59,15 @@ export function EditProjectModal({ projectData }: IEditProjectModalProps) {
       reset({
         project_name: projectData.project_name,
         project_description: projectData.project_description,
-        owner: userInfo?.id,
+        owner: {
+          owner_id: userInfo?.id || '',
+          owner_name: userInfo?.user_name || '',
+        },
         start_date: formatDateForInput(projectData.start_date),
         end_date: formatDateForInput(projectData.end_date),
       });
     }
-  }, [projectData, reset, userInfo?.id]);
+  }, [projectData, reset, userInfo?.id, userInfo?.user_name]);
 
   const handleOnSubmit = (data: EditProjectFormData) => {
     editProject({
@@ -70,7 +75,10 @@ export function EditProjectModal({ projectData }: IEditProjectModalProps) {
       project_description: data.project_description || '',
       start_date: data.start_date || '',
       end_date: data.end_date || '',
-      owner: userInfo?.id || '',
+      owner: {
+        owner_id: userInfo?.id || '',
+        owner_name: userInfo?.user_name || '',
+      },
     });
   };
 

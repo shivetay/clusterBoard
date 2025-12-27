@@ -18,11 +18,13 @@ import { StageTaskContainer, TaskRadio } from './stage-task.styled';
 interface IStageTaskComponentProps {
   stage_tasks: IStageTask[];
   isStageClosed: boolean;
+  isOwner: boolean;
 }
 
 export function StageTaskComponent({
   stage_tasks,
   isStageClosed,
+  isOwner,
 }: IStageTaskComponentProps) {
   const [selectedTask, setSelectedTask] = useState<string | null>(null);
   const { setModalContent } = useModal();
@@ -33,9 +35,10 @@ export function StageTaskComponent({
   const { editTask } = useEditTask(selectedTask || '');
 
   const handleToggle = (task: IStageTask) => {
-    setSelectedTask((prev) => (prev === task.id ? null : task.id));
-
-    editTask({ is_done: !task.is_done });
+    if (isOwner) {
+      setSelectedTask((prev) => (prev === task.id ? null : task.id));
+      editTask({ is_done: !task.is_done });
+    }
   };
 
   const handleTaskEdit = (task: IStageTask) => {
@@ -86,12 +89,12 @@ export function StageTaskComponent({
               startIcon={<ChatBubbleOutlineOutlinedIcon />}
             />
             <ActionButtons
-              disabled={task.is_done || isStageClosed}
+              disabled={task.is_done || isStageClosed || !isOwner}
               startIcon={<EditOutlinedIcon />}
               onClick={() => handleTaskEdit(task)}
             />
             <ActionButtons
-              disabled={task.is_done || isStageClosed}
+              disabled={task.is_done || isStageClosed || !isOwner}
               startIcon={<DeleteForeverOutlinedIcon />}
               onClick={() => {
                 handleTaskDelete(task.id);

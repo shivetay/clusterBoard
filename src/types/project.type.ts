@@ -7,6 +7,10 @@ export interface IInvestorData {
   id: string;
 }
 
+export type TProjectStatus = 'zakończony' | 'w toku' | 'w przygotowaniu';
+
+export type TUserAccess = 'owner' | 'investor';
+
 export interface IProjectData {
   id: string;
   project_name: string;
@@ -14,9 +18,13 @@ export interface IProjectData {
   start_date: string;
   end_date: string;
   investors: string[];
-  project_status: 'zakończony' | 'w toku' | 'w przygotowaniu';
+  project_status: TProjectStatus;
   project_stages: IStageData[];
   investors_name: IInvestorData[];
+  user_access: TUserAccess;
+  is_owner: boolean;
+  is_investor: boolean;
+  owner_name?: string;
 }
 
 export type TFormData = {

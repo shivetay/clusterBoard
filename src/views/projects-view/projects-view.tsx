@@ -60,6 +60,9 @@ export function ProjectsView() {
                 start_date={data.start_date}
                 end_date={data.end_date}
                 investors_name={data.investors_name}
+                isOwner={data.is_owner}
+                isInvestor={data.is_investor}
+                owner_name={data.owner_name}
               />
             );
           })

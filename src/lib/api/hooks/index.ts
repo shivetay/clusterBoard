@@ -6,4 +6,5 @@ export * from './useEditProject';
 export * from './useEditStage';
 export * from './useEditTask';
 export * from './useGetUserProjects';
+export * from './useProjectAccess';
 export * from './useSendInvitation';

@@ -1,7 +1,12 @@
 'use client';
 import { useQuery } from '@tanstack/react-query';
 import { useUser } from '@/stores';
-import type { IInvestorData, IProjectData, IStageData } from '@/types';
+import type {
+  IInvestorData,
+  IProjectData,
+  IStageData,
+  TUserAccess,
+} from '@/types';
 import apiClient from '../apiClient';
 
 interface IApiProject {
@@ -13,16 +18,11 @@ interface IApiProject {
   investors: string[];
   investors_name?: IInvestorData[];
   project_stages: IStageData[];
-  project_status:
-    | 'planning'
-    | 'active'
-    | 'completed'
-    | 'finished'
-    | 'zakonczony'
-    | 'zakonczone'
-    | 'zakończony'
-    | 'w toku'
-    | 'w przygotowaniu';
+  project_status: 'zakończony' | 'w toku' | 'w przygotowaniu';
+  user_access: TUserAccess;
+  is_owner: boolean;
+  is_investor: boolean;
+  owner_name?: string;
 }
 
 // Map API status to frontend status format
@@ -69,6 +69,10 @@ export const useGetUserProjects = (): {
         investors_name: project.investors_name || [],
         project_stages: project.project_stages || [],
         project_status: mapStatus(project.project_status || 'planning'),
+        user_access: project.user_access || 'none',
+        is_owner: project.is_owner || false,
+        is_investor: project.is_investor || false,
+        owner_name: project.owner_name,
       }));
     },
     enabled: !!userId,

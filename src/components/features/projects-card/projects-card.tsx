@@ -11,6 +11,7 @@ import type { IInvestorData } from '@/types';
 import { StatusTags } from '../tags';
 import {
   CardContainer,
+  InvestorText,
   ProjectCardLink,
   ProjectDateContainer,
   ProjectInfoContainer,
@@ -27,6 +28,9 @@ interface IProjectsCardProps {
   start_date?: string;
   end_date?: string;
   investors_name: IInvestorData[];
+  isOwner: boolean;
+  isInvestor: boolean;
+  owner_name?: string;
 }
 
 export function ProjectsCard({ ...props }: IProjectsCardProps) {
@@ -38,6 +42,9 @@ export function ProjectsCard({ ...props }: IProjectsCardProps) {
     start_date,
     end_date,
     investors_name,
+    isOwner,
+    isInvestor,
+    owner_name,
   } = props;
   const { t } = useTranslation();
 
@@ -54,15 +61,20 @@ export function ProjectsCard({ ...props }: IProjectsCardProps) {
               <StatusTags status={project_status} />
             </ProjectTitleContainer>
             <ProjectInfoContainer>
-              {investors.length > 0 && (
+              {isOwner && investors.length > 0 && (
                 <ProjectInvestors>
                   <GroupsOutlinedIcon />
-                  {/*// TODO check with actual investors for styling issues */}
                   {investors_name.map((investor) => (
-                    <span key={investor.id || investor._id}>
+                    <InvestorText key={investor.id || investor._id}>
                       {investor.user_name}
-                    </span>
+                    </InvestorText>
                   ))}
+                </ProjectInvestors>
+              )}
+              {isInvestor && owner_name && (
+                <ProjectInvestors>
+                  <GroupsOutlinedIcon />
+                  <InvestorText>{owner_name}</InvestorText>
                 </ProjectInvestors>
               )}
               <ProjectDateContainer>

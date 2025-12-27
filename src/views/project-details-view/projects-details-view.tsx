@@ -13,7 +13,10 @@ export function ProjectDetailsView({ projectData }: IProjectDetailsViewProps) {
   return (
     <PageContainer>
       <ProjectDetailCard projectData={projectData} />
-      <ProjectStageContainer project_stages={project_stages} />
+      <ProjectStageContainer
+        project_stages={project_stages}
+        projectData={projectData}
+      />
     </PageContainer>
   );
 }
