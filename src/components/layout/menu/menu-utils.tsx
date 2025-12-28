@@ -13,6 +13,7 @@ type TMenuItem = {
   label: string;
   type: Array<'cluster' | 'projects'> | 'cluster' | 'projects';
   icon?: React.ReactNode;
+  onlyOwner?: boolean;
 };
 
 export const MENU_ITEM_LIST: TMenuItem[] = [
@@ -69,5 +70,12 @@ export const MENU_ITEM_LIST: TMenuItem[] = [
     label: TRANSLATIONS.WIADOMOSCI,
     type: 'projects',
     icon: <EmailOutlinedIcon />,
+  },
+  {
+    id: 'invitations',
+    href: '/project/[id]/invitations',
+    label: TRANSLATIONS.INVITATIONS,
+    type: 'projects',
+    onlyOwner: true,
   },
 ];

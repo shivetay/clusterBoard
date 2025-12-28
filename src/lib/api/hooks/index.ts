@@ -2,6 +2,7 @@ export * from './useAcceptInvitation';
 export * from './useAddProjectStage';
 export * from './useAddStageTasks';
 export * from './useCreateNewProject';
+export * from './useDeleteInvitation';
 export * from './useEditProject';
 export * from './useEditStage';
 export * from './useEditTask';

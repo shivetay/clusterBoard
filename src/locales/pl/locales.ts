@@ -117,10 +117,24 @@ export const TRANSLATIONS = {
     'Jesteś już inwestorem w tym projekcie',
   INVITATION_ACCEPTED_ERROR_ALREADY_INVESTOR_MESSAGE_3:
     'Jesteś już inwestorem w tym projekcie',
+  INVITATION_CANCELLED: 'Zaproszenie zostało anulowane',
   REMOVE_INVESTOR_MODAL_TITLE: 'Czy na pewno chcesz usunąć inwestora?',
   ERROR_REMOVE_INVESTOR: 'Błąd podczas usuwania inwestora',
   INVESTOR_REMOVE_BTN: 'Usuń inwestora',
   INVESTOR_REMOVED_SUCCESSFULLY: 'Inwestor został usunięty pomyślnie',
+  INVITATIONS: 'Zaproszenia',
+  BACK: 'Powrót',
+  SENT_TO: 'Wysłane do',
+  SENT_BY: 'Wysłane przez',
+  STATUS: 'Status',
+  INVITATION_STATUS_PENDING: 'Oczekujące',
+  INVITATION_STATUS_ACCEPTED: 'Zaakceptowane',
+  INVITATION_STATUS_EXPIRED: 'Wygasłe',
+  INVITATION_STATUS_CANCELLED: 'Anulowane',
+  DELETE_INVITATION: 'Usuń zaproszenie',
+  DELETE_INVITATION_MODAL_TITLE: 'Czy na pewno chcesz usunąć zaproszenie?',
+  INVITATION_DELETED_SUCCESSFULLY: 'Zaproszenie zostało usunięte pomyślnie',
+  ERROR_DELETE_INVITATION: 'Błąd podczas usuwania zaproszenia',
 };
 
 export default TRANSLATIONS;

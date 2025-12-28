@@ -20,8 +20,10 @@ import {
 
 export function InvitationAcceptView({
   invitationDetails,
+  error,
 }: {
-  invitationDetails: IInvitationData;
+  invitationDetails: IInvitationData | null;
+  error?: 'cancelled' | 'error';
 }) {
   const { isSignedIn, isLoaded } = useAuth();
   const router = useRouter();
@@ -29,6 +31,7 @@ export function InvitationAcceptView({
   const { t } = useTranslation();
   const { showAlert } = useAlert();
   const token = searchParams.get('token');
+  const { mutate: acceptInvitation } = useAcceptInvitation();
 
   useEffect(() => {
     if (!token) {
@@ -44,14 +47,34 @@ export function InvitationAcceptView({
       router.push(`/sign-in?redirect=/invite/accept?token=${token}`);
       return;
     }
-  }, [token, isSignedIn, router, showAlert, t]);
 
-  const {
-    project: { project_name, owner: { owner_name } = { owner_name: '' } },
-    expires_at = '',
-  } = invitationDetails;
+    // Handle errors from server
+    if (error) {
+      if (error === 'cancelled') {
+        showAlert({
+          message: t(TRANSLATIONS.INVITATION_CANCELLED),
+          severity: 'error',
+        });
+      } else {
+        showAlert({
+          message: t(TRANSLATIONS.INVALID_INVITATION_LINK),
+          severity: 'error',
+        });
+      }
+      router.push('/projects');
+      return;
+    }
 
-  const { mutate: acceptInvitation } = useAcceptInvitation();
+    if (!invitationDetails) {
+      showAlert({
+        message: t(TRANSLATIONS.INVALID_INVITATION_LINK),
+        severity: 'error',
+      });
+      router.push('/projects');
+      return;
+    }
+  }, [token, isSignedIn, router, showAlert, t, error, invitationDetails]);
+
   const handleAcceptInvitation = () => {
     if (token && isSignedIn) {
       acceptInvitation(token);
@@ -61,9 +84,14 @@ export function InvitationAcceptView({
     router.push('/projects');
   };
 
-  if (!isLoaded) {
+  if (!isLoaded || error || !invitationDetails) {
     return <Loader />;
   }
+
+  const {
+    project: { project_name, owner: { owner_name } = { owner_name: '' } },
+    expires_at = '',
+  } = invitationDetails;
 
   return (
     <PageContainer

@@ -12,7 +12,19 @@ export async function getInvitationDetails(token: string) {
     }
 
     return response.data.invitation;
-  } catch (error) {
+  } catch (error: any) {
+    // Check if it's an axios error with response data
+    if (error?.response?.data?.message) {
+      const errorMessage = error.response.data.message;
+      // If the backend returns INVITATION_CANCELLED, throw a specific error
+      if (
+        errorMessage === 'INVITATION_CANCELLED' ||
+        errorMessage.includes('CANCELLED')
+      ) {
+        throw new Error('INVITATION_CANCELLED');
+      }
+      throw new Error(errorMessage);
+    }
     if (error instanceof Error) {
       throw new Error(`Failed to get invitation details: ${error.message}`);
     }
