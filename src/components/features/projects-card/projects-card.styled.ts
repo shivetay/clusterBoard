@@ -41,7 +41,8 @@ export const ProjectInfoContainer = styled(Box)(() => ({
 
 export const ProjectInvestors = styled(Box)(({ theme }) => ({
   display: 'flex',
-
+  alignItems: 'center',
+  justifyContent: 'flex-start',
   margin: theme.spacing(0, 0, 1.5, 0),
   fontSize: theme.typography.body1.fontSize,
   fontWeight: theme.typography.body1.fontWeight,
@@ -66,4 +67,8 @@ export const ProjectDateContainer = styled(Box)(({ theme }) => ({
   '& span': {
     marginRight: theme.spacing(1),
   },
+}));
+
+export const InvestorText = styled('span')(({ theme }) => ({
+  fontSize: theme.typography.body2.fontSize,
 }));

@@ -10,13 +10,13 @@ interface IProjectDetailsViewProps {
 
 export function ProjectDetailsView({ projectData }: IProjectDetailsViewProps) {
   const { project_stages } = projectData;
-
   return (
     <PageContainer>
       <ProjectDetailCard projectData={projectData} />
-      <ProjectStageContainer project_stages={project_stages} />
+      <ProjectStageContainer
+        project_stages={project_stages}
+        projectData={projectData}
+      />
     </PageContainer>
   );
 }
-
-export default ProjectDetailsView;

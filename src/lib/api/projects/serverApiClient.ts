@@ -49,7 +49,10 @@ export async function serverGet<T = unknown>(
     const response = await (await getServerApiClient(config)).get<T>(url);
     return response.data;
   } catch (error) {
-    throw new Error('Failed to get project');
+    if (error instanceof Error) {
+      throw new Error(`Failed to fetch ${url}: ${error.message}`);
+    }
+    throw new Error(`Failed to fetch ${url}`);
   }
 }
 
@@ -73,7 +76,10 @@ export async function serverPost<T = unknown>(
     );
     return response.data;
   } catch (error) {
-    throw new Error('Failed to post project');
+    if (error instanceof Error) {
+      throw new Error(`Failed to post to ${url}: ${error.message}`);
+    }
+    throw new Error(`Failed to post to ${url}`);
   }
 }
 
@@ -94,7 +100,10 @@ export async function serverPut<T = unknown>(
     const response = await (await getServerApiClient(config)).put<T>(url, data);
     return response.data;
   } catch (error) {
-    throw new Error('Failed to put project');
+    if (error instanceof Error) {
+      throw new Error(`Failed to put to ${url}: ${error.message}`);
+    }
+    throw new Error(`Failed to put to ${url}`);
   }
 }
 
@@ -113,6 +122,9 @@ export async function serverDelete<T = unknown>(
     const response = await (await getServerApiClient(config)).delete<T>(url);
     return response.data;
   } catch (error) {
-    throw new Error('Failed to delete project');
+    if (error instanceof Error) {
+      throw new Error(`Failed to delete ${url}: ${error.message}`);
+    }
+    throw new Error(`Failed to delete ${url}`);
   }
 }

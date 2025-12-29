@@ -348,7 +348,7 @@ export const mainTheme = createTheme({
       styleOverrides: {
         root: {
           border: `1px solid ${colors.border}`,
-          borderRadius: borderRadius['2xl'], // 12px
+          borderRadius: borderRadius.md,
           backgroundColor: colors.backgroundCard,
           backdropFilter: 'blur(12px)', // Light glass effect
           WebkitBackdropFilter: 'blur(12px)', // Safari support
@@ -385,7 +385,7 @@ export const mainTheme = createTheme({
       },
       styleOverrides: {
         root: {
-          borderRadius: borderRadius['2xl'],
+          borderRadius: borderRadius.sm,
           '&:hover': {
             backgroundColor: 'transparent',
           },
@@ -442,7 +442,7 @@ export const mainTheme = createTheme({
     MuiDialog: {
       styleOverrides: {
         paper: {
-          borderRadius: borderRadius['2xl'], // 12px
+          borderRadius: borderRadius.sm,
           border: `1px solid ${colors.primary}33`, // 20% opacity
           backgroundColor: colors.backgroundCard,
           backdropFilter: 'blur(24px) saturate(180%)', // Strong glass effect
@@ -472,7 +472,7 @@ export const mainTheme = createTheme({
           backdropFilter: 'blur(12px)',
           WebkitBackdropFilter: 'blur(12px)',
           border: `1px solid ${colors.border}`,
-          borderRadius: borderRadius.lg,
+          borderRadius: borderRadius.sm,
         },
         elevation1: {
           backdropFilter: 'blur(16px)',

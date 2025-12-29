@@ -22,7 +22,10 @@ export const createProjectSchema = z
       .optional()
       .or(z.literal('')),
 
-    owner: z.string(),
+    owner: z.object({
+      owner_id: z.string(),
+      owner_name: z.string(),
+    }),
 
     start_date: z
       .string()

@@ -8,7 +8,7 @@ export const GridCardContainer = styled(Link, {
   shouldForwardProp: (prop) => prop !== 'extended' && prop !== 'span',
 })<{ extended?: boolean; span?: number }>(({ extended, span, theme }) => ({
   gridColumn: extended ? `span ${span} / span ${span}` : 'span 1 / span 1',
-  borderRadius: '12px',
+  borderRadius: '2px',
 
   ...(extended ? glowAnimation : {}),
 
@@ -19,7 +19,7 @@ export const GridCardContainer = styled(Link, {
 
 export const CardWrapper = styled(CardActionArea)(({ theme }) => ({
   ...glassEffects.light,
-  borderRadius: '12px',
+  borderRadius: '2px',
   transition: 'all 0.15s cubic-bezier(0.4, 0, 0.2, 1)',
   height: '100%',
   '&:hover': {
@@ -32,7 +32,7 @@ export const CardWrapper = styled(CardActionArea)(({ theme }) => ({
 
 export const CardContainer = styled(Card)(({ theme }) => ({
   background: theme.palette.background.transparent,
-  borderRadius: '12px',
+  borderRadius: '2px',
   height: '100%',
   '& .MuiCardContent-root:last-child': {
     paddingBottom: 0,

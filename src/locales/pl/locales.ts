@@ -91,6 +91,51 @@ export const TRANSLATIONS = {
   TASK_REMOVED_SUCCESSFULLY: 'Zadanie zostało usunięte pomyślnie',
   ERROR_REMOVE_TASK: 'Błąd podczas usuwania zadania',
   INVESTORS: 'Inwestorzy',
+  INVESTOR_EMAIL: 'Email inwestora',
+  ADD_INVESTOR_BTN: 'Dodaj inwestora',
+  EMAIL_ERROR: 'Email jest wymagany i musi być w formacie email',
+  INVITATION_SENT_SUCCESSFULLY: 'Zaproszenie zostało wysłane pomyślnie',
+  INVITATION_ACCEPT_HEADER: 'Zaproszenie do projektu',
+  OWNER_NAME: 'Nazwa właściciela',
+  EXPIRES_AT: 'Data wygaśnięcia',
+  CANCEL_INVITATION: 'Anuluj zaproszenie',
+  ACCEPT_INVITATION: 'Akceptuj zaproszenie',
+  INVALID_INVITATION_LINK: 'Nieprawidłowy link zaproszenia',
+  INVITATION_ACCEPTED_SUCCESSFULLY:
+    'Zaproszenie zostało zaakceptowane pomyślnie',
+  INVITATION_ACCEPTED_ERROR: 'Błąd podczas akceptowania zaproszenia',
+  INVITATION_ACCEPTED_ERROR_EXPIRED: 'Zaproszenie wygasło',
+  INVITATION_ACCEPTED_ERROR_EMAIL_MISMATCH:
+    'Zaproszenie zostało wysłane do innego emaila',
+  INVITATION_ACCEPTED_ERROR_ALREADY_ACCEPTED:
+    'Zaproszenie zostało już zaakceptowane',
+  INVITATION_ACCEPTED_ERROR_ALREADY_INVESTOR:
+    'Jesteś już inwestorem w tym projekcie',
+  INVITATION_ACCEPTED_ERROR_ALREADY_INVESTOR_MESSAGE:
+    'Jesteś już inwestorem w tym projekcie',
+  INVITATION_ACCEPTED_ERROR_ALREADY_INVESTOR_MESSAGE_2:
+    'Jesteś już inwestorem w tym projekcie',
+  INVITATION_ACCEPTED_ERROR_ALREADY_INVESTOR_MESSAGE_3:
+    'Jesteś już inwestorem w tym projekcie',
+  INVITATION_CANCELLED: 'Zaproszenie zostało anulowane',
+  REMOVE_INVESTOR_MODAL_TITLE: 'Czy na pewno chcesz usunąć inwestora?',
+  ERROR_REMOVE_INVESTOR: 'Błąd podczas usuwania inwestora',
+  INVESTOR_REMOVE_BTN: 'Usuń inwestora',
+  INVESTOR_REMOVED_SUCCESSFULLY: 'Inwestor został usunięty pomyślnie',
+  INVITATIONS: 'Zaproszenia',
+  BACK: 'Powrót',
+  SENT_TO: 'Wysłane do',
+  SENT_BY: 'Wysłane przez',
+  STATUS: 'Status',
+  INVITATION_STATUS_PENDING: 'Oczekujące',
+  INVITATION_STATUS_ACCEPTED: 'Zaakceptowane',
+  INVITATION_STATUS_EXPIRED: 'Wygasłe',
+  INVITATION_STATUS_CANCELLED: 'Anulowane',
+  DELETE_INVITATION: 'Usuń zaproszenie',
+  DELETE_INVITATION_MODAL_TITLE: 'Czy na pewno chcesz usunąć zaproszenie?',
+  INVITATION_DELETED_SUCCESSFULLY: 'Zaproszenie zostało usunięte pomyślnie',
+  ERROR_DELETE_INVITATION: 'Błąd podczas usuwania zaproszenia',
+  NO_INVITATIONS_FOUND: 'Brak aktywnych zaproszeń',
 };
 
 export default TRANSLATIONS;

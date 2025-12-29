@@ -20,6 +20,7 @@ export function AddProjectModal() {
   const { t } = useTranslation();
   const { createProject, isPending } = useCreateNewProject();
   const { userInfo } = useUser();
+
   const {
     register,
     handleSubmit,
@@ -30,7 +31,10 @@ export function AddProjectModal() {
     defaultValues: {
       project_name: '',
       project_description: undefined,
-      owner: userInfo?.id || '',
+      owner: {
+        owner_id: userInfo?.id || '',
+        owner_name: userInfo?.user_name || '',
+      },
       start_date: '',
       end_date: '',
     },
@@ -45,7 +49,10 @@ export function AddProjectModal() {
     createProject({
       project_name: data.project_name,
       project_description: data.project_description || '',
-      owner: data.owner,
+      owner: {
+        owner_id: data.owner.owner_id,
+        owner_name: data.owner.owner_name,
+      },
       start_date: data.start_date || '',
       end_date: data.end_date || '',
       project_stages: [],
