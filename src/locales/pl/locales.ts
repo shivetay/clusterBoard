@@ -135,6 +135,7 @@ export const TRANSLATIONS = {
   DELETE_INVITATION_MODAL_TITLE: 'Czy na pewno chcesz usunąć zaproszenie?',
   INVITATION_DELETED_SUCCESSFULLY: 'Zaproszenie zostało usunięte pomyślnie',
   ERROR_DELETE_INVITATION: 'Błąd podczas usuwania zaproszenia',
+  NO_INVITATIONS_FOUND: 'Brak aktywnych zaproszeń',
 };
 
 export default TRANSLATIONS;

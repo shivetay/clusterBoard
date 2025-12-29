@@ -89,7 +89,10 @@ export function InvitationAcceptView({
   }
 
   const {
-    project: { project_name, owner: { owner_name } = { owner_name: '' } },
+    project: {
+      project_name,
+      owner: { owner_name },
+    },
     expires_at = '',
   } = invitationDetails;
 

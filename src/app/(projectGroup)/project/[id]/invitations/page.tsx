@@ -1,4 +1,6 @@
+import { useTranslation } from 'react-i18next';
 import { serverGet } from '@/lib/api/projects/serverApiClient';
+import { TRANSLATIONS } from '@/locales/pl/locales';
 import type { IInvitationData } from '@/types';
 import { ProjectInvitationsView } from '@/views';
 
@@ -12,6 +14,7 @@ export default async function ProjectInvitationsPage({
   params,
 }: IProjectInvitationsPageProps) {
   const { id } = await params;
+  const { t } = useTranslation();
 
   const response = await serverGet<{
     data: { invitations: IInvitationData[] };
@@ -19,7 +22,7 @@ export default async function ProjectInvitationsPage({
 
   const invitations = response.data.invitations;
   if (!invitations) {
-    return <div>Invitations not found</div>;
+    return <div>{t(TRANSLATIONS.NO_INVITATIONS_FOUND)}</div>;
   }
 
   return <ProjectInvitationsView invitations={invitations} />;

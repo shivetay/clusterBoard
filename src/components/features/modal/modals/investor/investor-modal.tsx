@@ -66,7 +66,7 @@ export function InvestorModal({ projectId }: IInvestorModalProps) {
               {...register('investor_email', {
                 required: 'required',
                 pattern: {
-                  value: /\S+@\S+\.\S+/,
+                  value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
                   message: t(TRANSLATIONS.EMAIL_ERROR),
                 },
               })}

@@ -3,6 +3,11 @@ import { TRANSLATIONS } from '@/locales';
 import { useAlert, useModal } from '@/providers';
 import apiClient from '../apiClient';
 
+type TSendInvitationData = {
+  invitee_email: string;
+  project_id?: string;
+};
+
 export const useSendInvitation = () => {
   const { showAlert } = useAlert();
   const { setIsOpen } = useModal();
@@ -11,7 +16,7 @@ export const useSendInvitation = () => {
     isPending,
     error,
   } = useMutation({
-    mutationFn: async (data: any) => {
+    mutationFn: async (data: TSendInvitationData) => {
       try {
         await apiClient.post('/invitations/invite', data);
       } catch (error: any) {
@@ -19,7 +24,7 @@ export const useSendInvitation = () => {
           message: error?.response?.data?.message,
           severity: 'error',
         });
-        throw new Error(error);
+        throw new Error(error?.response?.data?.message);
       }
     },
     onSuccess: () => {

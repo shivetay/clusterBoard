@@ -40,12 +40,15 @@ export function RemoveInvestorModal({
         severity: 'success',
       });
       setIsDeleting(false);
-    } catch {
+    } catch (error: any) {
       showAlert({
-        message: t(TRANSLATIONS.ERROR_REMOVE_INVESTOR),
+        message:
+          error?.response?.data?.message ||
+          t(TRANSLATIONS.ERROR_REMOVE_INVESTOR),
         severity: 'error',
       });
       setIsDeleting(false);
+      throw new Error(error?.response?.data?.message);
     }
   };
 

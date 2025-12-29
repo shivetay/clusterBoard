@@ -148,19 +148,18 @@ export function ProjectInvitationsView({
                     <DeleteIcon />
                   </DeleteButton>
                   <Typography variant="h6">
-                    {invitation.project?.project_name || 'Unknown Project'}
+                    {invitation.project?.project_name}
                   </Typography>
                   <Typography variant="body2" color="text.secondary">
-                    {t(TRANSLATIONS.SENT_TO)}:{' '}
-                    {recipientName || recipientEmail || 'N/A'}
+                    {t(TRANSLATIONS.SENT_TO)}:{recipientName || recipientEmail}
                   </Typography>
                   <Typography variant="body2" color="text.secondary">
-                    {t(TRANSLATIONS.STATUS)}:{' '}
+                    {t(TRANSLATIONS.STATUS)}:
                     {t(getInvitationStatus(invitation))}
                   </Typography>
                   {invitation.expires_at && (
                     <Typography variant="body2" color="text.secondary">
-                      {t(TRANSLATIONS.EXPIRES_AT)}:{' '}
+                      {t(TRANSLATIONS.EXPIRES_AT)}:
                       {formatDate(invitation.expires_at)}
                     </Typography>
                   )}
