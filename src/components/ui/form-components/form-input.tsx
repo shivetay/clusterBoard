@@ -1,7 +1,5 @@
 'use client';
 import { FormControl, Stack } from '@mui/material';
-import { useEffect } from 'react';
-import { useAlert } from '@/providers';
 import { HelperText, InputField, Textarea } from './form-components.styled';
 import { InputLabel } from './label';
 
@@ -24,16 +22,6 @@ export function FormInput({
   defaultValue?: string;
 } & Omit<React.ComponentPropsWithoutRef<typeof InputField>, 'error'>) {
   const hasError = !!error;
-  const { showAlert } = useAlert();
-
-  useEffect(() => {
-    if (hasError && error) {
-      showAlert({
-        message: error,
-        severity: 'error',
-      });
-    }
-  }, [hasError, error, showAlert]);
 
   return (
     <Stack width="100%">

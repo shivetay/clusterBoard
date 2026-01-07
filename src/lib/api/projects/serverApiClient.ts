@@ -108,6 +108,33 @@ export async function serverPut<T = unknown>(
 }
 
 /**
+ * Helper function to make authenticated PATCH requests from server components.
+ *
+ * @param url - API endpoint URL
+ * @param data - Request body data
+ * @param config - Optional axios request configuration
+ * @returns Promise resolving to the response data
+ */
+export async function serverPatch<T = unknown>(
+  url: string,
+  data?: unknown,
+  config?: AxiosRequestConfig,
+): Promise<T> {
+  try {
+    const response = await (await getServerApiClient(config)).patch<T>(
+      url,
+      data,
+    );
+    return response.data;
+  } catch (error) {
+    if (error instanceof Error) {
+      throw new Error(`Failed to patch ${url}: ${error.message}`);
+    }
+    throw new Error(`Failed to patch ${url}`);
+  }
+}
+
+/**
  * Helper function to make authenticated DELETE requests from server components.
  *
  * @param url - API endpoint URL

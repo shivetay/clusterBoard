@@ -1,5 +1,6 @@
 'use client';
-import { FormControlLabel, styled } from '@mui/material';
+import { Box, FormControlLabel, styled } from '@mui/material';
+import { glassEffects } from '@/theme';
 
 export const StageTaskContainer = styled('div')(({ theme }) => ({
   display: 'flex',
@@ -29,4 +30,23 @@ export const TaskRadio = styled(FormControlLabel)(({ theme }) => ({
     color: theme.palette.text.tertiary,
     textDecoration: 'line-through',
   },
+}));
+
+export const CommentContainer = styled(Box)(({ theme }) => ({
+  ...glassEffects.light,
+  display: 'flex',
+  flexDirection: 'column',
+  gap: theme.spacing(1),
+}));
+
+export const CommentText = styled('span')(({ theme }) => ({
+  color: theme.palette.text.tertiary,
+  fontSize: theme.typography.body2.fontSize,
+  padding: theme.spacing(1),
+}));
+
+export const CommentDetails = styled('span')(({ theme }) => ({
+  color: theme.palette.text.tertiary,
+  fontSize: theme.typography.body2.fontSize,
+  padding: theme.spacing(1),
 }));
