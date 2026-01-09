@@ -111,7 +111,7 @@ export function ProjectInvitationsView({
         </Typography>
         {invitations.length === 0 ? (
           <Typography variant="body1">
-            No invitations found for this project.
+            {t(TRANSLATIONS.NO_INVITATIONS_FOUND)}
           </Typography>
         ) : (
           <Box
