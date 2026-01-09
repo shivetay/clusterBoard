@@ -6,7 +6,7 @@ import MapsUgcOutlinedIcon from '@mui/icons-material/MapsUgcOutlined';
 import { Box, Radio } from '@mui/material';
 import { useQueryClient } from '@tanstack/react-query';
 import { useRouter } from 'next/navigation';
-import { useState } from 'react';
+import { Fragment, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { EditCommentModal } from '@/components/features';
 import AddCommentModal from '@/components/features/modal/modals/comments/AddCommentModal';
@@ -39,7 +39,7 @@ export function StageTaskComponent({
   isOwner,
 }: IStageTaskComponentProps) {
   const [selectedTask, setSelectedTask] = useState<string | null>(null);
-  const [showComments, setShowComments] = useState(false);
+  const [showComments, setShowComments] = useState<Set<string>>(new Set());
   const { setModalContent } = useModal();
   const { t } = useTranslation();
   const { showAlert } = useAlert();
@@ -87,6 +87,8 @@ export function StageTaskComponent({
         message: t(TRANSLATIONS.COMMENT_REMOVED_SUCCESSFULLY),
         severity: 'success',
       });
+
+      router.refresh();
     } catch {
       showAlert({
         message: t(TRANSLATIONS.ERROR_REMOVE_COMMENT),
@@ -98,7 +100,7 @@ export function StageTaskComponent({
   return (
     <StageTaskContainer>
       {stage_tasks.map((task) => (
-        <>
+        <Fragment key={task.id}>
           <Box
             key={task.id}
             display="flex"
@@ -119,8 +121,19 @@ export function StageTaskComponent({
             />
             <Box display="flex" flexDirection="row">
               <ActionButtons
+                aria-label={t(TRANSLATIONS.SHOW_COMMENTS)}
                 startIcon={<ChatBubbleOutlineOutlinedIcon />}
-                onClick={() => setShowComments(!showComments)}
+                onClick={() => {
+                  setShowComments((prev) => {
+                    const newSet = new Set(prev);
+                    if (newSet.has(task.id)) {
+                      newSet.delete(task.id);
+                    } else {
+                      newSet.add(task.id);
+                    }
+                    return newSet;
+                  });
+                }}
               />
               <ActionButtons
                 disabled={task.is_done || isStageClosed}
@@ -136,11 +149,13 @@ export function StageTaskComponent({
               />
               <ActionButtons
                 disabled={task.is_done || isStageClosed || !isOwner}
+                aria-label={t(TRANSLATIONS.EDIT_TASK)}
                 startIcon={<EditOutlinedIcon />}
                 onClick={() => handleTaskEdit(task)}
               />
               <ActionButtons
                 disabled={task.is_done || isStageClosed || !isOwner}
+                aria-label={t(TRANSLATIONS.DELETE_TASK)}
                 startIcon={<DeleteForeverOutlinedIcon />}
                 onClick={() => {
                   handleTaskDelete(task.id);
@@ -148,7 +163,7 @@ export function StageTaskComponent({
               />
             </Box>
           </Box>
-          {showComments && (
+          {showComments.has(task.id) && (
             <Box key={task.id}>
               {task.task_comments.map((comment) => (
                 <CommentContainer key={comment.id}>
@@ -163,6 +178,7 @@ export function StageTaskComponent({
                     </CommentDetails>
                     <Box>
                       <ActionButtons
+                        aria-label={t(TRANSLATIONS.EDIT_COMMENT)}
                         disabled={
                           task.is_done ||
                           isStageClosed ||
@@ -172,6 +188,7 @@ export function StageTaskComponent({
                         onClick={() => handleCommentEdit(comment)}
                       />
                       <ActionButtons
+                        aria-label={t(TRANSLATIONS.DELETE_COMMENT)}
                         disabled={
                           task.is_done ||
                           isStageClosed ||
@@ -185,9 +202,7 @@ export function StageTaskComponent({
                     </Box>
                   </Box>
 
-                  <CommentText key={comment.id}>
-                    {comment.comment_text}
-                  </CommentText>
+                  <CommentText>{comment.comment_text}</CommentText>
                   <CommentDetails>
                     {comment.is_edited && ` ${t(TRANSLATIONS.EDITED)} `}
                     {t(TRANSLATIONS.DATE)}:{' '}
@@ -197,7 +212,7 @@ export function StageTaskComponent({
               ))}
             </Box>
           )}
-        </>
+        </Fragment>
       ))}
     </StageTaskContainer>
   );

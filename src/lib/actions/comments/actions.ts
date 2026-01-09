@@ -1,5 +1,5 @@
 'use server';
-import { auth, currentUser } from '@clerk/nextjs/server';
+import { auth } from '@clerk/nextjs/server';
 import { revalidatePath } from 'next/cache';
 import { serverDelete, serverPatch, serverPost } from '@/lib/api/projects';
 import type { ActionResult } from '@/types/actions';
@@ -17,7 +17,6 @@ export async function createComment(
       return { success: false, error: 'Unauthorized' };
     }
 
-    const user = await currentUser();
     const commentText = formData.get('comment_text') as string;
 
     if (!commentText || commentText.trim().length === 0) {
@@ -25,13 +24,9 @@ export async function createComment(
     }
 
     const commentData = {
-      author: userId,
-      author_name:
-        user?.firstName && user?.lastName
-          ? `${user.firstName} ${user.lastName}`
-          : 'Jan Kowalski',
       comment_text: commentText.trim(),
     };
+
     await serverPost(`/comments/${stageId}/add/${taskId}`, commentData);
 
     revalidatePath('/project/[id]');
@@ -40,7 +35,7 @@ export async function createComment(
   } catch (error) {
     return {
       success: false,
-      error: error instanceof Error ? error.message : 'Unknown error',
+      error: handleActionError(error),
     };
   }
 }

@@ -152,6 +152,11 @@ export const TRANSLATIONS = {
   COMMENT_EDIT_BTN: 'Edytuj komentarz',
   COMMENT_TEXT: 'Tekst komentarza',
   COMMENT_TEXT_HELPER_TEXT: 'Max 150 znaków',
+  SHOW_COMMENTS: 'Pokaż komentarze',
+  EDIT_TASK: 'Edytuj zadanie',
+  DELETE_TASK: 'Usuń zadanie',
+  EDIT_COMMENT: 'Edytuj komentarz',
+  DELETE_COMMENT: 'Usuń komentarz',
 };
 
 export default TRANSLATIONS;

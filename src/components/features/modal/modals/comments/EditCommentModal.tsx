@@ -60,12 +60,12 @@ export function EditCommentModal({ commentData }: IEditCommentModalProps) {
 
     if (result.success) {
       showAlert({
-        message: TRANSLATIONS.COMMENT_ADDED_SUCCESSFULLY,
+        message: t(TRANSLATIONS.COMMENT_ADDED_SUCCESSFULLY),
         severity: 'success',
       });
     } else {
       showAlert({
-        message: TRANSLATIONS.ERROR_COMMENT_TEXT,
+        message: t(TRANSLATIONS.ERROR_COMMENT_TEXT),
         severity: 'error',
       });
     }
@@ -97,6 +97,7 @@ export function EditCommentModal({ commentData }: IEditCommentModalProps) {
           type="submit"
           variant="contained"
           color="primary"
+          aria-label={t(TRANSLATIONS.COMMENT_EDIT_BTN)}
         >
           {t(TRANSLATIONS.COMMENT_EDIT_BTN)}
         </ModalButton>

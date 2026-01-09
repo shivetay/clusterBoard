@@ -4,7 +4,6 @@ import { TRANSLATIONS } from '@/locales';
 const MAX_COMMENT_TEXT_LENGTH = 150;
 
 export const commentSchema = z.object({
-  id: z.string().optional(),
   comment_text: z
     .string()
     .min(1, TRANSLATIONS.ERROR_COMMENT_TEXT)

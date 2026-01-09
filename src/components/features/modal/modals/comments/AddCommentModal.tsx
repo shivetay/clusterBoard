@@ -49,14 +49,15 @@ export function AddStageTaskModal({
     const formData = new FormData();
     formData.append('comment_text', data.comment_text);
     const result = await createComment(formData, stage_id, task_id);
+
     if (result.success) {
       showAlert({
-        message: TRANSLATIONS.COMMENT_ADDED_SUCCESSFULLY,
+        message: t(TRANSLATIONS.COMMENT_ADDED_SUCCESSFULLY),
         severity: 'success',
       });
     } else {
       showAlert({
-        message: TRANSLATIONS.ERROR_COMMENT_TEXT,
+        message: t(TRANSLATIONS.ERROR_COMMENT_TEXT),
         severity: 'error',
       });
     }
