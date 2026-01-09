@@ -110,7 +110,6 @@ export function StageTaskComponent({
           >
             <TaskRadio
               disabled={isStageClosed}
-              key={task.id}
               control={
                 <Radio
                   checked={task.is_done}
