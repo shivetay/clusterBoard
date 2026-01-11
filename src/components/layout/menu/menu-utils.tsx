@@ -54,19 +54,19 @@ export const MENU_ITEM_LIST: TMenuItem[] = [
   },
   {
     id: 'files',
-    href: '/pliki',
+    href: '/project/[id]/files',
     label: TRANSLATIONS.PLIKI,
     type: 'projects',
   },
   {
     id: 'inspirations',
-    href: '/inspiracje',
+    href: '/inspirations',
     label: TRANSLATIONS.INSPIRACJE,
     type: 'projects',
   },
   {
     id: 'messages',
-    href: '/wiadomoscie',
+    href: '/messages',
     label: TRANSLATIONS.WIADOMOSCI,
     type: 'projects',
     icon: <EmailOutlinedIcon />,
