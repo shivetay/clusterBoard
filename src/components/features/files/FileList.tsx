@@ -7,28 +7,19 @@ import {
   Image,
   InsertDriveFile,
 } from '@mui/icons-material';
-import {
-  Box,
-  Chip,
-  IconButton,
-  List,
-  ListItem,
-  ListItemSecondaryAction,
-  ListItemText,
-  Tooltip,
-  Typography,
-} from '@mui/material';
+import { Box, List, ListItemText, Typography } from '@mui/material';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 import { deleteFile, downloadFile } from '@/lib/api/files/filesClient';
 import type { IFile } from '@/types';
+import { ActionButtons } from '../project-stage-container/project-stage-container.styled';
+import { FileListItem } from './FileUpload.styled';
 
 interface FilesListProps {
   files?: IFile[];
-  canDelete?: boolean;
 }
 
-export function FilesList({ files, canDelete = false }: FilesListProps) {
+export function FilesList({ files }: FilesListProps) {
   const router = useRouter();
   const [deletingFileId, setDeletingFileId] = useState<string | null>(null);
   const [downloadingFileId, setDownloadingFileId] = useState<string | null>(
@@ -85,7 +76,7 @@ export function FilesList({ files, canDelete = false }: FilesListProps) {
   return (
     <List>
       {files.map((file) => (
-        <ListItem key={file._id}>
+        <FileListItem key={file._id}>
           {getFileIcon(file.mime_type)}
           <ListItemText
             primary={file.file_name}
@@ -100,41 +91,23 @@ export function FilesList({ files, canDelete = false }: FilesListProps) {
                 <Typography variant="caption" color="text.secondary">
                   • {file.uploaded_by_name}
                 </Typography>
-                {file.access_level && (
-                  <Chip
-                    label={file.access_level}
-                    size="small"
-                    variant="outlined"
-                  />
-                )}
               </Box>
             }
             sx={{ ml: 2 }}
           />
-          <ListItemSecondaryAction>
-            <Tooltip title="Download">
-              <IconButton
-                edge="end"
-                onClick={() => handleDownload(file._id)}
-                disabled={downloadingFileId === file._id}
-              >
-                <Download />
-              </IconButton>
-            </Tooltip>
-            {canDelete && (
-              <Tooltip title="Delete">
-                <IconButton
-                  edge="end"
-                  onClick={() => handleDelete(file._id)}
-                  disabled={deletingFileId === file._id}
-                  sx={{ ml: 1 }}
-                >
-                  <Delete />
-                </IconButton>
-              </Tooltip>
-            )}
-          </ListItemSecondaryAction>
-        </ListItem>
+          <Box sx={{ display: 'flex', gap: 1 }}>
+            <ActionButtons
+              disabled={downloadingFileId === file._id}
+              startIcon={<Download />}
+              onClick={() => handleDownload(file._id)}
+            />
+            <ActionButtons
+              disabled={deletingFileId === file._id}
+              startIcon={<Delete />}
+              onClick={() => handleDelete(file._id)}
+            />
+          </Box>
+        </FileListItem>
       ))}
     </List>
   );

@@ -157,6 +157,13 @@ export const TRANSLATIONS = {
   DELETE_TASK: 'Usuń zadanie',
   EDIT_COMMENT: 'Edytuj komentarz',
   DELETE_COMMENT: 'Usuń komentarz',
+  FILES: 'Pliki',
+  MAX_FILE_SIZE: 'Maksymalny rozmiar pliku: 10MB',
+  DROP_FILES_HERE: 'Upuść pliki tutaj...',
+  DRAG_AND_DROP_FILES_HERE:
+    'Przeciągnij i upuść pliki tutaj, lub kliknij aby wybrać',
+  UPLOADING: 'Ładowanie plików...',
+  UPLOAD_FILES: 'Załaduj',
 };
 
 export default TRANSLATIONS;

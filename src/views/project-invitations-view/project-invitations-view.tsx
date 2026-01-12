@@ -4,7 +4,7 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import { Box, Typography } from '@mui/material';
 import { useRouter } from 'next/navigation';
 import { useTranslation } from 'react-i18next';
-import { PageContainer } from '@/components';
+import { InnerContainer, PageContainer } from '@/components';
 import {
   AddProjectModalContainer,
   AddProjectModalHeader,
@@ -24,6 +24,7 @@ import {
 
 interface IProjectInvitationsViewProps {
   invitations: IInvitationData[];
+  projectId: string;
 }
 
 const getInvitationStatus = (invitation: IInvitationData): string => {
@@ -49,6 +50,7 @@ const getInvitationStatus = (invitation: IInvitationData): string => {
 
 export function ProjectInvitationsView({
   invitations,
+  projectId,
 }: IProjectInvitationsViewProps) {
   const { t } = useTranslation();
   const router = useRouter();
@@ -56,7 +58,7 @@ export function ProjectInvitationsView({
   const { setIsOpen, setModalContent } = useModal();
 
   const handleBack = () => {
-    router.back();
+    router.push(`/project/${projectId}`);
   };
 
   const handleDeleteClick = (invitation: IInvitationData) => {
@@ -105,10 +107,7 @@ export function ProjectInvitationsView({
       <BackButton color="primary" variant="contained" onClick={handleBack}>
         {t(TRANSLATIONS.BACK)}
       </BackButton>
-      <Box sx={{ mt: 3, borderRadius: '2px' }}>
-        <Typography variant="h4" sx={{ mb: 2 }}>
-          {t(TRANSLATIONS.INVITATIONS)}
-        </Typography>
+      <InnerContainer pageTitle={TRANSLATIONS.INVITATIONS}>
         {invitations.length === 0 ? (
           <Typography variant="body1">
             {t(TRANSLATIONS.NO_INVITATIONS_FOUND)}
@@ -168,7 +167,7 @@ export function ProjectInvitationsView({
             })}
           </Box>
         )}
-      </Box>
+      </InnerContainer>
     </PageContainer>
   );
 }

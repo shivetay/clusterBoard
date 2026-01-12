@@ -1,6 +1,5 @@
-import FileList from '@/components/features/files/FileList';
-import { FileUpload } from '@/components/features/files/FileUploads';
 import { getProjectFilesAction } from '@/lib/actions';
+import { FilesView } from '@/views';
 
 export default async function FilesPage({
   params,
@@ -12,10 +11,5 @@ export default async function FilesPage({
 
   const files = result.success ? result.data : undefined;
 
-  return (
-    <>
-      <FileList files={files} />
-      <FileUpload projectId={id} />
-    </>
-  );
+  return <FilesView projectId={id} files={files} />;
 }
