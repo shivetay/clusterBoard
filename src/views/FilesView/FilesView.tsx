@@ -1,11 +1,10 @@
 'use client';
 import { useRouter } from 'next/navigation';
 import { useTranslation } from 'react-i18next';
-import { InnerContainer, PageContainer } from '@/components';
+import { CustomButton, InnerContainer, PageContainer } from '@/components';
 import { FilesList, FileUpload } from '@/components/features';
 import { TRANSLATIONS } from '@/locales';
 import type { IFile } from '@/types';
-import { BackButton } from '../project-invitations-view/project-invitation-view.styled';
 
 type TFilesViewProps = {
   projectId: string;
@@ -19,9 +18,14 @@ export function FilesView({ projectId, files }: TFilesViewProps) {
   };
   return (
     <PageContainer>
-      <BackButton color="primary" variant="contained" onClick={handleBack}>
+      <CustomButton
+        sx={{ marginBottom: 2, marginLeft: 0 }}
+        color="primary"
+        variant="contained"
+        onClick={handleBack}
+      >
         {t(TRANSLATIONS.BACK)}
-      </BackButton>
+      </CustomButton>
       <InnerContainer pageTitle={TRANSLATIONS.FILES}>
         <FileUpload projectId={projectId} />
         <FilesList files={files} />

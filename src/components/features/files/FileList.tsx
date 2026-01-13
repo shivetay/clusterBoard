@@ -10,7 +10,10 @@ import {
 import { Box, List, ListItemText, Typography } from '@mui/material';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { deleteFile, downloadFile } from '@/lib/api/files/filesClient';
+import { TRANSLATIONS } from '@/locales/pl';
+import { useAlert } from '@/providers';
 import type { IFile } from '@/types';
 import { ActionButtons } from '../project-stage-container/project-stage-container.styled';
 import { FileListItem } from './FileUpload.styled';
@@ -21,6 +24,8 @@ interface FilesListProps {
 
 export function FilesList({ files }: FilesListProps) {
   const router = useRouter();
+  const { showAlert } = useAlert();
+  const { t } = useTranslation();
   const [deletingFileId, setDeletingFileId] = useState<string | null>(null);
   const [downloadingFileId, setDownloadingFileId] = useState<string | null>(
     null,
@@ -45,7 +50,10 @@ export function FilesList({ files }: FilesListProps) {
     try {
       await downloadFile(fileId);
     } catch (error) {
-      console.error('Download error:', error);
+      showAlert({
+        message: t(TRANSLATIONS.ERROR_DOWNLOAD_FILE),
+        severity: 'error',
+      });
     } finally {
       setDownloadingFileId(null);
     }
@@ -57,7 +65,10 @@ export function FilesList({ files }: FilesListProps) {
       await deleteFile(fileId);
       router.refresh();
     } catch (error) {
-      console.error('Delete error:', error);
+      showAlert({
+        message: t(TRANSLATIONS.ERROR_DELETE_FILE),
+        severity: 'error',
+      });
     } finally {
       setDeletingFileId(null);
     }
@@ -67,7 +78,7 @@ export function FilesList({ files }: FilesListProps) {
     return (
       <Box sx={{ p: 3, textAlign: 'center' }}>
         <Typography variant="body2" color="text.secondary">
-          No files uploaded yet
+          {t(TRANSLATIONS.NO_FILES_FOUND_YET)}
         </Typography>
       </Box>
     );

@@ -15,11 +15,13 @@ export const uploadFile = async (
   projectId: string,
   accessLevel: 'owner' | 'investor' | 'public' = 'investor',
   isPublic: boolean = false,
+  onProgress?: (progress: number) => void,
 ): Promise<IFile> => {
   const formData = new FormData();
   formData.append('file', file);
   formData.append('project_id', projectId);
   formData.append('access_level', accessLevel);
+  // TODO check if this can be removed
   formData.append('is_public', String(isPublic));
 
   const response = await apiClient.post<FileUploadResponse>(
@@ -34,8 +36,8 @@ export const uploadFile = async (
             (progressEvent.loaded * FILES_SIZE_PROGRESS_STEP) /
               progressEvent.total,
           );
-          // You can emit this to a progress tracker
-          console.log(`Upload progress: ${percentCompleted}%`);
+          // Emit progress to the callback if provided
+          onProgress?.(percentCompleted);
         }
       },
     },
@@ -77,6 +79,7 @@ export const deleteFile = async (fileId: string): Promise<void> => {
  * Download a file
  */
 export const downloadFile = async (fileId: string): Promise<void> => {
+  // TODO: check why this is like this, it should be possible to download the file directly from the fileId
   // First get file metadata to get the filename
   const fileMetadata = await apiClient.get<{ data: { file: IFile } }>(
     `/files/${fileId}/metadata`,

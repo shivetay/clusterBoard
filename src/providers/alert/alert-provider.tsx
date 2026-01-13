@@ -3,7 +3,7 @@ import type { ReactNode } from 'react';
 import { createContext, useCallback, useContext, useState } from 'react';
 import type { IAlert, IAlertOptions } from '@/types';
 
-const ALERT_DURATION = 6000;
+const ALERT_DURATION = 5000;
 
 interface AlertContextType {
   alerts: IAlert[];
