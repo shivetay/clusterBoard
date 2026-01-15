@@ -23,5 +23,5 @@ export default async function ProjectInvitationsPage({
     return <div>{TRANSLATIONS.NO_INVITATIONS_FOUND}</div>;
   }
 
-  return <ProjectInvitationsView invitations={invitations} />;
+  return <ProjectInvitationsView invitations={invitations} projectId={id} />;
 }
