@@ -52,6 +52,7 @@ export function EditCommentModal({ commentData }: IEditCommentModalProps) {
     }
   }, [commentData, reset]);
 
+  console.log(commentData);
   const handleOnSubmit = async (data: z.input<typeof commentSchema>) => {
     const result = await editComment(
       commentData?.id || '',
