@@ -1,11 +1,13 @@
 import { getProjectFilesAction } from '@/lib/actions';
 import { FilesView } from '@/views';
 
-export default async function FilesPage({
-  params,
-}: {
-  params: { id: string };
-}) {
+type TFilesPageProps = {
+  params: Promise<{
+    id: string;
+  }>;
+};
+
+export default async function FilesPage({ params }: TFilesPageProps) {
   const { id } = await params;
   const result = await getProjectFilesAction(id);
 
