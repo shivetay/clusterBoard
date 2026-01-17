@@ -64,7 +64,7 @@ export const ProjectAddStageButton = styled(CustomButton)(({ theme }) => ({
   marginLeft: 0,
 }));
 
-export const InvestorButton = styled(CustomButton)(({ theme }) => ({
+export const InvestorButton = styled(CustomButton)(() => ({
   margin: 0,
   padding: 0,
   '&:hover': {
