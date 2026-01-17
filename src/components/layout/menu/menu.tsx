@@ -77,6 +77,11 @@ export function Menu() {
   return (
     <MenuContainer>
       {filteredMenuItems.map((item) => {
+        // Skip rendering links that still have [id] placeholder (no project ID available)
+        if (item.href.includes('[id]')) {
+          return null;
+        }
+
         const isActive = isItemActive(item.href);
 
         return (
