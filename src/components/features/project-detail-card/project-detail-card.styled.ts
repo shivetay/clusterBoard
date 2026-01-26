@@ -70,4 +70,4 @@ export const InvestorButton = styled(CustomButton)(() => ({
   '&:hover': {
     backgroundColor: 'transparent',
   },
-}));
+}))
