@@ -9,10 +9,6 @@ export const ProjectInfoContainer = styled(Stack)(({ theme }) => ({
   padding: theme.spacing(4),
   marginBottom: theme.spacing(4),
   ...glassEffects.medium,
-  // [theme.breakpoints.down('sm')]: {
-  //   margin: '0 auto',
-  //   width: '400px',
-  // },
 }));
 
 export const ProjectHeaderContainer = styled(Box)(({ theme }) => ({

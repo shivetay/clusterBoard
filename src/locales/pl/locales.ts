@@ -1,4 +1,5 @@
 export const TRANSLATIONS = {
+  CLUSTER_BOARD: 'Twój Klaster',
   FOOTER_PRIVACY_POLICY: 'plitityka prywatnosci',
   FOOTER_COOKIES: 'cookies',
   FOOTER_TERMS_OF_USE: 'ogólne warunki uzytkowania',
@@ -168,6 +169,99 @@ export const TRANSLATIONS = {
   ERROR_DOWNLOAD_FILE: 'Błąd podczas pobierania pliku',
   ERROR_DELETE_FILE: 'Błąd podczas usuwania pliku',
   NO_FILES_FOUND_YET: 'Brak plików do wyświetlenia',
+  MAIN_PAGE_TITLE_1: 'Cała realizacja w jednym miejscu.',
+  MAIN_PAGE_TITLE_2: 'Od pomysłu po ostatni szlif.',
+  MAIN_PAGE_DESCRIPTION:
+    'Jedna tablica dla Ciebie i Twojego klienta. Zarządzaj etapami, akceptacjami i komunikacją bez chaosu w mailach. Zgromadź inspiracje, dokumenty i etapy prac w jednym, profesjonalnym miejscu.',
+  MAIN_PAGE_BUTTON_TEXT: 'Zacznij teraz od 49pln',
+
+  // Hero section
+  MAIN_PAGE_HERO_TITLE_1: 'Twoje projekty zasługują na porządek.',
+  MAIN_PAGE_HERO_TITLE_2: 'Twoi klienci na spokój.',
+  MAIN_PAGE_HERO_DESCRIPTION:
+    'Pierwsza tablica dla branż kreatywnych i wykonawczych. Zgromadź inspiracje, dokumenty i etapy prac w jednym, profesjonalnym miejscu.',
+  MAIN_PAGE_HERO_FEATURE_NO_CARD: 'Bez karty kredytowej',
+  MAIN_PAGE_HERO_FEATURE_SETUP: 'Setup w 2 minuty',
+  MAIN_PAGE_HERO_IMAGE_ALT: 'Project management board mockup',
+  MAIN_PAGE_HERO_STAT_TRANSPARENCY: 'Przejrzystość',
+  MAIN_PAGE_HERO_STAT_LOST_EMAILS: 'Zagubionych maili',
+
+  // Why section
+  MAIN_PAGE_WHY_TITLE_SPAN: 'ClusterBoard',
+  MAIN_PAGE_WHY_TITLE_PREFIX: 'Dlaczego ',
+  MAIN_PAGE_WHY_TITLE_SUFFIX: '?',
+  MAIN_PAGE_WHY_CARD_1_TITLE: 'Koniec z szumem informacyjnym',
+  MAIN_PAGE_WHY_CARD_1_DESC:
+    'Oddziel wizję artystyczną od twardych faktów. Inspiracje w jednym miejscu, dokumenty w drugim.',
+  MAIN_PAGE_WHY_CARD_2_TITLE: 'Buduj autorytet',
+  MAIN_PAGE_WHY_CARD_2_DESC:
+    'Zaproś inwestora do wspólnej tablicy. Pokaż mu, że panujesz nad każdym detalem.',
+
+  // Modules section
+  MAIN_PAGE_MODULES_TITLE: 'Nowe podejście do ',
+  MAIN_PAGE_MODULES_TITLE_SPAN: 'organizacji',
+  MAIN_PAGE_MODULES_DESCRIPTION:
+    'Kluczowe moduły zaprojektowane dla profesjonalistów',
+  MAIN_PAGE_MODULE_1_TITLE: 'Klaster Inspiracji',
+  MAIN_PAGE_MODULE_1_DESC:
+    'Miejsce na wyselekcjonowane zdjęcia i wizualizacje. Nie ilość, a jakość buduje projekt.',
+  MAIN_PAGE_MODULE_1_FEATURE: 'Galeria zdjęć referencyjnych',
+  MAIN_PAGE_MODULE_2_TITLE: 'Baza Dokumentów',
+  MAIN_PAGE_MODULE_2_DESC:
+    'Umowy, kosztorysy i rysunki techniczne w osobnym, bezpiecznym folderze.',
+  MAIN_PAGE_MODULE_2_FEATURE: 'Zarządzanie plikami PDF/DOC',
+  MAIN_PAGE_MODULE_3_TITLE: 'Kamienie Milowe',
+  MAIN_PAGE_MODULE_3_DESC:
+    'Klient widzi postęp w czasie rzeczywistym. Ty odhaczasz etapy, on otrzymuje powiadomienie.',
+  MAIN_PAGE_MODULE_3_FEATURE: 'Wizualna tablica etapów',
+
+  // Pricing section
+  MAIN_PAGE_PRICING_TITLE_PREFIX: 'Prosty ',
+  MAIN_PAGE_PRICING_TITLE_SPAN: 'cennik oparty na limitach',
+  MAIN_PAGE_PRICING_DESCRIPTION: 'Płać za to, czego rzeczywiście potrzebujesz',
+  MAIN_PAGE_PRICING_CARD_1_TITLE: 'Pojedyncza Tablica',
+  MAIN_PAGE_PRICING_CARD_1_SUBTITLE: 'Freelancerzy i małe zlecenia',
+  MAIN_PAGE_PRICING_CARD_1_PERIOD: 'jednorazowo',
+  MAIN_PAGE_PRICING_CARD_1_FEATURE_1_BOLD: '1 aktywny',
+  MAIN_PAGE_PRICING_CARD_1_FEATURE_1_REST: ' projekt',
+  MAIN_PAGE_PRICING_CARD_1_FEATURE_2_PREFIX: 'Do ',
+  MAIN_PAGE_PRICING_CARD_1_FEATURE_2_BOLD: '8 zdjęć',
+  MAIN_PAGE_PRICING_CARD_1_FEATURE_2_SUFFIX: ' inspiracji',
+  MAIN_PAGE_PRICING_CARD_1_FEATURE_3_PREFIX: 'Do ',
+  MAIN_PAGE_PRICING_CARD_1_FEATURE_3_BOLD: '3 dokumentów',
+  MAIN_PAGE_PRICING_CARD_1_FEATURE_3_SUFFIX: ' PDF/DOC',
+  MAIN_PAGE_PRICING_CARD_1_FEATURE_4_PREFIX: 'Max ',
+  MAIN_PAGE_PRICING_CARD_1_FEATURE_4_BOLD: '2 inwestorów',
+  MAIN_PAGE_PRICING_CARD_2_BADGE: 'NAJPOPULARNIEJSZY',
+  MAIN_PAGE_PRICING_CARD_2_TITLE: 'Plan Miesięczny (Pro)',
+  MAIN_PAGE_PRICING_CARD_2_SUBTITLE: 'Aktywne ekipy i dekoratorzy',
+  MAIN_PAGE_PRICING_CARD_2_PERIOD: '/ miesiąc',
+  MAIN_PAGE_PRICING_CARD_2_FEATURE_1_BOLD: '3 aktywne',
+  MAIN_PAGE_PRICING_CARD_2_FEATURE_1_REST: ' projekty',
+  MAIN_PAGE_PRICING_CARD_2_FEATURE_2_PREFIX: 'Do ',
+  MAIN_PAGE_PRICING_CARD_2_FEATURE_2_BOLD: '20 zdjęć',
+  MAIN_PAGE_PRICING_CARD_2_FEATURE_2_SUFFIX: ' (łącznie/projekt)',
+  MAIN_PAGE_PRICING_CARD_2_FEATURE_3_PREFIX: 'Do ',
+  MAIN_PAGE_PRICING_CARD_2_FEATURE_3_BOLD: '10 dokumentów',
+  MAIN_PAGE_PRICING_CARD_2_FEATURE_3_SUFFIX: ' (łącznie/projekt)',
+  MAIN_PAGE_PRICING_CARD_2_FEATURE_4_BOLD: '4',
+  MAIN_PAGE_PRICING_CARD_2_FEATURE_4_REST: ' inwestorów',
+  MAIN_PAGE_PRICING_CARD_3_TITLE: 'Plan Roczny (Premium)',
+  MAIN_PAGE_PRICING_CARD_3_SUBTITLE: 'Firmy z portfelem zleceń',
+  MAIN_PAGE_PRICING_CARD_3_PERIOD: '/ rok',
+  MAIN_PAGE_PRICING_CARD_3_SAVINGS: 'Oszczędzasz N/A PLN rocznie',
+  MAIN_PAGE_PRICING_CARD_3_FEATURE_1_BOLD: 'Nielimitowane',
+  MAIN_PAGE_PRICING_CARD_3_FEATURE_1_REST: ' projekty',
+  MAIN_PAGE_PRICING_CARD_3_FEATURE_2_PREFIX: 'Do ',
+  MAIN_PAGE_PRICING_CARD_3_FEATURE_2_BOLD: '50 zdjęć',
+  MAIN_PAGE_PRICING_CARD_3_FEATURE_2_SUFFIX: ' (łącznie/projekt)',
+  MAIN_PAGE_PRICING_CARD_3_FEATURE_3_PREFIX: 'Do ',
+  MAIN_PAGE_PRICING_CARD_3_FEATURE_3_BOLD: '20 dokumentów',
+  MAIN_PAGE_PRICING_CARD_3_FEATURE_3_SUFFIX: ' (łącznie/projekt)',
+  MAIN_PAGE_PRICING_CARD_3_FEATURE_4_BOLD: 'Nielimitowani',
+  MAIN_PAGE_PRICING_CARD_3_FEATURE_4_REST: ' inwestorzy',
+  MAIN_PAGE_PRICING_CURRENCY: ' PLN',
+  MAIN_PAGE_PRICING_CTA: 'Rozpocznij',
 };
 
 export default TRANSLATIONS;
