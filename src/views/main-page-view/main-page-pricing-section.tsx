@@ -1,5 +1,4 @@
 import { Box } from '@mui/material';
-import Link from 'next/link';
 import { useTranslation } from 'react-i18next';
 import { CustomButton } from '@/components';
 import { TRANSLATIONS } from '@/locales';
@@ -100,10 +99,8 @@ export function MainPagePricingSection() {
                 </span>
               </PricingCardFeature>
             </PricingCardFeatures>
-            <CustomButton variant="contained" color="primary">
-              <Link href="/dashboard" style={{ color: '#000' }}>
-                {t(TRANSLATIONS.MAIN_PAGE_PRICING_CTA)}
-              </Link>
+            <CustomButton href="/dashboard" variant="contained" color="primary">
+              {t(TRANSLATIONS.MAIN_PAGE_PRICING_CTA)}
             </CustomButton>
           </PricingCard>
         </Box>
@@ -168,10 +165,8 @@ export function MainPagePricingSection() {
                 </span>
               </PricingCardFeature>
             </PricingCardFeatures>
-            <CustomButton variant="contained" color="primary">
-              <Link href="/dashboard" style={{ color: '#000' }}>
-                {t(TRANSLATIONS.MAIN_PAGE_PRICING_CTA)}
-              </Link>
+            <CustomButton href="/dashboard" variant="contained" color="primary">
+              {t(TRANSLATIONS.MAIN_PAGE_PRICING_CTA)}
             </CustomButton>
           </PricingCardFeatured>
         </Box>
@@ -236,10 +231,8 @@ export function MainPagePricingSection() {
                 </span>
               </PricingCardFeature>
             </PricingCardFeatures>
-            <CustomButton variant="contained" color="primary">
-              <Link href="/dashboard" style={{ color: '#000' }}>
-                {t(TRANSLATIONS.MAIN_PAGE_PRICING_CTA)}
-              </Link>
+            <CustomButton href="/dashboard" variant="contained" color="primary">
+              {t(TRANSLATIONS.MAIN_PAGE_PRICING_CTA)}
             </CustomButton>
           </PricingCard>
         </Box>
