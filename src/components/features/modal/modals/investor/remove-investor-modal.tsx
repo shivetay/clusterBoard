@@ -40,7 +40,7 @@ export function RemoveInvestorModal({
         severity: 'success',
       });
       setIsDeleting(false);
-    } catch (error: any) {
+    } catch (_error: any) {
       showAlert({
         message:
           error?.response?.data?.message ||

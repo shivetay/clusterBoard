@@ -15,6 +15,7 @@ export const uploadFile = async (
   projectId: string,
   accessLevel: 'owner' | 'investor' | 'public' = 'investor',
   isPublic: boolean = false,
+  isInspiration: boolean = false,
   onProgress?: (progress: number) => void,
 ): Promise<IFile> => {
   const formData = new FormData();
@@ -23,6 +24,7 @@ export const uploadFile = async (
   formData.append('access_level', accessLevel);
   // TODO check if this can be removed
   formData.append('is_public', String(isPublic));
+  formData.append('is_inspiration', String(isInspiration));
 
   const response = await apiClient.post<FileUploadResponse>(
     '/files/upload',

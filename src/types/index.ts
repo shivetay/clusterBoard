@@ -7,3 +7,4 @@ export * from './stage.type';
 export * from './store.type';
 export * from './task.type';
 export * from './user.type';
+export * from './inspiration.type';

@@ -28,11 +28,13 @@ interface FileUploadProps {
   projectId: string;
   multiple?: boolean;
   onUploadComplete?: () => void;
+  isInspiration?: boolean;
 }
 
 export function FileUpload({
   projectId,
   multiple = false,
+  isInspiration = false,
   onUploadComplete,
 }: FileUploadProps) {
   const { t } = useTranslation();
@@ -81,12 +83,19 @@ export function FileUpload({
     try {
       await Promise.all(
         selectedFiles.map((file) =>
-          uploadFile(file, projectId, 'investor', false, (progress) => {
-            setUploadProgress((prev) => ({
-              ...prev,
-              [file.name]: progress,
-            }));
-          }),
+          uploadFile(
+            file,
+            projectId,
+            'investor',
+            false,
+            isInspiration,
+            (progress) => {
+              setUploadProgress((prev) => ({
+                ...prev,
+                [file.name]: progress,
+              }));
+            },
+          ),
         ),
       );
 
@@ -94,7 +103,7 @@ export function FileUpload({
       setUploadProgress({});
       router.refresh();
       onUploadComplete?.();
-    } catch (error) {
+    } catch (_error) {
       showAlert({
         message: t(TRANSLATIONS.ERROR_ADD_FILE),
         severity: 'error',

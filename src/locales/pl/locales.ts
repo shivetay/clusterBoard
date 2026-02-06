@@ -262,6 +262,7 @@ export const TRANSLATIONS = {
   MAIN_PAGE_PRICING_CARD_3_FEATURE_4_REST: ' inwestorzy',
   MAIN_PAGE_PRICING_CURRENCY: ' PLN',
   MAIN_PAGE_PRICING_CTA: 'Rozpocznij',
+  INSPIRATION_TITLE: 'Inspiracje',
 };
 
 export default TRANSLATIONS;

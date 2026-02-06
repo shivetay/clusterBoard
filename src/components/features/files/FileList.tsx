@@ -49,7 +49,7 @@ export function FilesList({ files }: FilesListProps) {
     setDownloadingFileId(fileId);
     try {
       await downloadFile(fileId);
-    } catch (error) {
+    } catch (_error) {
       showAlert({
         message: t(TRANSLATIONS.ERROR_DOWNLOAD_FILE),
         severity: 'error',
@@ -64,7 +64,7 @@ export function FilesList({ files }: FilesListProps) {
     try {
       await deleteFile(fileId);
       router.refresh();
-    } catch (error) {
+    } catch (_error) {
       showAlert({
         message: t(TRANSLATIONS.ERROR_DELETE_FILE),
         severity: 'error',
