@@ -163,6 +163,7 @@ export const TRANSLATIONS = {
   DROP_FILES_HERE: 'Upuść pliki tutaj...',
   DRAG_AND_DROP_FILES_HERE:
     'Przeciągnij i upuść pliki tutaj, lub kliknij aby wybrać',
+  DROPZONE_IMAGES_ONLY: 'Tylko obrazy (JPEG, PNG, GIF, WebP)',
   UPLOADING: 'Przesyłanie plików...',
   UPLOAD_FILES: 'Prześlij',
   ERROR_ADD_FILE: 'Błąd podczas dodawania pliku',

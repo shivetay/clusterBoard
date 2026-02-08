@@ -26,7 +26,7 @@ function isPathnameMatchingHref(pathname: string, href: string): boolean {
 
   // Check if pathname starts with the item href + '/' (for nested routes)
   // This handles routes like /project/[id]/invitations matching /project/[id]/invitations
-  if (pathname.startsWith(href + '/')) {
+  if (pathname.startsWith(`${href}/`)) {
     return true;
   }
 

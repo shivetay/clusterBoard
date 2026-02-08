@@ -24,6 +24,30 @@ const KB = 1024;
 const MB = KB * KB;
 const FILES_MAX_SIZE = 10 * MB; // 10MB for MongoDB document storage
 
+const ACCEPT_ALL = {
+  'application/pdf': ['.pdf'],
+  'application/msword': ['.doc'],
+  'application/vnd.openxmlformats-officedocument.wordprocessingml.document': [
+    '.docx',
+  ],
+  'application/vnd.ms-excel': ['.xls'],
+  'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet': [
+    '.xlsx',
+  ],
+  'image/jpeg': ['.jpg', '.jpeg'],
+  'image/png': ['.png'],
+  'image/gif': ['.gif'],
+  'image/webp': ['.webp'],
+  'application/zip': ['.zip'],
+};
+
+const ACCEPT_IMAGES = {
+  'image/jpeg': ['.jpg', '.jpeg'],
+  'image/png': ['.png'],
+  'image/gif': ['.gif'],
+  'image/webp': ['.webp'],
+};
+
 interface FileUploadProps {
   projectId: string;
   multiple?: boolean;
@@ -54,21 +78,7 @@ export function FileUpload({
     onDrop,
     multiple,
     maxSize: FILES_MAX_SIZE, // 10MB for MongoDB document storage
-    accept: {
-      'application/pdf': ['.pdf'],
-      'application/msword': ['.doc'],
-      'application/vnd.openxmlformats-officedocument.wordprocessingml.document':
-        ['.docx'],
-      'application/vnd.ms-excel': ['.xls'],
-      'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet': [
-        '.xlsx',
-      ],
-      'image/jpeg': ['.jpg', '.jpeg'],
-      'image/png': ['.png'],
-      'image/gif': ['.gif'],
-      'image/webp': ['.webp'],
-      'application/zip': ['.zip'],
-    },
+    accept: isInspiration ? ACCEPT_IMAGES : ACCEPT_ALL,
   });
 
   const removeFile = (index: number) => {
@@ -126,7 +136,9 @@ export function FileUpload({
               : t(TRANSLATIONS.DRAG_AND_DROP_FILES_HERE)}
           </Typography>
           <Typography variant="caption" color="text.secondary" sx={{ mt: 1 }}>
-            {t(TRANSLATIONS.MAX_FILE_SIZE)}
+            {isInspiration
+              ? `${t(TRANSLATIONS.DROPZONE_IMAGES_ONLY)} • ${t(TRANSLATIONS.MAX_FILE_SIZE)}`
+              : t(TRANSLATIONS.MAX_FILE_SIZE)}
           </Typography>
         </DragContainer>
       ) : (
