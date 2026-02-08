@@ -5,7 +5,8 @@ const API_BASE = process.env.NEXT_PUBLIC_API_URL;
 
 /**
  * GET /api/file/[fileId]
- * Proxies file binary from backend with auth. Use as img src for MongoDB-stored images.
+ * Proxies file binary from backend with auth.
+ * Used only when file has no storage_url (dev / MongoDB). In prod (Cloudflare), files use storage_url and are loaded directly.
  */
 export async function GET(
   _request: NextRequest,
