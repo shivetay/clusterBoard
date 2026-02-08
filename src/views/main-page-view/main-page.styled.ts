@@ -1,4 +1,5 @@
 /** biome-ignore-all lint/style/noMagicNumbers: <styling> */
+/** biome-ignore-all lint/style/useTemplate: <lint> */
 
 'use client';
 import { Box, Container, styled, Typography } from '@mui/material';
@@ -439,7 +440,7 @@ export const MainContainer = styled(Box)(({ theme }) => ({
   width: '100%',
 }));
 
-export const MainTitle = styled(Typography)(({ theme }) => ({
+export const MainTitle = styled(Typography)(() => ({
   textAlign: 'center',
 }));
 

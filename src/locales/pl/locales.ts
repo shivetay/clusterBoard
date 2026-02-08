@@ -163,6 +163,7 @@ export const TRANSLATIONS = {
   DROP_FILES_HERE: 'Upuść pliki tutaj...',
   DRAG_AND_DROP_FILES_HERE:
     'Przeciągnij i upuść pliki tutaj, lub kliknij aby wybrać',
+  DROPZONE_IMAGES_ONLY: 'Tylko obrazy (JPEG, PNG, GIF, WebP)',
   UPLOADING: 'Przesyłanie plików...',
   UPLOAD_FILES: 'Prześlij',
   ERROR_ADD_FILE: 'Błąd podczas dodawania pliku',
@@ -262,6 +263,7 @@ export const TRANSLATIONS = {
   MAIN_PAGE_PRICING_CARD_3_FEATURE_4_REST: ' inwestorzy',
   MAIN_PAGE_PRICING_CURRENCY: ' PLN',
   MAIN_PAGE_PRICING_CTA: 'Rozpocznij',
+  INSPIRATION_TITLE: 'Inspiracje',
 };
 
 export default TRANSLATIONS;

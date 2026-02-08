@@ -9,7 +9,7 @@ export interface IFile {
   project_id: string;
   uploaded_by: string;
   uploaded_by_name: string;
-  storage_type: 's3' | 'gridfs';
+  storage_type: 'mongodb' | 's3' | 'gridfs';
   bucket_name?: string;
   storage_url?: string;
   is_public: boolean;

@@ -60,13 +60,13 @@ export const MENU_ITEM_LIST: TMenuItem[] = [
   },
   {
     id: 'inspirations',
-    href: '/inspirations',
+    href: '/project/[id]/inspirations',
     label: TRANSLATIONS.INSPIRACJE,
     type: 'projects',
   },
   {
     id: 'messages',
-    href: '/messages',
+    href: '/project/[id]/messages',
     label: TRANSLATIONS.WIADOMOSCI,
     type: 'projects',
     icon: <EmailOutlinedIcon />,
