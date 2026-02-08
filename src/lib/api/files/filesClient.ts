@@ -78,33 +78,39 @@ export const deleteFile = async (fileId: string): Promise<void> => {
 };
 
 /**
- * Download a file
+ * Download a file.
+ * - Prod (Cloudflare): uses download_url or storage_url when present (direct link).
+ * - Dev (MongoDB): streams file via API and triggers download from blob.
  */
 export const downloadFile = async (fileId: string): Promise<void> => {
-  // TODO: check why this is like this, it should be possible to download the file directly from the fileId
-  // First get file metadata to get the filename
   const fileMetadata = await apiClient.get<{ data: { file: IFile } }>(
     `/files/${fileId}/metadata`,
   );
   const file = fileMetadata.data.data.file;
 
-  // Then download the actual file as binary data
+  const directUrl = file.download_url ?? file.storage_url;
+  if (directUrl) {
+    const link = document.createElement('a');
+    link.href = directUrl;
+    link.download = file.file_name;
+    link.rel = 'noopener noreferrer';
+    link.target = '_blank';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    return;
+  }
+
   const response = await apiClient.get(`/files/${fileId}`, {
     responseType: 'blob',
   });
-
-  // Create a blob URL from the response
   const blob = new Blob([response.data], { type: file.mime_type });
   const url = window.URL.createObjectURL(blob);
-
-  // Create a temporary anchor element to trigger download
   const link = document.createElement('a');
   link.href = url;
   link.download = file.file_name;
   document.body.appendChild(link);
   link.click();
-
-  // Clean up
   document.body.removeChild(link);
   window.URL.revokeObjectURL(url);
 };

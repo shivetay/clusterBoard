@@ -8,8 +8,9 @@ export function isImageFile(file: IFile): boolean {
 }
 
 /**
- * Resolve URL for displaying a file image. For MongoDB storage (no storage_url)
- * we use the Next.js API proxy which forwards the request to the backend with auth.
+ * Resolve URL for displaying a file image.
+ * - Prod (Cloudflare): backend sets storage_url → use it directly.
+ * - Dev (MongoDB): no storage_url → use Next.js API proxy (/api/file/[id]) which forwards to backend with auth.
  */
 export function getImageSrc(file: IFile): string {
   if (file.storage_url) return file.storage_url;
