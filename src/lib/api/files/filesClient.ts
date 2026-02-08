@@ -7,6 +7,25 @@ import type {
 
 const FILES_SIZE_PROGRESS_STEP = 100;
 
+/** Hostnames allowed for direct download links (e.g. Cloudflare R2). Extend as needed. */
+const ALLOWED_DIRECT_DOWNLOAD_HOSTS: readonly string[] = [
+  'r2.cloudflarestorage.com',
+  'r2.dev',
+];
+
+function isSafeDirectDownloadUrl(urlString: string): boolean {
+  try {
+    const url = new URL(urlString);
+    if (url.protocol !== 'http:' && url.protocol !== 'https:') return false;
+    const host = url.hostname.toLowerCase();
+    return ALLOWED_DIRECT_DOWNLOAD_HOSTS.some(
+      (allowed) => host === allowed || host.endsWith('.' + allowed),
+    );
+  } catch {
+    return false;
+  }
+}
+
 /**
  * Upload a single file
  */
@@ -81,15 +100,21 @@ export const deleteFile = async (fileId: string): Promise<void> => {
  * Download a file.
  * - Prod (Cloudflare): uses download_url or storage_url when present (direct link).
  * - Dev (MongoDB): streams file via API and triggers download from blob.
+ * @throws If called on the server (browser-only: document, window).
  */
 export const downloadFile = async (fileId: string): Promise<void> => {
+  if (typeof window === 'undefined') {
+    throw new Error(
+      'downloadFile() is browser-only (uses document/window) and cannot run on the server. Call it from a client component or event handler.',
+    );
+  }
   const fileMetadata = await apiClient.get<{ data: { file: IFile } }>(
     `/files/${fileId}/metadata`,
   );
   const file = fileMetadata.data.data.file;
 
   const directUrl = file.download_url ?? file.storage_url;
-  if (directUrl) {
+  if (directUrl && isSafeDirectDownloadUrl(directUrl)) {
     const link = document.createElement('a');
     link.href = directUrl;
     link.download = file.file_name;
