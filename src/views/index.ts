@@ -1,4 +1,5 @@
 export * from './cluster-view';
+export * from './global-messages-view';
 export * from './FilesView';
 export * from './inspiration-view';
 export * from './invitation-accept-view';

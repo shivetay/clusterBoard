@@ -10,10 +10,31 @@ import {
 } from '@/lib/api/projects';
 import type { ActionResult } from '@/types/actions';
 import type {
+  TMySentProjectMessage,
+  TMySentProjectMessagesListResponse,
   TProjectMessagesListResponse,
   TPublicProjectMessage,
 } from '@/types/project-message.type';
 import { handleActionError } from '../utils';
+
+const MESSAGES_PATH = '/messages';
+
+export async function getMySentProjectMessagesAction(): Promise<
+  ActionResult<TMySentProjectMessage[]>
+> {
+  try {
+    const response = await serverGet<TMySentProjectMessagesListResponse>(
+      '/projects/messages/mine',
+    );
+    const messages = response.data?.messages ?? [];
+    return { success: true, data: messages };
+  } catch (error) {
+    return {
+      success: false,
+      error: handleActionError(error),
+    };
+  }
+}
 
 export async function getProjectMessagesAction(
   projectId: string,
@@ -55,6 +76,7 @@ export async function createProjectMessageAction(
     });
 
     revalidatePath(`/project/${projectId}/messages`);
+    revalidatePath(MESSAGES_PATH);
 
     return { success: true, data: undefined };
   } catch (error) {
@@ -87,6 +109,7 @@ export async function updateProjectMessageAction(
     });
 
     revalidatePath(`/project/${projectId}/messages`);
+    revalidatePath(MESSAGES_PATH);
 
     return { success: true, data: undefined };
   } catch (error) {
@@ -111,6 +134,7 @@ export async function deleteProjectMessageAction(
     await serverDelete(`/projects/${projectId}/messages/${messageId}`);
 
     revalidatePath(`/project/${projectId}/messages`);
+    revalidatePath(MESSAGES_PATH);
 
     return { success: true, data: undefined };
   } catch (error) {

@@ -10,8 +10,21 @@ export type TPublicProjectMessage = {
   replies: TPublicProjectMessage[];
 };
 
+/** Current user's sent messages across projects (flat; replies []). */
+export type TMySentProjectMessage = TPublicProjectMessage & {
+  project_id: string;
+  project_name: string;
+  parent_author_name: string | null;
+};
+
 export type TProjectMessagesListResponse = {
   status: string;
   results: number;
   data: { messages: TPublicProjectMessage[] };
+};
+
+export type TMySentProjectMessagesListResponse = {
+  status: string;
+  results: number;
+  data: { messages: TMySentProjectMessage[] };
 };

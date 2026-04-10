@@ -284,6 +284,17 @@ export const TRANSLATIONS = {
   MESSAGES_PAGE_SELECT:
     'Wybierz wątek z listy po lewej, aby zobaczyć całą rozmowę.',
   DELETE_MESSAGE: 'Usuń wiadomość',
+  MESSAGES_FILTER_LABEL: 'Filtruj wg projektu',
+  MESSAGES_ALL_PROJECTS: 'Wszystkie projekty',
+  MESSAGES_COMPOSE_PROJECT_LABEL: 'Projekt',
+  MESSAGES_COMPOSE_PROJECT_PLACEHOLDER: 'Wybierz projekt',
+  MESSAGES_PICK_PROJECT_FOR_NEW: 'Wybierz projekt, aby wysłać wiadomość',
+  MESSAGES_IN_REPLY_TO: 'W odpowiedzi do: {{author}}',
+  MESSAGES_ROOT_THREAD: 'Wątek główny projektu',
+  MESSAGES_OPEN_IN_PROJECT: 'Otwórz w projekcie',
+  MESSAGES_NONE_SENT:
+    'Nie wysłałeś jeszcze żadnych wiadomości w swoich projektach.',
+  MESSAGES_NONE_FILTERED: 'Brak wiadomości dla wybranego projektu.',
 };
 
 export default TRANSLATIONS;

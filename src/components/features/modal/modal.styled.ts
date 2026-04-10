@@ -63,6 +63,20 @@ export const AddProjectModalContainer = styled(Box)(({ theme }) => ({
   display: 'flex',
   flexDirection: 'column',
   gap: theme.spacing(2),
+  '& .MuiStack-root:has(.MuiFormControl-root)': {
+    '&:hover .MuiInputLabel-root': {
+      color: theme.palette.primary.main,
+    },
+    '&:hover .MuiInput-input': {
+      color: theme.palette.primary.main,
+    },
+    '&:hover textarea': {
+      color: theme.palette.primary.main,
+    },
+    '&:hover .MuiInputBase-input': {
+      color: theme.palette.primary.main,
+    },
+  },
 }));
 
 export const AddProjectModalTitle = styled(Typography)(({ theme }) => ({
