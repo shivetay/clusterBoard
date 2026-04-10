@@ -264,6 +264,26 @@ export const TRANSLATIONS = {
   MAIN_PAGE_PRICING_CURRENCY: ' PLN',
   MAIN_PAGE_PRICING_CTA: 'Rozpocznij',
   INSPIRATION_TITLE: 'Inspiracje',
+  ERROR_MESSAGE_BODY: 'Treść wiadomości jest wymagana',
+  ERROR_MESSAGE_BODY_MAX: 'Maksymalnie 5000 znaków',
+  MESSAGE_BODY_LABEL: 'Treść wiadomości',
+  MESSAGE_BODY_HELPER: 'Maksymalnie 5000 znaków',
+  ADD_MESSAGE_MODAL_TITLE: 'Nowa wiadomość',
+  ADD_MESSAGE_REPLY_MODAL_TITLE: 'Odpowiedź',
+  ADD_MESSAGE_MODAL_BTN: 'Wyślij',
+  MESSAGE_EDIT_HEADER: 'Edytuj wiadomość',
+  MESSAGE_EDIT_BTN: 'Zapisz',
+  MESSAGE_ADDED_SUCCESSFULLY: 'Wiadomość została dodana pomyślnie',
+  MESSAGE_EDITED_SUCCESSFULLY: 'Wiadomość została zapisana',
+  ERROR_MESSAGE_SAVE: 'Błąd podczas zapisywania wiadomości',
+  MESSAGE_REMOVED_SUCCESSFULLY: 'Wiadomość została usunięta pomyślnie',
+  ERROR_REMOVE_MESSAGE: 'Błąd podczas usuwania wiadomości',
+  MESSAGES_PAGE_NEW_THREAD: 'Nowy wątek',
+  MESSAGES_PAGE_REPLY: 'Odpowiedz',
+  MESSAGES_PAGE_NO_THREADS: 'Brak wiadomości. Utwórz pierwszy wątek.',
+  MESSAGES_PAGE_SELECT:
+    'Wybierz wątek z listy po lewej, aby zobaczyć całą rozmowę.',
+  DELETE_MESSAGE: 'Usuń wiadomość',
 };
 
 export default TRANSLATIONS;

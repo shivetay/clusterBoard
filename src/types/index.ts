@@ -4,6 +4,7 @@ export * from './file.type';
 export * from './inspiration.type';
 export * from './invitation.type';
 export * from './project.type';
+export * from './project-message.type';
 export * from './stage.type';
 export * from './store.type';
 export * from './task.type';
