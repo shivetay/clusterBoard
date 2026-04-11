@@ -3,7 +3,7 @@ import { privateAppMetadata } from '@/lib/seo';
 
 export const metadata: Metadata = privateAppMetadata;
 
-export default function ClusterLayout({
+export default function InviteLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
