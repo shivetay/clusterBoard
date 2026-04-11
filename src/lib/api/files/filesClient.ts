@@ -19,7 +19,7 @@ function isSafeDirectDownloadUrl(urlString: string): boolean {
     if (url.protocol !== 'http:' && url.protocol !== 'https:') return false;
     const host = url.hostname.toLowerCase();
     return ALLOWED_DIRECT_DOWNLOAD_HOSTS.some(
-      (allowed) => host === allowed || host.endsWith('.' + allowed),
+      (allowed) => host === allowed || host.endsWith(`.${allowed}`),
     );
   } catch {
     return false;

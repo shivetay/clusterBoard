@@ -14,7 +14,7 @@
     "dev": "next dev --turbopack",
     "build": "next build",
     "start": "next start",
-    "lint": "biome check",
+    "lint": "biome check --max-diagnostics=500",
     "format": "biome format --write",
     "prepare": "husky",
     "commit": "cz"
@@ -44,7 +44,7 @@
     "zustand": "^5.0.8"
   },
   "devDependencies": {
-    "@biomejs/biome": "2.2.0",
+    "@biomejs/biome": "2.4.11",
     "@clerk/types": "^4.101.3",
     "@commitlint/cli": "^20.1.0",
     "@commitlint/config-conventional": "^20.0.0",

@@ -81,7 +81,7 @@ export function ClusterView() {
           description={TRANSLATIONS.OCZEKUJACE_WIADOMOSCI}
           count={messageCount}
           header={TRANSLATIONS.WIADOMOSCI}
-          href={'/wiadomosci'}
+          href={'/messages'}
           icon={<EmailOutlinedIcon />}
         />
       </ClusterCardContainer>

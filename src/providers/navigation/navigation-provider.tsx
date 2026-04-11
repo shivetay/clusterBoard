@@ -39,7 +39,7 @@ function isPathnameMatchingHref(pathname: string, href: string): boolean {
       'invitations',
       'files',
       'inspirations',
-      'wiadomoscie',
+      'messages',
     ];
     const pathParts = pathname.split('/');
     const MIN_PATH_PARTS_FOR_SUB_ROUTE = 4; // /project/[id]/[subroute] = 4 parts
