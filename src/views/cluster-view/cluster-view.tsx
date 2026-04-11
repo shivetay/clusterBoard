@@ -6,7 +6,7 @@ import CurrencyExchangeOutlinedIcon from '@mui/icons-material/CurrencyExchangeOu
 import EmailOutlinedIcon from '@mui/icons-material/EmailOutlined';
 import TokenOutlinedIcon from '@mui/icons-material/TokenOutlined';
 import { CardComponent, LargeCard, Loader, PageContainer } from '@/components';
-import { useIsMobile } from '@/lib';
+import { useIsMobile, useNotifications } from '@/lib';
 import { TRANSLATIONS } from '@/locales';
 import { useUser } from '@/stores';
 import { ClusterCardContainer } from './cluster-view.styled';
@@ -18,7 +18,8 @@ export function ClusterView() {
   const projectsCount = user?.userInfo?.cluster_projects?.length || 0;
   const projectsLimit = user?.userInfo?.projects_limit || 0;
   const taskCount = 0;
-  const messageCount = 0;
+  const { data: notificationsData } = useNotifications();
+  const messageCount = notificationsData?.counts.messages ?? 0;
 
   if (!isLoaded) {
     return <Loader />;

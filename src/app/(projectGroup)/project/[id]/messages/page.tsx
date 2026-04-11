@@ -1,3 +1,5 @@
+import { Suspense } from 'react';
+import { Loader } from '@/components';
 import { getProjectMessagesAction } from '@/lib/actions';
 import { MessagesView } from '@/views';
 
@@ -12,5 +14,9 @@ export default async function MessagesPage({ params }: TMessagesPageProps) {
   const result = await getProjectMessagesAction(id);
   const messages = result.success ? result.data : [];
 
-  return <MessagesView projectId={id} messages={messages} />;
+  return (
+    <Suspense fallback={<Loader />}>
+      <MessagesView projectId={id} messages={messages} />
+    </Suspense>
+  );
 }

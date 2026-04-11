@@ -11,6 +11,7 @@ import { useModal } from '@/providers';
 import { MobileMenu } from '../menu';
 import LoginBar from './loginbar';
 import { NavbarContainer } from './navbar.styled';
+import { NotificationsMenu } from './notifications';
 
 export function Navbar() {
   const { t } = useTranslation();
@@ -39,6 +40,7 @@ export function Navbar() {
             <MenuOutlinedIcon onClick={handleMobileMenuOpen} />
           </CustomButton>
         )}
+        <NotificationsMenu />
         <UserButton />
       </SignedIn>
     </NavbarContainer>

@@ -3,6 +3,7 @@ export * from './comment.type';
 export * from './file.type';
 export * from './inspiration.type';
 export * from './invitation.type';
+export * from './notification.type';
 export * from './project.type';
 export * from './project-message.type';
 export * from './stage.type';

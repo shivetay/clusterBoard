@@ -295,6 +295,34 @@ export const TRANSLATIONS = {
   MESSAGES_NONE_SENT:
     'Nie wysłałeś jeszcze żadnych wiadomości w swoich projektach.',
   MESSAGES_NONE_FILTERED: 'Brak wiadomości dla wybranego projektu.',
+
+  NOTIFICATIONS_ARIA: 'Powiadomienia',
+  NOTIFICATIONS_TITLE: 'Powiadomienia',
+  NOTIFICATIONS_EMPTY: 'Brak nowych powiadomień.',
+  NOTIFICATIONS_MARK_ALL_READ: 'Oznacz wszystkie jako przeczytane',
+  NOTIFICATIONS_MARK_ONE_READ: 'Oznacz jako przeczytane',
+  NOTIFICATIONS_GO_TO_ITEM:
+    'Otwórz powiązany widok i usuń powiadomienie z listy',
+  NOTIFICATIONS_LOADING: 'Ładowanie…',
+  NOTIF_COMMENT_CREATED: '{{actor}} dodał komentarz w projekcie „{{project}}”.',
+  NOTIF_COMMENT_EDITED:
+    '{{actor}} zaktualizował komentarz w projekcie „{{project}}”.',
+  NOTIF_COMMENT_DELETED:
+    '{{actor}} usunął komentarz w projekcie „{{project}}”.',
+  NOTIF_STAGE_CREATED:
+    '{{actor}} dodał etap „{{stage}}” w projekcie „{{project}}”.',
+  NOTIF_STAGE_EDITED: '{{actor}} zaktualizował etap w projekcie „{{project}}”.',
+  NOTIF_STAGE_DELETED:
+    '{{actor}} usunął etap „{{stage}}” w projekcie „{{project}}”.',
+  NOTIF_STAGE_CLOSED:
+    '{{actor}} zamknął etap „{{stage}}” w projekcie „{{project}}”.',
+  NOTIF_PROJECT_STATUS_CHANGED:
+    'Status projektu „{{project}}” zmienił się z „{{previous_status}}” na „{{new_status}}”.',
+  NOTIF_INVESTOR_JOINED:
+    '{{actor}} dołączył do projektu jako inwestor: „{{project}}”.',
+  NOTIF_PROJECT_MESSAGE_RECEIVED:
+    '{{actor}} wysłał wiadomość w projekcie „{{project}}”.',
+  NOTIF_GENERIC: 'Nowe zdarzenie w projekcie „{{project}}”.',
 };
 
 export default TRANSLATIONS;

@@ -7,5 +7,7 @@ export * from './useEditProject';
 export * from './useEditStage';
 export * from './useEditTask';
 export * from './useGetUserProjects';
+export * from './useNotificationMutations';
+export { NOTIFICATIONS_QUERY_KEY, useNotifications } from './useNotifications';
 export * from './useProjectAccess';
 export * from './useSendInvitation';
