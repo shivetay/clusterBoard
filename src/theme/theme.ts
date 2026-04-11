@@ -522,11 +522,11 @@ export const mainTheme = createTheme({
 
 // Export glass effects and animations for use in styled components
 export {
+  backgroundGlowAnimation,
+  borderRadius,
   glassEffects,
   glowAnimation,
-  backgroundGlowAnimation,
   spacing,
-  borderRadius,
 };
 
 export default mainTheme;
