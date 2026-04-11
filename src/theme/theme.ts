@@ -1,5 +1,7 @@
+/** biome-ignore-all lint/style/noMagicNumbers: <styling> */
 'use client';
 import { createTheme } from '@mui/material';
+import { responsiveFontSizes } from '@mui/material/styles';
 
 // Design system colors based on Figma Design Guide
 const colors = {
@@ -111,7 +113,7 @@ const backgroundGlowAnimation = {
   backgroundColor: colors.backgroundCard,
 };
 
-export const mainTheme = createTheme({
+const baseTheme = createTheme({
   spacing: (factor: number) => `${spacing.sm * factor}px`,
   shape: {
     borderRadius: borderRadius.lg,
@@ -252,6 +254,11 @@ export const mainTheme = createTheme({
       styleOverrides: {
         html: {
           fontSize: '16px',
+          WebkitTextSizeAdjust: '100%',
+        },
+        body: {
+          overflowX: 'clip',
+          WebkitFontSmoothing: 'antialiased',
         },
         a: {
           textDecoration: 'none',
@@ -346,7 +353,7 @@ export const mainTheme = createTheme({
         elevation: 0,
       },
       styleOverrides: {
-        root: {
+        root: ({ theme }) => ({
           border: `1px solid ${colors.border}`,
           borderRadius: borderRadius.md,
           backgroundColor: colors.backgroundCard,
@@ -357,6 +364,9 @@ export const mainTheme = createTheme({
           '&:hover': {
             borderColor: `${colors.primary}33`, // 20% opacity on hover
           },
+          [theme.breakpoints.down('sm')]: {
+            padding: spacing.lg,
+          },
           // Animated variant with border glow
           '&.MuiCard-animated': {
             animation: 'borderGlow 3000ms ease-in-out infinite',
@@ -366,7 +376,7 @@ export const mainTheme = createTheme({
               animationPlayState: 'paused',
             },
           },
-        },
+        }),
       },
     },
     MuiCardContent: {
@@ -441,7 +451,7 @@ export const mainTheme = createTheme({
     },
     MuiDialog: {
       styleOverrides: {
-        paper: {
+        paper: ({ theme }) => ({
           borderRadius: borderRadius.sm,
           border: `1px solid ${colors.primary}33`, // 20% opacity
           backgroundColor: colors.backgroundCard,
@@ -449,8 +459,18 @@ export const mainTheme = createTheme({
           WebkitBackdropFilter: 'blur(24px) saturate(180%)', // Safari support
           padding: spacing.xl, // 24px
           maxWidth: '500px',
+          width: '100%',
+          maxHeight: 'min(90dvh, 900px)',
+          margin: theme.spacing(2),
+          boxSizing: 'border-box',
+          overflowY: 'auto',
           boxShadow: '0 20px 25px rgba(0,0,0,0.15)',
-        },
+          [theme.breakpoints.down('sm')]: {
+            margin: theme.spacing(1.5),
+            maxWidth: '100%',
+            padding: spacing.lg,
+          },
+        }),
       },
     },
     MuiBackdrop: {
@@ -518,6 +538,11 @@ export const mainTheme = createTheme({
       },
     },
   },
+});
+
+export const mainTheme = responsiveFontSizes(baseTheme, {
+  breakpoints: ['sm', 'md'],
+  factor: 1.85,
 });
 
 // Export glass effects and animations for use in styled components

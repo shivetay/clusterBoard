@@ -1,3 +1,4 @@
+/** biome-ignore-all lint/style/noMagicNumbers: <styling> */
 'use client';
 import {
   Box,
@@ -43,7 +44,17 @@ export const ModalContainer = styled(Dialog)(({ theme }) => ({
     background: theme.palette.background.bgLightTransparent,
     backdropFilter: 'blur(16px)',
     maxWidth: '450px',
+    width: '100%',
+    maxHeight: 'min(90dvh, 880px)',
+    margin: theme.spacing(2),
+    boxSizing: 'border-box',
+    overflowY: 'auto',
     border: `1px solid ${theme.palette.border.secondary}`,
+
+    [theme.breakpoints.down('sm')]: {
+      margin: theme.spacing(1.5),
+      maxWidth: `calc(100% - ${theme.spacing(3)})`,
+    },
   },
 }));
 

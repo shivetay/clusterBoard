@@ -48,13 +48,17 @@ const bgRender = (theme: Theme) => {
 };
 
 export const LayoutContainer = styled(Box)(({ theme }) => ({
-  overflow: 'hidden',
-  minHeight: '100vh',
+  overflowX: 'clip',
+  overflowY: 'visible',
+  minHeight: '100dvh',
   display: 'flex',
   flexDirection: 'column',
   backgroundImage: bgRender(theme),
   backgroundSize: '80px 140px',
   backgroundPosition: '0 0, 0 0, 40px 70px, 40px 70px, 0 0, 40px 70px',
 
-  [theme.breakpoints.down('sm')]: {},
+  [theme.breakpoints.down('sm')]: {
+    backgroundSize: '64px 112px',
+    backgroundPosition: '0 0, 0 0, 32px 56px, 32px 56px, 0 0, 32px 56px',
+  },
 }));

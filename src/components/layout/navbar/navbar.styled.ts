@@ -4,12 +4,23 @@ import { Avatar, Box, Paper, styled } from '@mui/material';
 
 export const NavbarContainer = styled(Box)(({ theme }) => ({
   display: 'flex',
+  flexWrap: 'wrap',
   justifyContent: 'flex-end',
+  alignItems: 'center',
+  gap: theme.spacing(1),
+  rowGap: theme.spacing(1.5),
   width: '100%',
+  minWidth: 0,
   paddingRight: theme.spacing(4),
 
-  [theme.breakpoints.down('sm')]: {
+  [theme.breakpoints.down('md')]: {
+    justifyContent: 'flex-end',
     paddingRight: theme.spacing(2),
+  },
+
+  [theme.breakpoints.down('sm')]: {
+    paddingRight: theme.spacing(1),
+    gap: theme.spacing(0.75),
   },
 }));
 

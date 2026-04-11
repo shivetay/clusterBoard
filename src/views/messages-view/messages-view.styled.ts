@@ -56,4 +56,9 @@ export const MessageListItem = styled(Box, {
 export const MessageThreadRoot = styled(Box)(({ theme }) => ({
   ...glassEffects.medium,
   padding: theme.spacing(2),
+  minWidth: 0,
+
+  [theme.breakpoints.down('sm')]: {
+    padding: theme.spacing(1.5),
+  },
 }));

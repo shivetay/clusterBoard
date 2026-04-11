@@ -6,14 +6,26 @@ import { glassEffects } from '@/theme';
 export const HeaderContainer = styled('header')(({ theme }) => ({
   display: 'flex',
   width: '100%',
-  height: '64px',
+  minHeight: '64px',
   alignItems: 'center',
   marginBottom: theme.spacing(6),
   padding: theme.spacing(6, 2),
+  paddingLeft: `max(${theme.spacing(2)}, env(safe-area-inset-left, 0px))`,
+  paddingRight: `max(${theme.spacing(2)}, env(safe-area-inset-right, 0px))`,
   ...glassEffects.light,
+
+  [theme.breakpoints.down('md')]: {
+    marginBottom: theme.spacing(3),
+    paddingTop: theme.spacing(3),
+    paddingBottom: theme.spacing(3),
+  },
 
   [theme.breakpoints.down('sm')]: {
     width: '100%',
-    paddingRight: 0,
+    marginBottom: theme.spacing(2),
+    paddingTop: theme.spacing(2),
+    paddingBottom: theme.spacing(2),
+    paddingLeft: `max(${theme.spacing(1.5)}, env(safe-area-inset-left, 0px))`,
+    paddingRight: `max(${theme.spacing(1.5)}, env(safe-area-inset-right, 0px))`,
   },
 }));

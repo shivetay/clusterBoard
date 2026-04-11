@@ -1,6 +1,6 @@
 import { plPL } from '@clerk/localizations';
 import { ClerkProvider } from '@clerk/nextjs';
-import type { Metadata } from 'next';
+import type { Metadata, Viewport } from 'next';
 import { Poppins } from 'next/font/google';
 import { AlertPopup, Footer, Header, Modal } from '@/components';
 import {
@@ -24,6 +24,12 @@ const poppins = Poppins({
 export const metadata: Metadata = {
   title: 'Cluster Board',
   description: 'Cluster Board',
+};
+
+export const viewport: Viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  viewportFit: 'cover',
 };
 
 export default function RootLayout({

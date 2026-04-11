@@ -92,6 +92,11 @@ export const CountHeader = styled(Typography)(({ theme }) => ({
   lineHeight: theme.typography.h3.lineHeight,
   letterSpacing: theme.typography.h3.letterSpacing,
   margin: 0,
+
+  [theme.breakpoints.down('sm')]: {
+    fontSize: theme.typography.h4.fontSize,
+    lineHeight: theme.typography.h4.lineHeight,
+  },
 }));
 
 export const CountHeaderCount = styled('span')(({ theme }) => ({
@@ -101,6 +106,11 @@ export const CountHeaderCount = styled('span')(({ theme }) => ({
   lineHeight: theme.typography.h2.lineHeight,
   letterSpacing: theme.typography.h2.letterSpacing,
   margin: 0,
+
+  [theme.breakpoints.down('sm')]: {
+    fontSize: theme.typography.h3.fontSize,
+    lineHeight: theme.typography.h3.lineHeight,
+  },
 }));
 
 export const CardHelperText = styled('span')(({ theme }) => ({
@@ -129,6 +139,17 @@ export const SpannedCountHeader = styled(Typography)(({ theme }) => ({
   fontWeight: theme.typography.h1.fontWeight,
   lineHeight: theme.typography.h1.lineHeight,
   letterSpacing: theme.typography.h1.letterSpacing,
+  wordBreak: 'break-word',
+
+  [theme.breakpoints.down('md')]: {
+    fontSize: theme.typography.h2.fontSize,
+    lineHeight: theme.typography.h2.lineHeight,
+  },
+
+  [theme.breakpoints.down('sm')]: {
+    fontSize: theme.typography.h3.fontSize,
+    lineHeight: theme.typography.h3.lineHeight,
+  },
 }));
 
 export const SpannedMaxCountHeaderCount = styled(Typography)(({ theme }) => ({
