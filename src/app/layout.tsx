@@ -8,6 +8,7 @@ import {
   I18nProvider,
   ModalProvider,
   NavigationProvider,
+  NotificationLiveSubscriber,
   QueryProvider,
 } from '@/providers';
 import { ServerUserProvider } from '@/providers/server-user-provider';
@@ -46,6 +47,7 @@ export default function RootLayout({
               <NavigationProvider>
                 <ModalProvider>
                   <QueryProvider>
+                    <NotificationLiveSubscriber />
                     <ServerUserProvider>
                       <I18nProvider locale="pl">
                         <LayoutContainer>

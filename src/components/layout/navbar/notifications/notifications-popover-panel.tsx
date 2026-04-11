@@ -22,6 +22,10 @@ import {
   NotificationsPanelTitle,
 } from './notifications.styled';
 
+const NOTIFICATIONS_LOADING_SPINNER_SIZE_PX = 28;
+/** After marking read, close the panel when this was the last item in the list. */
+const NOTIFICATION_PANEL_AUTO_CLOSE_MAX_COUNT = 1;
+
 type TNotificationsPopoverPanelProps = {
   onRequestClose: () => void;
 };
@@ -41,7 +45,8 @@ export function NotificationsPopoverPanel({
   const handleMarkOne = (id: string) => {
     deleteOne.mutate(id, {
       onSuccess: () => {
-        if (notifications.length <= 1) onRequestClose();
+        if (notifications.length <= NOTIFICATION_PANEL_AUTO_CLOSE_MAX_COUNT)
+          onRequestClose();
       },
     });
   };
@@ -84,7 +89,7 @@ export function NotificationsPopoverPanel({
       <NotificationsPanelScroll>
         {isLoading && (
           <NotificationsLoadingArea>
-            <CircularProgress size={28} />
+            <CircularProgress size={NOTIFICATIONS_LOADING_SPINNER_SIZE_PX} />
             <NotificationsLoadingCaption>
               {t(TRANSLATIONS.NOTIFICATIONS_LOADING)}
             </NotificationsLoadingCaption>

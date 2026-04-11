@@ -2,6 +2,7 @@
 import { useAuth } from '@clerk/nextjs';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import apiClient from '../apiClient';
+import { NOTIFICATIONS_QUERY_KEY } from './useNotifications';
 
 export function useDeleteNotificationMutation() {
   const queryClient = useQueryClient();
@@ -13,7 +14,7 @@ export function useDeleteNotificationMutation() {
     },
     onSuccess: async () => {
       await queryClient.invalidateQueries({
-        queryKey: ['notifications', userId],
+        queryKey: [NOTIFICATIONS_QUERY_KEY, userId],
       });
     },
   });
@@ -29,7 +30,7 @@ export function useDeleteAllNotificationsMutation() {
     },
     onSuccess: async () => {
       await queryClient.invalidateQueries({
-        queryKey: ['notifications', userId],
+        queryKey: [NOTIFICATIONS_QUERY_KEY, userId],
       });
     },
   });
