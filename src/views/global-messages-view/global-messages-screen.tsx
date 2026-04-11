@@ -2,8 +2,8 @@
 
 import { useAuth } from '@clerk/nextjs';
 import { useGetUserProjects } from '@/lib';
-import type { TMySentProjectMessage } from '@/types/project-message.type';
 import { useUser } from '@/stores';
+import type { TMySentProjectMessage } from '@/types/project-message.type';
 import { GlobalMessagesView } from './global-messages-view';
 import { useGlobalMessages } from './use-global-messages';
 

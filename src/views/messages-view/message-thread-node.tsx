@@ -6,14 +6,14 @@ import MapsUgcOutlinedIcon from '@mui/icons-material/MapsUgcOutlined';
 import { Box } from '@mui/material';
 import { useTranslation } from 'react-i18next';
 import { ActionButtons } from '@/components/features/project-stage-container/project-stage-container.styled';
-import { formatDateForInput } from '@/lib';
-import { TRANSLATIONS } from '@/locales';
-import type { TPublicProjectMessage } from '@/types';
 import {
   CommentContainer,
   CommentDetails,
   CommentText,
 } from '@/components/ui/stage-task/stage-task.styled';
+import { formatDateForInput } from '@/lib';
+import { TRANSLATIONS } from '@/locales';
+import type { TPublicProjectMessage } from '@/types';
 
 export type TMessageThreadNodeProps = {
   message: TPublicProjectMessage;

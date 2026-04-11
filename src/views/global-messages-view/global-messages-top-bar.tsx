@@ -116,10 +116,7 @@ export function GlobalMessagesTopBar({
               ...formControlHoverLabelSx,
             }}
           >
-            <InputLabel
-              id="global-messages-compose-label"
-              shrink
-            >
+            <InputLabel id="global-messages-compose-label" shrink>
               {t(TRANSLATIONS.MESSAGES_COMPOSE_PROJECT_LABEL)}
             </InputLabel>
             <Select

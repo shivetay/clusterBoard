@@ -1,6 +1,6 @@
 export * from './cluster-view';
-export * from './global-messages-view';
 export * from './FilesView';
+export * from './global-messages-view';
 export * from './inspiration-view';
 export * from './invitation-accept-view';
 export * from './main-page-view';
