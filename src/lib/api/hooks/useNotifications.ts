@@ -8,8 +8,10 @@ import apiClient from '../apiClient';
 export const NOTIFICATIONS_QUERY_KEY = 'notifications' as const;
 
 const NOTIFICATIONS_STALE_TIME_MS = 15_000;
-const SSE_REFETCH_INTERVAL = 45_000;
-const SSE_REFETCH_INTERVAL_IN_BACKGROUND = 8_000;
+/** Poll more often while the tab is visible (SSE fallback). */
+const NOTIFICATIONS_REFETCH_INTERVAL_VISIBLE_MS = 8_000;
+/** Poll less often when the tab is hidden to save work; requires `refetchIntervalInBackground`. */
+const NOTIFICATIONS_REFETCH_INTERVAL_HIDDEN_MS = 45_000;
 
 async function fetchNotifications(): Promise<INotificationsResponse> {
   const res = await apiClient.get<{
@@ -31,10 +33,10 @@ export function useNotifications() {
     refetchInterval: () => {
       if (typeof document === 'undefined') return false;
       return document.hidden
-        ? SSE_REFETCH_INTERVAL
-        : SSE_REFETCH_INTERVAL_IN_BACKGROUND;
+        ? NOTIFICATIONS_REFETCH_INTERVAL_HIDDEN_MS
+        : NOTIFICATIONS_REFETCH_INTERVAL_VISIBLE_MS;
     },
-    refetchIntervalInBackground: false,
+    refetchIntervalInBackground: true,
     refetchOnWindowFocus: true,
   });
 }
