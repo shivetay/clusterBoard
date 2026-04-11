@@ -1,0 +1,50 @@
+name: Monthly dependency updates
+
+on:
+  schedule:
+    # 09:00 UTC on the 1st of every month
+    - cron: "0 9 1 * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  update-dependencies:
+    name: Bump dependencies and open PR
+    runs-on: ubuntu-latest
+    env:
+      HUSKY: "0"
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Install pnpm
+        uses: pnpm/action-setup@v2
+        with:
+          version: 8
+
+      - name: Install dependencies
+        run: pnpm install
+
+      - name: Update packages to latest versions
+        run: pnpm update --latest
+
+      - name: Create pull request
+        uses: peter-evans/create-pull-request@v8
+        with:
+          commit-message: "chore(deps): monthly dependency updates"
+          title: "chore(deps): monthly dependency updates"
+          body: |
+            Automated monthly dependency bump (`pnpm update --latest`).
+
+            Review changelogs and CI before merging. This workflow only opens the PR; it does not merge.
+          branch: chore/deps-monthly-${{ github.run_id }}
+          delete-branch: true
