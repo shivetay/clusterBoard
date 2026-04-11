@@ -1,7 +1,7 @@
 'use client';
 
-import { useRouter } from 'next/navigation';
-import { useCallback } from 'react';
+import { useRouter, useSearchParams } from 'next/navigation';
+import { useCallback, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { CustomButton, InnerContainer, PageContainer } from '@/components';
 import {
@@ -9,6 +9,7 @@ import {
   EditProjectMessageModal,
 } from '@/components/features';
 import { deleteProjectMessageAction } from '@/lib/actions';
+import { findRootMessageIdForMessageId } from '@/lib/utils';
 import { TRANSLATIONS } from '@/locales';
 import { useAlert, useModal } from '@/providers';
 import { useUser } from '@/stores';
@@ -25,12 +26,21 @@ type TMessagesViewProps = {
 
 export function MessagesView({ projectId, messages = [] }: TMessagesViewProps) {
   const router = useRouter();
+  const searchParams = useSearchParams();
   const { t } = useTranslation();
   const { showAlert } = useAlert();
   const { setModalContent } = useModal();
   const { userInfo } = useUser();
   const { selectedRootId, setSelectedRootId, selectedThread } =
     useMessagesThreadSelection(messages);
+
+  const messageFromUrl = searchParams.get('message');
+
+  useEffect(() => {
+    if (!messageFromUrl || messages.length === 0) return;
+    const rootId = findRootMessageIdForMessageId(messages, messageFromUrl);
+    if (rootId) setSelectedRootId(rootId);
+  }, [messageFromUrl, messages, setSelectedRootId]);
 
   const handleBack = () => {
     router.push(`/project/${projectId}`);
