@@ -1,7 +1,7 @@
 'use client';
 
 import { useAuth } from '@clerk/nextjs';
-import { useGetUserProjects } from '@/lib';
+import { useGetUserProjects, userProjectsListFetchLimit } from '@/lib';
 import { useUser } from '@/stores';
 import type { TMySentProjectMessage } from '@/types/project-message.type';
 import { GlobalMessagesView } from './global-messages-view';
@@ -16,7 +16,9 @@ export function GlobalMessagesScreen({
 }: TGlobalMessagesScreenProps) {
   const { isLoaded } = useAuth();
   const { userInfo } = useUser();
-  const { data: userProjects, isLoading } = useGetUserProjects();
+  const { data: userProjects, isLoading } = useGetUserProjects(1, {
+    itemsPerPage: userProjectsListFetchLimit,
+  });
   const projectOptions =
     userProjects?.map((p) => ({
       id: p.id,

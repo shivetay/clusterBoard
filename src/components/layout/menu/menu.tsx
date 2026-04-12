@@ -1,7 +1,7 @@
 'use client';
 import { useEffect, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useGetUserProjects } from '@/lib';
+import { useGetUserProjects, userProjectsListFetchLimit } from '@/lib';
 import { useNavigation } from '@/providers';
 import { MenuButton, MenuContainer, NavLinkContainer } from './menu.styled';
 import { MENU_ITEM_LIST } from './menu-utils';
@@ -10,7 +10,9 @@ export function Menu() {
   const { setActiveElement, isItemActive, menuItems, pathname } =
     useNavigation();
   const { t } = useTranslation();
-  const { data: userProjects } = useGetUserProjects();
+  const { data: userProjects } = useGetUserProjects(1, {
+    itemsPerPage: userProjectsListFetchLimit,
+  });
 
   const isOwner = useMemo(() => {
     if (!userProjects) return false;

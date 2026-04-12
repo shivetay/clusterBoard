@@ -323,6 +323,13 @@ export const TRANSLATIONS = {
   NOTIF_PROJECT_MESSAGE_RECEIVED:
     '{{actor}} wysłał wiadomość w projekcie „{{project}}”.',
   NOTIF_GENERIC: 'Nowe zdarzenie w projekcie „{{project}}”.',
+
+  PAGINATION_ARIA: 'Nawigacja stron',
+  PAGINATION_PAGE_SUMMARY:
+    'Strona {{current}} z {{total}} · {{count}} pozycji łącznie',
+  FILES_VIEW_MODE_LIST: 'Lista',
+  FILES_VIEW_MODE_GRID: 'Siatka',
+  LIST_GRID_VIEW_TOGGLE_ARIA: 'Przełącz widok listy i siatki',
 };
 
 export default TRANSLATIONS;

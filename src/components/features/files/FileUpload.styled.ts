@@ -6,6 +6,13 @@ export const FileListItem = styled(ListItem)(() => ({
   ...glassEffects.medium,
 }));
 
+/** Grid / non-list layout: same look as {@link FileListItem} without `<li>` semantics. */
+export const FileGridCard = styled(Box)(({ theme }) => ({
+  ...glassEffects.medium,
+  padding: theme.spacing(1.5, 2),
+  borderRadius: theme.shape.borderRadius,
+}));
+
 export const DragContainer = styled(Box, {
   shouldForwardProp: (prop) => prop !== 'isDragActive',
 })<{ isDragActive: boolean }>(({ theme, isDragActive }) => ({

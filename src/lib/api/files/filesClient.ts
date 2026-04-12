@@ -1,4 +1,5 @@
 import apiClient from '@/lib/api/apiClient';
+import type { PaginationMeta } from '@/types';
 import type {
   FilesListResponse,
   FileUploadResponse,
@@ -68,14 +69,24 @@ export const uploadFile = async (
 };
 
 /**
- * Get all files for a project
+ * Get one page of files for a project (metadata only).
  */
-export const getProjectFiles = async (projectId: string): Promise<IFile[]> => {
+export const getProjectFiles = async (
+  projectId: string,
+  query?: { page: number; limit: number },
+): Promise<{ files: IFile[]; pagination: PaginationMeta }> => {
   const response = await apiClient.get<FilesListResponse>(
     `/files/project/${projectId}`,
+    {
+      params: query,
+    },
   );
 
-  return response.data.data.files;
+  const body = response.data;
+  return {
+    files: body.data.files,
+    pagination: body.pagination,
+  };
 };
 
 /**

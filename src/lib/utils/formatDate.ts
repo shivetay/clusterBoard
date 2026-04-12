@@ -23,6 +23,19 @@ export const formatDate = (dateString: string | undefined): string => {
  * @param dateString - Date string in ISO format or any valid date string
  * @returns Formatted date string in YYYY-MM-DD format or empty string if invalid
  */
+/**
+ * Short date for UI lists (follows active locale when `locale` is set).
+ * When `locale` is omitted, uses the runtime default (browser/OS).
+ */
+export function formatDisplayLocaleDate(
+  input: string | number | Date,
+  locale?: string | string[],
+): string {
+  const date = input instanceof Date ? input : new Date(input);
+  if (Number.isNaN(date.getTime())) return '';
+  return date.toLocaleDateString(locale);
+}
+
 export const formatDateForInput = (dateString: string | undefined): string => {
   if (!dateString) return '';
 

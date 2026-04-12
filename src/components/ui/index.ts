@@ -3,6 +3,8 @@ export * from './card';
 export * from './form';
 export * from './form-components';
 export * from './hex-decor';
+export * from './list-grid-view-toggle';
 export * from './loader';
 export * from './page-header';
+export * from './pagination';
 export * from './stage-task';

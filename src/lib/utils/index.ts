@@ -4,4 +4,5 @@ export * from './messageThreadNavigation';
 export * from './notificationLabels';
 export * from './notificationNavigation';
 export * from './taskNames';
+export * from './useFormatDisplayLocaleDate';
 export * from './useIsMobile';

@@ -1,21 +1,40 @@
 'use client';
+import { Box } from '@mui/material';
 import { useRouter } from 'next/navigation';
 import { useTranslation } from 'react-i18next';
-import { CustomButton, InnerContainer, PageContainer } from '@/components';
-import { FilesList, FileUpload } from '@/components/features';
+import {
+  CollectionPagination,
+  CustomButton,
+  FilesGrid,
+  FilesList,
+  FileUpload,
+  InnerContainer,
+  ListGridViewToggle,
+  PageContainer,
+} from '@/components';
+import type { FilesViewMode } from '@/lib/pagination/constants';
 import { TRANSLATIONS } from '@/locales';
-import type { IFile } from '@/types';
+import type { IFile, PaginationMeta } from '@/types';
 
 type TFilesViewProps = {
   projectId: string;
   files?: IFile[];
+  pagination: PaginationMeta;
+  viewMode: FilesViewMode;
 };
-export function FilesView({ projectId, files }: TFilesViewProps) {
+
+export function FilesView({
+  projectId,
+  files,
+  pagination,
+  viewMode,
+}: TFilesViewProps) {
   const router = useRouter();
   const { t } = useTranslation();
   const handleBack = () => {
     router.push(`/project/${projectId}`);
   };
+
   return (
     <PageContainer>
       <CustomButton
@@ -28,7 +47,15 @@ export function FilesView({ projectId, files }: TFilesViewProps) {
       </CustomButton>
       <InnerContainer pageTitle={TRANSLATIONS.FILES}>
         <FileUpload projectId={projectId} />
-        <FilesList files={files} />
+        <Box sx={{ display: 'flex', flexDirection: 'column' }}>
+          <ListGridViewToggle viewMode={viewMode} />
+          {viewMode === 'grid' ? (
+            <FilesGrid files={files} />
+          ) : (
+            <FilesList files={files} />
+          )}
+          <CollectionPagination pagination={pagination} />
+        </Box>
       </InnerContainer>
     </PageContainer>
   );

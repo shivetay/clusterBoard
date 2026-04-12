@@ -3,7 +3,8 @@
 import { revalidatePath } from 'next/cache';
 import { deleteFile, uploadFile } from '@/lib/api/files/filesClient';
 import { serverGet } from '@/lib/api/projects/serverApiClient';
-import type { TFileAccessLevel } from '@/types';
+import { emptyPaginationMeta } from '@/lib/pagination/constants';
+import type { IFile, TFileAccessLevel } from '@/types';
 import type { FilesListResponse } from '@/types/file.type';
 
 export async function uploadFileAction(
@@ -32,14 +33,23 @@ export async function deleteFileAction(fileId: string) {
   }
 }
 
-export async function getProjectFilesAction(projectId: string) {
+export async function getProjectFilesAction(
+  projectId: string,
+  request: { currentPage: number; itemsPerPage: number },
+) {
   try {
     const response = await serverGet<FilesListResponse>(
-      `/files/project/${projectId}`,
+      `/files/project/${projectId}?page=${request.currentPage}&limit=${request.itemsPerPage}`,
     );
     const files = response.data?.files || [];
-    return { success: true, data: files };
+    const pagination = response.pagination ?? emptyPaginationMeta;
+    return { success: true as const, data: files, pagination };
   } catch (error) {
-    return { success: false, error };
+    return {
+      success: false as const,
+      error,
+      data: [] as IFile[],
+      pagination: emptyPaginationMeta,
+    };
   }
 }

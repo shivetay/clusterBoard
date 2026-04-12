@@ -1,3 +1,5 @@
+import type { PaginationMeta } from './pagination.types';
+
 export interface IFile {
   _id: string;
   file_name: string;
@@ -41,5 +43,6 @@ export interface FilesListResponse {
   data: {
     files: IFile[];
   };
+  pagination: PaginationMeta;
 }
 export type TFileAccessLevel = 'owner' | 'investor' | 'public';

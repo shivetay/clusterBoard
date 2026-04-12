@@ -7,7 +7,7 @@ import {
   Image,
   InsertDriveFile,
 } from '@mui/icons-material';
-import { Box, List, ListItemText, Typography } from '@mui/material';
+import { Box, ListItemText, Typography } from '@mui/material';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -17,13 +17,13 @@ import { TRANSLATIONS } from '@/locales/pl';
 import { useAlert } from '@/providers';
 import type { IFile } from '@/types';
 import { ActionButtons } from '../project-stage-container/project-stage-container.styled';
-import { FileListItem } from './FileUpload.styled';
+import { FileGridCard } from './FileUpload.styled';
 
-interface FilesListProps {
+type FilesGridProps = {
   files?: IFile[];
-}
+};
 
-export function FilesList({ files }: FilesListProps) {
+export function FilesGrid({ files }: FilesGridProps) {
   const router = useRouter();
   const { showAlert } = useAlert();
   const { t } = useTranslation();
@@ -32,6 +32,7 @@ export function FilesList({ files }: FilesListProps) {
   const [downloadingFileId, setDownloadingFileId] = useState<string | null>(
     null,
   );
+
   const getFileIcon = (mimeType: string) => {
     if (mimeType.startsWith('image/')) return <Image />;
     if (mimeType.includes('pdf') || mimeType.includes('document'))
@@ -87,43 +88,61 @@ export function FilesList({ files }: FilesListProps) {
   }
 
   return (
-    <List>
+    <Box
+      sx={{
+        display: 'grid',
+        gridTemplateColumns: {
+          xs: '1fr',
+          sm: 'repeat(2, minmax(0, 1fr))',
+          md: 'repeat(3, minmax(0, 1fr))',
+        },
+        gap: 2,
+        mt: 0,
+      }}
+    >
       {files.map((file) => (
-        <FileListItem key={file._id}>
-          {getFileIcon(file.mime_type)}
-          <ListItemText
-            primary={file.file_name}
-            secondary={
-              <Box sx={{ display: 'flex', gap: 1, mt: 0.5 }}>
-                <Typography variant="caption" color="text.secondary">
-                  {formatFileSize(file.file_size)}
-                </Typography>
-                <Typography variant="caption" color="text.secondary">
-                  • {formatDisplayDate(file.uploaded_at)}
-                </Typography>
-                <Typography variant="caption" color="text.secondary">
-                  • {file.uploaded_by_name}
-                </Typography>
-              </Box>
-            }
-            sx={{ ml: 2 }}
-          />
-          <Box sx={{ display: 'flex', gap: 1 }}>
-            <ActionButtons
-              disabled={downloadingFileId === file._id}
-              startIcon={<Download />}
-              onClick={() => handleDownload(file._id)}
-            />
-            <ActionButtons
-              disabled={deletingFileId === file._id}
-              startIcon={<Delete />}
-              onClick={() => handleDelete(file._id)}
-            />
-          </Box>
-        </FileListItem>
+        <Box key={file._id}>
+          <FileGridCard sx={{ display: 'flex', flexDirection: 'column' }}>
+            <Box sx={{ display: 'flex', alignItems: 'flex-start', gap: 1 }}>
+              {getFileIcon(file.mime_type)}
+              <ListItemText
+                primary={
+                  <Typography variant="body2" noWrap title={file.file_name}>
+                    {file.file_name}
+                  </Typography>
+                }
+                secondary={
+                  <Box
+                    sx={{ display: 'flex', flexDirection: 'column', gap: 0.25 }}
+                  >
+                    <Typography variant="caption" color="text.secondary">
+                      {formatFileSize(file.file_size)}
+                    </Typography>
+                    <Typography variant="caption" color="text.secondary">
+                      {formatDisplayDate(file.uploaded_at)}
+                    </Typography>
+                    <Typography variant="caption" color="text.secondary" noWrap>
+                      {file.uploaded_by_name}
+                    </Typography>
+                  </Box>
+                }
+              />
+            </Box>
+            <Box sx={{ display: 'flex', gap: 1, mt: 1 }}>
+              <ActionButtons
+                disabled={downloadingFileId === file._id}
+                startIcon={<Download />}
+                onClick={() => handleDownload(file._id)}
+              />
+              <ActionButtons
+                disabled={deletingFileId === file._id}
+                startIcon={<Delete />}
+                onClick={() => handleDelete(file._id)}
+              />
+            </Box>
+          </FileGridCard>
+        </Box>
       ))}
-    </List>
+    </Box>
   );
 }
-
-export default FilesList;

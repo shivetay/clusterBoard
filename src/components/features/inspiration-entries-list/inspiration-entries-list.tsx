@@ -15,15 +15,17 @@ import { deleteFile, downloadFile } from '@/lib/api/files/filesClient';
 import { useFormatDisplayLocaleDate } from '@/lib/utils';
 import { TRANSLATIONS } from '@/locales/pl';
 import { useAlert } from '@/providers';
-import type { IFile } from '@/types';
+import type { TInspirationItem } from '@/types';
+import { FileListItem } from '../files/FileUpload.styled';
 import { ActionButtons } from '../project-stage-container/project-stage-container.styled';
-import { FileListItem } from './FileUpload.styled';
 
-interface FilesListProps {
-  files?: IFile[];
-}
+type InspirationEntriesListProps = {
+  entries?: TInspirationItem[];
+};
 
-export function FilesList({ files }: FilesListProps) {
+export function InspirationEntriesList({
+  entries,
+}: InspirationEntriesListProps) {
   const router = useRouter();
   const { showAlert } = useAlert();
   const { t } = useTranslation();
@@ -32,6 +34,7 @@ export function FilesList({ files }: FilesListProps) {
   const [downloadingFileId, setDownloadingFileId] = useState<string | null>(
     null,
   );
+
   const getFileIcon = (mimeType: string) => {
     if (mimeType.startsWith('image/')) return <Image />;
     if (mimeType.includes('pdf') || mimeType.includes('document'))
@@ -76,7 +79,7 @@ export function FilesList({ files }: FilesListProps) {
     }
   };
 
-  if (!files || files.length === 0) {
+  if (!entries || entries.length === 0) {
     return (
       <Box sx={{ p: 3, textAlign: 'center' }}>
         <Typography variant="body2" color="text.secondary">
@@ -88,22 +91,38 @@ export function FilesList({ files }: FilesListProps) {
 
   return (
     <List>
-      {files.map((file) => (
+      {entries.map(({ title, file }) => (
         <FileListItem key={file._id}>
           {getFileIcon(file.mime_type)}
           <ListItemText
-            primary={file.file_name}
+            primary={
+              <Typography variant="subtitle2" component="span">
+                {title}
+              </Typography>
+            }
             secondary={
-              <Box sx={{ display: 'flex', gap: 1, mt: 0.5 }}>
-                <Typography variant="caption" color="text.secondary">
-                  {formatFileSize(file.file_size)}
+              <Box
+                sx={{
+                  display: 'flex',
+                  flexDirection: 'column',
+                  gap: 0.25,
+                  mt: 0.5,
+                }}
+              >
+                <Typography variant="body2" color="text.primary">
+                  {file.file_name}
                 </Typography>
-                <Typography variant="caption" color="text.secondary">
-                  • {formatDisplayDate(file.uploaded_at)}
-                </Typography>
-                <Typography variant="caption" color="text.secondary">
-                  • {file.uploaded_by_name}
-                </Typography>
+                <Box sx={{ display: 'flex', gap: 1, flexWrap: 'wrap' }}>
+                  <Typography variant="caption" color="text.secondary">
+                    {formatFileSize(file.file_size)}
+                  </Typography>
+                  <Typography variant="caption" color="text.secondary">
+                    • {formatDisplayDate(file.uploaded_at)}
+                  </Typography>
+                  <Typography variant="caption" color="text.secondary">
+                    • {file.uploaded_by_name}
+                  </Typography>
+                </Box>
               </Box>
             }
             sx={{ ml: 2 }}
@@ -125,5 +144,3 @@ export function FilesList({ files }: FilesListProps) {
     </List>
   );
 }
-
-export default FilesList;
