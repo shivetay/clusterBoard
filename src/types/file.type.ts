@@ -1,3 +1,5 @@
+import type { PaginationMeta } from './pagination.types';
+
 export interface IFile {
   _id: string;
   file_name: string;
@@ -34,8 +36,6 @@ export interface FileUploadResponse {
   };
   message: string;
 }
-
-import type { PaginationMeta } from './pagination.types';
 
 export interface FilesListResponse {
   status: string;

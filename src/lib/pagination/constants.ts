@@ -12,6 +12,12 @@ export const emptyPaginationMeta: PaginationMeta = {
 /** Page size for the authenticated user's project list (must match backend default). */
 export const userProjectsPageSize = 6;
 
+/**
+ * Larger page size for client hooks that need the full project list (nav, filters).
+ * Must not exceed backend `maxItemsPerPage` for `/projects/user/:id`.
+ */
+export const userProjectsListFetchLimit = 100;
+
 export const filesListPageSize = 10;
 
 export const filesGridPageSize = 9;

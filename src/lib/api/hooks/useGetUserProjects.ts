@@ -2,6 +2,7 @@
 import { useQuery } from '@tanstack/react-query';
 import {
   emptyPaginationMeta,
+  userProjectsListFetchLimit,
   userProjectsPageSize,
 } from '@/lib/pagination/constants';
 import { useUser } from '@/stores';
@@ -52,8 +53,17 @@ const mapStatus = (
   }
 };
 
+type UseGetUserProjectsOptions = {
+  /**
+   * When set, requests this many items per page (e.g. for navigation).
+   * Capped at {@link userProjectsListFetchLimit}.
+   */
+  itemsPerPage?: number;
+};
+
 export const useGetUserProjects = (
   currentPage: number = 1,
+  options?: UseGetUserProjectsOptions,
 ): {
   data: IProjectData[];
   pagination: PaginationMeta;
@@ -62,19 +72,23 @@ export const useGetUserProjects = (
 } => {
   const user = useUser();
   const userId = user.userInfo?.id;
+  const itemsPerPage = Math.min(
+    options?.itemsPerPage ?? userProjectsPageSize,
+    userProjectsListFetchLimit,
+  );
 
   const { data, isLoading, error } = useQuery<{
     projects: IProjectData[];
     pagination: PaginationMeta;
   }>({
-    queryKey: ['user-projects', userId, currentPage],
+    queryKey: ['user-projects', userId, currentPage, itemsPerPage],
     queryFn: async () => {
       const response = await apiClient.get<UserProjectsApiResponse>(
         `/projects/user/${userId}`,
         {
           params: {
             page: currentPage,
-            limit: userProjectsPageSize,
+            limit: itemsPerPage,
           },
         },
       );
