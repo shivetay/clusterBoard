@@ -7,16 +7,36 @@ import { glassEffects, glowAnimation } from '@/theme';
 
 // Hero Section
 export const HeroSection = styled('section')(({ theme }) => ({
-  padding: theme.spacing(10, 4),
-  [theme.breakpoints.down('md')]: {
+  padding: theme.spacing(6, 2),
+  [theme.breakpoints.up('sm')]: {
+    padding: theme.spacing(8, 3),
+  },
+  [theme.breakpoints.up('md')]: {
     padding: theme.spacing(10, 4),
   },
 }));
 
-export const HeroContainer = styled(Container)(() => ({
+export const HeroContainer = styled(Container)(({ theme }) => ({
   maxWidth: '1152px', // max-w-6xl
   margin: '0 auto',
   display: 'flex',
+  flexDirection: 'column',
+  alignItems: 'stretch',
+  gap: theme.spacing(6),
+  [theme.breakpoints.up('md')]: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: theme.spacing(8),
+  },
+  '& > *': {
+    flex: '1 1 auto',
+    minWidth: 0,
+    width: '100%',
+    [theme.breakpoints.up('md')]: {
+      flex: '1 1 0',
+      width: 'auto',
+    },
+  },
 }));
 
 export const HeroContent = styled(Box)(({ theme }) => ({
@@ -64,8 +84,10 @@ export const HeroActions = styled(Box)(({ theme }) => ({
 
 export const HeroFeatures = styled(Box)(({ theme }) => ({
   display: 'flex',
+  flexWrap: 'wrap',
   alignItems: 'center',
-  gap: theme.spacing(6),
+  columnGap: theme.spacing(6),
+  rowGap: theme.spacing(2),
   paddingTop: theme.spacing(4),
   fontSize: '0.875rem', // text-sm
   color: theme.palette.text.secondary,
@@ -84,6 +106,15 @@ export const HeroImageContainer = styled(Box)(() => ({
 export const HeroImageCard = styled(Box)(({ theme }) => ({
   borderRadius: theme.spacing(3), // rounded-xl
   overflow: 'hidden',
+  width: '100%',
+  maxWidth: 500,
+  marginLeft: 'auto',
+  marginRight: 'auto',
+  '& img': {
+    width: '100%',
+    height: 'auto',
+    display: 'block',
+  },
   ...glassEffects.strong,
   ...glowAnimation,
 }));
@@ -126,7 +157,13 @@ export const HeroStatLabel = styled(Typography)(({ theme }) => ({
 
 // Why Section
 export const WhySection = styled('section')(({ theme }) => ({
-  padding: theme.spacing(10, 4),
+  padding: theme.spacing(6, 2),
+  [theme.breakpoints.up('sm')]: {
+    padding: theme.spacing(8, 3),
+  },
+  [theme.breakpoints.up('md')]: {
+    padding: theme.spacing(10, 4),
+  },
 }));
 
 export const WhyContainer = styled(Container)({
@@ -163,15 +200,31 @@ export const PricingTitleSpan = styled('span')(({ theme }) => ({
 
 export const WhyGrid = styled(Box)(({ theme }) => ({
   display: 'flex',
+  flexDirection: 'column',
   gap: theme.spacing(2),
+  [theme.breakpoints.up('md')]: {
+    flexDirection: 'row',
+  },
+  '& > *': {
+    flex: '1 1 auto',
+    minWidth: 0,
+    width: '100%',
+    [theme.breakpoints.up('md')]: {
+      flex: '1 1 0',
+      width: 'auto',
+    },
+  },
 }));
 
 export const WhyCard = styled(Box)(({ theme }) => ({
-  padding: theme.spacing(6),
+  padding: theme.spacing(4),
   ...glassEffects.strong,
   display: 'flex',
   flexDirection: 'column',
   gap: theme.spacing(3),
+  [theme.breakpoints.up('sm')]: {
+    padding: theme.spacing(6),
+  },
 }));
 
 export const WhyCardIcon = styled(Box)(({ theme }) => ({
@@ -202,7 +255,13 @@ export const WhyCardDescription = styled(Typography)(({ theme }) => ({
 
 // Modules Section
 export const ModulesSection = styled('section')(({ theme }) => ({
-  padding: theme.spacing(20, 4),
+  padding: theme.spacing(10, 2),
+  [theme.breakpoints.up('sm')]: {
+    padding: theme.spacing(14, 3),
+  },
+  [theme.breakpoints.up('md')]: {
+    padding: theme.spacing(20, 4),
+  },
 }));
 
 export const ModulesHeader = styled(Box)(({ theme }) => ({
@@ -233,13 +292,28 @@ export const ModulesDescription = styled(Typography)(({ theme }) => ({
 
 export const ModulesGrid = styled(Box)(({ theme }) => ({
   display: 'flex',
+  flexDirection: 'column',
   gap: theme.spacing(4),
   margin: '0 auto',
   alignItems: 'stretch',
+  [theme.breakpoints.up('lg')]: {
+    flexDirection: 'row',
+    flexWrap: 'nowrap',
+  },
+  '& > *': {
+    display: 'flex',
+    minWidth: 0,
+    width: '100%',
+    flex: '1 1 auto',
+    [theme.breakpoints.up('lg')]: {
+      flex: '1 1 0',
+      width: 'auto',
+    },
+  },
 }));
 
 export const ModuleCard = styled(Box)(({ theme }) => ({
-  padding: theme.spacing(8),
+  padding: theme.spacing(4),
   ...glassEffects.strong,
   display: 'flex',
   flexDirection: 'column',
@@ -248,6 +322,12 @@ export const ModuleCard = styled(Box)(({ theme }) => ({
   width: '100%',
   height: '100%',
   minWidth: 0,
+  [theme.breakpoints.up('sm')]: {
+    padding: theme.spacing(6),
+  },
+  [theme.breakpoints.up('md')]: {
+    padding: theme.spacing(8),
+  },
   '&:hover': {
     borderColor: `${theme.palette.primary.main}80`, // 50% opacity
   },
@@ -295,7 +375,13 @@ export const ModuleCardFeature = styled(Box)(({ theme }) => ({
 
 // Pricing Section
 export const PricingSection = styled('section')(({ theme }) => ({
-  padding: theme.spacing(10, 4),
+  padding: theme.spacing(6, 2),
+  [theme.breakpoints.up('sm')]: {
+    padding: theme.spacing(8, 3),
+  },
+  [theme.breakpoints.up('md')]: {
+    padding: theme.spacing(10, 4),
+  },
 }));
 
 export const PricingHeader = styled(Box)(({ theme }) => ({
@@ -326,16 +412,39 @@ export const PricingDescription = styled(Typography)(({ theme }) => ({
 
 export const PricingGrid = styled(Box)(({ theme }) => ({
   display: 'flex',
+  flexDirection: 'column',
   gap: theme.spacing(2),
   margin: '0 auto',
+  alignItems: 'stretch',
+  [theme.breakpoints.up('lg')]: {
+    flexDirection: 'row',
+    flexWrap: 'nowrap',
+  },
+  '& > *': {
+    display: 'flex',
+    minWidth: 0,
+    width: '100%',
+    flex: '1 1 auto',
+    [theme.breakpoints.up('lg')]: {
+      flex: '1 1 0',
+      width: 'auto',
+    },
+  },
 }));
 
 export const PricingCard = styled(Box)(({ theme }) => ({
-  padding: theme.spacing(8),
+  padding: theme.spacing(4),
   ...glassEffects.strong,
   display: 'flex',
   flexDirection: 'column',
   gap: theme.spacing(6),
+  width: '100%',
+  [theme.breakpoints.up('sm')]: {
+    padding: theme.spacing(6),
+  },
+  [theme.breakpoints.up('md')]: {
+    padding: theme.spacing(8),
+  },
 }));
 
 export const PricingCardFeatured = styled(PricingCard)(({ theme }) => ({
@@ -389,9 +498,12 @@ export const PricingCardPriceAmount = styled(Box)(({ theme }) => ({
 }));
 
 export const PricingCardPriceValue = styled(Typography)(({ theme }) => ({
-  fontSize: '3rem', // text-5xl
+  fontSize: '2.25rem',
   fontWeight: 700,
   color: theme.palette.text.primary,
+  [theme.breakpoints.up('sm')]: {
+    fontSize: '3rem', // text-5xl
+  },
 }));
 
 export const PricingCardPriceCurrency = styled(Typography)(({ theme }) => ({
