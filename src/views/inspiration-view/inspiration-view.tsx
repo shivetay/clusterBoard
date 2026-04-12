@@ -1,6 +1,6 @@
 'use client';
 
-import { Box } from '@mui/material';
+import { Box, Typography } from '@mui/material';
 import { useRouter } from 'next/navigation';
 import { useTranslation } from 'react-i18next';
 import {
@@ -14,7 +14,9 @@ import {
 } from '@/components';
 import { PageContainer } from '@/components/layout/page-container';
 import type { FilesViewMode } from '@/lib/pagination/constants';
+import { formatSubscriptionLimit } from '@/lib/utils';
 import { TRANSLATIONS } from '@/locales';
+import { useUser } from '@/stores';
 import type { PaginationMeta, TInspirationItem } from '@/types';
 
 type TInspirationViewProps = {
@@ -32,6 +34,15 @@ export function InspirationView({
 }: TInspirationViewProps) {
   const router = useRouter();
   const { t } = useTranslation();
+  const { userInfo } = useUser();
+  const sub = userInfo?.subscription;
+  const inspirationsLine =
+    sub?.limits?.max_inspirations != null
+      ? formatSubscriptionLimit(
+          sub.usage.inspirations_used,
+          sub.limits.max_inspirations,
+        )
+      : null;
   const handleBack = () => {
     router.push(`/project/${projectId}`);
   };
@@ -49,6 +60,12 @@ export function InspirationView({
         {t(TRANSLATIONS.BACK)}
       </CustomButton>
       <InnerContainer pageTitle={TRANSLATIONS.INSPIRATION_TITLE}>
+        {inspirationsLine ? (
+          <Typography variant="caption" sx={{ display: 'block', mb: 1 }}>
+            {t(TRANSLATIONS.SUBSCRIPTION_INSPIRATIONS_LABEL)}:{' '}
+            {inspirationsLine}
+          </Typography>
+        ) : null}
         <FileUpload projectId={projectId} isInspiration />
         <Box sx={{ display: 'flex', flexDirection: 'column' }}>
           <ListGridViewToggle viewMode={viewMode} />

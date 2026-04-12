@@ -38,8 +38,12 @@ export function ProjectsView() {
   } = useGetUserProjects(currentPage);
   const { isLoaded } = useAuth();
 
-  const projectsCount = userInfo?.cluster_projects?.length || 0;
-  const projectsLimit = userInfo?.projects_limit || 0;
+  const projectsUsed =
+    userInfo?.subscription?.usage?.active_owned_projects ?? 0;
+  const projectsLimit =
+    userInfo?.subscription?.limits?.max_projects ??
+    userInfo?.projects_limit ??
+    0;
   const handleModalOpen = () => {
     setModalContent(<ProjectModal type="add-project" />);
   };
@@ -50,7 +54,7 @@ export function ProjectsView() {
         <ActionContainerHeader>
           <PageHeader title={TRANSLATIONS.AKTYWNE_PROJEKTY} />
           <ProjectsCount>
-            {projectsCount}/{projectsLimit}
+            {projectsUsed}/{projectsLimit}
           </ProjectsCount>
         </ActionContainerHeader>
         <ProjectAddButton onClick={handleModalOpen}>

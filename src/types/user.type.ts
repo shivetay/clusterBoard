@@ -1,4 +1,5 @@
 import type { IProjectData } from './project.type';
+import type { IUserSubscription } from './subscription.type';
 
 export interface IUserData {
   id: string;
@@ -7,4 +8,5 @@ export interface IUserData {
   role: string;
   cluster_projects: Pick<IProjectData, 'id'>[];
   projects_limit: number;
+  subscription?: IUserSubscription;
 }

@@ -332,6 +332,10 @@ export const TRANSLATIONS = {
   LIST_GRID_VIEW_TOGGLE_ARIA: 'Przełącz widok listy i siatki',
   PROJECT_PAGES_NAV_ARIA:
     'Nawigacja w projekcie — pliki, inspiracje, wiadomości',
+
+  SUBSCRIPTION_FILES_LABEL: 'Wykorzystanie limitu plików',
+  SUBSCRIPTION_INSPIRATIONS_LABEL: 'Wykorzystanie limitu inspiracji',
+  SUBSCRIPTION_INVITATIONS_LABEL: 'Inwestorzy i oczekujące zaproszenia',
 };
 
 export default TRANSLATIONS;

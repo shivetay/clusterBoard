@@ -1,5 +1,5 @@
 'use client';
-import { Box } from '@mui/material';
+import { Box, Typography } from '@mui/material';
 import { useRouter } from 'next/navigation';
 import { useTranslation } from 'react-i18next';
 import {
@@ -13,7 +13,9 @@ import {
   PageContainer,
 } from '@/components';
 import type { FilesViewMode } from '@/lib/pagination/constants';
+import { formatSubscriptionLimit } from '@/lib/utils';
 import { TRANSLATIONS } from '@/locales';
+import { useUser } from '@/stores';
 import type { IFile, PaginationMeta } from '@/types';
 
 type TFilesViewProps = {
@@ -31,6 +33,12 @@ export function FilesView({
 }: TFilesViewProps) {
   const router = useRouter();
   const { t } = useTranslation();
+  const { userInfo } = useUser();
+  const sub = userInfo?.subscription;
+  const filesLine =
+    sub?.limits?.max_files != null
+      ? formatSubscriptionLimit(sub.usage.files_used, sub.limits.max_files)
+      : null;
   const handleBack = () => {
     router.push(`/project/${projectId}`);
   };
@@ -46,6 +54,11 @@ export function FilesView({
         {t(TRANSLATIONS.BACK)}
       </CustomButton>
       <InnerContainer pageTitle={TRANSLATIONS.FILES}>
+        {filesLine ? (
+          <Typography variant="caption" sx={{ display: 'block', mb: 1 }}>
+            {t(TRANSLATIONS.SUBSCRIPTION_FILES_LABEL)}: {filesLine}
+          </Typography>
+        ) : null}
         <FileUpload projectId={projectId} />
         <Box sx={{ display: 'flex', flexDirection: 'column' }}>
           <ListGridViewToggle viewMode={viewMode} />
