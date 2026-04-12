@@ -2,9 +2,18 @@
 import { useEffect, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useGetUserProjects, userProjectsListFetchLimit } from '@/lib';
+import { TRANSLATIONS } from '@/locales';
 import { useNavigation } from '@/providers';
-import { MenuButton, MenuContainer, NavLinkContainer } from './menu.styled';
+import {
+  MenuButton,
+  MenuContainer,
+  MobileProjectMenuStrip,
+  NavLinkContainer,
+} from './menu.styled';
 import { MENU_ITEM_LIST } from './menu-utils';
+import { useProjectMenuOwner } from './use-project-menu-owner';
+
+const MENU_ICON_MARGIN_BOTTOM = 0.25;
 
 export function Menu() {
   const { setActiveElement, isItemActive, menuItems, pathname } =
@@ -14,34 +23,15 @@ export function Menu() {
     itemsPerPage: userProjectsListFetchLimit,
   });
 
-  const isOwner = useMemo(() => {
-    if (!userProjects) return false;
-
-    // Extract project ID from pathname if we're on a project detail page
-    const projectIdMatch = pathname.match(/^\/project\/([^/]+)/);
-    if (projectIdMatch) {
-      const currentProjectId = projectIdMatch[1];
-      // Find the specific project being viewed
-      const currentProject = userProjects.find(
-        (project) => project.id === currentProjectId,
-      );
-      // Check if user is owner of THIS specific project
-      return (
-        currentProject?.is_owner || currentProject?.user_access === 'owner'
-      );
-    }
-
-    // For other pages (e.g., /projects list), check if user is owner of ANY project
-    return userProjects.some(
-      (project) => project.is_owner || project.user_access === 'owner',
-    );
-  }, [userProjects, pathname]);
+  const isOwner = useProjectMenuOwner(pathname, userProjects);
 
   // Extract project ID from pathname for dynamic routes
   const currentProjectId = useMemo(() => {
     const projectIdMatch = pathname.match(/^\/project\/([^/]+)/);
     return projectIdMatch ? projectIdMatch[1] : null;
   }, [pathname]);
+
+  const isProjectRoute = Boolean(currentProjectId);
 
   const filteredMenuItems = useMemo(
     () =>
@@ -76,30 +66,76 @@ export function Menu() {
     setActiveElement(newActiveId);
   }, [filteredMenuItems, isItemActive, setActiveElement]);
 
-  return (
-    <MenuContainer>
-      {filteredMenuItems.map((item) => {
-        // Skip rendering links that still have [id] placeholder (no project ID available)
-        if (item.href.includes('[id]')) {
-          return null;
+  const renderMenuLink = (
+    item: (typeof filteredMenuItems)[number],
+    layout: 'desktopBar' | 'mobileStrip',
+  ) => {
+    if (item.href.includes('[id]')) {
+      return null;
+    }
+
+    const isActive = isItemActive(item.href);
+    const isStrip = layout === 'mobileStrip';
+
+    return (
+      <NavLinkContainer
+        key={item.id}
+        href={item.href}
+        sx={
+          isStrip
+            ? {
+                width: '100%',
+                minWidth: 0,
+                display: 'block',
+                textDecoration: 'none',
+                padding: 0,
+              }
+            : { textDecoration: 'none' }
         }
+      >
+        <MenuButton
+          onClick={() => setActiveElement(item.id)}
+          active={isActive}
+          startIcon={item.icon}
+          sx={
+            isStrip
+              ? (theme) => ({
+                  width: '100%',
+                  minWidth: 0,
+                  whiteSpace: 'normal',
+                  textAlign: 'center',
+                  py: 0.75,
+                  px: 0.5,
+                  flexDirection: 'column',
+                  fontSize: theme.typography.caption.fontSize,
+                  lineHeight: theme.typography.caption.lineHeight,
+                  '& .MuiButton-startIcon': {
+                    margin: 0,
+                    marginBottom: theme.spacing(MENU_ICON_MARGIN_BOTTOM),
+                  },
+                })
+              : undefined
+          }
+        >
+          {t(item.label)}
+        </MenuButton>
+      </NavLinkContainer>
+    );
+  };
 
-        const isActive = isItemActive(item.href);
-
-        return (
-          <NavLinkContainer key={item.id} href={item.href}>
-            <MenuButton
-              onClick={() => setActiveElement(item.id)}
-              active={isActive}
-              startIcon={item.icon}
-              key={item.id}
-            >
-              {t(item.label)}
-            </MenuButton>
-          </NavLinkContainer>
-        );
-      })}
-    </MenuContainer>
+  return (
+    <>
+      <MenuContainer>
+        {filteredMenuItems.map((item) => renderMenuLink(item, 'desktopBar'))}
+      </MenuContainer>
+      {isProjectRoute ? (
+        <MobileProjectMenuStrip
+          aria-label={t(TRANSLATIONS.PROJECT_PAGES_NAV_ARIA)}
+        >
+          {filteredMenuItems.map((item) => renderMenuLink(item, 'mobileStrip'))}
+        </MobileProjectMenuStrip>
+      ) : null}
+    </>
   );
 }
 
