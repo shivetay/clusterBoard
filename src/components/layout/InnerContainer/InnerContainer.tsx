@@ -11,8 +11,27 @@ export function InnerContainer({ children, pageTitle }: TInnerContainerProps) {
   const { t } = useTranslation();
 
   return (
-    <Box sx={{ mt: 3, borderRadius: '2px' }}>
-      <Typography variant="h4" sx={{ mb: 2 }}>
+    <Box
+      sx={{
+        mt: { xs: 2, sm: 3 },
+        borderRadius: '2px',
+        minWidth: 0,
+      }}
+    >
+      <Typography
+        variant="h4"
+        sx={(theme) => ({
+          mb: { xs: 1.5, sm: 2 },
+          fontSize: {
+            xs: theme.typography.h5.fontSize,
+            sm: theme.typography.h4.fontSize,
+          },
+          lineHeight: {
+            xs: theme.typography.h5.lineHeight,
+            sm: theme.typography.h4.lineHeight,
+          },
+        })}
+      >
         {t(pageTitle)}
       </Typography>
       {children}

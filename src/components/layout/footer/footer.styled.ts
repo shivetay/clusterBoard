@@ -1,3 +1,4 @@
+/** biome-ignore-all lint/style/noMagicNumbers: <styling> */
 'use client';
 import { Stack, styled } from '@mui/material';
 
@@ -9,7 +10,9 @@ export const FooterContainer = styled('footer')(({ theme }) => ({
   display: 'flex',
   justifyContent: 'space-around',
   alignItems: 'center',
-  height: theme.spacing(FOOTER_HEIGHT),
+  minHeight: theme.spacing(FOOTER_HEIGHT),
+  paddingTop: theme.spacing(1),
+  paddingBottom: `max(${theme.spacing(1)}, env(safe-area-inset-bottom, 0px))`,
   backdropFilter: 'blur(16px)',
   width: '100%',
   borderTop: `1px solid ${theme.palette.border.secondary}`,
@@ -19,6 +22,9 @@ export const FooterContainer = styled('footer')(({ theme }) => ({
     flexDirection: 'column',
     width: '100%',
     paddingRight: theme.spacing(2),
+    paddingLeft: theme.spacing(2),
+    gap: theme.spacing(1.5),
+    alignItems: 'stretch',
   },
 }));
 

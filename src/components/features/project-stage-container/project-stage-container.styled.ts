@@ -12,6 +12,10 @@ export const ProjectStageListContainer = styled(Box)(({ theme }) => ({
   ...glassEffects.medium,
   padding: theme.spacing(3),
   marginBottom: theme.spacing(2),
+
+  [theme.breakpoints.down('sm')]: {
+    padding: theme.spacing(2),
+  },
 }));
 
 export const ProjectStageHeaderContainer = styled(Box)(({ theme }) => ({

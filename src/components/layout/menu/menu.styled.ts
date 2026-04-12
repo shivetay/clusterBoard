@@ -15,7 +15,7 @@ export const MenuContainer = styled('nav')(({ theme }) => ({
   marginBottom: theme.spacing(3),
   padding: theme.spacing(1),
   ...glassEffects.medium,
-  [theme.breakpoints.down('sm')]: {
+  [theme.breakpoints.down('md')]: {
     display: 'none',
   },
 }));
