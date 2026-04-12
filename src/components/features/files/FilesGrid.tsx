@@ -1,0 +1,146 @@
+'use client';
+
+import {
+  Delete,
+  Description,
+  Download,
+  Image,
+  InsertDriveFile,
+} from '@mui/icons-material';
+import { Box, ListItemText, Typography } from '@mui/material';
+import { useRouter } from 'next/navigation';
+import { useState } from 'react';
+import { useTranslation } from 'react-i18next';
+import { deleteFile, downloadFile } from '@/lib/api/files/filesClient';
+import { TRANSLATIONS } from '@/locales/pl';
+import { useAlert } from '@/providers';
+import type { IFile } from '@/types';
+import { ActionButtons } from '../project-stage-container/project-stage-container.styled';
+import { FileListItem } from './FileUpload.styled';
+
+type FilesGridProps = {
+  files?: IFile[];
+};
+
+export function FilesGrid({ files }: FilesGridProps) {
+  const router = useRouter();
+  const { showAlert } = useAlert();
+  const { t } = useTranslation();
+  const [deletingFileId, setDeletingFileId] = useState<string | null>(null);
+  const [downloadingFileId, setDownloadingFileId] = useState<string | null>(
+    null,
+  );
+
+  const getFileIcon = (mimeType: string) => {
+    if (mimeType.startsWith('image/')) return <Image />;
+    if (mimeType.includes('pdf') || mimeType.includes('document'))
+      return <Description />;
+    return <InsertDriveFile />;
+  };
+
+  const formatFileSize = (bytes: number) => {
+    if (bytes === 0) return '0 Bytes';
+    const k = 1024;
+    const sizes = ['Bytes', 'KB', 'MB', 'GB'];
+    const i = Math.floor(Math.log(bytes) / Math.log(k));
+    return `${parseFloat((bytes / k ** i).toFixed(2))} ${sizes[i]}`;
+  };
+
+  const handleDownload = async (fileId: string) => {
+    setDownloadingFileId(fileId);
+    try {
+      await downloadFile(fileId);
+    } catch (_error) {
+      showAlert({
+        message: t(TRANSLATIONS.ERROR_DOWNLOAD_FILE),
+        severity: 'error',
+      });
+    } finally {
+      setDownloadingFileId(null);
+    }
+  };
+
+  const handleDelete = async (fileId: string) => {
+    setDeletingFileId(fileId);
+    try {
+      await deleteFile(fileId);
+      router.refresh();
+    } catch (_error) {
+      showAlert({
+        message: t(TRANSLATIONS.ERROR_DELETE_FILE),
+        severity: 'error',
+      });
+    } finally {
+      setDeletingFileId(null);
+    }
+  };
+
+  if (!files || files.length === 0) {
+    return (
+      <Box sx={{ p: 3, textAlign: 'center' }}>
+        <Typography variant="body2" color="text.secondary">
+          {t(TRANSLATIONS.NO_FILES_FOUND_YET)}
+        </Typography>
+      </Box>
+    );
+  }
+
+  return (
+    <Box
+      sx={{
+        display: 'grid',
+        gridTemplateColumns: {
+          xs: '1fr',
+          sm: 'repeat(2, minmax(0, 1fr))',
+          md: 'repeat(3, minmax(0, 1fr))',
+        },
+        gap: 2,
+        mt: 0,
+      }}
+    >
+      {files.map((file) => (
+        <Box key={file._id}>
+          <FileListItem sx={{ flexDirection: 'column', alignItems: 'stretch' }}>
+            <Box sx={{ display: 'flex', alignItems: 'flex-start', gap: 1 }}>
+              {getFileIcon(file.mime_type)}
+              <ListItemText
+                primary={
+                  <Typography variant="body2" noWrap title={file.file_name}>
+                    {file.file_name}
+                  </Typography>
+                }
+                secondary={
+                  <Box
+                    sx={{ display: 'flex', flexDirection: 'column', gap: 0.25 }}
+                  >
+                    <Typography variant="caption" color="text.secondary">
+                      {formatFileSize(file.file_size)}
+                    </Typography>
+                    <Typography variant="caption" color="text.secondary">
+                      {new Date(file.uploaded_at).toLocaleDateString('pl-PL')}
+                    </Typography>
+                    <Typography variant="caption" color="text.secondary" noWrap>
+                      {file.uploaded_by_name}
+                    </Typography>
+                  </Box>
+                }
+              />
+            </Box>
+            <Box sx={{ display: 'flex', gap: 1, mt: 1 }}>
+              <ActionButtons
+                disabled={downloadingFileId === file._id}
+                startIcon={<Download />}
+                onClick={() => handleDownload(file._id)}
+              />
+              <ActionButtons
+                disabled={deletingFileId === file._id}
+                startIcon={<Delete />}
+                onClick={() => handleDelete(file._id)}
+              />
+            </Box>
+          </FileListItem>
+        </Box>
+      ))}
+    </Box>
+  );
+}

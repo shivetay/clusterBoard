@@ -35,11 +35,14 @@ export interface FileUploadResponse {
   message: string;
 }
 
+import type { PaginationMeta } from './pagination.types';
+
 export interface FilesListResponse {
   status: string;
   results: number;
   data: {
     files: IFile[];
   };
+  pagination: PaginationMeta;
 }
 export type TFileAccessLevel = 'owner' | 'investor' | 'public';

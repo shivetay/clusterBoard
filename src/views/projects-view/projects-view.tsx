@@ -1,7 +1,9 @@
 'use client';
 import { useAuth } from '@clerk/nextjs';
 import AddCircleOutlineOutlinedIcon from '@mui/icons-material/AddCircleOutlineOutlined';
+import { useSearchParams } from 'next/navigation';
 import {
+  CollectionPagination,
   Loader,
   PageContainer,
   PageHeader,
@@ -21,9 +23,19 @@ import {
 } from './projects-view.styled';
 
 export function ProjectsView() {
+  const searchParams = useSearchParams();
+  const currentPage = Math.max(
+    1,
+    Number.parseInt(searchParams.get('page') || '1', 10) || 1,
+  );
+
   const { setModalContent } = useModal();
   const { userInfo } = useUser();
-  const { data: userProjects, isLoading } = useGetUserProjects();
+  const {
+    data: userProjects,
+    isLoading,
+    pagination,
+  } = useGetUserProjects(currentPage);
   const { isLoaded } = useAuth();
 
   const projectsCount = userInfo?.cluster_projects?.length || 0;
@@ -68,6 +80,7 @@ export function ProjectsView() {
           })
         )}
       </ProjectsContainer>
+      <CollectionPagination pagination={pagination} />
     </PageContainer>
   );
 }

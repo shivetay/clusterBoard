@@ -1,14 +1,17 @@
 import type { IFile } from './file.type';
+import type { PaginationMeta } from './pagination.types';
 
-export type TInspiration = {
+/** One inspiration row (single file), as returned by the paginated API. */
+export type TInspirationItem = {
   title: string;
-  files: IFile[];
+  file: IFile;
 };
 
 export type TInspirationListResponse = {
   status: string;
   results: number;
   data: {
-    inspirations: TInspiration[];
+    inspirationItems: TInspirationItem[];
   };
+  pagination: PaginationMeta;
 };
