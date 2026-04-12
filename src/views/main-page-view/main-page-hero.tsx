@@ -66,6 +66,8 @@ export function MainPageHero() {
                 src="/assets/images/board-mockup.jpg"
                 width={500}
                 height={500}
+                sizes="(max-width: 900px) 100vw, 500px"
+                style={{ width: '100%', height: 'auto' }}
                 alt={t(TRANSLATIONS.MAIN_PAGE_HERO_IMAGE_ALT)}
               />
             </HeroImageCard>

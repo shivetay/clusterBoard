@@ -42,7 +42,7 @@ export function MainPagePricingSection() {
       </PricingHeader>
 
       <PricingGrid>
-        <Box sx={{ flex: 1, minWidth: 0, display: 'flex' }}>
+        <Box sx={{ minWidth: 0, display: 'flex', width: '100%' }}>
           <PricingCard>
             <PricingCardHeader>
               <PricingCardTitle variant="h3">
@@ -105,7 +105,7 @@ export function MainPagePricingSection() {
           </PricingCard>
         </Box>
 
-        <Box sx={{ flex: 1, minWidth: 0, display: 'flex' }}>
+        <Box sx={{ minWidth: 0, display: 'flex', width: '100%' }}>
           <PricingCardFeatured>
             <PricingCardBadge>
               {t(TRANSLATIONS.MAIN_PAGE_PRICING_CARD_2_BADGE)}
@@ -171,7 +171,7 @@ export function MainPagePricingSection() {
           </PricingCardFeatured>
         </Box>
 
-        <Box sx={{ flex: 1, minWidth: 0, display: 'flex' }}>
+        <Box sx={{ minWidth: 0, display: 'flex', width: '100%' }}>
           <PricingCard>
             <PricingCardHeader>
               <PricingCardTitle variant="h3">

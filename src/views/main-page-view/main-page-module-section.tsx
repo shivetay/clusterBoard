@@ -36,7 +36,7 @@ export function MainPageModuleSection() {
       </ModulesHeader>
 
       <ModulesGrid>
-        <Box sx={{ flex: 1, minWidth: 0, display: 'flex' }}>
+        <Box sx={{ minWidth: 0, display: 'flex', width: '100%' }}>
           <ModuleCard>
             <ModuleCardIcon>
               <ViewInArOutlinedIcon />
@@ -53,7 +53,7 @@ export function MainPageModuleSection() {
           </ModuleCard>
         </Box>
 
-        <Box sx={{ flex: 1, minWidth: 0, display: 'flex' }}>
+        <Box sx={{ minWidth: 0, display: 'flex', width: '100%' }}>
           <ModuleCardSecondary>
             <ModuleCardIconSecondary>
               <PictureAsPdfOutlinedIcon />
@@ -70,7 +70,7 @@ export function MainPageModuleSection() {
           </ModuleCardSecondary>
         </Box>
 
-        <Box sx={{ flex: 1, minWidth: 0, display: 'flex' }}>
+        <Box sx={{ minWidth: 0, display: 'flex', width: '100%' }}>
           <ModuleCard>
             <ModuleCardIcon>
               <ViewInArOutlinedIcon />
