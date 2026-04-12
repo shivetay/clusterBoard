@@ -20,6 +20,35 @@ export const MenuContainer = styled('nav')(({ theme }) => ({
   },
 }));
 
+/**
+ * Project sub-nav on small screens: two-row grid (3 columns → 6 items in 2 rows;
+ * extra items wrap to a third row).
+ */
+export const MobileProjectMenuStrip = styled('nav')(({ theme }) => ({
+  display: 'none',
+  width: '100%',
+  maxWidth: '100%',
+  gap: theme.spacing(1),
+  padding: theme.spacing(1),
+  marginBottom: theme.spacing(2),
+  ...glassEffects.medium,
+
+  [theme.breakpoints.down('md')]: {
+    display: 'grid',
+    gridTemplateColumns: 'repeat(3, minmax(0, 1fr))',
+    gridAutoRows: 'auto',
+    alignItems: 'stretch',
+  },
+
+  [theme.breakpoints.between('sm', 'md')]: {
+    gridTemplateColumns: 'repeat(4, minmax(0, 1fr))',
+  },
+
+  [theme.breakpoints.up('md')]: {
+    display: 'none',
+  },
+}));
+
 export const NavLinkContainer = styled(Link)(({ theme }) => ({
   padding: theme.spacing(1.25, 0.75),
   maxHeight: '60px',

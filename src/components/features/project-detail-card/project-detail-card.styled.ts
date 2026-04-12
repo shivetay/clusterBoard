@@ -53,11 +53,25 @@ export const Label = styled('p')(({ theme }) => ({
 
 export const ProjectsActionsContainer = styled(Box)(({ theme }) => ({
   paddingTop: theme.spacing(2),
+  [theme.breakpoints.down('md')]: {
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'stretch',
+    gap: theme.spacing(2),
+  },
 }));
 
 export const ProjectAddStageButton = styled(CustomButton)(({ theme }) => ({
   marginBottom: theme.spacing(2),
   marginLeft: 0,
+  [theme.breakpoints.down('md')]: {
+    width: '100%',
+    maxWidth: '100%',
+    marginBottom: 0,
+    marginLeft: 0,
+    marginRight: 0,
+    boxSizing: 'border-box',
+  },
 }));
 
 export const InvestorButton = styled(CustomButton)(() => ({

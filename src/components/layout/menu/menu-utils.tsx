@@ -1,8 +1,11 @@
+import AttachFileOutlinedIcon from '@mui/icons-material/AttachFileOutlined';
 import CalendarMonthOutlinedIcon from '@mui/icons-material/CalendarMonthOutlined';
 import ChecklistOutlinedIcon from '@mui/icons-material/ChecklistOutlined';
 import CurrencyExchangeOutlinedIcon from '@mui/icons-material/CurrencyExchangeOutlined';
 import EmailOutlinedIcon from '@mui/icons-material/EmailOutlined';
 import HiveOutlinedIcon from '@mui/icons-material/HiveOutlined';
+import InsertPhotoOutlinedIcon from '@mui/icons-material/InsertPhotoOutlined';
+import PeopleAltOutlinedIcon from '@mui/icons-material/PeopleAltOutlined';
 import TokenOutlinedIcon from '@mui/icons-material/TokenOutlined';
 
 import { TRANSLATIONS } from '@/locales';
@@ -57,12 +60,14 @@ export const MENU_ITEM_LIST: TMenuItem[] = [
     href: '/project/[id]/files',
     label: TRANSLATIONS.PLIKI,
     type: 'projects',
+    icon: <AttachFileOutlinedIcon />,
   },
   {
     id: 'inspirations',
     href: '/project/[id]/inspirations',
     label: TRANSLATIONS.INSPIRACJE,
     type: 'projects',
+    icon: <InsertPhotoOutlinedIcon />,
   },
   {
     id: 'messages',
@@ -77,5 +82,6 @@ export const MENU_ITEM_LIST: TMenuItem[] = [
     label: TRANSLATIONS.INVITATIONS,
     type: 'projects',
     onlyOwner: true,
+    icon: <PeopleAltOutlinedIcon />,
   },
 ];

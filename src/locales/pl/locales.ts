@@ -330,6 +330,8 @@ export const TRANSLATIONS = {
   FILES_VIEW_MODE_LIST: 'Lista',
   FILES_VIEW_MODE_GRID: 'Siatka',
   LIST_GRID_VIEW_TOGGLE_ARIA: 'Przełącz widok listy i siatki',
+  PROJECT_PAGES_NAV_ARIA:
+    'Nawigacja w projekcie — pliki, inspiracje, wiadomości',
 };
 
 export default TRANSLATIONS;
