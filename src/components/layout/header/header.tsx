@@ -1,10 +1,14 @@
 import { Navbar } from '../navbar';
 import { HeaderContainer } from './header.styled';
 
-export function Header() {
+type HeaderProps = {
+  showAuthLinks?: boolean;
+};
+
+export function Header({ showAuthLinks = false }: HeaderProps) {
   return (
     <HeaderContainer>
-      <Navbar />
+      <Navbar showAuthLinks={showAuthLinks} />
     </HeaderContainer>
   );
 }

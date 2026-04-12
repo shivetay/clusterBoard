@@ -1,11 +1,24 @@
 'use client';
 import { useTranslation } from 'react-i18next';
-import { FooterContact, FooterContainer, FooterContent } from './footer.styled';
+import {
+  FooterContact,
+  FooterContainer,
+  FooterContent,
+  FooterVersion,
+} from './footer.styled';
 
-export function Footer() {
+type FooterProps = {
+  apiVersion?: string | null;
+};
+
+export function Footer({ apiVersion }: FooterProps) {
   const { t } = useTranslation();
+  const versionLabel =
+    apiVersion != null && apiVersion.length > 0 ? apiVersion : '—';
+
   return (
     <FooterContainer>
+      <FooterVersion>v{versionLabel}</FooterVersion>
       <FooterContent>
         <span>
           {t('FOOTER_PRIVACY_POLICY')} | {t('FOOTER_COOKIES')} |
