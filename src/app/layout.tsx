@@ -3,6 +3,7 @@ import { ClerkProvider } from '@clerk/nextjs';
 import type { Metadata, Viewport } from 'next';
 import { Poppins } from 'next/font/google';
 import { AlertPopup, Footer, Header, Modal } from '@/components';
+import { getServerHealth } from '@/lib';
 import {
   AlertProvider,
   I18nProvider,
@@ -32,11 +33,15 @@ export const viewport: Viewport = {
   viewportFit: 'cover',
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const health = await getServerHealth();
+  const showAuthLinks = health?.status === 'ok';
+  const apiVersion = health?.version ?? null;
+
   return (
     <ClerkProvider
       localization={plPL}
@@ -57,9 +62,9 @@ export default function RootLayout({
                     <ServerUserProvider>
                       <I18nProvider locale="pl">
                         <LayoutContainer>
-                          <Header />
+                          <Header showAuthLinks={showAuthLinks} />
                           {children}
-                          <Footer />
+                          <Footer apiVersion={apiVersion} />
                         </LayoutContainer>
                       </I18nProvider>
                       <div id="modal-root" />

@@ -13,7 +13,11 @@ import LoginBar from './loginbar';
 import { NavbarContainer } from './navbar.styled';
 import { NotificationsMenu } from './notifications';
 
-export function Navbar() {
+type NavbarProps = {
+  showAuthLinks?: boolean;
+};
+
+export function Navbar({ showAuthLinks = false }: NavbarProps) {
   const { t } = useTranslation();
   const isMobile = useIsMobile();
   const { setModalContent, setShowCloseButton } = useModal();
@@ -28,7 +32,7 @@ export function Navbar() {
 
   return (
     <NavbarContainer>
-      <LoginBar />
+      <LoginBar showAuthLinks={showAuthLinks} />
       <SignedIn>
         <Link href="/cluster">
           <CustomButton color="primary" variant="contained">

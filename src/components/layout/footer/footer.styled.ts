@@ -7,6 +7,7 @@ const FOOTER_PADDING = 1;
 const FOOTER_HEIGHT = 12;
 
 export const FooterContainer = styled('footer')(({ theme }) => ({
+  position: 'relative',
   display: 'flex',
   justifyContent: 'space-around',
   alignItems: 'center',
@@ -45,5 +46,18 @@ export const FooterContact = styled(Stack)(({ theme }) => ({
   flex: '0 0 25%',
   '& span': {
     fontSize: theme.spacing(FOOTER_FONT_SIZE),
+  },
+}));
+
+export const FooterVersion = styled('span')(({ theme }) => ({
+  position: 'absolute',
+  right: theme.spacing(2),
+  bottom: `max(${theme.spacing(1)}, env(safe-area-inset-bottom, 0px))`,
+  fontSize: theme.typography.caption.fontSize,
+  color: theme.palette.text.secondary,
+  pointerEvents: 'none',
+  [theme.breakpoints.down('sm')]: {
+    right: theme.spacing(2),
+    bottom: theme.spacing(0.5),
   },
 }));

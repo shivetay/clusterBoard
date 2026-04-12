@@ -5,8 +5,16 @@ import { useTranslation } from 'react-i18next';
 import { TRANSLATIONS } from '@/locales';
 import { CustomButton } from '../../ui/button';
 
-export function LoginBar() {
+type LoginBarProps = {
+  showAuthLinks?: boolean;
+};
+
+export function LoginBar({ showAuthLinks = false }: LoginBarProps) {
   const { t } = useTranslation();
+
+  if (!showAuthLinks) {
+    return null;
+  }
 
   return (
     <SignedOut>
