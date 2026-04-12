@@ -12,6 +12,7 @@ import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { deleteFile, downloadFile } from '@/lib/api/files/filesClient';
+import { useFormatDisplayLocaleDate } from '@/lib/utils';
 import { TRANSLATIONS } from '@/locales/pl';
 import { useAlert } from '@/providers';
 import type { IFile } from '@/types';
@@ -26,6 +27,7 @@ export function FilesList({ files }: FilesListProps) {
   const router = useRouter();
   const { showAlert } = useAlert();
   const { t } = useTranslation();
+  const formatDisplayDate = useFormatDisplayLocaleDate();
   const [deletingFileId, setDeletingFileId] = useState<string | null>(null);
   const [downloadingFileId, setDownloadingFileId] = useState<string | null>(
     null,
@@ -97,7 +99,7 @@ export function FilesList({ files }: FilesListProps) {
                   {formatFileSize(file.file_size)}
                 </Typography>
                 <Typography variant="caption" color="text.secondary">
-                  • {new Date(file.uploaded_at).toLocaleDateString()}
+                  • {formatDisplayDate(file.uploaded_at)}
                 </Typography>
                 <Typography variant="caption" color="text.secondary">
                   • {file.uploaded_by_name}

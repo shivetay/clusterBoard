@@ -12,11 +12,12 @@ import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { deleteFile, downloadFile } from '@/lib/api/files/filesClient';
+import { useFormatDisplayLocaleDate } from '@/lib/utils';
 import { TRANSLATIONS } from '@/locales/pl';
 import { useAlert } from '@/providers';
 import type { IFile } from '@/types';
 import { ActionButtons } from '../project-stage-container/project-stage-container.styled';
-import { FileListItem } from './FileUpload.styled';
+import { FileGridCard } from './FileUpload.styled';
 
 type FilesGridProps = {
   files?: IFile[];
@@ -26,6 +27,7 @@ export function FilesGrid({ files }: FilesGridProps) {
   const router = useRouter();
   const { showAlert } = useAlert();
   const { t } = useTranslation();
+  const formatDisplayDate = useFormatDisplayLocaleDate();
   const [deletingFileId, setDeletingFileId] = useState<string | null>(null);
   const [downloadingFileId, setDownloadingFileId] = useState<string | null>(
     null,
@@ -100,7 +102,7 @@ export function FilesGrid({ files }: FilesGridProps) {
     >
       {files.map((file) => (
         <Box key={file._id}>
-          <FileListItem sx={{ flexDirection: 'column', alignItems: 'stretch' }}>
+          <FileGridCard sx={{ display: 'flex', flexDirection: 'column' }}>
             <Box sx={{ display: 'flex', alignItems: 'flex-start', gap: 1 }}>
               {getFileIcon(file.mime_type)}
               <ListItemText
@@ -117,7 +119,7 @@ export function FilesGrid({ files }: FilesGridProps) {
                       {formatFileSize(file.file_size)}
                     </Typography>
                     <Typography variant="caption" color="text.secondary">
-                      {new Date(file.uploaded_at).toLocaleDateString('pl-PL')}
+                      {formatDisplayDate(file.uploaded_at)}
                     </Typography>
                     <Typography variant="caption" color="text.secondary" noWrap>
                       {file.uploaded_by_name}
@@ -138,7 +140,7 @@ export function FilesGrid({ files }: FilesGridProps) {
                 onClick={() => handleDelete(file._id)}
               />
             </Box>
-          </FileListItem>
+          </FileGridCard>
         </Box>
       ))}
     </Box>
