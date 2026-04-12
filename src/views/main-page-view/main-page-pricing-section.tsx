@@ -1,4 +1,6 @@
-import { Box } from '@mui/material';
+'use client';
+
+import { Box, Typography } from '@mui/material';
 import { useTranslation } from 'react-i18next';
 import { CustomButton } from '@/components';
 import { TRANSLATIONS } from '@/locales';
@@ -11,13 +13,13 @@ import {
   PricingCardHeader,
   PricingCardPrice,
   PricingCardPriceAmount,
-  PricingCardPriceCurrency,
   PricingCardPricePeriod,
-  PricingCardPriceSavings,
   PricingCardPriceValue,
   PricingCardSubtitle,
   PricingCardTitle,
   PricingDescription,
+  PricingFullBleed,
+  PricingFullBleedInner,
   PricingGrid,
   PricingHeader,
   PricingSection,
@@ -25,219 +27,185 @@ import {
   PricingTitleSpan,
 } from './main-page.styled';
 
+const DISABLED_OPACITY = 0.78;
+
+type LandingPlanId = 'free' | 'one_time' | 'basic' | 'pro';
+
+type LandingPlanRow =
+  | {
+      id: 'free';
+      available: true;
+      featured: true;
+      title: string;
+      subtitle: string;
+      featureLines: string[];
+      priceValue: string;
+      pricePeriod: string;
+    }
+  | {
+      id: Exclude<LandingPlanId, 'free'>;
+      available: false;
+      featured: false;
+      title: string;
+    };
+
+const LANDING_PLANS: LandingPlanRow[] = [
+  {
+    id: 'free',
+    available: true,
+    featured: true,
+    title: TRANSLATIONS.MAIN_PAGE_PLAN_FREE_TITLE,
+    subtitle: TRANSLATIONS.MAIN_PAGE_PLAN_FREE_SUBTITLE,
+    featureLines: [
+      TRANSLATIONS.MAIN_PAGE_PLAN_FREE_F1,
+      TRANSLATIONS.MAIN_PAGE_PLAN_FREE_F2,
+      TRANSLATIONS.MAIN_PAGE_PLAN_FREE_F3,
+      TRANSLATIONS.MAIN_PAGE_PLAN_FREE_F4,
+      TRANSLATIONS.MAIN_PAGE_PLAN_FREE_F5,
+      TRANSLATIONS.MAIN_PAGE_PLAN_FREE_F6,
+    ],
+    priceValue: TRANSLATIONS.MAIN_PAGE_PLAN_FREE_PRICE,
+    pricePeriod: TRANSLATIONS.MAIN_PAGE_PLAN_FREE_PERIOD,
+  },
+  {
+    id: 'one_time',
+    available: false,
+    featured: false,
+    title: TRANSLATIONS.MAIN_PAGE_PLAN_ONETIME_TITLE,
+  },
+  {
+    id: 'basic',
+    available: false,
+    featured: false,
+    title: TRANSLATIONS.MAIN_PAGE_PLAN_BASIC_TITLE,
+  },
+  {
+    id: 'pro',
+    available: false,
+    featured: false,
+    title: TRANSLATIONS.MAIN_PAGE_PLAN_PRO_TITLE,
+  },
+];
+
 export function MainPagePricingSection() {
   const { t } = useTranslation();
+
   return (
-    <PricingSection id="pricing">
-      <PricingHeader>
-        <PricingTitle variant="h2">
-          {t(TRANSLATIONS.MAIN_PAGE_PRICING_TITLE_PREFIX)}
-          <PricingTitleSpan>
-            {t(TRANSLATIONS.MAIN_PAGE_PRICING_TITLE_SPAN)}
-          </PricingTitleSpan>
-        </PricingTitle>
-        <PricingDescription>
-          {t(TRANSLATIONS.MAIN_PAGE_PRICING_DESCRIPTION)}
-        </PricingDescription>
-      </PricingHeader>
+    <PricingFullBleed id="pricing">
+      <PricingFullBleedInner>
+        <PricingSection>
+          <PricingHeader>
+            <PricingTitle variant="h2">
+              {t(TRANSLATIONS.MAIN_PAGE_PRICING_TITLE_PREFIX)}
+              <PricingTitleSpan>
+                {t(TRANSLATIONS.MAIN_PAGE_PRICING_TITLE_SPAN)}
+              </PricingTitleSpan>
+            </PricingTitle>
+            <PricingDescription>
+              {t(TRANSLATIONS.MAIN_PAGE_PRICING_DESCRIPTION)}
+            </PricingDescription>
+          </PricingHeader>
 
-      <PricingGrid>
-        <Box sx={{ minWidth: 0, display: 'flex', width: '100%' }}>
-          <PricingCard>
-            <PricingCardHeader>
-              <PricingCardTitle variant="h3">
-                {t(TRANSLATIONS.MAIN_PAGE_PRICING_CARD_1_TITLE)}
-              </PricingCardTitle>
-              <PricingCardSubtitle>
-                {t(TRANSLATIONS.MAIN_PAGE_PRICING_CARD_1_SUBTITLE)}
-              </PricingCardSubtitle>
-            </PricingCardHeader>
-            <PricingCardPrice>
-              <PricingCardPriceAmount>
-                <PricingCardPriceValue>49</PricingCardPriceValue>
-                <PricingCardPriceCurrency>
-                  {t(TRANSLATIONS.MAIN_PAGE_PRICING_CURRENCY)}
-                </PricingCardPriceCurrency>
-              </PricingCardPriceAmount>
-              <PricingCardPricePeriod>
-                {t(TRANSLATIONS.MAIN_PAGE_PRICING_CARD_1_PERIOD)}
-              </PricingCardPricePeriod>
-            </PricingCardPrice>
-            <PricingCardFeatures>
-              <PricingCardFeature>
-                <span>
-                  <strong>
-                    {t(TRANSLATIONS.MAIN_PAGE_PRICING_CARD_1_FEATURE_1_BOLD)}
-                  </strong>
-                  {t(TRANSLATIONS.MAIN_PAGE_PRICING_CARD_1_FEATURE_1_REST)}
-                </span>
-              </PricingCardFeature>
-              <PricingCardFeature>
-                <span>
-                  {t(TRANSLATIONS.MAIN_PAGE_PRICING_CARD_1_FEATURE_2_PREFIX)}
-                  <strong>
-                    {t(TRANSLATIONS.MAIN_PAGE_PRICING_CARD_1_FEATURE_2_BOLD)}
-                  </strong>
-                  {t(TRANSLATIONS.MAIN_PAGE_PRICING_CARD_1_FEATURE_2_SUFFIX)}
-                </span>
-              </PricingCardFeature>
-              <PricingCardFeature>
-                <span>
-                  {t(TRANSLATIONS.MAIN_PAGE_PRICING_CARD_1_FEATURE_3_PREFIX)}
-                  <strong>
-                    {t(TRANSLATIONS.MAIN_PAGE_PRICING_CARD_1_FEATURE_3_BOLD)}
-                  </strong>
-                  {t(TRANSLATIONS.MAIN_PAGE_PRICING_CARD_1_FEATURE_3_SUFFIX)}
-                </span>
-              </PricingCardFeature>
-              <PricingCardFeature>
-                <span>
-                  {t(TRANSLATIONS.MAIN_PAGE_PRICING_CARD_1_FEATURE_4_PREFIX)}
-                  <strong>
-                    {t(TRANSLATIONS.MAIN_PAGE_PRICING_CARD_1_FEATURE_4_BOLD)}
-                  </strong>
-                </span>
-              </PricingCardFeature>
-            </PricingCardFeatures>
-            <CustomButton href="/dashboard" variant="contained" color="primary">
-              {t(TRANSLATIONS.MAIN_PAGE_PRICING_CTA)}
-            </CustomButton>
-          </PricingCard>
-        </Box>
+          <PricingGrid>
+            {LANDING_PLANS.map((plan) => {
+              const CardComponent = plan.featured
+                ? PricingCardFeatured
+                : PricingCard;
+              return (
+                <Box
+                  key={plan.id}
+                  sx={{
+                    minWidth: 0,
+                    display: 'flex',
+                    width: '100%',
+                    opacity: plan.available ? 1 : DISABLED_OPACITY,
+                  }}
+                >
+                  <CardComponent
+                    sx={{
+                      width: '100%',
+                      position: 'relative',
+                      ...(plan.available
+                        ? {}
+                        : { justifyContent: 'flex-start' }),
+                    }}
+                  >
+                    {plan.available ? (
+                      <PricingCardBadge>
+                        {t(TRANSLATIONS.MAIN_PAGE_PLAN_AVAILABLE_BADGE)}
+                      </PricingCardBadge>
+                    ) : null}
 
-        <Box sx={{ minWidth: 0, display: 'flex', width: '100%' }}>
-          <PricingCardFeatured>
-            <PricingCardBadge>
-              {t(TRANSLATIONS.MAIN_PAGE_PRICING_CARD_2_BADGE)}
-            </PricingCardBadge>
-            <PricingCardHeader>
-              <PricingCardTitle variant="h3">
-                {t(TRANSLATIONS.MAIN_PAGE_PRICING_CARD_2_TITLE)}
-              </PricingCardTitle>
-              <PricingCardSubtitle>
-                {t(TRANSLATIONS.MAIN_PAGE_PRICING_CARD_2_SUBTITLE)}
-              </PricingCardSubtitle>
-            </PricingCardHeader>
-            <PricingCardPrice>
-              <PricingCardPriceAmount>
-                <PricingCardPriceValue>N/A</PricingCardPriceValue>
-                <PricingCardPriceCurrency>
-                  {t(TRANSLATIONS.MAIN_PAGE_PRICING_CURRENCY)}
-                </PricingCardPriceCurrency>
-              </PricingCardPriceAmount>
-              <PricingCardPricePeriod>
-                {t(TRANSLATIONS.MAIN_PAGE_PRICING_CARD_2_PERIOD)}
-              </PricingCardPricePeriod>
-            </PricingCardPrice>
-            <PricingCardFeatures>
-              <PricingCardFeature>
-                <span>
-                  <strong>
-                    {t(TRANSLATIONS.MAIN_PAGE_PRICING_CARD_2_FEATURE_1_BOLD)}
-                  </strong>
-                  {t(TRANSLATIONS.MAIN_PAGE_PRICING_CARD_2_FEATURE_1_REST)}
-                </span>
-              </PricingCardFeature>
-              <PricingCardFeature>
-                <span>
-                  {t(TRANSLATIONS.MAIN_PAGE_PRICING_CARD_2_FEATURE_2_PREFIX)}
-                  <strong>
-                    {t(TRANSLATIONS.MAIN_PAGE_PRICING_CARD_2_FEATURE_2_BOLD)}
-                  </strong>
-                  {t(TRANSLATIONS.MAIN_PAGE_PRICING_CARD_2_FEATURE_2_SUFFIX)}
-                </span>
-              </PricingCardFeature>
-              <PricingCardFeature>
-                <span>
-                  {t(TRANSLATIONS.MAIN_PAGE_PRICING_CARD_2_FEATURE_3_PREFIX)}
-                  <strong>
-                    {t(TRANSLATIONS.MAIN_PAGE_PRICING_CARD_2_FEATURE_3_BOLD)}
-                  </strong>
-                  {t(TRANSLATIONS.MAIN_PAGE_PRICING_CARD_2_FEATURE_3_SUFFIX)}
-                </span>
-              </PricingCardFeature>
-              <PricingCardFeature>
-                <span>
-                  <strong>
-                    {t(TRANSLATIONS.MAIN_PAGE_PRICING_CARD_2_FEATURE_4_BOLD)}
-                  </strong>
-                  {t(TRANSLATIONS.MAIN_PAGE_PRICING_CARD_2_FEATURE_4_REST)}
-                </span>
-              </PricingCardFeature>
-            </PricingCardFeatures>
-            <CustomButton href="/dashboard" variant="contained" color="primary">
-              {t(TRANSLATIONS.MAIN_PAGE_PRICING_CTA)}
-            </CustomButton>
-          </PricingCardFeatured>
-        </Box>
+                    {plan.available ? (
+                      <>
+                        <PricingCardHeader>
+                          <PricingCardTitle variant="h3">
+                            {t(plan.title)}
+                          </PricingCardTitle>
+                          <PricingCardSubtitle>
+                            {t(plan.subtitle)}
+                          </PricingCardSubtitle>
+                        </PricingCardHeader>
 
-        <Box sx={{ minWidth: 0, display: 'flex', width: '100%' }}>
-          <PricingCard>
-            <PricingCardHeader>
-              <PricingCardTitle variant="h3">
-                {t(TRANSLATIONS.MAIN_PAGE_PRICING_CARD_3_TITLE)}
-              </PricingCardTitle>
-              <PricingCardSubtitle>
-                {t(TRANSLATIONS.MAIN_PAGE_PRICING_CARD_3_SUBTITLE)}
-              </PricingCardSubtitle>
-            </PricingCardHeader>
-            <PricingCardPrice>
-              <PricingCardPriceAmount>
-                <PricingCardPriceValue>N/A</PricingCardPriceValue>
-                <PricingCardPriceCurrency>
-                  {t(TRANSLATIONS.MAIN_PAGE_PRICING_CURRENCY)}
-                </PricingCardPriceCurrency>
-              </PricingCardPriceAmount>
-              <PricingCardPricePeriod>
-                {t(TRANSLATIONS.MAIN_PAGE_PRICING_CARD_3_PERIOD)}
-              </PricingCardPricePeriod>
-              <PricingCardPriceSavings>
-                {t(TRANSLATIONS.MAIN_PAGE_PRICING_CARD_3_SAVINGS)}
-              </PricingCardPriceSavings>
-            </PricingCardPrice>
-            <PricingCardFeatures>
-              <PricingCardFeature>
-                <span>
-                  <strong>
-                    {t(TRANSLATIONS.MAIN_PAGE_PRICING_CARD_3_FEATURE_1_BOLD)}
-                  </strong>
-                  {t(TRANSLATIONS.MAIN_PAGE_PRICING_CARD_3_FEATURE_1_REST)}
-                </span>
-              </PricingCardFeature>
-              <PricingCardFeature>
-                <span>
-                  {t(TRANSLATIONS.MAIN_PAGE_PRICING_CARD_3_FEATURE_2_PREFIX)}
-                  <strong>
-                    {t(TRANSLATIONS.MAIN_PAGE_PRICING_CARD_3_FEATURE_2_BOLD)}
-                  </strong>
-                  {t(TRANSLATIONS.MAIN_PAGE_PRICING_CARD_3_FEATURE_2_SUFFIX)}
-                </span>
-              </PricingCardFeature>
-              <PricingCardFeature>
-                <span>
-                  {t(TRANSLATIONS.MAIN_PAGE_PRICING_CARD_3_FEATURE_3_PREFIX)}
-                  <strong>
-                    {t(TRANSLATIONS.MAIN_PAGE_PRICING_CARD_3_FEATURE_3_BOLD)}
-                  </strong>
-                  {t(TRANSLATIONS.MAIN_PAGE_PRICING_CARD_3_FEATURE_3_SUFFIX)}
-                </span>
-              </PricingCardFeature>
-              <PricingCardFeature>
-                <span>
-                  <strong>
-                    {t(TRANSLATIONS.MAIN_PAGE_PRICING_CARD_3_FEATURE_4_BOLD)}
-                  </strong>
-                  {t(TRANSLATIONS.MAIN_PAGE_PRICING_CARD_3_FEATURE_4_REST)}
-                </span>
-              </PricingCardFeature>
-            </PricingCardFeatures>
-            <CustomButton href="/dashboard" variant="contained" color="primary">
-              {t(TRANSLATIONS.MAIN_PAGE_PRICING_CTA)}
-            </CustomButton>
-          </PricingCard>
-        </Box>
-      </PricingGrid>
-    </PricingSection>
+                        <PricingCardPrice>
+                          <PricingCardPriceAmount>
+                            <PricingCardPriceValue>
+                              {t(plan.priceValue)}
+                            </PricingCardPriceValue>
+                          </PricingCardPriceAmount>
+                          <PricingCardPricePeriod>
+                            {t(plan.pricePeriod)}
+                          </PricingCardPricePeriod>
+                        </PricingCardPrice>
+
+                        <PricingCardFeatures>
+                          {plan.featureLines.map((line, index) => (
+                            <PricingCardFeature
+                              key={`${plan.id}-${String(index)}`}
+                            >
+                              <span>{t(line)}</span>
+                            </PricingCardFeature>
+                          ))}
+                        </PricingCardFeatures>
+
+                        <CustomButton
+                          href="/sign-up"
+                          variant="contained"
+                          color="primary"
+                        >
+                          {t(TRANSLATIONS.MAIN_PAGE_PRICING_CTA_FREE)}
+                        </CustomButton>
+                      </>
+                    ) : (
+                      <>
+                        <PricingCardHeader>
+                          <PricingCardTitle variant="h3">
+                            {t(plan.title)}
+                          </PricingCardTitle>
+                        </PricingCardHeader>
+                        <Typography
+                          variant="body1"
+                          color="text.secondary"
+                          sx={{
+                            flex: 1,
+                            display: 'flex',
+                            alignItems: 'center',
+                            py: 3,
+                            fontStyle: 'italic',
+                          }}
+                        >
+                          {t(TRANSLATIONS.MAIN_PAGE_PLAN_COMING_SOON)}
+                        </Typography>
+                      </>
+                    )}
+                  </CardComponent>
+                </Box>
+              );
+            })}
+          </PricingGrid>
+        </PricingSection>
+      </PricingFullBleedInner>
+    </PricingFullBleed>
   );
 }
 

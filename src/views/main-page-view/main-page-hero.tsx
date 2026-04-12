@@ -1,4 +1,3 @@
-import CheckCircleOutlineOutlinedIcon from '@mui/icons-material/CheckCircleOutlineOutlined';
 import { Box } from '@mui/material';
 import Image from 'next/image';
 import { useTranslation } from 'react-i18next';
@@ -9,8 +8,6 @@ import {
   HeroContainer,
   HeroContent,
   HeroDescription,
-  HeroFeatureItem,
-  HeroFeatures,
   HeroImageCard,
   HeroImageContainer,
   HeroSection,
@@ -41,21 +38,10 @@ export function MainPageHero() {
             </HeroDescription>
 
             <HeroActions>
-              <CustomButton variant="contained" color="primary">
-                {t(TRANSLATIONS.MAIN_PAGE_BUTTON_TEXT)}
+              <CustomButton variant="contained" color="primary" href="/sign-up">
+                {t(TRANSLATIONS.MAIN_PAGE_FREE_BUTTON_TEXT)}
               </CustomButton>
             </HeroActions>
-
-            <HeroFeatures>
-              <HeroFeatureItem>
-                <CheckCircleOutlineOutlinedIcon />
-                <span>{t(TRANSLATIONS.MAIN_PAGE_HERO_FEATURE_NO_CARD)}</span>
-              </HeroFeatureItem>
-              <HeroFeatureItem>
-                <CheckCircleOutlineOutlinedIcon />
-                <span>{t(TRANSLATIONS.MAIN_PAGE_HERO_FEATURE_SETUP)}</span>
-              </HeroFeatureItem>
-            </HeroFeatures>
           </HeroContent>
         </Box>
 
