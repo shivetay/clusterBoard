@@ -139,7 +139,7 @@ export const SpannedCountHeader = styled(Typography)(({ theme }) => ({
   fontWeight: theme.typography.h1.fontWeight,
   lineHeight: theme.typography.h1.lineHeight,
   letterSpacing: theme.typography.h1.letterSpacing,
-  wordBreak: 'break-word',
+  overflowWrap: 'break-word',
 
   [theme.breakpoints.down('md')]: {
     fontSize: theme.typography.h2.fontSize,
