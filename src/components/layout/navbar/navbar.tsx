@@ -1,5 +1,5 @@
 'use client';
-import { SignedIn, UserButton } from '@clerk/nextjs';
+import { Show, UserButton } from '@clerk/nextjs';
 import MenuOutlinedIcon from '@mui/icons-material/MenuOutlined';
 import Link from 'next/link';
 import { useEffect } from 'react';
@@ -29,7 +29,7 @@ export function Navbar() {
   return (
     <NavbarContainer>
       <LoginBar />
-      <SignedIn>
+      <Show when="signed-in">
         <Link href="/cluster">
           <CustomButton color="primary" variant="contained">
             {t(TRANSLATIONS.CLUSTER_BOARD)}
@@ -42,7 +42,7 @@ export function Navbar() {
         )}
         <NotificationsMenu />
         <UserButton />
-      </SignedIn>
+      </Show>
     </NavbarContainer>
   );
 }

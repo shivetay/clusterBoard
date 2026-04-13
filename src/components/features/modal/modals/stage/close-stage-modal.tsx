@@ -35,7 +35,14 @@ export function CloseStageModal({ stage_id }: { stage_id: string }) {
               {t(TRANSLATIONS.CLOSE_STAGE_MODAL_HELPER)}
             </FormHelperText>
           </AddProjectModalHeader>
-          <Box display="flex" flexDirection="row" gap={2} width="100%">
+          <Box
+            sx={{
+              display: 'flex',
+              flexDirection: 'row',
+              gap: 2,
+              width: '100%',
+            }}
+          >
             <ModalButton
               onClick={() => setIsOpen(false)}
               variant="outlined"

@@ -1,5 +1,5 @@
 'use client';
-import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
+import CheckCircleOutlineOutlinedIcon from '@mui/icons-material/CheckCircleOutlineOutlined';
 import { IconButton } from '@mui/material';
 import { useTranslation } from 'react-i18next';
 import {
@@ -49,7 +49,7 @@ export function NotificationRow({
           aria-label={t(TRANSLATIONS.NOTIFICATIONS_MARK_ONE_READ)}
           onClick={() => onMarkRead(notification.id)}
         >
-          <CheckCircleOutlineIcon fontSize="small" />
+          <CheckCircleOutlineOutlinedIcon fontSize="small" />
         </IconButton>
       }
     >
@@ -59,6 +59,10 @@ export function NotificationRow({
         onClick={() => onOpenAndMarkRead(notification.id, href)}
       >
         <NotificationListItemText
+          slotProps={{
+            primary: { component: 'div' },
+            secondary: { component: 'div' },
+          }}
           primary={
             <NotificationPrimaryText>
               {t(titleKey, params)}

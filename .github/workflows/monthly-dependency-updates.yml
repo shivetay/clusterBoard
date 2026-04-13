@@ -11,15 +11,41 @@ permissions:
   pull-requests: write
 
 jobs:
-  update-dependencies:
-    name: Bump dependencies and open PR
+  list-packages:
+    name: List dependency package names
     runs-on: ubuntu-latest
+    outputs:
+      packages: ${{ steps.matrix.outputs.packages }}
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Build package matrix
+        id: matrix
+        run: |
+          json=$(jq -c '[(.dependencies // {} | keys), (.devDependencies // {} | keys)] | add | unique | sort' package.json)
+          echo "packages=$json" >> "$GITHUB_OUTPUT"
+
+  update-one-package:
+    name: Bump ${{ matrix.package }}
+    needs: list-packages
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        package: ${{ fromJSON(needs.list-packages.outputs.packages) }}
     env:
       HUSKY: "0"
 
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+
+      - name: Branch slug for ${{ matrix.package }}
+        id: slug
+        run: |
+          s=$(echo "${{ matrix.package }}" | sed 's/^@//; s/\//-/g' | tr '[:upper:]' '[:lower:]')
+          echo "value=$s" >> "$GITHUB_OUTPUT"
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
@@ -32,19 +58,19 @@ jobs:
           version: 8
 
       - name: Install dependencies
-        run: pnpm install
+        run: pnpm install --frozen-lockfile
 
-      - name: Update packages to latest versions
-        run: pnpm update --latest
+      - name: Update ${{ matrix.package }} to latest
+        run: pnpm update "${{ matrix.package }}"@latest
 
       - name: Create pull request
         uses: peter-evans/create-pull-request@v8
         with:
-          commit-message: "chore(deps): monthly dependency updates"
-          title: "chore(deps): monthly dependency updates"
+          commit-message: "chore(deps): bump ${{ matrix.package }} to latest"
+          title: "chore(deps): bump ${{ matrix.package }} to latest"
           body: |
-            Automated monthly dependency bump (`pnpm update --latest`).
+            Automated monthly bump for **`${{ matrix.package }}`** using `pnpm update` to the latest semver range.
 
-            Review changelogs and CI before merging. This workflow only opens the PR; it does not merge.
-          branch: chore/deps-monthly-${{ github.run_id }}
+            Review the changelog and CI before merging. This workflow only opens the PR; it does not merge.
+          branch: chore/deps-${{ steps.slug.outputs.value }}-${{ github.run_id }}
           delete-branch: true

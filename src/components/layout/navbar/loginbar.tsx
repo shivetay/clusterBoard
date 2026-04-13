@@ -1,5 +1,5 @@
 'use client';
-import { SignedOut } from '@clerk/nextjs';
+import { Show } from '@clerk/nextjs';
 import Link from 'next/link';
 import { useTranslation } from 'react-i18next';
 import { TRANSLATIONS } from '@/locales';
@@ -9,7 +9,7 @@ export function LoginBar() {
   const { t } = useTranslation();
 
   return (
-    <SignedOut>
+    <Show when="signed-out">
       <Link href="/sign-in">
         <CustomButton>{t(TRANSLATIONS.LOGIN_BTN)}</CustomButton>
       </Link>
@@ -17,7 +17,7 @@ export function LoginBar() {
       <Link href="/sign-up">
         <CustomButton>{t(TRANSLATIONS.REGISTER_BTN)}</CustomButton>
       </Link>
-    </SignedOut>
+    </Show>
   );
 }
 

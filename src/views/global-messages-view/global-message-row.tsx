@@ -48,12 +48,14 @@ export function GlobalMessageRow({
     <MessageThreadRoot>
       <CommentContainer>
         <Box
-          display="flex"
-          flexDirection="row"
-          justifyContent="space-between"
-          alignItems="flex-start"
-          gap={1}
-          flexWrap="wrap"
+          sx={{
+            display: 'flex',
+            flexDirection: 'row',
+            justifyContent: 'space-between',
+            alignItems: 'flex-start',
+            gap: 1,
+            flexWrap: 'wrap',
+          }}
         >
           <Box sx={{ flex: 1, minWidth: 0 }}>
             <Typography variant="subtitle2" color="text.secondary" gutterBottom>
@@ -64,7 +66,14 @@ export function GlobalMessageRow({
               {t(TRANSLATIONS.AUTHOR_NAME)}: {message.author_name}
             </CommentDetails>
           </Box>
-          <Box display="flex" flexDirection="row" flexWrap="wrap" gap={0.5}>
+          <Box
+            sx={{
+              display: 'flex',
+              flexDirection: 'row',
+              flexWrap: 'wrap',
+              gap: 0.5,
+            }}
+          >
             <ActionButtons
               aria-label={t(TRANSLATIONS.MESSAGES_OPEN_IN_PROJECT)}
               startIcon={<OpenInNewOutlinedIcon />}

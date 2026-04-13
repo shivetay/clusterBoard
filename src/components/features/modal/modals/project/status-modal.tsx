@@ -99,11 +99,13 @@ export function StatusModal({ projectData }: IStatusModalProps) {
             </RadioGroup>
           </FormGroup>
           <Box
-            display="flex"
-            flexDirection="row"
-            gap={2}
-            width="100%"
-            marginTop="2rem"
+            sx={{
+              display: 'flex',
+              flexDirection: 'row',
+              gap: 2,
+              width: '100%',
+              mt: '2rem',
+            }}
           >
             <ModalButton
               onClick={() => setIsOpen(false)}

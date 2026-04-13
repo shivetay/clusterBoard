@@ -56,7 +56,14 @@ export function RemoveStageModal({ stage_id }: { stage_id: string }) {
               {t(TRANSLATIONS.REMOVE_STAGE_MODAL_TITLE)}
             </AddProjectModalTitle>
           </AddProjectModalHeader>
-          <Box display="flex" flexDirection="row" gap={2} width="100%">
+          <Box
+            sx={{
+              display: 'flex',
+              flexDirection: 'row',
+              gap: 2,
+              width: '100%',
+            }}
+          >
             <ModalButton
               onClick={() => setIsOpen(false)}
               variant="outlined"

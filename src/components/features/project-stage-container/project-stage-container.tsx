@@ -73,7 +73,7 @@ export function ProjectStageContainer({
                 onClick={() => handleAddStageTask(stage)}
               />
               <StageDivider isDisabled={stage.is_done || !isOwner} />
-              <Box display="flex" flexDirection="row">
+              <Box sx={{ display: 'flex', flexDirection: 'row' }}>
                 <ActionButtons
                   disabled={stage.is_done || !isOwner}
                   startIcon={<EditOutlinedIcon />}

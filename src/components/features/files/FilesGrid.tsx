@@ -106,6 +106,10 @@ export function FilesGrid({ files }: FilesGridProps) {
             <Box sx={{ display: 'flex', alignItems: 'flex-start', gap: 1 }}>
               {getFileIcon(file.mime_type)}
               <ListItemText
+                slotProps={{
+                  primary: { component: 'div' },
+                  secondary: { component: 'div' },
+                }}
                 primary={
                   <Typography variant="body2" noWrap title={file.file_name}>
                     {file.file_name}

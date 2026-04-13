@@ -63,7 +63,14 @@ export function RemoveInvestorModal({
               {t(TRANSLATIONS.REMOVE_INVESTOR_MODAL_TITLE)}
             </AddProjectModalTitle>
           </AddProjectModalHeader>
-          <Box display="flex" flexDirection="row" gap={2} width="100%">
+          <Box
+            sx={{
+              display: 'flex',
+              flexDirection: 'row',
+              gap: 2,
+              width: '100%',
+            }}
+          >
             <ModalButton
               onClick={() => setIsOpen(false)}
               variant="outlined"

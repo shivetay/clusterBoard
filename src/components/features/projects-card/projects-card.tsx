@@ -84,7 +84,7 @@ export function ProjectsCard({ ...props }: IProjectsCardProps) {
                 {end_date && <span>{formatDate(end_date)}</span>}
               </ProjectDateContainer>
             </ProjectInfoContainer>
-            <Box display="flex" alignItems="center" gap={1}>
+            <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
               {t(TRANSLATIONS.DETAILS)} <KeyboardArrowRightOutlinedIcon />
             </Box>
           </CardContent>

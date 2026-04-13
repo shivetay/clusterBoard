@@ -93,6 +93,7 @@ export function FilesList({ files }: FilesListProps) {
           {getFileIcon(file.mime_type)}
           <ListItemText
             primary={file.file_name}
+            slotProps={{ secondary: { component: 'div' } }}
             secondary={
               <Box sx={{ display: 'flex', gap: 1, mt: 0.5 }}>
                 <Typography variant="caption" color="text.secondary">

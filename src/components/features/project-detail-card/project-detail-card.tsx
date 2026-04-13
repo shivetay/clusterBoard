@@ -95,13 +95,13 @@ export function ProjectDetailCard({ projectData }: IProjectDetailCardProps) {
           </Box>
         )}
         {start_date && (
-          <Box display="flex" flexDirection="column" gap={1}>
+          <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1 }}>
             <Label>{t(TRANSLATIONS.START_DATE)}</Label>
             <Label>{formatDate(start_date)}</Label>
           </Box>
         )}
         {end_date && (
-          <Box display="flex" flexDirection="column" gap={1}>
+          <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1 }}>
             <Label>{t(TRANSLATIONS.END_DATE)}</Label>
             <Label>{formatDate(end_date)}</Label>
           </Box>

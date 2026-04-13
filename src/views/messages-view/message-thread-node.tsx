@@ -39,15 +39,24 @@ export function MessageThreadNode({
     <Box sx={{ pl: depth > 0 ? 2 : 0 }}>
       <CommentContainer>
         <Box
-          display="flex"
-          flexDirection="row"
-          justifyContent="space-between"
-          alignItems="center"
+          sx={{
+            display: 'flex',
+            flexDirection: 'row',
+            justifyContent: 'space-between',
+            alignItems: 'center',
+          }}
         >
           <CommentDetails>
             {t(TRANSLATIONS.AUTHOR_NAME)}: {message.author_name}
           </CommentDetails>
-          <Box display="flex" flexDirection="row" flexWrap="wrap" gap={0.5}>
+          <Box
+            sx={{
+              display: 'flex',
+              flexDirection: 'row',
+              flexWrap: 'wrap',
+              gap: 0.5,
+            }}
+          >
             <ActionButtons
               aria-label={t(TRANSLATIONS.MESSAGES_PAGE_REPLY)}
               startIcon={<MapsUgcOutlinedIcon />}

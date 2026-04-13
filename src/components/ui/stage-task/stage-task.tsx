@@ -103,10 +103,12 @@ export function StageTaskComponent({
         <Fragment key={task.id}>
           <Box
             key={task.id}
-            display="flex"
-            flexDirection="row"
-            justifyContent="space-between"
-            alignItems="center"
+            sx={{
+              display: 'flex',
+              flexDirection: 'row',
+              justifyContent: 'space-between',
+              alignItems: 'center',
+            }}
           >
             <TaskRadio
               disabled={isStageClosed}
@@ -118,7 +120,7 @@ export function StageTaskComponent({
               }
               label={task.task_name}
             />
-            <Box display="flex" flexDirection="row">
+            <Box sx={{ display: 'flex', flexDirection: 'row' }}>
               <ActionButtons
                 aria-label={t(TRANSLATIONS.SHOW_COMMENTS)}
                 startIcon={<ChatBubbleOutlineOutlinedIcon />}
@@ -167,10 +169,12 @@ export function StageTaskComponent({
               {task.task_comments.map((comment) => (
                 <CommentContainer key={comment.id}>
                   <Box
-                    display="flex"
-                    flexDirection="row"
-                    justifyContent="space-between"
-                    alignItems="center"
+                    sx={{
+                      display: 'flex',
+                      flexDirection: 'row',
+                      justifyContent: 'space-between',
+                      alignItems: 'center',
+                    }}
                   >
                     <CommentDetails>
                       {t(TRANSLATIONS.AUTHOR_NAME)}: {comment.author_name}

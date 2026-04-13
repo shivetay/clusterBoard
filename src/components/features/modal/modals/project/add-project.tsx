@@ -95,7 +95,14 @@ export function AddProjectModal() {
               helperText={t(TRANSLATIONS.STAGE_DESCRIPTION_HELPER_TEXT)}
               error={errors.project_description?.message}
             />
-            <Box display="flex" flexDirection="row" gap={2} width="100%">
+            <Box
+              sx={{
+                display: 'flex',
+                flexDirection: 'row',
+                gap: 2,
+                width: '100%',
+              }}
+            >
               <FormInput
                 {...register('start_date')}
                 name="start_date"

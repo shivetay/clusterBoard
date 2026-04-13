@@ -75,7 +75,14 @@ export function InvestorModal({ projectId }: IInvestorModalProps) {
               type="email"
               error={errors.investor_email?.message}
             />
-            <Box display="flex" flexDirection="row" gap={2} width="100%">
+            <Box
+              sx={{
+                display: 'flex',
+                flexDirection: 'row',
+                gap: 2,
+                width: '100%',
+              }}
+            >
               <ModalButton
                 onClick={() => setIsOpen(false)}
                 variant="outlined"

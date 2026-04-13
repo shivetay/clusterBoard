@@ -52,7 +52,14 @@ export function RemoveProjectModal({ projectId }: { projectId: string }) {
               {t(TRANSLATIONS.REMOVE_PROJECT_MODAL_TITLE)}
             </AddProjectModalTitle>
           </AddProjectModalHeader>
-          <Box display="flex" flexDirection="row" gap={2} width="100%">
+          <Box
+            sx={{
+              display: 'flex',
+              flexDirection: 'row',
+              gap: 2,
+              width: '100%',
+            }}
+          >
             <ModalButton
               onClick={() => setIsOpen(false)}
               variant="outlined"

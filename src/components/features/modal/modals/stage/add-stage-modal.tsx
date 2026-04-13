@@ -91,7 +91,14 @@ export function AddStageModal({ projectId }: TAddStageProps) {
               helperText={t(TRANSLATIONS.STAGE_DESCRIPTION_HELPER_TEXT)}
               error={errors.stage_description?.message}
             />
-            <Box display="flex" flexDirection="row" gap={2} width="100%">
+            <Box
+              sx={{
+                display: 'flex',
+                flexDirection: 'row',
+                gap: 2,
+                width: '100%',
+              }}
+            >
               <ModalButton
                 onClick={() => setIsOpen(false)}
                 variant="outlined"

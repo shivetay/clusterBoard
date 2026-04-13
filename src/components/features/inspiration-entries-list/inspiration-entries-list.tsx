@@ -100,6 +100,7 @@ export function InspirationEntriesList({
                 {title}
               </Typography>
             }
+            slotProps={{ secondary: { component: 'div' } }}
             secondary={
               <Box
                 sx={{

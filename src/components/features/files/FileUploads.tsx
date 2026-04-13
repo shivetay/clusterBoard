@@ -161,6 +161,7 @@ export function FileUpload({
                 >
                   <ListItemText
                     primary={file.name}
+                    slotProps={{ secondary: { component: 'div' } }}
                     secondary={
                       <Box>
                         <Typography variant="body2" component="span">
