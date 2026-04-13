@@ -12,6 +12,7 @@ import {
   ModalButton,
 } from '@/components/features/modal/modal.styled';
 import { useDeleteInvitation } from '@/lib';
+import { formatSubscriptionLimit } from '@/lib/utils';
 import { formatDate } from '@/lib/utils/formatDate';
 import { TRANSLATIONS } from '@/locales';
 import { useModal } from '@/providers';
@@ -25,6 +26,7 @@ import {
 interface IProjectInvitationsViewProps {
   invitations: IInvitationData[];
   projectId: string;
+  investorSlots?: { used: number; max: number | null };
 }
 
 const getInvitationStatus = (invitation: IInvitationData): string => {
@@ -51,6 +53,7 @@ const getInvitationStatus = (invitation: IInvitationData): string => {
 export function ProjectInvitationsView({
   invitations,
   projectId,
+  investorSlots,
 }: IProjectInvitationsViewProps) {
   const { t } = useTranslation();
   const router = useRouter();
@@ -108,6 +111,12 @@ export function ProjectInvitationsView({
         {t(TRANSLATIONS.BACK)}
       </BackButton>
       <InnerContainer pageTitle={TRANSLATIONS.INVITATIONS}>
+        {investorSlots ? (
+          <Typography variant="caption" sx={{ display: 'block', mb: 1 }}>
+            {t(TRANSLATIONS.SUBSCRIPTION_INVITATIONS_LABEL)}:{' '}
+            {formatSubscriptionLimit(investorSlots.used, investorSlots.max)}
+          </Typography>
+        ) : null}
         {invitations.length === 0 ? (
           <Typography variant="body1">
             {t(TRANSLATIONS.NO_INVITATIONS_FOUND)}

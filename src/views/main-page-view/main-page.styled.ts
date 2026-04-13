@@ -373,14 +373,43 @@ export const ModuleCardFeature = styled(Box)(({ theme }) => ({
   color: theme.palette.text.secondary,
 }));
 
-// Pricing Section
-export const PricingSection = styled('section')(({ theme }) => ({
-  padding: theme.spacing(6, 2),
+// Pricing Section — full-bleed row so plan cards can exceed main PageContainer width
+export const PricingFullBleed = styled(Box)(({ theme }) => ({
+  width: '100vw',
+  position: 'relative',
+  left: '50%',
+  right: '50%',
+  marginLeft: '-50vw',
+  marginRight: '-50vw',
+  boxSizing: 'border-box',
+  paddingLeft: theme.spacing(2),
+  paddingRight: theme.spacing(2),
   [theme.breakpoints.up('sm')]: {
-    padding: theme.spacing(8, 3),
+    paddingLeft: theme.spacing(3),
+    paddingRight: theme.spacing(3),
   },
   [theme.breakpoints.up('md')]: {
-    padding: theme.spacing(10, 4),
+    paddingLeft: theme.spacing(4),
+    paddingRight: theme.spacing(4),
+  },
+}));
+
+export const PricingFullBleedInner = styled(Box)(({ theme }) => ({
+  maxWidth: theme.spacing(240),
+  marginLeft: 'auto',
+  marginRight: 'auto',
+  width: '100%',
+  minWidth: 0,
+}));
+
+// Pricing Section
+export const PricingSection = styled('section')(({ theme }) => ({
+  padding: theme.spacing(6, 0),
+  [theme.breakpoints.up('sm')]: {
+    padding: theme.spacing(8, 0),
+  },
+  [theme.breakpoints.up('md')]: {
+    padding: theme.spacing(10, 0),
   },
 }));
 
@@ -416,6 +445,9 @@ export const PricingGrid = styled(Box)(({ theme }) => ({
   gap: theme.spacing(2),
   margin: '0 auto',
   alignItems: 'stretch',
+  [theme.breakpoints.up('md')]: {
+    gap: theme.spacing(3),
+  },
   [theme.breakpoints.up('lg')]: {
     flexDirection: 'row',
     flexWrap: 'nowrap',

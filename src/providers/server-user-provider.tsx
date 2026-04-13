@@ -1,6 +1,6 @@
 import { currentUser } from '@clerk/nextjs/server';
 import { serverGet } from '@/lib/api/projects/serverApiClient';
-import type { IUserData } from '@/types';
+import type { IUserData, IUserSubscription } from '@/types';
 import { UserProviderClient } from './user-provider';
 
 export async function ServerUserProvider({
@@ -28,7 +28,12 @@ export async function ServerUserProvider({
             email: rawUser.email,
             role: rawUser.role,
             cluster_projects: rawUser.cluster_projects || [],
-            projects_limit: rawUser.projects_limit || 0,
+            projects_limit:
+              rawUser.projects_limit === undefined ||
+              rawUser.projects_limit === null
+                ? null
+                : rawUser.projects_limit,
+            subscription: rawUser.subscription as IUserSubscription | undefined,
           };
         }
       }

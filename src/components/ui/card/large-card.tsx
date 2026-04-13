@@ -19,7 +19,7 @@ interface CardComponentProps {
   header: string;
   description?: string | number;
   count?: number;
-  maxCount?: number;
+  maxCount?: number | string;
   href: string;
   icon?: React.ReactNode;
   iconColor?: string;

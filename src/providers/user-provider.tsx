@@ -8,7 +8,7 @@ import { Loader } from '@/components';
 import apiClient, { setTokenGetter } from '@/lib/api/apiClient';
 import { TRANSLATIONS } from '@/locales';
 import { useUserActions } from '@/stores';
-import type { IUserData } from '@/types';
+import type { IUserData, IUserSubscription } from '@/types';
 import { useAlert } from './alert';
 
 interface UserProviderClientProps {
@@ -95,7 +95,12 @@ export function UserProviderClient({
         email: rawUser.email,
         role: rawUser.role,
         cluster_projects: rawUser.cluster_projects || [],
-        projects_limit: rawUser.projects_limit || 0,
+        projects_limit:
+          rawUser.projects_limit === undefined ||
+          rawUser.projects_limit === null
+            ? null
+            : rawUser.projects_limit,
+        subscription: rawUser.subscription as IUserSubscription | undefined,
       };
 
       return transformedUserData;

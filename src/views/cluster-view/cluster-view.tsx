@@ -15,8 +15,16 @@ export function ClusterView() {
   const isMobile = useIsMobile();
   const user = useUser();
   const { isLoaded } = useAuth();
-  const projectsCount = user?.userInfo?.cluster_projects?.length || 0;
-  const projectsLimit = user?.userInfo?.projects_limit || 0;
+  const projectsCount =
+    user?.userInfo?.subscription?.usage?.active_owned_projects ??
+    user?.userInfo?.cluster_projects?.length ??
+    0;
+  const maxProjects =
+    user?.userInfo?.subscription?.limits?.max_projects ??
+    user?.userInfo?.projects_limit ??
+    null;
+  const projectsLimit =
+    maxProjects === null || maxProjects === undefined ? '∞' : maxProjects;
   const taskCount = 0;
   const { data: notificationsData } = useNotifications();
   const messageCount = notificationsData?.counts.messages ?? 0;

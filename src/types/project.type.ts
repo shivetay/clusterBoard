@@ -25,6 +25,8 @@ export interface IProjectData {
   is_owner: boolean;
   is_investor: boolean;
   owner_name?: string;
+  /** Present for project owner; used for plan / invitation limits. */
+  investor_slots?: { used: number; max: number | null };
 }
 
 export type TFormData = {
