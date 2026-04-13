@@ -36,13 +36,12 @@ export function InspirationView({
   const { t } = useTranslation();
   const { userInfo } = useUser();
   const sub = userInfo?.subscription;
-  const inspirationsLine =
-    sub?.limits?.max_inspirations != null
-      ? formatSubscriptionLimit(
-          sub.usage.inspirations_used,
-          sub.limits.max_inspirations,
-        )
-      : null;
+  const inspirationsLine = sub
+    ? formatSubscriptionLimit(
+        sub.usage?.inspirations_used ?? 0,
+        sub.limits?.max_inspirations ?? null,
+      )
+    : null;
   const handleBack = () => {
     router.push(`/project/${projectId}`);
   };

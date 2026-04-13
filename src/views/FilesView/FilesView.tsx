@@ -35,10 +35,12 @@ export function FilesView({
   const { t } = useTranslation();
   const { userInfo } = useUser();
   const sub = userInfo?.subscription;
-  const filesLine =
-    sub?.limits?.max_files != null
-      ? formatSubscriptionLimit(sub.usage.files_used, sub.limits.max_files)
-      : null;
+  const filesLine = sub
+    ? formatSubscriptionLimit(
+        sub.usage?.files_used ?? 0,
+        sub.limits?.max_files ?? null,
+      )
+    : null;
   const handleBack = () => {
     router.push(`/project/${projectId}`);
   };

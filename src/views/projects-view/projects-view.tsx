@@ -11,6 +11,7 @@ import {
   ProjectsCard,
 } from '@/components';
 import { useGetUserProjects } from '@/lib';
+import { formatSubscriptionLimit } from '@/lib/utils';
 import { TRANSLATIONS } from '@/locales';
 import { useModal } from '@/providers';
 import { useUser } from '@/stores';
@@ -39,11 +40,15 @@ export function ProjectsView() {
   const { isLoaded } = useAuth();
 
   const projectsUsed =
-    userInfo?.subscription?.usage?.active_owned_projects ?? 0;
-  const projectsLimit =
-    userInfo?.subscription?.limits?.max_projects ??
-    userInfo?.projects_limit ??
+    userInfo?.subscription?.usage?.active_owned_projects ??
+    userInfo?.cluster_projects?.length ??
     0;
+  const projectsCountLabel = formatSubscriptionLimit(
+    projectsUsed,
+    userInfo?.subscription?.limits?.max_projects ??
+      userInfo?.projects_limit ??
+      null,
+  );
   const handleModalOpen = () => {
     setModalContent(<ProjectModal type="add-project" />);
   };
@@ -53,9 +58,7 @@ export function ProjectsView() {
       <ActionContainer>
         <ActionContainerHeader>
           <PageHeader title={TRANSLATIONS.AKTYWNE_PROJEKTY} />
-          <ProjectsCount>
-            {projectsUsed}/{projectsLimit}
-          </ProjectsCount>
+          <ProjectsCount>{projectsCountLabel}</ProjectsCount>
         </ActionContainerHeader>
         <ProjectAddButton onClick={handleModalOpen}>
           <AddCircleOutlineOutlinedIcon />

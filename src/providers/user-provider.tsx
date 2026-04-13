@@ -95,7 +95,11 @@ export function UserProviderClient({
         email: rawUser.email,
         role: rawUser.role,
         cluster_projects: rawUser.cluster_projects || [],
-        projects_limit: rawUser.projects_limit || 0,
+        projects_limit:
+          rawUser.projects_limit === undefined ||
+          rawUser.projects_limit === null
+            ? null
+            : rawUser.projects_limit,
         subscription: rawUser.subscription as IUserSubscription | undefined,
       };
 

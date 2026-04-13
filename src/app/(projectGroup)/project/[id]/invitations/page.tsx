@@ -14,23 +14,26 @@ export default async function ProjectInvitationsPage({
 }: IProjectInvitationsPageProps) {
   const { id } = await params;
 
-  const invitationsRes = await serverGet<{
-    data: { invitations: IInvitationData[] };
-  }>(`invitations/project/${id}`);
+  const [invitationsSettled, projectSettled] = await Promise.allSettled([
+    serverGet<{ data: { invitations: IInvitationData[] } }>(
+      `invitations/project/${id}`,
+    ),
+    serverGet<{ data: { project: IProjectData } }>(`/projects/${id}`),
+  ]);
 
+  if (invitationsSettled.status === 'rejected') {
+    throw invitationsSettled.reason;
+  }
+
+  const invitationsRes = invitationsSettled.value;
   const invitations = invitationsRes.data.invitations;
   if (!invitations) {
     return <div>{TRANSLATIONS.NO_INVITATIONS_FOUND}</div>;
   }
 
   let investorSlots: { used: number; max: number | null } | undefined;
-  try {
-    const projectRes = await serverGet<{ data: { project: IProjectData } }>(
-      `/projects/${id}`,
-    );
-    investorSlots = projectRes.data?.project?.investor_slots;
-  } catch {
-    investorSlots = undefined;
+  if (projectSettled.status === 'fulfilled') {
+    investorSlots = projectSettled.value.data?.project?.investor_slots;
   }
 
   return (
