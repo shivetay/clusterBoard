@@ -1,5 +1,5 @@
 'use client';
-import { TRANSLATIONS } from '@/locales';
+import { TRANSLATION_GROUPS } from '@/locales';
 import { useAlert } from '@/providers';
 import type { IStageData } from '@/types';
 import AddStageModal from './add-stage-modal';
@@ -33,7 +33,7 @@ export function StageModal({ type, stageData, projectId }: IStageModalProps) {
   const { showAlert } = useAlert();
   if (!stageData && type !== 'add-stage') {
     showAlert({
-      message: TRANSLATIONS.GENERAL_ERROR,
+      message: TRANSLATION_GROUPS.COMMON.GENERAL_ERROR,
       severity: 'error',
     });
     return null;

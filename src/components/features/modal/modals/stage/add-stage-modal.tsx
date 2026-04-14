@@ -11,7 +11,7 @@ import {
   Loader,
 } from '@/components/ui';
 import { useAddProjectStage } from '@/lib';
-import { TRANSLATIONS } from '@/locales';
+import { TRANSLATION_GROUPS } from '@/locales';
 import { useModal } from '@/providers';
 import { stageFormSchema } from '@/schemas';
 import type { IStageData } from '@/types';
@@ -60,10 +60,10 @@ export function AddStageModal({ projectId }: TAddStageProps) {
         <>
           <AddProjectModalHeader>
             <AddProjectModalTitle as="h2" variant="h2">
-              {t(TRANSLATIONS.ADD_PROJECT_MODAL_TITLE)}
+              {t(TRANSLATION_GROUPS.STAGES.ADD_STAGE_MODAL_TITLE)}
             </AddProjectModalTitle>
             <FormHelperText>
-              {t(TRANSLATIONS.ADD_PROJECT_MODAL_HELPER_TEXT)}
+              {t(TRANSLATION_GROUPS.STAGES.ADD_STAGE_MODAL_HELPER_TEXT)}
             </FormHelperText>
           </AddProjectModalHeader>
 
@@ -74,21 +74,25 @@ export function AddStageModal({ projectId }: TAddStageProps) {
             <FormInput
               {...register('stage_name')}
               name="stage_name"
-              label={t(TRANSLATIONS.STAGE_NAME)}
+              label={t(TRANSLATION_GROUPS.STAGES.STAGE_NAME)}
               type="text"
-              placeholder={t(TRANSLATIONS.ADD_STAGE_FORM_PLACEHOLDER)}
-              helperText={t(TRANSLATIONS.STAGE_NAME_HELPER_TEXT)}
+              placeholder={t(
+                TRANSLATION_GROUPS.STAGES.ADD_STAGE_FORM_PLACEHOLDER,
+              )}
+              helperText={t(TRANSLATION_GROUPS.STAGES.STAGE_NAME_HELPER_TEXT)}
               error={errors.stage_name?.message}
             />
 
             <FormInput
               {...register('stage_description')}
               name="stage_description"
-              label={t(TRANSLATIONS.STAGE_DESCRIPTION)}
+              label={t(TRANSLATION_GROUPS.STAGES.STAGE_DESCRIPTION)}
               type="textarea"
               defaultValue={watch('stage_description')}
-              placeholder={t(TRANSLATIONS.ADD_STAGE_FORM_DETAILS)}
-              helperText={t(TRANSLATIONS.STAGE_DESCRIPTION_HELPER_TEXT)}
+              placeholder={t(TRANSLATION_GROUPS.STAGES.ADD_STAGE_FORM_DETAILS)}
+              helperText={t(
+                TRANSLATION_GROUPS.STAGES.STAGE_DESCRIPTION_HELPER_TEXT,
+              )}
               error={errors.stage_description?.message}
             />
             <Box
@@ -104,7 +108,7 @@ export function AddStageModal({ projectId }: TAddStageProps) {
                 variant="outlined"
                 color="secondary"
               >
-                {t(TRANSLATIONS.CANCEL)}
+                {t(TRANSLATION_GROUPS.COMMON.CANCEL)}
               </ModalButton>
               <ModalButton
                 disabled={disabledBtn}
@@ -112,7 +116,7 @@ export function AddStageModal({ projectId }: TAddStageProps) {
                 variant="contained"
                 color="primary"
               >
-                {t(TRANSLATIONS.ADD_STAGE)}
+                {t(TRANSLATION_GROUPS.STAGES.ADD_STAGE)}
               </ModalButton>
             </Box>
           </FormComponent>

@@ -3,7 +3,7 @@ import { Box } from '@mui/material';
 import { useTranslation } from 'react-i18next';
 import { FormHelperText, Loader } from '@/components/ui';
 import { useEditStage } from '@/lib';
-import { TRANSLATIONS } from '@/locales';
+import { TRANSLATION_GROUPS } from '@/locales';
 import { useModal } from '@/providers';
 import {
   AddProjectModalContainer,
@@ -29,10 +29,10 @@ export function CloseStageModal({ stage_id }: { stage_id: string }) {
         <>
           <AddProjectModalHeader>
             <AddProjectModalTitle as="h2" variant="h2">
-              {t(TRANSLATIONS.CLOSE_STAGE_MODAL_TITLE)}
+              {t(TRANSLATION_GROUPS.STAGES.CLOSE_STAGE_MODAL_TITLE)}
             </AddProjectModalTitle>
             <FormHelperText>
-              {t(TRANSLATIONS.CLOSE_STAGE_MODAL_HELPER)}
+              {t(TRANSLATION_GROUPS.STAGES.CLOSE_STAGE_MODAL_HELPER)}
             </FormHelperText>
           </AddProjectModalHeader>
           <Box
@@ -48,14 +48,14 @@ export function CloseStageModal({ stage_id }: { stage_id: string }) {
               variant="outlined"
               color="secondary"
             >
-              {t(TRANSLATIONS.CANCEL)}
+              {t(TRANSLATION_GROUPS.COMMON.CANCEL)}
             </ModalButton>
             <ModalButton
               onClick={handleCloseStage}
               variant="contained"
               color="primary"
             >
-              {t(TRANSLATIONS.CLOSE_STAGE_BTN)}
+              {t(TRANSLATION_GROUPS.STAGES.CLOSE_STAGE_BTN)}
             </ModalButton>
           </Box>
         </>

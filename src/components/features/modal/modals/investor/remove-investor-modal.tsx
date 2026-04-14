@@ -6,7 +6,7 @@ import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Loader } from '@/components/ui';
 import apiClient from '@/lib/api/apiClient';
-import { TRANSLATIONS } from '@/locales';
+import { TRANSLATION_GROUPS } from '@/locales';
 import { useAlert, useModal } from '@/providers';
 import {
   AddProjectModalContainer,
@@ -36,7 +36,7 @@ export function RemoveInvestorModal({
       router.refresh();
       setIsOpen(false);
       showAlert({
-        message: t(TRANSLATIONS.INVESTOR_REMOVED_SUCCESSFULLY),
+        message: t(TRANSLATION_GROUPS.INVESTORS.INVESTOR_REMOVED_SUCCESSFULLY),
         severity: 'success',
       });
       setIsDeleting(false);
@@ -44,7 +44,7 @@ export function RemoveInvestorModal({
       showAlert({
         message:
           error?.response?.data?.message ||
-          t(TRANSLATIONS.ERROR_REMOVE_INVESTOR),
+          t(TRANSLATION_GROUPS.INVESTORS.ERROR_REMOVE_INVESTOR),
         severity: 'error',
       });
       setIsDeleting(false);
@@ -60,7 +60,7 @@ export function RemoveInvestorModal({
         <>
           <AddProjectModalHeader>
             <AddProjectModalTitle as="h2" variant="h2">
-              {t(TRANSLATIONS.REMOVE_INVESTOR_MODAL_TITLE)}
+              {t(TRANSLATION_GROUPS.INVESTORS.REMOVE_INVESTOR_MODAL_TITLE)}
             </AddProjectModalTitle>
           </AddProjectModalHeader>
           <Box
@@ -76,14 +76,14 @@ export function RemoveInvestorModal({
               variant="outlined"
               color="secondary"
             >
-              {t(TRANSLATIONS.CANCEL)}
+              {t(TRANSLATION_GROUPS.COMMON.CANCEL)}
             </ModalButton>
             <ModalButton
               onClick={handleRemoveInvestor}
               variant="contained"
               color="primary"
             >
-              {t(TRANSLATIONS.INVESTOR_REMOVE_BTN)}
+              {t(TRANSLATION_GROUPS.INVESTORS.INVESTOR_REMOVE_BTN)}
             </ModalButton>
           </Box>
         </>

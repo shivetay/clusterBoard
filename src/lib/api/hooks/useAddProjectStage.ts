@@ -1,6 +1,6 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { useRouter } from 'next/navigation';
-import { TRANSLATIONS } from '@/locales';
+import { TRANSLATION_GROUPS } from '@/locales';
 import { useAlert, useModal } from '@/providers';
 import type { TStageFormData } from '@/types';
 import apiClient from '../apiClient';
@@ -34,7 +34,7 @@ export const useAddProjectStage = (projectId: string) => {
 
       setIsOpen(false);
       showAlert({
-        message: TRANSLATIONS.PROJECT_STAGE_ADDED_SUCCESSFULLY,
+        message: TRANSLATION_GROUPS.PROJECTS.PROJECT_STAGE_ADDED_SUCCESSFULLY,
         severity: 'success',
       });
     },

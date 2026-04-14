@@ -1,4 +1,4 @@
-import { TRANSLATIONS } from '@/locales/pl/locales';
+import { TRANSLATION_GROUPS } from '@/locales/pl/locales';
 import type {
   INotificationItem,
   TNotificationKind,
@@ -9,27 +9,27 @@ export function notificationKindToTranslationKey(
 ): string {
   switch (kind) {
     case 'comment_created':
-      return TRANSLATIONS.NOTIF_COMMENT_CREATED;
+      return TRANSLATION_GROUPS.NOTIFICATIONS.NOTIF_COMMENT_CREATED;
     case 'comment_edited':
-      return TRANSLATIONS.NOTIF_COMMENT_EDITED;
+      return TRANSLATION_GROUPS.NOTIFICATIONS.NOTIF_COMMENT_EDITED;
     case 'comment_deleted':
-      return TRANSLATIONS.NOTIF_COMMENT_DELETED;
+      return TRANSLATION_GROUPS.NOTIFICATIONS.NOTIF_COMMENT_DELETED;
     case 'stage_created':
-      return TRANSLATIONS.NOTIF_STAGE_CREATED;
+      return TRANSLATION_GROUPS.NOTIFICATIONS.NOTIF_STAGE_CREATED;
     case 'stage_edited':
-      return TRANSLATIONS.NOTIF_STAGE_EDITED;
+      return TRANSLATION_GROUPS.NOTIFICATIONS.NOTIF_STAGE_EDITED;
     case 'stage_deleted':
-      return TRANSLATIONS.NOTIF_STAGE_DELETED;
+      return TRANSLATION_GROUPS.NOTIFICATIONS.NOTIF_STAGE_DELETED;
     case 'stage_closed':
-      return TRANSLATIONS.NOTIF_STAGE_CLOSED;
+      return TRANSLATION_GROUPS.NOTIFICATIONS.NOTIF_STAGE_CLOSED;
     case 'project_status_changed':
-      return TRANSLATIONS.NOTIF_PROJECT_STATUS_CHANGED;
+      return TRANSLATION_GROUPS.NOTIFICATIONS.NOTIF_PROJECT_STATUS_CHANGED;
     case 'investor_joined_project':
-      return TRANSLATIONS.NOTIF_INVESTOR_JOINED;
+      return TRANSLATION_GROUPS.NOTIFICATIONS.NOTIF_INVESTOR_JOINED;
     case 'project_message_received':
-      return TRANSLATIONS.NOTIF_PROJECT_MESSAGE_RECEIVED;
+      return TRANSLATION_GROUPS.NOTIFICATIONS.NOTIF_PROJECT_MESSAGE_RECEIVED;
     default:
-      return TRANSLATIONS.NOTIF_GENERIC;
+      return TRANSLATION_GROUPS.NOTIFICATIONS.NOTIF_GENERIC;
   }
 }
 

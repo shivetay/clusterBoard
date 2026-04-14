@@ -2,7 +2,7 @@
 import { Show } from '@clerk/nextjs';
 import Link from 'next/link';
 import { useTranslation } from 'react-i18next';
-import { TRANSLATIONS } from '@/locales';
+import { TRANSLATION_GROUPS } from '@/locales';
 import { CustomButton } from '../../ui/button';
 
 export function LoginBar() {
@@ -11,11 +11,11 @@ export function LoginBar() {
   return (
     <Show when="signed-out">
       <Link href="/sign-in">
-        <CustomButton>{t(TRANSLATIONS.LOGIN_BTN)}</CustomButton>
+        <CustomButton>{t(TRANSLATION_GROUPS.COMMON.LOGIN_BTN)}</CustomButton>
       </Link>
 
       <Link href="/sign-up">
-        <CustomButton>{t(TRANSLATIONS.REGISTER_BTN)}</CustomButton>
+        <CustomButton>{t(TRANSLATION_GROUPS.COMMON.REGISTER_BTN)}</CustomButton>
       </Link>
     </Show>
   );

@@ -3,7 +3,7 @@
 import { Box, Typography } from '@mui/material';
 import { useTranslation } from 'react-i18next';
 import { CustomButton } from '@/components';
-import { TRANSLATIONS } from '@/locales';
+import { TRANSLATION_GROUPS } from '@/locales';
 import {
   PricingCard,
   PricingCardBadge,
@@ -54,36 +54,36 @@ const LANDING_PLANS: LandingPlanRow[] = [
     id: 'free',
     available: true,
     featured: true,
-    title: TRANSLATIONS.MAIN_PAGE_PLAN_FREE_TITLE,
-    subtitle: TRANSLATIONS.MAIN_PAGE_PLAN_FREE_SUBTITLE,
+    title: TRANSLATION_GROUPS.MAIN_PAGE.MAIN_PAGE_PLAN_FREE_TITLE,
+    subtitle: TRANSLATION_GROUPS.MAIN_PAGE.MAIN_PAGE_PLAN_FREE_SUBTITLE,
     featureLines: [
-      TRANSLATIONS.MAIN_PAGE_PLAN_FREE_F1,
-      TRANSLATIONS.MAIN_PAGE_PLAN_FREE_F2,
-      TRANSLATIONS.MAIN_PAGE_PLAN_FREE_F3,
-      TRANSLATIONS.MAIN_PAGE_PLAN_FREE_F4,
-      TRANSLATIONS.MAIN_PAGE_PLAN_FREE_F5,
-      TRANSLATIONS.MAIN_PAGE_PLAN_FREE_F6,
+      TRANSLATION_GROUPS.MAIN_PAGE.MAIN_PAGE_PLAN_FREE_F1,
+      TRANSLATION_GROUPS.MAIN_PAGE.MAIN_PAGE_PLAN_FREE_F2,
+      TRANSLATION_GROUPS.MAIN_PAGE.MAIN_PAGE_PLAN_FREE_F3,
+      TRANSLATION_GROUPS.MAIN_PAGE.MAIN_PAGE_PLAN_FREE_F4,
+      TRANSLATION_GROUPS.MAIN_PAGE.MAIN_PAGE_PLAN_FREE_F5,
+      TRANSLATION_GROUPS.MAIN_PAGE.MAIN_PAGE_PLAN_FREE_F6,
     ],
-    priceValue: TRANSLATIONS.MAIN_PAGE_PLAN_FREE_PRICE,
-    pricePeriod: TRANSLATIONS.MAIN_PAGE_PLAN_FREE_PERIOD,
+    priceValue: TRANSLATION_GROUPS.MAIN_PAGE.MAIN_PAGE_PLAN_FREE_PRICE,
+    pricePeriod: TRANSLATION_GROUPS.MAIN_PAGE.MAIN_PAGE_PLAN_FREE_PERIOD,
   },
   {
     id: 'one_time',
     available: false,
     featured: false,
-    title: TRANSLATIONS.MAIN_PAGE_PLAN_ONETIME_TITLE,
+    title: TRANSLATION_GROUPS.MAIN_PAGE.MAIN_PAGE_PLAN_ONETIME_TITLE,
   },
   {
     id: 'basic',
     available: false,
     featured: false,
-    title: TRANSLATIONS.MAIN_PAGE_PLAN_BASIC_TITLE,
+    title: TRANSLATION_GROUPS.MAIN_PAGE.MAIN_PAGE_PLAN_BASIC_TITLE,
   },
   {
     id: 'pro',
     available: false,
     featured: false,
-    title: TRANSLATIONS.MAIN_PAGE_PLAN_PRO_TITLE,
+    title: TRANSLATION_GROUPS.MAIN_PAGE.MAIN_PAGE_PLAN_PRO_TITLE,
   },
 ];
 
@@ -96,13 +96,13 @@ export function MainPagePricingSection() {
         <PricingSection>
           <PricingHeader>
             <PricingTitle variant="h2">
-              {t(TRANSLATIONS.MAIN_PAGE_PRICING_TITLE_PREFIX)}
+              {t(TRANSLATION_GROUPS.MAIN_PAGE.MAIN_PAGE_PRICING_TITLE_PREFIX)}
               <PricingTitleSpan>
-                {t(TRANSLATIONS.MAIN_PAGE_PRICING_TITLE_SPAN)}
+                {t(TRANSLATION_GROUPS.MAIN_PAGE.MAIN_PAGE_PRICING_TITLE_SPAN)}
               </PricingTitleSpan>
             </PricingTitle>
             <PricingDescription>
-              {t(TRANSLATIONS.MAIN_PAGE_PRICING_DESCRIPTION)}
+              {t(TRANSLATION_GROUPS.MAIN_PAGE.MAIN_PAGE_PRICING_DESCRIPTION)}
             </PricingDescription>
           </PricingHeader>
 
@@ -132,7 +132,10 @@ export function MainPagePricingSection() {
                   >
                     {plan.available ? (
                       <PricingCardBadge>
-                        {t(TRANSLATIONS.MAIN_PAGE_PLAN_AVAILABLE_BADGE)}
+                        {t(
+                          TRANSLATION_GROUPS.MAIN_PAGE
+                            .MAIN_PAGE_PLAN_AVAILABLE_BADGE,
+                        )}
                       </PricingCardBadge>
                     ) : null}
 
@@ -173,7 +176,10 @@ export function MainPagePricingSection() {
                           variant="contained"
                           color="primary"
                         >
-                          {t(TRANSLATIONS.MAIN_PAGE_PRICING_CTA_FREE)}
+                          {t(
+                            TRANSLATION_GROUPS.MAIN_PAGE
+                              .MAIN_PAGE_PRICING_CTA_FREE,
+                          )}
                         </CustomButton>
                       </>
                     ) : (
@@ -194,7 +200,10 @@ export function MainPagePricingSection() {
                             fontStyle: 'italic',
                           }}
                         >
-                          {t(TRANSLATIONS.MAIN_PAGE_PLAN_COMING_SOON)}
+                          {t(
+                            TRANSLATION_GROUPS.MAIN_PAGE
+                              .MAIN_PAGE_PLAN_COMING_SOON,
+                          )}
                         </Typography>
                       </>
                     )}

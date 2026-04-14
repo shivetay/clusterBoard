@@ -5,7 +5,7 @@ import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import type { MouseEvent } from 'react';
 import { useTranslation } from 'react-i18next';
 import { type FilesViewMode, filesViewQuery } from '@/lib/pagination/constants';
-import { TRANSLATIONS } from '@/locales';
+import { TRANSLATION_GROUPS } from '@/locales';
 
 type ListGridViewToggleProps = {
   viewMode: FilesViewMode;
@@ -34,15 +34,15 @@ export function ListGridViewToggle({ viewMode }: ListGridViewToggleProps) {
       exclusive
       value={viewMode}
       onChange={handleViewChange}
-      aria-label={t(TRANSLATIONS.LIST_GRID_VIEW_TOGGLE_ARIA)}
+      aria-label={t(TRANSLATION_GROUPS.FILES.LIST_GRID_VIEW_TOGGLE_ARIA)}
       size="small"
       sx={{ mb: 2 }}
     >
       <ToggleButton value="list">
-        {t(TRANSLATIONS.FILES_VIEW_MODE_LIST)}
+        {t(TRANSLATION_GROUPS.FILES.FILES_VIEW_MODE_LIST)}
       </ToggleButton>
       <ToggleButton value="grid">
-        {t(TRANSLATIONS.FILES_VIEW_MODE_GRID)}
+        {t(TRANSLATION_GROUPS.FILES.FILES_VIEW_MODE_GRID)}
       </ToggleButton>
     </ToggleButtonGroup>
   );

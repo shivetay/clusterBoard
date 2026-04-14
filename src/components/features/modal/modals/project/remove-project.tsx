@@ -6,7 +6,7 @@ import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Loader } from '@/components/ui';
 import apiClient from '@/lib/api/apiClient';
-import { TRANSLATIONS } from '@/locales';
+import { TRANSLATION_GROUPS } from '@/locales';
 import { useAlert, useModal } from '@/providers';
 import {
   AddProjectModalContainer,
@@ -34,7 +34,7 @@ export function RemoveProjectModal({ projectId }: { projectId: string }) {
       router.push('/projects');
     } catch {
       showAlert({
-        message: t(TRANSLATIONS.ERROR_REMOVE_PROJECT),
+        message: t(TRANSLATION_GROUPS.ERRORS.ERROR_REMOVE_PROJECT),
         severity: 'error',
       });
       setIsDeleting(false);
@@ -49,7 +49,7 @@ export function RemoveProjectModal({ projectId }: { projectId: string }) {
         <>
           <AddProjectModalHeader>
             <AddProjectModalTitle as="h2" variant="h2">
-              {t(TRANSLATIONS.REMOVE_PROJECT_MODAL_TITLE)}
+              {t(TRANSLATION_GROUPS.PROJECTS.REMOVE_PROJECT_MODAL_TITLE)}
             </AddProjectModalTitle>
           </AddProjectModalHeader>
           <Box
@@ -65,14 +65,14 @@ export function RemoveProjectModal({ projectId }: { projectId: string }) {
               variant="outlined"
               color="secondary"
             >
-              {t(TRANSLATIONS.CANCEL)}
+              {t(TRANSLATION_GROUPS.COMMON.CANCEL)}
             </ModalButton>
             <ModalButton
               onClick={handleRemoveProject}
               variant="contained"
               color="primary"
             >
-              {t(TRANSLATIONS.PROJECT_REMOVE_BTN)}
+              {t(TRANSLATION_GROUPS.PROJECTS.PROJECT_REMOVE_BTN)}
             </ModalButton>
           </Box>
         </>

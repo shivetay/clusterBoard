@@ -5,7 +5,7 @@ import { useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 import { FormInput, Loader } from '@/components/ui';
 import { useEditTask } from '@/lib';
-import { TRANSLATIONS } from '@/locales';
+import { TRANSLATION_GROUPS } from '@/locales';
 import { type TaskFormData, taskSchema } from '@/schemas';
 import type { TTaskData } from '@/types';
 import {
@@ -63,7 +63,7 @@ export function TaskEditModal({ taskData }: ITaskEditModalProps) {
         <>
           <AddProjectModalHeader>
             <AddProjectModalTitle as="h2" variant="h2">
-              {t(TRANSLATIONS.PROJECT_EDIT_HEADER)}
+              {t(TRANSLATION_GROUPS.TASKS.EDIT_TASK)}
             </AddProjectModalTitle>
           </AddProjectModalHeader>
           <AddProjectModalForm
@@ -73,9 +73,9 @@ export function TaskEditModal({ taskData }: ITaskEditModalProps) {
             <FormInput
               {...register('task_name')}
               name="task_name"
-              label={t(TRANSLATIONS.STAGE_NAME)}
+              label={t(TRANSLATION_GROUPS.TASKS.TASK_NAME)}
               type="text"
-              helperText={t(TRANSLATIONS.STAGE_NAME_HELPER_TEXT)}
+              helperText={t(TRANSLATION_GROUPS.TASKS.TASK_NAME_HELPER_TEXT)}
               error={errors.task_name?.message}
             />
 
@@ -85,7 +85,7 @@ export function TaskEditModal({ taskData }: ITaskEditModalProps) {
               variant="contained"
               color="primary"
             >
-              {t(TRANSLATIONS.PROJECT_EDIT_BTN)}
+              {t(TRANSLATION_GROUPS.TASKS.EDIT_TASK)}
             </ModalButton>
           </AddProjectModalForm>
         </>

@@ -2,7 +2,7 @@
 
 import { Typography } from '@mui/material';
 import { useTranslation } from 'react-i18next';
-import { TRANSLATIONS } from '@/locales';
+import { TRANSLATION_GROUPS } from '@/locales';
 import type { TPublicProjectMessage } from '@/types';
 import { MessageThreadNode } from './message-thread-node';
 import {
@@ -31,7 +31,7 @@ export function MessagesThreadPanel({
     <MessagesDetailColumn>
       {!selectedThread ? (
         <Typography variant="body2" color="text.secondary">
-          {t(TRANSLATIONS.MESSAGES_PAGE_SELECT)}
+          {t(TRANSLATION_GROUPS.MESSAGES.MESSAGES_PAGE_SELECT)}
         </Typography>
       ) : (
         <MessageThreadRoot>

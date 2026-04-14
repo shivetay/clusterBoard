@@ -13,7 +13,7 @@ import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { deleteFile, downloadFile } from '@/lib/api/files/filesClient';
 import { useFormatDisplayLocaleDate } from '@/lib/utils';
-import { TRANSLATIONS } from '@/locales/pl';
+import { TRANSLATION_GROUPS } from '@/locales/pl';
 import { useAlert } from '@/providers';
 import type { IFile } from '@/types';
 import { ActionButtons } from '../project-stage-container/project-stage-container.styled';
@@ -54,7 +54,7 @@ export function FilesGrid({ files }: FilesGridProps) {
       await downloadFile(fileId);
     } catch (_error) {
       showAlert({
-        message: t(TRANSLATIONS.ERROR_DOWNLOAD_FILE),
+        message: t(TRANSLATION_GROUPS.ERRORS.ERROR_DOWNLOAD_FILE),
         severity: 'error',
       });
     } finally {
@@ -69,7 +69,7 @@ export function FilesGrid({ files }: FilesGridProps) {
       router.refresh();
     } catch (_error) {
       showAlert({
-        message: t(TRANSLATIONS.ERROR_DELETE_FILE),
+        message: t(TRANSLATION_GROUPS.ERRORS.ERROR_DELETE_FILE),
         severity: 'error',
       });
     } finally {
@@ -81,7 +81,7 @@ export function FilesGrid({ files }: FilesGridProps) {
     return (
       <Box sx={{ p: 3, textAlign: 'center' }}>
         <Typography variant="body2" color="text.secondary">
-          {t(TRANSLATIONS.NO_FILES_FOUND_YET)}
+          {t(TRANSLATION_GROUPS.FILES.NO_FILES_FOUND_YET)}
         </Typography>
       </Box>
     );

@@ -15,7 +15,7 @@ import {
 import { PageContainer } from '@/components/layout/page-container';
 import type { FilesViewMode } from '@/lib/pagination/constants';
 import { formatSubscriptionLimit } from '@/lib/utils';
-import { TRANSLATIONS } from '@/locales';
+import { TRANSLATION_GROUPS } from '@/locales';
 import { useUser } from '@/stores';
 import type { PaginationMeta, TInspirationItem } from '@/types';
 
@@ -56,13 +56,13 @@ export function InspirationView({
         variant="contained"
         onClick={handleBack}
       >
-        {t(TRANSLATIONS.BACK)}
+        {t(TRANSLATION_GROUPS.COMMON.BACK)}
       </CustomButton>
-      <InnerContainer pageTitle={TRANSLATIONS.INSPIRATION_TITLE}>
+      <InnerContainer pageTitle={TRANSLATION_GROUPS.FILES.INSPIRATION_TITLE}>
         {inspirationsLine ? (
           <Typography variant="caption" sx={{ display: 'block', mb: 1 }}>
-            {t(TRANSLATIONS.SUBSCRIPTION_INSPIRATIONS_LABEL)}:{' '}
-            {inspirationsLine}
+            {t(TRANSLATION_GROUPS.SUBSCRIPTION.SUBSCRIPTION_INSPIRATIONS_LABEL)}
+            : {inspirationsLine}
           </Typography>
         ) : null}
         <FileUpload projectId={projectId} isInspiration />

@@ -7,7 +7,7 @@ import { Box } from '@mui/material';
 import { useState } from 'react';
 import { PageHeader, StageTaskComponent } from '@/components/ui';
 import { useProjectAccess } from '@/lib';
-import { TRANSLATIONS } from '@/locales';
+import { TRANSLATION_GROUPS } from '@/locales';
 import { useModal } from '@/providers';
 import type { IProjectData, IStageData } from '@/types';
 import { StageModal } from '../modal/modals';
@@ -52,7 +52,7 @@ export function ProjectStageContainer({
 
   return (
     <ProjectStageContainerStyled>
-      <PageHeader title={TRANSLATIONS.PROJECT_STAGES} />
+      <PageHeader title={TRANSLATION_GROUPS.PROJECTS.PROJECT_STAGES} />
       {project_stages.map((stage) => {
         return (
           <ProjectStageListContainer key={stage.stage_name}>

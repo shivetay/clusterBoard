@@ -8,7 +8,7 @@ import PostAddOutlinedIcon from '@mui/icons-material/PostAddOutlined';
 import { Box } from '@mui/material';
 import { useTranslation } from 'react-i18next';
 import { formatDate, useProjectAccess } from '@/lib';
-import { TRANSLATIONS } from '@/locales';
+import { TRANSLATION_GROUPS } from '@/locales';
 import { useModal } from '@/providers';
 import type { IProjectData } from '@/types';
 import {
@@ -72,7 +72,7 @@ export function ProjectDetailCard({ projectData }: IProjectDetailCardProps) {
       <ProjectInvestorContainer>
         {investors && isOwner && (
           <Box>
-            <Label>{t(TRANSLATIONS.INVESTORS)}</Label>
+            <Label>{t(TRANSLATION_GROUPS.INVESTORS.INVESTORS)}</Label>
             {investors_name.map((investor, index) => {
               return (
                 <InvestorButton
@@ -90,19 +90,19 @@ export function ProjectDetailCard({ projectData }: IProjectDetailCardProps) {
         )}
         {isInvestor && owner_name && (
           <Box>
-            <Label>{t(TRANSLATIONS.OWNER_NAME)}</Label>
+            <Label>{t(TRANSLATION_GROUPS.INVESTORS.OWNER_NAME)}</Label>
             <StatusTags investor={owner_name} key={owner_name} />
           </Box>
         )}
         {start_date && (
           <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1 }}>
-            <Label>{t(TRANSLATIONS.START_DATE)}</Label>
+            <Label>{t(TRANSLATION_GROUPS.PROJECTS.START_DATE)}</Label>
             <Label>{formatDate(start_date)}</Label>
           </Box>
         )}
         {end_date && (
           <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1 }}>
-            <Label>{t(TRANSLATIONS.END_DATE)}</Label>
+            <Label>{t(TRANSLATION_GROUPS.PROJECTS.END_DATE)}</Label>
             <Label>{formatDate(end_date)}</Label>
           </Box>
         )}
@@ -116,7 +116,7 @@ export function ProjectDetailCard({ projectData }: IProjectDetailCardProps) {
             startIcon={<PersonAddAltOutlinedIcon />}
             onClick={() => setModalContent(<InvestorModal projectId={id} />)}
           >
-            {t(TRANSLATIONS.ADD_INVESTOR)}
+            {t(TRANSLATION_GROUPS.INVESTORS.ADD_INVESTOR)}
           </ProjectAddStageButton>
           <ProjectAddStageButton
             disabled={isDisabled}
@@ -127,7 +127,7 @@ export function ProjectDetailCard({ projectData }: IProjectDetailCardProps) {
               setModalContent(<StageModal type="add-stage" projectId={id} />)
             }
           >
-            {t(TRANSLATIONS.ADD_STAGE)}
+            {t(TRANSLATION_GROUPS.STAGES.ADD_STAGE)}
           </ProjectAddStageButton>
           <ProjectAddStageButton
             color="secondary"
@@ -139,7 +139,7 @@ export function ProjectDetailCard({ projectData }: IProjectDetailCardProps) {
               )
             }
           >
-            {t(TRANSLATIONS.STATUS_CHANGE)}
+            {t(TRANSLATION_GROUPS.PROJECTS.STATUS_CHANGE)}
           </ProjectAddStageButton>
 
           <ProjectAddStageButton
@@ -153,7 +153,7 @@ export function ProjectDetailCard({ projectData }: IProjectDetailCardProps) {
               )
             }
           >
-            {t(TRANSLATIONS.PROJECT_EDIT_BTN)}
+            {t(TRANSLATION_GROUPS.PROJECTS.PROJECT_EDIT_BTN)}
           </ProjectAddStageButton>
 
           <ProjectAddStageButton
@@ -167,7 +167,7 @@ export function ProjectDetailCard({ projectData }: IProjectDetailCardProps) {
               )
             }
           >
-            {t(TRANSLATIONS.PROJECT_END_BTN)}
+            {t(TRANSLATION_GROUPS.PROJECTS.PROJECT_END_BTN)}
           </ProjectAddStageButton>
 
           <ProjectAddStageButton
@@ -184,7 +184,7 @@ export function ProjectDetailCard({ projectData }: IProjectDetailCardProps) {
               )
             }
           >
-            {t(TRANSLATIONS.PROJECT_REMOVE_BTN)}
+            {t(TRANSLATION_GROUPS.PROJECTS.PROJECT_REMOVE_BTN)}
           </ProjectAddStageButton>
         </ProjectsActionsContainer>
       )}

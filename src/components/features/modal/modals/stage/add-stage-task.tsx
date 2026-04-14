@@ -5,7 +5,7 @@ import { useTranslation } from 'react-i18next';
 import type z from 'zod';
 import { FormInput, Loader } from '@/components/ui';
 import { mapTaskNames, useAddStageTasks } from '@/lib';
-import { TRANSLATIONS } from '@/locales';
+import { TRANSLATION_GROUPS } from '@/locales';
 import { stageTaskSchema } from '@/schemas';
 import {
   AddProjectModalContainer,
@@ -54,7 +54,7 @@ export function AddStageTaskModal({ stage_id }: { stage_id: string }) {
         <>
           <AddProjectModalHeader>
             <AddProjectModalTitle as="h2" variant="h2">
-              {t(TRANSLATIONS.ADD_TASK_MODAL_TITLE)}
+              {t(TRANSLATION_GROUPS.TASKS.ADD_TASK_MODAL_TITLE)}
             </AddProjectModalTitle>
           </AddProjectModalHeader>
 
@@ -65,9 +65,9 @@ export function AddStageTaskModal({ stage_id }: { stage_id: string }) {
             <FormInput
               {...register('task_name')}
               name="task_name"
-              label={t(TRANSLATIONS.STAGE_TASKS)}
+              label={t(TRANSLATION_GROUPS.STAGES.STAGE_TASKS)}
               type="textarea"
-              helperText={t(TRANSLATIONS.STAGE_TASKS_HELPER_TEXT)}
+              helperText={t(TRANSLATION_GROUPS.STAGES.STAGE_TASKS_HELPER_TEXT)}
               error={errors.task_name?.message}
             />
 
@@ -77,7 +77,7 @@ export function AddStageTaskModal({ stage_id }: { stage_id: string }) {
               variant="contained"
               color="primary"
             >
-              {t(TRANSLATIONS.ADD_TASK_MODAL_BTN)}
+              {t(TRANSLATION_GROUPS.TASKS.ADD_TASK_MODAL_BTN)}
             </ModalButton>
           </AddProjectModalForm>
         </>

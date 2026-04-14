@@ -10,7 +10,7 @@ import {
 } from '@/components/features';
 import { deleteProjectMessageAction } from '@/lib/actions';
 import { findRootMessageIdForMessageId } from '@/lib/utils';
-import { TRANSLATIONS } from '@/locales';
+import { TRANSLATION_GROUPS } from '@/locales';
 import { useAlert, useModal } from '@/providers';
 import { useUser } from '@/stores';
 import type { TPublicProjectMessage } from '@/types';
@@ -52,7 +52,9 @@ export function MessagesView({ projectId, messages = [] }: TMessagesViewProps) {
         const result = await deleteProjectMessageAction(projectId, messageId);
         if (result.success) {
           showAlert({
-            message: t(TRANSLATIONS.MESSAGE_REMOVED_SUCCESSFULLY),
+            message: t(
+              TRANSLATION_GROUPS.MESSAGES.MESSAGE_REMOVED_SUCCESSFULLY,
+            ),
             severity: 'success',
           });
           if (messageId === selectedRootId) {
@@ -61,13 +63,13 @@ export function MessagesView({ projectId, messages = [] }: TMessagesViewProps) {
           router.refresh();
         } else {
           showAlert({
-            message: t(TRANSLATIONS.ERROR_REMOVE_MESSAGE),
+            message: t(TRANSLATION_GROUPS.ERRORS.ERROR_REMOVE_MESSAGE),
             severity: 'error',
           });
         }
       } catch {
         showAlert({
-          message: t(TRANSLATIONS.ERROR_REMOVE_MESSAGE),
+          message: t(TRANSLATION_GROUPS.ERRORS.ERROR_REMOVE_MESSAGE),
           severity: 'error',
         });
       }
@@ -114,9 +116,9 @@ export function MessagesView({ projectId, messages = [] }: TMessagesViewProps) {
         variant="contained"
         onClick={handleBack}
       >
-        {t(TRANSLATIONS.BACK)}
+        {t(TRANSLATION_GROUPS.COMMON.BACK)}
       </CustomButton>
-      <InnerContainer pageTitle={TRANSLATIONS.WIADOMOSCI}>
+      <InnerContainer pageTitle={TRANSLATION_GROUPS.MESSAGES.WIADOMOSCI}>
         <MessagesSplitContainer>
           <MessagesThreadList
             messages={messages}

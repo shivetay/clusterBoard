@@ -5,7 +5,7 @@ import { useTranslation } from 'react-i18next';
 import type z from 'zod';
 import { FormInput } from '@/components/ui';
 import { createComment } from '@/lib/actions';
-import { TRANSLATIONS } from '@/locales';
+import { TRANSLATION_GROUPS } from '@/locales';
 import { useAlert, useModal } from '@/providers';
 import { commentSchema } from '@/schemas';
 import {
@@ -52,12 +52,12 @@ export function AddStageTaskModal({
 
     if (result.success) {
       showAlert({
-        message: t(TRANSLATIONS.COMMENT_ADDED_SUCCESSFULLY),
+        message: t(TRANSLATION_GROUPS.COMMENTS.COMMENT_ADDED_SUCCESSFULLY),
         severity: 'success',
       });
     } else {
       showAlert({
-        message: t(TRANSLATIONS.ERROR_COMMENT_TEXT),
+        message: t(TRANSLATION_GROUPS.ERRORS.ERROR_COMMENT_TEXT),
         severity: 'error',
       });
     }
@@ -68,7 +68,7 @@ export function AddStageTaskModal({
     <AddProjectModalContainer>
       <AddProjectModalHeader>
         <AddProjectModalTitle as="h2" variant="h2">
-          {t(TRANSLATIONS.ADD_COMMENT_MODAL_TITLE)}
+          {t(TRANSLATION_GROUPS.COMMENTS.ADD_COMMENT_MODAL_TITLE)}
         </AddProjectModalTitle>
       </AddProjectModalHeader>
 
@@ -79,9 +79,11 @@ export function AddStageTaskModal({
         <FormInput
           {...register('comment_text')}
           name="comment_text"
-          label={t(TRANSLATIONS.ADD_COMMENT_MODAL_TITLE)}
+          label={t(TRANSLATION_GROUPS.COMMENTS.COMMENT_TEXT)}
           type="textarea"
-          helperText={t(TRANSLATIONS.ADD_COMMENT_MODAL_HELPER_TEXT)}
+          helperText={t(
+            TRANSLATION_GROUPS.COMMENTS.ADD_COMMENT_MODAL_HELPER_TEXT,
+          )}
           error={errors.comment_text?.message}
         />
 
@@ -91,7 +93,7 @@ export function AddStageTaskModal({
           variant="contained"
           color="primary"
         >
-          {t(TRANSLATIONS.ADD_COMMENT_MODAL_BTN)}
+          {t(TRANSLATION_GROUPS.COMMENTS.ADD_COMMENT_MODAL_BTN)}
         </ModalButton>
       </AddProjectModalForm>
     </AddProjectModalContainer>

@@ -2,7 +2,7 @@ import Diversity3OutlinedIcon from '@mui/icons-material/Diversity3Outlined';
 import GraphicEqOutlinedIcon from '@mui/icons-material/GraphicEqOutlined';
 import { Box } from '@mui/material';
 import { useTranslation } from 'react-i18next';
-import { TRANSLATIONS } from '@/locales';
+import { TRANSLATION_GROUPS } from '@/locales';
 import {
   WhyCard,
   WhyCardDescription,
@@ -24,11 +24,11 @@ export function MainPageWhySection() {
       <WhyContainer>
         <WhyHeader>
           <WhyTitle variant="h2">
-            {t(TRANSLATIONS.MAIN_PAGE_WHY_TITLE_PREFIX)}
+            {t(TRANSLATION_GROUPS.MAIN_PAGE.MAIN_PAGE_WHY_TITLE_PREFIX)}
             <WhyTitleSpan>
-              {t(TRANSLATIONS.MAIN_PAGE_WHY_TITLE_SPAN)}
+              {t(TRANSLATION_GROUPS.MAIN_PAGE.MAIN_PAGE_WHY_TITLE_SPAN)}
             </WhyTitleSpan>
-            {t(TRANSLATIONS.MAIN_PAGE_WHY_TITLE_SUFFIX)}
+            {t(TRANSLATION_GROUPS.MAIN_PAGE.MAIN_PAGE_WHY_TITLE_SUFFIX)}
           </WhyTitle>
         </WhyHeader>
 
@@ -39,10 +39,10 @@ export function MainPageWhySection() {
                 <GraphicEqOutlinedIcon />
               </WhyCardIcon>
               <WhyCardTitle variant="h3">
-                {t(TRANSLATIONS.MAIN_PAGE_WHY_CARD_1_TITLE)}
+                {t(TRANSLATION_GROUPS.MAIN_PAGE.MAIN_PAGE_WHY_CARD_1_TITLE)}
               </WhyCardTitle>
               <WhyCardDescription>
-                {t(TRANSLATIONS.MAIN_PAGE_WHY_CARD_1_DESC)}
+                {t(TRANSLATION_GROUPS.MAIN_PAGE.MAIN_PAGE_WHY_CARD_1_DESC)}
               </WhyCardDescription>
             </WhyCard>
           </Box>
@@ -53,10 +53,10 @@ export function MainPageWhySection() {
                 <Diversity3OutlinedIcon />
               </WhyCardIconSecondary>
               <WhyCardTitle variant="h3">
-                {t(TRANSLATIONS.MAIN_PAGE_WHY_CARD_2_TITLE)}
+                {t(TRANSLATION_GROUPS.MAIN_PAGE.MAIN_PAGE_WHY_CARD_2_TITLE)}
               </WhyCardTitle>
               <WhyCardDescription>
-                {t(TRANSLATIONS.MAIN_PAGE_WHY_CARD_2_DESC)}
+                {t(TRANSLATION_GROUPS.MAIN_PAGE.MAIN_PAGE_WHY_CARD_2_DESC)}
               </WhyCardDescription>
             </WhyCard>
           </Box>

@@ -6,7 +6,7 @@ import { useTranslation } from 'react-i18next';
 import { CustomButton, Loader, PageContainer } from '@/components';
 import { useAcceptInvitation } from '@/lib';
 import { formatDate } from '@/lib/utils/formatDate';
-import { TRANSLATIONS } from '@/locales';
+import { TRANSLATION_GROUPS } from '@/locales';
 import { useAlert } from '@/providers';
 import type { IInvitationData } from '@/types';
 import {
@@ -36,7 +36,7 @@ export function InvitationAcceptView({
   useEffect(() => {
     if (!token) {
       showAlert({
-        message: t(TRANSLATIONS.INVALID_INVITATION_LINK),
+        message: t(TRANSLATION_GROUPS.INVITATIONS.INVALID_INVITATION_LINK),
         severity: 'error',
       });
       router.push('/projects');
@@ -52,12 +52,12 @@ export function InvitationAcceptView({
     if (error) {
       if (error === 'cancelled') {
         showAlert({
-          message: t(TRANSLATIONS.INVITATION_CANCELLED),
+          message: t(TRANSLATION_GROUPS.INVITATIONS.INVITATION_CANCELLED),
           severity: 'error',
         });
       } else {
         showAlert({
-          message: t(TRANSLATIONS.INVALID_INVITATION_LINK),
+          message: t(TRANSLATION_GROUPS.INVITATIONS.INVALID_INVITATION_LINK),
           severity: 'error',
         });
       }
@@ -67,7 +67,7 @@ export function InvitationAcceptView({
 
     if (!invitationDetails) {
       showAlert({
-        message: t(TRANSLATIONS.INVALID_INVITATION_LINK),
+        message: t(TRANSLATION_GROUPS.INVITATIONS.INVALID_INVITATION_LINK),
         severity: 'error',
       });
       router.push('/projects');
@@ -103,18 +103,24 @@ export function InvitationAcceptView({
       <InvitationAcceptContainer>
         <InvitationAcceptCard>
           <InvitationAcceptHeader variant="h3" as="h1">
-            {t(TRANSLATIONS.INVITATION_ACCEPT_HEADER)}
+            {t(TRANSLATION_GROUPS.INVITATIONS.INVITATION_ACCEPT_HEADER)}
           </InvitationAcceptHeader>
           <InvitationAcceptCard>
-            <ProjectTitle>{t(TRANSLATIONS.PROJECT_NAME)}</ProjectTitle>
+            <ProjectTitle>
+              {t(TRANSLATION_GROUPS.PROJECTS.PROJECT_NAME)}
+            </ProjectTitle>
             <Header variant="h3" as="h1">
               {project_name}
             </Header>
-            <ProjectTitle>{t(TRANSLATIONS.OWNER_NAME)}</ProjectTitle>
+            <ProjectTitle>
+              {t(TRANSLATION_GROUPS.INVESTORS.OWNER_NAME)}
+            </ProjectTitle>
             <Header variant="h3" as="h1">
               {owner_name}
             </Header>
-            <ProjectTitle>{t(TRANSLATIONS.EXPIRES_AT)}</ProjectTitle>
+            <ProjectTitle>
+              {t(TRANSLATION_GROUPS.INVITATIONS.EXPIRES_AT)}
+            </ProjectTitle>
             <Header variant="h3" as="h1">
               {formatDate(expires_at)}
             </Header>
@@ -126,7 +132,7 @@ export function InvitationAcceptView({
               onClick={handleCancelInvitation}
               disabled={!token || !isSignedIn}
             >
-              {t(TRANSLATIONS.CANCEL_INVITATION)}
+              {t(TRANSLATION_GROUPS.INVITATIONS.CANCEL_INVITATION)}
             </CustomButton>
             <CustomButton
               color="primary"
@@ -134,7 +140,7 @@ export function InvitationAcceptView({
               onClick={handleAcceptInvitation}
               disabled={!token || !isSignedIn}
             >
-              {t(TRANSLATIONS.ACCEPT_INVITATION)}
+              {t(TRANSLATION_GROUPS.INVITATIONS.ACCEPT_INVITATION)}
             </CustomButton>
           </ButtonContainer>
         </InvitationAcceptCard>

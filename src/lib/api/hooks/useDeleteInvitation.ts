@@ -1,6 +1,6 @@
 import { useMutation } from '@tanstack/react-query';
 import { useRouter } from 'next/navigation';
-import { TRANSLATIONS } from '@/locales';
+import { TRANSLATION_GROUPS } from '@/locales';
 import { useAlert } from '@/providers';
 import apiClient from '../apiClient';
 
@@ -21,7 +21,7 @@ export const useDeleteInvitation = () => {
     },
     onSuccess: () => {
       showAlert({
-        message: TRANSLATIONS.INVITATION_DELETED_SUCCESSFULLY,
+        message: TRANSLATION_GROUPS.INVITATIONS.INVITATION_DELETED_SUCCESSFULLY,
         severity: 'success',
       });
       // Refresh the page to update the invitations list
@@ -34,7 +34,7 @@ export const useDeleteInvitation = () => {
       showAlert({
         message:
           error?.response?.data?.message ||
-          TRANSLATIONS.ERROR_DELETE_INVITATION,
+          TRANSLATION_GROUPS.ERRORS.ERROR_DELETE_INVITATION,
         severity: 'error',
       });
     },

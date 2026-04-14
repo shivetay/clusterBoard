@@ -3,7 +3,7 @@
 import { Pagination, Stack, Typography } from '@mui/material';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import { useTranslation } from 'react-i18next';
-import { TRANSLATIONS } from '@/locales';
+import { TRANSLATION_GROUPS } from '@/locales';
 import type { PaginationMeta } from '@/types';
 
 type CollectionPaginationProps = {
@@ -32,7 +32,7 @@ export function CollectionPagination({
   return (
     <Stack spacing={1} alignItems="center" sx={{ mt: 3 }}>
       <Typography variant="body2" color="text.secondary" component="p">
-        {t(TRANSLATIONS.PAGINATION_PAGE_SUMMARY, {
+        {t(TRANSLATION_GROUPS.COMMON.PAGINATION_PAGE_SUMMARY, {
           current: pagination.currentPage,
           total: pagination.totalPages,
           count: pagination.totalItems,
@@ -47,7 +47,7 @@ export function CollectionPagination({
         showLastButton
         siblingCount={1}
         boundaryCount={1}
-        aria-label={t(TRANSLATIONS.PAGINATION_ARIA)}
+        aria-label={t(TRANSLATION_GROUPS.COMMON.PAGINATION_ARIA)}
       />
     </Stack>
   );

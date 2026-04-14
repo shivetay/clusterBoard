@@ -1,5 +1,5 @@
 import { serverGet } from '@/lib/api/projects/serverApiClient';
-import { TRANSLATIONS } from '@/locales/pl/locales';
+import { TRANSLATION_GROUPS } from '@/locales/pl/locales';
 import type { IInvitationData, IProjectData } from '@/types';
 import { ProjectInvitationsView } from '@/views';
 
@@ -28,7 +28,7 @@ export default async function ProjectInvitationsPage({
   const invitationsRes = invitationsSettled.value;
   const invitations = invitationsRes.data.invitations;
   if (!invitations) {
-    return <div>{TRANSLATIONS.NO_INVITATIONS_FOUND}</div>;
+    return <div>{TRANSLATION_GROUPS.INVITATIONS.NO_INVITATIONS_FOUND}</div>;
   }
 
   let investorSlots: { used: number; max: number | null } | undefined;

@@ -1,5 +1,5 @@
 import { z } from 'zod';
-import { TRANSLATIONS } from '@/locales';
+import { TRANSLATION_GROUPS } from '@/locales';
 
 const MIN_PROJ_NAME_LENGTH = 1;
 const MAX_PROJ_NAME_LENGTH = 25;
@@ -8,15 +8,18 @@ const MAX_PROJ_DESCRIPTION_LENGTH = 250;
 const projectFormObjectSchema = z.object({
   project_name: z
     .string()
-    .min(MIN_PROJ_NAME_LENGTH, TRANSLATIONS.ERROR_PROJECT_NAME)
-    .max(MAX_PROJ_NAME_LENGTH, TRANSLATIONS.ERROR_PROJECT_NAME_HELPER_TEXT)
+    .min(MIN_PROJ_NAME_LENGTH, TRANSLATION_GROUPS.ERRORS.ERROR_PROJECT_NAME)
+    .max(
+      MAX_PROJ_NAME_LENGTH,
+      TRANSLATION_GROUPS.ERRORS.ERROR_PROJECT_NAME_HELPER_TEXT,
+    )
     .trim(),
 
   project_description: z
     .string()
     .max(
       MAX_PROJ_DESCRIPTION_LENGTH,
-      TRANSLATIONS.ERROR_PROJECT_DESCRIPTION_HELPER_TEXT,
+      TRANSLATION_GROUPS.ERRORS.ERROR_PROJECT_DESCRIPTION_HELPER_TEXT,
     )
     .optional()
     .or(z.literal('')),
@@ -28,7 +31,7 @@ const projectFormObjectSchema = z.object({
 
   start_date: z
     .string()
-    .min(1, TRANSLATIONS.ERROR_START_DATE)
+    .min(1, TRANSLATION_GROUPS.ERRORS.ERROR_START_DATE)
     .refine(
       (date) => {
         // Validate YYYY-MM-DD format
@@ -39,7 +42,7 @@ const projectFormObjectSchema = z.object({
         const parsedDate = new Date(date);
         return !Number.isNaN(parsedDate.getTime());
       },
-      { message: TRANSLATIONS.ERROR_WRONG_DATE_FORMAT },
+      { message: TRANSLATION_GROUPS.ERRORS.ERROR_WRONG_DATE_FORMAT },
     )
     .optional()
     .or(z.literal('')),
@@ -56,7 +59,7 @@ const projectFormObjectSchema = z.object({
         const parsedDate = new Date(date);
         return !Number.isNaN(parsedDate.getTime());
       },
-      { message: TRANSLATIONS.ERROR_WRONG_DATE_FORMAT },
+      { message: TRANSLATION_GROUPS.ERRORS.ERROR_WRONG_DATE_FORMAT },
     )
     .optional()
     .or(z.literal('')),
@@ -75,7 +78,7 @@ const projectDateOrderRefine = (data: {
 };
 
 const projectDateOrderRefineParams = {
-  message: TRANSLATIONS.ERROR_END_DATE_HELPER_TEXT,
+  message: TRANSLATION_GROUPS.ERRORS.ERROR_END_DATE_HELPER_TEXT,
   path: ['end_date'] as const,
 };
 

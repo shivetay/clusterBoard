@@ -6,7 +6,7 @@ import { useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { CustomButton } from '@/components/ui';
 import { useIsMobile } from '@/lib';
-import { TRANSLATIONS } from '@/locales';
+import { TRANSLATION_GROUPS } from '@/locales';
 import { useModal } from '@/providers';
 import { MobileMenu } from '../menu';
 import LoginBar from './loginbar';
@@ -32,7 +32,7 @@ export function Navbar() {
       <Show when="signed-in">
         <Link href="/cluster">
           <CustomButton color="primary" variant="contained">
-            {t(TRANSLATIONS.CLUSTER_BOARD)}
+            {t(TRANSLATION_GROUPS.COMMON.CLUSTER_BOARD)}
           </CustomButton>
         </Link>
         {isMobile && (

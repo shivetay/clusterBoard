@@ -6,7 +6,7 @@ import { useQuery } from '@tanstack/react-query';
 import { useEffect, useRef } from 'react';
 import { Loader } from '@/components';
 import apiClient, { setTokenGetter } from '@/lib/api/apiClient';
-import { TRANSLATIONS } from '@/locales';
+import { TRANSLATION_GROUPS } from '@/locales';
 import { useUserActions } from '@/stores';
 import type { IUserData, IUserSubscription } from '@/types';
 import { useAlert } from './alert';
@@ -53,7 +53,7 @@ export function UserProviderClient({
       } catch (error) {
         console.error('Failed to get token:', error);
         showAlertRef.current({
-          message: TRANSLATIONS.AUTHENTICATION_ERROR,
+          message: TRANSLATION_GROUPS.COMMON.AUTHENTICATION_ERROR,
           severity: 'error',
         });
         return null;

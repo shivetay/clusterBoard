@@ -11,7 +11,7 @@ import { useEffect, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Loader } from '@/components/ui';
 import { useProjectStatusChange } from '@/lib/api/hooks/useProjectStatusChange';
-import { TRANSLATIONS } from '@/locales';
+import { TRANSLATION_GROUPS } from '@/locales';
 import { useModal } from '@/providers';
 import type { IProjectData } from '@/types';
 import { ModalButton } from '../../modal.styled';
@@ -57,7 +57,7 @@ export function StatusModal({ projectData }: IStatusModalProps) {
 
   const { changeStatus, isPending } = useProjectStatusChange(
     projectData?.id || '',
-    t(TRANSLATIONS.PROJECT_EDITED_SUCCESSFULLY),
+    t(TRANSLATION_GROUPS.PROJECTS.PROJECT_EDITED_SUCCESSFULLY),
   );
 
   const handleSubmit = () => {
@@ -112,14 +112,14 @@ export function StatusModal({ projectData }: IStatusModalProps) {
               variant="outlined"
               color="secondary"
             >
-              {t(TRANSLATIONS.CANCEL)}
+              {t(TRANSLATION_GROUPS.COMMON.CANCEL)}
             </ModalButton>
             <ModalButton
               variant="contained"
               color="primary"
               onClick={handleSubmit}
             >
-              {t(TRANSLATIONS.STATUS_CHANGE)}
+              {t(TRANSLATION_GROUPS.PROJECTS.STATUS_CHANGE)}
             </ModalButton>
           </Box>
         </>

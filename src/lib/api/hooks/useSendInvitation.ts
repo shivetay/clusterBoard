@@ -1,5 +1,5 @@
 import { useMutation } from '@tanstack/react-query';
-import { TRANSLATIONS } from '@/locales';
+import { TRANSLATION_GROUPS } from '@/locales';
 import { useAlert, useModal } from '@/providers';
 import apiClient from '../apiClient';
 
@@ -30,7 +30,7 @@ export const useSendInvitation = () => {
     onSuccess: () => {
       setIsOpen(false);
       showAlert({
-        message: TRANSLATIONS.INVITATION_SENT_SUCCESSFULLY,
+        message: TRANSLATION_GROUPS.INVITATIONS.INVITATION_SENT_SUCCESSFULLY,
         severity: 'success',
       });
     },

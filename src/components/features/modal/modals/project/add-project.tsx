@@ -5,7 +5,7 @@ import { useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 import { FormHelperText, FormInput, Loader } from '@/components/ui';
 import { useCreateNewProject } from '@/lib';
-import { TRANSLATIONS } from '@/locales';
+import { TRANSLATION_GROUPS } from '@/locales';
 import { createProjectSchema, type ProjectFormData } from '@/schemas';
 import { useUser } from '@/stores';
 import {
@@ -67,10 +67,10 @@ export function AddProjectModal() {
         <>
           <AddProjectModalHeader>
             <AddProjectModalTitle as="h2" variant="h2">
-              {t(TRANSLATIONS.ADD_PROJECT_MODAL_TITLE)}
+              {t(TRANSLATION_GROUPS.PROJECTS.ADD_PROJECT_MODAL_TITLE)}
             </AddProjectModalTitle>
             <FormHelperText>
-              {t(TRANSLATIONS.ADD_PROJECT_MODAL_HELPER_TEXT)}
+              {t(TRANSLATION_GROUPS.PROJECTS.ADD_PROJECT_MODAL_HELPER_TEXT)}
             </FormHelperText>
           </AddProjectModalHeader>
 
@@ -81,18 +81,24 @@ export function AddProjectModal() {
             <FormInput
               {...register('project_name')}
               name="project_name"
-              label={t(TRANSLATIONS.PROJECT_NAME)}
+              label={t(TRANSLATION_GROUPS.PROJECTS.PROJECT_NAME)}
               type="text"
-              placeholder={t(TRANSLATIONS.ADD_PROJECT_FORM_PLACEHOLDER)}
-              helperText={t(TRANSLATIONS.PROJECT_NAME_HELPER_TEXT)}
+              placeholder={t(
+                TRANSLATION_GROUPS.PROJECTS.ADD_PROJECT_FORM_PLACEHOLDER,
+              )}
+              helperText={t(
+                TRANSLATION_GROUPS.PROJECTS.PROJECT_NAME_HELPER_TEXT,
+              )}
               error={errors.project_name?.message}
             />
             <FormInput
               {...register('project_description')}
               name="project_description"
-              label={t(TRANSLATIONS.PROJECT_DESCRIPTION)}
+              label={t(TRANSLATION_GROUPS.PROJECTS.PROJECT_DESCRIPTION)}
               type="textarea"
-              helperText={t(TRANSLATIONS.STAGE_DESCRIPTION_HELPER_TEXT)}
+              helperText={t(
+                TRANSLATION_GROUPS.PROJECTS.PROJECT_DESCRIPTION_HELPER_TEXT,
+              )}
               error={errors.project_description?.message}
             />
             <Box
@@ -106,14 +112,14 @@ export function AddProjectModal() {
               <FormInput
                 {...register('start_date')}
                 name="start_date"
-                label={t(TRANSLATIONS.START_DATE)}
+                label={t(TRANSLATION_GROUPS.PROJECTS.START_DATE)}
                 type="date"
                 error={errors.start_date?.message}
               />
               <FormInput
                 {...register('end_date')}
                 name="end_date"
-                label={t(TRANSLATIONS.END_DATE)}
+                label={t(TRANSLATION_GROUPS.PROJECTS.END_DATE)}
                 type="date"
                 error={errors.end_date?.message}
               />
@@ -125,7 +131,7 @@ export function AddProjectModal() {
               variant="contained"
               color="primary"
             >
-              {t(TRANSLATIONS.ADD_PROJECT_MODAL_BTN)}
+              {t(TRANSLATION_GROUPS.PROJECTS.ADD_PROJECT_MODAL_BTN)}
             </ModalButton>
           </AddProjectModalForm>
         </>

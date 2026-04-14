@@ -6,7 +6,7 @@ import { useTranslation } from 'react-i18next';
 import type z from 'zod';
 import { FormInput } from '@/components/ui';
 import { editComment } from '@/lib/actions';
-import { TRANSLATIONS } from '@/locales';
+import { TRANSLATION_GROUPS } from '@/locales';
 import { useAlert, useModal } from '@/providers';
 import { type CommentFormData, commentSchema } from '@/schemas';
 import {
@@ -52,7 +52,6 @@ export function EditCommentModal({ commentData }: IEditCommentModalProps) {
     }
   }, [commentData, reset]);
 
-  console.log(commentData);
   const handleOnSubmit = async (data: z.input<typeof commentSchema>) => {
     const result = await editComment(
       commentData?.id || '',
@@ -61,12 +60,12 @@ export function EditCommentModal({ commentData }: IEditCommentModalProps) {
 
     if (result.success) {
       showAlert({
-        message: t(TRANSLATIONS.COMMENT_ADDED_SUCCESSFULLY),
+        message: t(TRANSLATION_GROUPS.COMMENTS.COMMENT_EDITED_SUCCESSFULLY),
         severity: 'success',
       });
     } else {
       showAlert({
-        message: t(TRANSLATIONS.ERROR_COMMENT_TEXT),
+        message: t(TRANSLATION_GROUPS.ERRORS.ERROR_COMMENT_TEXT),
         severity: 'error',
       });
     }
@@ -77,7 +76,7 @@ export function EditCommentModal({ commentData }: IEditCommentModalProps) {
     <AddProjectModalContainer>
       <AddProjectModalHeader>
         <AddProjectModalTitle as="h2" variant="h2">
-          {t(TRANSLATIONS.COMMENT_EDIT_HEADER)}
+          {t(TRANSLATION_GROUPS.COMMENTS.COMMENT_EDIT_HEADER)}
         </AddProjectModalTitle>
       </AddProjectModalHeader>
       <AddProjectModalForm
@@ -87,9 +86,9 @@ export function EditCommentModal({ commentData }: IEditCommentModalProps) {
         <FormInput
           {...register('comment_text')}
           name="comment_text"
-          label={t(TRANSLATIONS.COMMENT_TEXT)}
+          label={t(TRANSLATION_GROUPS.COMMENTS.COMMENT_TEXT)}
           type="text"
-          helperText={t(TRANSLATIONS.COMMENT_TEXT_HELPER_TEXT)}
+          helperText={t(TRANSLATION_GROUPS.COMMENTS.COMMENT_TEXT_HELPER_TEXT)}
           error={errors.comment_text?.message}
         />
 
@@ -98,9 +97,9 @@ export function EditCommentModal({ commentData }: IEditCommentModalProps) {
           type="submit"
           variant="contained"
           color="primary"
-          aria-label={t(TRANSLATIONS.COMMENT_EDIT_BTN)}
+          aria-label={t(TRANSLATION_GROUPS.COMMENTS.COMMENT_EDIT_BTN)}
         >
-          {t(TRANSLATIONS.COMMENT_EDIT_BTN)}
+          {t(TRANSLATION_GROUPS.COMMENTS.COMMENT_EDIT_BTN)}
         </ModalButton>
       </AddProjectModalForm>
     </AddProjectModalContainer>

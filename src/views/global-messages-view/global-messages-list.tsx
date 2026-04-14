@@ -2,7 +2,7 @@
 
 import { Stack, Typography } from '@mui/material';
 import { useTranslation } from 'react-i18next';
-import { TRANSLATIONS } from '@/locales';
+import { TRANSLATION_GROUPS } from '@/locales';
 import type { TMySentProjectMessage } from '@/types/project-message.type';
 import { GlobalMessageRow } from './global-message-row';
 
@@ -29,8 +29,8 @@ export function GlobalMessagesList({
     return (
       <Typography variant="body2" color="text.secondary" sx={{ py: 4 }}>
         {hasAnyMessages
-          ? t(TRANSLATIONS.MESSAGES_NONE_FILTERED)
-          : t(TRANSLATIONS.MESSAGES_NONE_SENT)}
+          ? t(TRANSLATION_GROUPS.MESSAGES.MESSAGES_NONE_FILTERED)
+          : t(TRANSLATION_GROUPS.MESSAGES.MESSAGES_NONE_SENT)}
       </Typography>
     );
   }

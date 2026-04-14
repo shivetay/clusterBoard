@@ -14,7 +14,7 @@ import {
 import { useDeleteInvitation } from '@/lib';
 import { formatSubscriptionLimit } from '@/lib/utils';
 import { formatDate } from '@/lib/utils/formatDate';
-import { TRANSLATIONS } from '@/locales';
+import { TRANSLATION_GROUPS } from '@/locales';
 import { useModal } from '@/providers';
 import type { IInvitationData } from '@/types';
 import {
@@ -32,22 +32,22 @@ interface IProjectInvitationsViewProps {
 const getInvitationStatus = (invitation: IInvitationData): string => {
   // Check status field first (from backend)
   if (invitation.status === 'cancelled') {
-    return TRANSLATIONS.INVITATION_STATUS_CANCELLED;
+    return TRANSLATION_GROUPS.INVITATIONS.INVITATION_STATUS_CANCELLED;
   }
   if (invitation.status === 'accepted' || invitation.accepted_at) {
-    return TRANSLATIONS.INVITATION_STATUS_ACCEPTED;
+    return TRANSLATION_GROUPS.INVITATIONS.INVITATION_STATUS_ACCEPTED;
   }
   if (invitation.status === 'expired') {
-    return TRANSLATIONS.INVITATION_STATUS_EXPIRED;
+    return TRANSLATION_GROUPS.INVITATIONS.INVITATION_STATUS_EXPIRED;
   }
   if (invitation.expires_at) {
     const expiresAt = new Date(invitation.expires_at);
     const now = new Date();
     if (expiresAt < now) {
-      return TRANSLATIONS.INVITATION_STATUS_EXPIRED;
+      return TRANSLATION_GROUPS.INVITATIONS.INVITATION_STATUS_EXPIRED;
     }
   }
-  return TRANSLATIONS.INVITATION_STATUS_PENDING;
+  return TRANSLATION_GROUPS.INVITATIONS.INVITATION_STATUS_PENDING;
 };
 
 export function ProjectInvitationsView({
@@ -76,7 +76,7 @@ export function ProjectInvitationsView({
       <AddProjectModalContainer>
         <AddProjectModalHeader>
           <AddProjectModalTitle as="h2" variant="h2">
-            {t(TRANSLATIONS.DELETE_INVITATION_MODAL_TITLE)}
+            {t(TRANSLATION_GROUPS.INVITATIONS.DELETE_INVITATION_MODAL_TITLE)}
           </AddProjectModalTitle>
         </AddProjectModalHeader>
         <Box
@@ -88,7 +88,7 @@ export function ProjectInvitationsView({
             color="secondary"
             disabled={isPending}
           >
-            {t(TRANSLATIONS.CANCEL)}
+            {t(TRANSLATION_GROUPS.COMMON.CANCEL)}
           </ModalButton>
           <ModalButton
             onClick={() => {
@@ -99,7 +99,7 @@ export function ProjectInvitationsView({
             color="primary"
             disabled={isPending}
           >
-            {t(TRANSLATIONS.DELETE_INVITATION)}
+            {t(TRANSLATION_GROUPS.INVITATIONS.DELETE_INVITATION)}
           </ModalButton>
         </Box>
       </AddProjectModalContainer>,
@@ -110,18 +110,18 @@ export function ProjectInvitationsView({
   return (
     <PageContainer>
       <BackButton color="primary" variant="contained" onClick={handleBack}>
-        {t(TRANSLATIONS.BACK)}
+        {t(TRANSLATION_GROUPS.COMMON.BACK)}
       </BackButton>
-      <InnerContainer pageTitle={TRANSLATIONS.INVITATIONS}>
+      <InnerContainer pageTitle={TRANSLATION_GROUPS.INVITATIONS.INVITATIONS}>
         {investorSlots ? (
           <Typography variant="caption" sx={{ display: 'block', mb: 1 }}>
-            {t(TRANSLATIONS.SUBSCRIPTION_INVITATIONS_LABEL)}:{' '}
+            {t(TRANSLATION_GROUPS.SUBSCRIPTION.SUBSCRIPTION_INVITATIONS_LABEL)}:{' '}
             {formatSubscriptionLimit(investorSlots.used, investorSlots.max)}
           </Typography>
         ) : null}
         {invitations.length === 0 ? (
           <Typography variant="body1">
-            {t(TRANSLATIONS.NO_INVITATIONS_FOUND)}
+            {t(TRANSLATION_GROUPS.INVITATIONS.NO_INVITATIONS_FOUND)}
           </Typography>
         ) : (
           <Box
@@ -153,7 +153,9 @@ export function ProjectInvitationsView({
                   <DeleteButton
                     onClick={() => handleDeleteClick(invitation)}
                     disabled={isPending}
-                    aria-label={t(TRANSLATIONS.DELETE_INVITATION)}
+                    aria-label={t(
+                      TRANSLATION_GROUPS.INVITATIONS.DELETE_INVITATION,
+                    )}
                   >
                     <DeleteIcon />
                   </DeleteButton>
@@ -161,15 +163,16 @@ export function ProjectInvitationsView({
                     {invitation.project?.project_name}
                   </Typography>
                   <Typography variant="body2" color="text.secondary">
-                    {t(TRANSLATIONS.SENT_TO)}:{recipientName || recipientEmail}
+                    {t(TRANSLATION_GROUPS.INVITATIONS.SENT_TO)}:
+                    {recipientName || recipientEmail}
                   </Typography>
                   <Typography variant="body2" color="text.secondary">
-                    {t(TRANSLATIONS.STATUS)}:
+                    {t(TRANSLATION_GROUPS.COMMON.STATUS)}:
                     {t(getInvitationStatus(invitation))}
                   </Typography>
                   {invitation.expires_at && (
                     <Typography variant="body2" color="text.secondary">
-                      {t(TRANSLATIONS.EXPIRES_AT)}:
+                      {t(TRANSLATION_GROUPS.INVITATIONS.EXPIRES_AT)}:
                       {formatDate(invitation.expires_at)}
                     </Typography>
                   )}

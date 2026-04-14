@@ -7,7 +7,7 @@ import { useTranslation } from 'react-i18next';
 import type z from 'zod';
 import { FormInput } from '@/components/ui';
 import { createProjectMessageAction } from '@/lib/actions';
-import { TRANSLATIONS } from '@/locales';
+import { TRANSLATION_GROUPS } from '@/locales';
 import { useAlert, useModal } from '@/providers';
 import { projectMessageBodySchema } from '@/schemas';
 import {
@@ -58,13 +58,13 @@ export function AddProjectMessageModal({
 
     if (result.success) {
       showAlert({
-        message: t(TRANSLATIONS.MESSAGE_ADDED_SUCCESSFULLY),
+        message: t(TRANSLATION_GROUPS.MESSAGES.MESSAGE_ADDED_SUCCESSFULLY),
         severity: 'success',
       });
       router.refresh();
     } else {
       showAlert({
-        message: t(TRANSLATIONS.ERROR_MESSAGE_SAVE),
+        message: t(TRANSLATION_GROUPS.ERRORS.ERROR_MESSAGE_SAVE),
         severity: 'error',
       });
     }
@@ -72,8 +72,8 @@ export function AddProjectMessageModal({
   };
 
   const titleKey = parent_message_id
-    ? TRANSLATIONS.ADD_MESSAGE_REPLY_MODAL_TITLE
-    : TRANSLATIONS.ADD_MESSAGE_MODAL_TITLE;
+    ? TRANSLATION_GROUPS.MESSAGES.ADD_MESSAGE_REPLY_MODAL_TITLE
+    : TRANSLATION_GROUPS.MESSAGES.ADD_MESSAGE_MODAL_TITLE;
 
   return (
     <AddProjectModalContainer>
@@ -90,9 +90,9 @@ export function AddProjectMessageModal({
         <FormInput
           {...register('body')}
           name="body"
-          label={t(TRANSLATIONS.MESSAGE_BODY_LABEL)}
+          label={t(TRANSLATION_GROUPS.MESSAGES.MESSAGE_BODY_LABEL)}
           type="textarea"
-          helperText={t(TRANSLATIONS.MESSAGE_BODY_HELPER)}
+          helperText={t(TRANSLATION_GROUPS.MESSAGES.MESSAGE_BODY_HELPER)}
           error={errors.body?.message}
         />
 
@@ -102,7 +102,7 @@ export function AddProjectMessageModal({
           variant="contained"
           color="primary"
         >
-          {t(TRANSLATIONS.ADD_MESSAGE_MODAL_BTN)}
+          {t(TRANSLATION_GROUPS.MESSAGES.ADD_MESSAGE_MODAL_BTN)}
         </ModalButton>
       </AddProjectModalForm>
     </AddProjectModalContainer>

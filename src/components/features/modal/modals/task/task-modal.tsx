@@ -1,5 +1,5 @@
 'use client';
-import { TRANSLATIONS } from '@/locales';
+import { TRANSLATION_GROUPS } from '@/locales';
 import { useAlert } from '@/providers';
 import type { TTaskData } from '@/types';
 import { TaskEditModal } from './task-edit-modal';
@@ -20,7 +20,7 @@ export function TaskModal({ type, taskData }: ITaskModalProps) {
   const { showAlert } = useAlert();
   if (!taskData && type !== 'edit-task') {
     showAlert({
-      message: TRANSLATIONS.GENERAL_ERROR,
+      message: TRANSLATION_GROUPS.COMMON.GENERAL_ERROR,
       severity: 'error',
     });
     return null;

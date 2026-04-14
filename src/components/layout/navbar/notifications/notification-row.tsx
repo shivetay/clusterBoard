@@ -8,7 +8,7 @@ import {
   notificationKindToTranslationKey,
 } from '@/lib/utils';
 import { formatDate } from '@/lib/utils/formatDate';
-import { TRANSLATIONS } from '@/locales';
+import { TRANSLATION_GROUPS } from '@/locales';
 import type { INotificationItem } from '@/types/notification.type';
 
 import {
@@ -46,7 +46,9 @@ export function NotificationRow({
           edge="end"
           size="small"
           disabled={isBusy}
-          aria-label={t(TRANSLATIONS.NOTIFICATIONS_MARK_ONE_READ)}
+          aria-label={t(
+            TRANSLATION_GROUPS.NOTIFICATIONS.NOTIFICATIONS_MARK_ONE_READ,
+          )}
           onClick={() => onMarkRead(notification.id)}
         >
           <CheckCircleOutlineOutlinedIcon fontSize="small" />
@@ -55,7 +57,9 @@ export function NotificationRow({
     >
       <NotificationRowButton
         disabled={isBusy}
-        aria-label={t(TRANSLATIONS.NOTIFICATIONS_GO_TO_ITEM)}
+        aria-label={t(
+          TRANSLATION_GROUPS.NOTIFICATIONS.NOTIFICATIONS_GO_TO_ITEM,
+        )}
         onClick={() => onOpenAndMarkRead(notification.id, href)}
       >
         <NotificationListItemText
