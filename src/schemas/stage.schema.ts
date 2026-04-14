@@ -1,7 +1,7 @@
 import { z } from 'zod';
 import { TRANSLATION_GROUPS } from '@/locales';
 
-const MAX_STAGE_NAME_LENGTH = 10;
+const MAX_STAGE_NAME_LENGTH = 5;
 const MAX_STAGE_DESCRIPTION_LENGTH = 25;
 
 /**

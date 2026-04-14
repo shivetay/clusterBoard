@@ -1,8 +1,9 @@
 import { z } from 'zod';
 import { TRANSLATION_GROUPS } from '@/locales';
 
-const MIN_PROJ_NAME_LENGTH = 1;
+const MIN_PROJ_NAME_LENGTH = 5;
 const MAX_PROJ_NAME_LENGTH = 25;
+const MIN_PROJ_DESCRIPTION_LENGTH = 5;
 const MAX_PROJ_DESCRIPTION_LENGTH = 250;
 
 const projectFormObjectSchema = z.object({
@@ -17,6 +18,10 @@ const projectFormObjectSchema = z.object({
 
   project_description: z
     .string()
+    .min(
+      MIN_PROJ_DESCRIPTION_LENGTH,
+      TRANSLATION_GROUPS.ERRORS.ERROR_PROJECT_DESCRIPTION_MIN,
+    )
     .max(
       MAX_PROJ_DESCRIPTION_LENGTH,
       TRANSLATION_GROUPS.ERRORS.ERROR_PROJECT_DESCRIPTION_HELPER_TEXT,
@@ -79,7 +84,7 @@ const projectDateOrderRefine = (data: {
 
 const projectDateOrderRefineParams = {
   message: TRANSLATION_GROUPS.ERRORS.ERROR_END_DATE_HELPER_TEXT,
-  path: ['end_date'] as const,
+  path: ['end_date'],
 };
 
 export const createProjectSchema = projectFormObjectSchema.refine(

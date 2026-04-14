@@ -1,7 +1,7 @@
 import z from 'zod';
 import { TRANSLATION_GROUPS } from '@/locales';
 
-const MAX_COMMENT_TEXT_LENGTH = 150;
+const MAX_COMMENT_TEXT_LENGTH = 50;
 
 export const commentSchema = z.object({
   id: z.string().optional(),
