@@ -12,10 +12,6 @@ export const stageTaskSchema = z.object({
   task_name: z
     .string()
     .min(1, TRANSLATION_GROUPS.ERRORS.ERROR_TASK_NAME)
-    .max(
-      MAX_STAGE_DESCRIPTION_LENGTH,
-      TRANSLATION_GROUPS.ERRORS.ERROR_TASK_NAME_HELPER_TEXT,
-    )
     .trim(),
 
   is_done: z.boolean().default(false),
