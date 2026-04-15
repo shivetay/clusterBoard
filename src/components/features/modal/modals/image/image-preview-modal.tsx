@@ -22,14 +22,14 @@ export function ImagePreviewModal({
       onClose={onClose}
       maxWidth="lg"
       fullWidth
-      PaperProps={{
-        sx: {
-          bgcolor: 'transparent',
-          boxShadow: 'none',
-          maxHeight: '90vh',
-        },
-      }}
       slotProps={{
+        paper: {
+          sx: {
+            bgcolor: 'transparent',
+            boxShadow: 'none',
+            maxHeight: '90vh',
+          },
+        },
         backdrop: {
           sx: { bgcolor: 'rgba(0, 0, 0, 0.8)' },
         },
