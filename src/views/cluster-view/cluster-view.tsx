@@ -7,7 +7,7 @@ import EmailOutlinedIcon from '@mui/icons-material/EmailOutlined';
 import TokenOutlinedIcon from '@mui/icons-material/TokenOutlined';
 import { CardComponent, LargeCard, Loader, PageContainer } from '@/components';
 import { useIsMobile, useNotifications } from '@/lib';
-import { TRANSLATIONS } from '@/locales';
+import { TRANSLATION_GROUPS } from '@/locales';
 import { useUser } from '@/stores';
 import { ClusterCardContainer } from './cluster-view.styled';
 
@@ -38,60 +38,61 @@ export function ClusterView() {
       <ClusterCardContainer>
         {isMobile && (
           <LargeCard
-            key={TRANSLATIONS.PROJEKTY}
+            key={TRANSLATION_GROUPS.PROJECTS.PROJEKTY}
             extended
             span={2}
-            description={TRANSLATIONS.AKTYWNE_PROJEKTY}
+            description={TRANSLATION_GROUPS.PROJECTS.AKTYWNE_PROJEKTY}
             count={projectsCount}
             maxCount={projectsLimit}
-            header={TRANSLATIONS.PROJEKTY}
+            header={TRANSLATION_GROUPS.PROJECTS.PROJEKTY}
             href={'/projects'}
             icon={<TokenOutlinedIcon />}
           />
         )}
         <CardComponent
-          key={TRANSLATIONS.ZADANIA}
-          description={TRANSLATIONS.AKTYWNE_ZADANIA}
+          key={TRANSLATION_GROUPS.DASHBOARD.ZADANIA}
+          description={TRANSLATION_GROUPS.DASHBOARD.AKTYWNE_ZADANIA}
           count={taskCount}
-          header={TRANSLATIONS.ZADANIA}
+          header={TRANSLATION_GROUPS.DASHBOARD.ZADANIA}
           href={'/zadania'}
           icon={<ChecklistOutlinedIcon />}
         />
         <CardComponent
-          key={TRANSLATIONS.KALENDARZ}
-          header={TRANSLATIONS.KALENDARZ}
-          description={TRANSLATIONS.AKTYWNE_SPOTKANIA}
+          key={TRANSLATION_GROUPS.DASHBOARD.KALENDARZ}
+          header={TRANSLATION_GROUPS.DASHBOARD.KALENDARZ}
+          description={TRANSLATION_GROUPS.DASHBOARD.AKTYWNE_SPOTKANIA}
           count={0}
           href={'/kalendarz'}
           icon={<CalendarMonthOutlinedIcon />}
         />
         <CardComponent
-          key={TRANSLATIONS.FINANSE}
-          header={TRANSLATIONS.FINANSE}
-          description={TRANSLATIONS.FINANSE}
+          key={TRANSLATION_GROUPS.DASHBOARD.FINANSE}
+          header={TRANSLATION_GROUPS.DASHBOARD.FINANSE}
+          description={TRANSLATION_GROUPS.DASHBOARD.FINANSE}
           href={'/finanse'}
           icon={<CurrencyExchangeOutlinedIcon />}
         />
         {!isMobile && (
           <LargeCard
-            key={TRANSLATIONS.PROJEKTY}
+            key={TRANSLATION_GROUPS.PROJECTS.PROJEKTY}
             extended
             span={2}
-            description={TRANSLATIONS.AKTYWNE_PROJEKTY}
+            description={TRANSLATION_GROUPS.PROJECTS.AKTYWNE_PROJEKTY}
             count={projectsCount}
             maxCount={projectsLimit}
-            header={TRANSLATIONS.PROJEKTY}
+            header={TRANSLATION_GROUPS.PROJECTS.PROJEKTY}
             href={'/projects'}
             icon={<TokenOutlinedIcon />}
           />
         )}
         <CardComponent
-          key={TRANSLATIONS.WIADOMOSCI}
-          description={TRANSLATIONS.OCZEKUJACE_WIADOMOSCI}
+          key={TRANSLATION_GROUPS.MESSAGES.WIADOMOSCI}
+          description={TRANSLATION_GROUPS.MESSAGES.OCZEKUJACE_WIADOMOSCI}
           count={messageCount}
-          header={TRANSLATIONS.WIADOMOSCI}
+          header={TRANSLATION_GROUPS.MESSAGES.WIADOMOSCI}
           href={'/messages'}
           icon={<EmailOutlinedIcon />}
+          disabled={false}
         />
       </ClusterCardContainer>
     </PageContainer>

@@ -14,7 +14,7 @@ import { TaskModal } from '@/components/features/modal/modals/task/task-modal';
 import { ActionButtons } from '@/components/features/project-stage-container/project-stage-container.styled';
 import { apiClient, formatDateForInput, useEditTask } from '@/lib';
 import { deleteComment } from '@/lib/actions';
-import { TRANSLATIONS } from '@/locales';
+import { TRANSLATION_GROUPS } from '@/locales';
 import { useAlert, useModal } from '@/providers';
 import type { CommentFormData } from '@/schemas';
 import { useUser } from '@/stores';
@@ -65,12 +65,12 @@ export function StageTaskComponent({
       queryClient.invalidateQueries({ queryKey: ['user-projects'] });
       router.refresh();
       showAlert({
-        message: t(TRANSLATIONS.TASK_REMOVED_SUCCESSFULLY),
+        message: t(TRANSLATION_GROUPS.TASKS.TASK_REMOVED_SUCCESSFULLY),
         severity: 'success',
       });
     } catch {
       showAlert({
-        message: t(TRANSLATIONS.ERROR_REMOVE_TASK),
+        message: t(TRANSLATION_GROUPS.ERRORS.ERROR_REMOVE_TASK),
         severity: 'error',
       });
     }
@@ -84,14 +84,14 @@ export function StageTaskComponent({
     try {
       await deleteComment(commentId);
       showAlert({
-        message: t(TRANSLATIONS.COMMENT_REMOVED_SUCCESSFULLY),
+        message: t(TRANSLATION_GROUPS.COMMENTS.COMMENT_REMOVED_SUCCESSFULLY),
         severity: 'success',
       });
 
       router.refresh();
     } catch {
       showAlert({
-        message: t(TRANSLATIONS.ERROR_REMOVE_COMMENT),
+        message: t(TRANSLATION_GROUPS.ERRORS.ERROR_REMOVE_COMMENT),
         severity: 'error',
       });
     }
@@ -103,10 +103,12 @@ export function StageTaskComponent({
         <Fragment key={task.id}>
           <Box
             key={task.id}
-            display="flex"
-            flexDirection="row"
-            justifyContent="space-between"
-            alignItems="center"
+            sx={{
+              display: 'flex',
+              flexDirection: 'row',
+              justifyContent: 'space-between',
+              alignItems: 'center',
+            }}
           >
             <TaskRadio
               disabled={isStageClosed}
@@ -118,9 +120,9 @@ export function StageTaskComponent({
               }
               label={task.task_name}
             />
-            <Box display="flex" flexDirection="row">
+            <Box sx={{ display: 'flex', flexDirection: 'row' }}>
               <ActionButtons
-                aria-label={t(TRANSLATIONS.SHOW_COMMENTS)}
+                aria-label={t(TRANSLATION_GROUPS.COMMENTS.SHOW_COMMENTS)}
                 startIcon={<ChatBubbleOutlineOutlinedIcon />}
                 onClick={() => {
                   setShowComments((prev) => {
@@ -148,13 +150,13 @@ export function StageTaskComponent({
               />
               <ActionButtons
                 disabled={task.is_done || isStageClosed || !isOwner}
-                aria-label={t(TRANSLATIONS.EDIT_TASK)}
+                aria-label={t(TRANSLATION_GROUPS.TASKS.EDIT_TASK)}
                 startIcon={<EditOutlinedIcon />}
                 onClick={() => handleTaskEdit(task)}
               />
               <ActionButtons
                 disabled={task.is_done || isStageClosed || !isOwner}
-                aria-label={t(TRANSLATIONS.DELETE_TASK)}
+                aria-label={t(TRANSLATION_GROUPS.TASKS.DELETE_TASK)}
                 startIcon={<DeleteForeverOutlinedIcon />}
                 onClick={() => {
                   handleTaskDelete(task.id);
@@ -167,17 +169,20 @@ export function StageTaskComponent({
               {task.task_comments.map((comment) => (
                 <CommentContainer key={comment.id}>
                   <Box
-                    display="flex"
-                    flexDirection="row"
-                    justifyContent="space-between"
-                    alignItems="center"
+                    sx={{
+                      display: 'flex',
+                      flexDirection: 'row',
+                      justifyContent: 'space-between',
+                      alignItems: 'center',
+                    }}
                   >
                     <CommentDetails>
-                      {t(TRANSLATIONS.AUTHOR_NAME)}: {comment.author_name}
+                      {t(TRANSLATION_GROUPS.COMMON.AUTHOR_NAME)}:{' '}
+                      {comment.author_name}
                     </CommentDetails>
                     <Box>
                       <ActionButtons
-                        aria-label={t(TRANSLATIONS.EDIT_COMMENT)}
+                        aria-label={t(TRANSLATION_GROUPS.COMMENTS.EDIT_COMMENT)}
                         disabled={
                           task.is_done ||
                           isStageClosed ||
@@ -187,7 +192,9 @@ export function StageTaskComponent({
                         onClick={() => handleCommentEdit(comment)}
                       />
                       <ActionButtons
-                        aria-label={t(TRANSLATIONS.DELETE_COMMENT)}
+                        aria-label={t(
+                          TRANSLATION_GROUPS.COMMENTS.DELETE_COMMENT,
+                        )}
                         disabled={
                           task.is_done ||
                           isStageClosed ||
@@ -203,8 +210,9 @@ export function StageTaskComponent({
 
                   <CommentText>{comment.comment_text}</CommentText>
                   <CommentDetails>
-                    {comment.is_edited && ` ${t(TRANSLATIONS.EDITED)} `}
-                    {t(TRANSLATIONS.DATE)}:{' '}
+                    {comment.is_edited &&
+                      ` ${t(TRANSLATION_GROUPS.COMMON.EDITED)} `}
+                    {t(TRANSLATION_GROUPS.COMMON.DATE)}:{' '}
                     {formatDateForInput(comment.updatedAt)}
                   </CommentDetails>
                 </CommentContainer>

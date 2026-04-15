@@ -1,5 +1,5 @@
 import SubdirectoryArrowRightOutlinedIcon from '@mui/icons-material/SubdirectoryArrowRightOutlined';
-import { Box, CardActionArea } from '@mui/material';
+import { Box } from '@mui/material';
 import { backgroundGlowAnimation } from '@/theme';
 import {
   CardContainer,
@@ -42,37 +42,35 @@ export function LargeCard({ ...props }: CardComponentProps) {
 
   return (
     <GridCardContainer href={href} extended={extended} span={span}>
-      <CardWrapper sx={{ ...backgroundGlowAnimation }}>
-        <CardActionArea sx={{ height: '100%' }}>
-          <CardContainer>
-            <CardHeader iconColor={iconColor}>
-              <MainIconContainer>
-                {icon}
-                <SpannedCardDescriptionHeader
-                  sx={{ fontSize: '1.88rem' }}
-                  variant="h2"
-                  as="h2"
-                >
-                  {header}
-                </SpannedCardDescriptionHeader>
-              </MainIconContainer>
-              <IconContainer>
-                <SubdirectoryArrowRightOutlinedIcon />
-              </IconContainer>
-            </CardHeader>
-            {description ? (
-              <CountHeaderContainer>
-                <SpannedCountHeader>{count}</SpannedCountHeader>
-                <Box>
-                  <SpannedMaxCountHeaderCount variant="h2" as="h2">
-                    / {`${maxCount}`}
-                  </SpannedMaxCountHeaderCount>
-                  <CardHelperText>{description}</CardHelperText>
-                </Box>
-              </CountHeaderContainer>
-            ) : null}
-          </CardContainer>
-        </CardActionArea>
+      <CardWrapper sx={{ ...backgroundGlowAnimation, height: '100%' }}>
+        <CardContainer>
+          <CardHeader iconColor={iconColor}>
+            <MainIconContainer>
+              {icon}
+              <SpannedCardDescriptionHeader
+                sx={{ fontSize: '1.88rem' }}
+                variant="h2"
+                as="h2"
+              >
+                {header}
+              </SpannedCardDescriptionHeader>
+            </MainIconContainer>
+            <IconContainer>
+              <SubdirectoryArrowRightOutlinedIcon />
+            </IconContainer>
+          </CardHeader>
+          {description ? (
+            <CountHeaderContainer>
+              <SpannedCountHeader>{count}</SpannedCountHeader>
+              <Box>
+                <SpannedMaxCountHeaderCount variant="h2" as="h2">
+                  / {`${maxCount}`}
+                </SpannedMaxCountHeaderCount>
+                <CardHelperText>{description}</CardHelperText>
+              </Box>
+            </CountHeaderContainer>
+          ) : null}
+        </CardContainer>
       </CardWrapper>
     </GridCardContainer>
   );

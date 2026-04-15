@@ -1,6 +1,6 @@
 'use client';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { TRANSLATIONS } from '@/locales';
+import { TRANSLATION_GROUPS } from '@/locales';
 import { useAlert, useModal } from '@/providers';
 import type { TFormData } from '@/types';
 import apiClient from '../apiClient';
@@ -30,7 +30,7 @@ export const useCreateNewProject = () => {
       queryClient.invalidateQueries({ queryKey: ['user'] });
       setIsOpen(false);
       showAlert({
-        message: TRANSLATIONS.PROJECT_CREATED_SUCCESSFULLY,
+        message: TRANSLATION_GROUPS.PROJECTS.PROJECT_CREATED_SUCCESSFULLY,
         severity: 'success',
       });
     },

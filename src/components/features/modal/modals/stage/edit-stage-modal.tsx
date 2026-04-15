@@ -5,7 +5,7 @@ import { useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 import { FormInput, Loader } from '@/components/ui';
 import { useEditStage } from '@/lib';
-import { TRANSLATIONS } from '@/locales';
+import { TRANSLATION_GROUPS } from '@/locales';
 import { type StageFormData, stageFormSchema } from '@/schemas';
 import type { IStageData } from '@/types';
 import {
@@ -66,7 +66,7 @@ export function EditStageModal({ stageData }: IEditStageModalProps) {
         <>
           <AddProjectModalHeader>
             <AddProjectModalTitle as="h2" variant="h2">
-              {t(TRANSLATIONS.PROJECT_EDIT_HEADER)}
+              {t(TRANSLATION_GROUPS.STAGES.STAGE_EDIT_HEADER)}
             </AddProjectModalTitle>
           </AddProjectModalHeader>
           <AddProjectModalForm
@@ -76,17 +76,19 @@ export function EditStageModal({ stageData }: IEditStageModalProps) {
             <FormInput
               {...register('stage_name')}
               name="stage_name"
-              label={t(TRANSLATIONS.STAGE_NAME)}
+              label={t(TRANSLATION_GROUPS.STAGES.STAGE_NAME)}
               type="text"
-              helperText={t(TRANSLATIONS.STAGE_NAME_HELPER_TEXT)}
+              helperText={t(TRANSLATION_GROUPS.STAGES.STAGE_NAME_HELPER_TEXT)}
               error={errors.stage_name?.message}
             />
             <FormInput
               {...register('stage_description')}
               name="stage_description"
-              label={t(TRANSLATIONS.STAGE_DESCRIPTION)}
+              label={t(TRANSLATION_GROUPS.STAGES.STAGE_DESCRIPTION)}
               type="textarea"
-              helperText={t(TRANSLATIONS.STAGE_DESCRIPTION_HELPER_TEXT)}
+              helperText={t(
+                TRANSLATION_GROUPS.STAGES.STAGE_DESCRIPTION_HELPER_TEXT,
+              )}
               error={errors.stage_description?.message}
             />
 
@@ -96,7 +98,7 @@ export function EditStageModal({ stageData }: IEditStageModalProps) {
               variant="contained"
               color="primary"
             >
-              {t(TRANSLATIONS.PROJECT_EDIT_BTN)}
+              {t(TRANSLATION_GROUPS.STAGES.STAGE_EDIT_BTN)}
             </ModalButton>
           </AddProjectModalForm>
         </>

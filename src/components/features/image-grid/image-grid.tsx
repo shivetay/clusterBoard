@@ -8,7 +8,7 @@ import { useTranslation } from 'react-i18next';
 import { ImagePreviewModal } from '@/components/features/modal';
 import { getImageSrc, isImageFile } from '@/lib';
 import { deleteFile } from '@/lib/api/files/filesClient';
-import { TRANSLATIONS } from '@/locales';
+import { TRANSLATION_GROUPS } from '@/locales';
 import { useAlert } from '@/providers';
 import type { IFile } from '@/types';
 import { ActionButtons } from './image-grid.styled';
@@ -32,7 +32,7 @@ export function ImageGrid({ files }: ImageGridProps) {
       router.refresh();
     } catch {
       showAlert({
-        message: t(TRANSLATIONS.ERROR_DELETE_FILE),
+        message: t(TRANSLATION_GROUPS.ERRORS.ERROR_DELETE_FILE),
         severity: 'error',
       });
     } finally {

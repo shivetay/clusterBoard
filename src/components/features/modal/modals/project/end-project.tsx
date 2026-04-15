@@ -2,7 +2,7 @@ import { Box } from '@mui/material';
 import { useTranslation } from 'react-i18next';
 import { Loader } from '@/components/ui';
 import { useProjectStatusChange } from '@/lib/api/hooks/useProjectStatusChange';
-import { TRANSLATIONS } from '@/locales';
+import { TRANSLATION_GROUPS } from '@/locales';
 import { useModal } from '@/providers';
 import {
   AddProjectModalContainer,
@@ -18,7 +18,7 @@ export function EndProjectModal({ projectId }: { projectId: string }) {
   const { setIsOpen } = useModal();
   const { changeStatus, isPending } = useProjectStatusChange(
     projectId,
-    t(TRANSLATIONS.PROJECT_ENDED_SUCCESSFULLY),
+    t(TRANSLATION_GROUPS.PROJECTS.PROJECT_ENDED_SUCCESSFULLY),
   );
 
   const handleEndProject = () => {
@@ -33,23 +33,30 @@ export function EndProjectModal({ projectId }: { projectId: string }) {
         <>
           <AddProjectModalHeader>
             <AddProjectModalTitle as="h2" variant="h2">
-              {t(TRANSLATIONS.PROJECT_END_MODAL_TITLE)}
+              {t(TRANSLATION_GROUPS.PROJECTS.PROJECT_END_MODAL_TITLE)}
             </AddProjectModalTitle>
           </AddProjectModalHeader>
-          <Box display="flex" flexDirection="row" gap={2} width="100%">
+          <Box
+            sx={{
+              display: 'flex',
+              flexDirection: 'row',
+              gap: 2,
+              width: '100%',
+            }}
+          >
             <ModalButton
               onClick={() => setIsOpen(false)}
               variant="outlined"
               color="secondary"
             >
-              {t(TRANSLATIONS.CANCEL)}
+              {t(TRANSLATION_GROUPS.COMMON.CANCEL)}
             </ModalButton>
             <ModalButton
               onClick={handleEndProject}
               variant="contained"
               color="primary"
             >
-              {t(TRANSLATIONS.PROJECT_END_BTN)}
+              {t(TRANSLATION_GROUPS.PROJECTS.PROJECT_END_BTN)}
             </ModalButton>
           </Box>
         </>

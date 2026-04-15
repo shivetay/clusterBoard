@@ -14,7 +14,7 @@ import {
 } from '@/components';
 import type { FilesViewMode } from '@/lib/pagination/constants';
 import { formatSubscriptionLimit } from '@/lib/utils';
-import { TRANSLATIONS } from '@/locales';
+import { TRANSLATION_GROUPS } from '@/locales';
 import { useUser } from '@/stores';
 import type { IFile, PaginationMeta } from '@/types';
 
@@ -53,12 +53,13 @@ export function FilesView({
         variant="contained"
         onClick={handleBack}
       >
-        {t(TRANSLATIONS.BACK)}
+        {t(TRANSLATION_GROUPS.COMMON.BACK)}
       </CustomButton>
-      <InnerContainer pageTitle={TRANSLATIONS.FILES}>
+      <InnerContainer pageTitle={TRANSLATION_GROUPS.FILES.FILES}>
         {filesLine ? (
           <Typography variant="caption" sx={{ display: 'block', mb: 1 }}>
-            {t(TRANSLATIONS.SUBSCRIPTION_FILES_LABEL)}: {filesLine}
+            {t(TRANSLATION_GROUPS.SUBSCRIPTION.SUBSCRIPTION_FILES_LABEL)}:{' '}
+            {filesLine}
           </Typography>
         ) : null}
         <FileUpload projectId={projectId} />

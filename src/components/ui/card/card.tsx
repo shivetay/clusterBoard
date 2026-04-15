@@ -1,5 +1,6 @@
 import SubdirectoryArrowRightOutlinedIcon from '@mui/icons-material/SubdirectoryArrowRightOutlined';
 import { CardContent } from '@mui/material';
+import { TRANSLATION_GROUPS } from '@/locales';
 import { useNavigation } from '@/providers';
 import {
   CardContainer,
@@ -23,15 +24,25 @@ interface CardComponentProps {
   href: string;
   icon?: React.ReactNode;
   iconColor?: string;
+  disabled?: boolean;
 }
 
 export function CardComponent({ ...props }: CardComponentProps) {
-  const { header, href, description, count, maxCount, icon, iconColor } = props;
+  const {
+    header,
+    href,
+    description,
+    count,
+    maxCount,
+    icon,
+    iconColor,
+    disabled = true,
+  } = props;
   const { setActiveElement } = useNavigation();
   const elementId = href.split('/').pop();
 
   return (
-    <GridCardContainer href={href}>
+    <GridCardContainer href={disabled ? '#' : href}>
       <CardWrapper onClick={() => setActiveElement(elementId || null)}>
         <CardContainer>
           <CardContent
@@ -59,7 +70,12 @@ export function CardComponent({ ...props }: CardComponentProps) {
                 </CountHeaderContainer>
               </>
             ) : null}
-            <CardHelperText>{description}</CardHelperText>
+            <CardHelperText>{description} </CardHelperText>
+            {disabled && (
+              <CardHelperText sx={{ color: 'red' }}>
+                {TRANSLATION_GROUPS.COMMON.CARD_NOT_ACTIVE}
+              </CardHelperText>
+            )}
           </CardContent>
         </CardContainer>
       </CardWrapper>

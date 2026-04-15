@@ -8,7 +8,7 @@ import { useTranslation } from 'react-i18next';
 import type z from 'zod';
 import { FormInput } from '@/components/ui';
 import { updateProjectMessageAction } from '@/lib/actions';
-import { TRANSLATIONS } from '@/locales';
+import { TRANSLATION_GROUPS } from '@/locales';
 import { useAlert, useModal } from '@/providers';
 import { projectMessageBodySchema } from '@/schemas';
 import {
@@ -66,13 +66,13 @@ export function EditProjectMessageModal({
 
     if (result.success) {
       showAlert({
-        message: t(TRANSLATIONS.MESSAGE_EDITED_SUCCESSFULLY),
+        message: t(TRANSLATION_GROUPS.MESSAGES.MESSAGE_EDITED_SUCCESSFULLY),
         severity: 'success',
       });
       router.refresh();
     } else {
       showAlert({
-        message: t(TRANSLATIONS.ERROR_MESSAGE_SAVE),
+        message: t(TRANSLATION_GROUPS.ERRORS.ERROR_MESSAGE_SAVE),
         severity: 'error',
       });
     }
@@ -83,7 +83,7 @@ export function EditProjectMessageModal({
     <AddProjectModalContainer>
       <AddProjectModalHeader>
         <AddProjectModalTitle as="h2" variant="h2">
-          {t(TRANSLATIONS.MESSAGE_EDIT_HEADER)}
+          {t(TRANSLATION_GROUPS.MESSAGES.MESSAGE_EDIT_HEADER)}
         </AddProjectModalTitle>
       </AddProjectModalHeader>
       <AddProjectModalForm
@@ -93,9 +93,9 @@ export function EditProjectMessageModal({
         <FormInput
           {...register('body')}
           name="body"
-          label={t(TRANSLATIONS.MESSAGE_BODY_LABEL)}
+          label={t(TRANSLATION_GROUPS.MESSAGES.MESSAGE_BODY_LABEL)}
           type="textarea"
-          helperText={t(TRANSLATIONS.MESSAGE_BODY_HELPER)}
+          helperText={t(TRANSLATION_GROUPS.MESSAGES.MESSAGE_BODY_HELPER)}
           error={errors.body?.message}
         />
 
@@ -104,9 +104,9 @@ export function EditProjectMessageModal({
           type="submit"
           variant="contained"
           color="primary"
-          aria-label={t(TRANSLATIONS.MESSAGE_EDIT_BTN)}
+          aria-label={t(TRANSLATION_GROUPS.MESSAGES.MESSAGE_EDIT_BTN)}
         >
-          {t(TRANSLATIONS.MESSAGE_EDIT_BTN)}
+          {t(TRANSLATION_GROUPS.MESSAGES.MESSAGE_EDIT_BTN)}
         </ModalButton>
       </AddProjectModalForm>
     </AddProjectModalContainer>

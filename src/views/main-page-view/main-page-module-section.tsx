@@ -2,7 +2,7 @@ import PictureAsPdfOutlinedIcon from '@mui/icons-material/PictureAsPdfOutlined';
 import ViewInArOutlinedIcon from '@mui/icons-material/ViewInArOutlined';
 import { Box } from '@mui/material';
 import { useTranslation } from 'react-i18next';
-import { TRANSLATIONS } from '@/locales';
+import { TRANSLATION_GROUPS } from '@/locales';
 import {
   ModuleCard,
   ModuleCardDescription,
@@ -25,13 +25,13 @@ export function MainPageModuleSection() {
     <ModulesSection id="features">
       <ModulesHeader>
         <ModulesTitle variant="h2">
-          {t(TRANSLATIONS.MAIN_PAGE_MODULES_TITLE)}
+          {t(TRANSLATION_GROUPS.MAIN_PAGE.MAIN_PAGE_MODULES_TITLE)}
           <ModulesTitleSpan>
-            {t(TRANSLATIONS.MAIN_PAGE_MODULES_TITLE_SPAN)}
+            {t(TRANSLATION_GROUPS.MAIN_PAGE.MAIN_PAGE_MODULES_TITLE_SPAN)}
           </ModulesTitleSpan>
         </ModulesTitle>
         <ModulesDescription>
-          {t(TRANSLATIONS.MAIN_PAGE_MODULES_DESCRIPTION)}
+          {t(TRANSLATION_GROUPS.MAIN_PAGE.MAIN_PAGE_MODULES_DESCRIPTION)}
         </ModulesDescription>
       </ModulesHeader>
 
@@ -42,13 +42,15 @@ export function MainPageModuleSection() {
               <ViewInArOutlinedIcon />
             </ModuleCardIcon>
             <ModuleCardTitle variant="h3">
-              {t(TRANSLATIONS.MAIN_PAGE_MODULE_1_TITLE)}
+              {t(TRANSLATION_GROUPS.MAIN_PAGE.MAIN_PAGE_MODULE_1_TITLE)}
             </ModuleCardTitle>
             <ModuleCardDescription>
-              {t(TRANSLATIONS.MAIN_PAGE_MODULE_1_DESC)}
+              {t(TRANSLATION_GROUPS.MAIN_PAGE.MAIN_PAGE_MODULE_1_DESC)}
             </ModuleCardDescription>
             <ModuleCardFeature>
-              <span>{t(TRANSLATIONS.MAIN_PAGE_MODULE_1_FEATURE)}</span>
+              <span>
+                {t(TRANSLATION_GROUPS.MAIN_PAGE.MAIN_PAGE_MODULE_1_FEATURE)}
+              </span>
             </ModuleCardFeature>
           </ModuleCard>
         </Box>
@@ -59,13 +61,15 @@ export function MainPageModuleSection() {
               <PictureAsPdfOutlinedIcon />
             </ModuleCardIconSecondary>
             <ModuleCardTitle variant="h3">
-              {t(TRANSLATIONS.MAIN_PAGE_MODULE_2_TITLE)}
+              {t(TRANSLATION_GROUPS.MAIN_PAGE.MAIN_PAGE_MODULE_2_TITLE)}
             </ModuleCardTitle>
             <ModuleCardDescription>
-              {t(TRANSLATIONS.MAIN_PAGE_MODULE_2_DESC)}
+              {t(TRANSLATION_GROUPS.MAIN_PAGE.MAIN_PAGE_MODULE_2_DESC)}
             </ModuleCardDescription>
             <ModuleCardFeature>
-              <span>{t(TRANSLATIONS.MAIN_PAGE_MODULE_2_FEATURE)}</span>
+              <span>
+                {t(TRANSLATION_GROUPS.MAIN_PAGE.MAIN_PAGE_MODULE_2_FEATURE)}
+              </span>
             </ModuleCardFeature>
           </ModuleCardSecondary>
         </Box>
@@ -76,13 +80,15 @@ export function MainPageModuleSection() {
               <ViewInArOutlinedIcon />
             </ModuleCardIcon>
             <ModuleCardTitle variant="h3">
-              {t(TRANSLATIONS.MAIN_PAGE_MODULE_3_TITLE)}
+              {t(TRANSLATION_GROUPS.MAIN_PAGE.MAIN_PAGE_MODULE_3_TITLE)}
             </ModuleCardTitle>
             <ModuleCardDescription>
-              {t(TRANSLATIONS.MAIN_PAGE_MODULE_3_DESC)}
+              {t(TRANSLATION_GROUPS.MAIN_PAGE.MAIN_PAGE_MODULE_3_DESC)}
             </ModuleCardDescription>
             <ModuleCardFeature>
-              <span>{t(TRANSLATIONS.MAIN_PAGE_MODULE_3_FEATURE)}</span>
+              <span>
+                {t(TRANSLATION_GROUPS.MAIN_PAGE.MAIN_PAGE_MODULE_3_FEATURE)}
+              </span>
             </ModuleCardFeature>
           </ModuleCard>
         </Box>

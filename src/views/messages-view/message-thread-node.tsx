@@ -12,7 +12,7 @@ import {
   CommentText,
 } from '@/components/ui/stage-task/stage-task.styled';
 import { formatDateForInput } from '@/lib';
-import { TRANSLATIONS } from '@/locales';
+import { TRANSLATION_GROUPS } from '@/locales';
 import type { TPublicProjectMessage } from '@/types';
 
 export type TMessageThreadNodeProps = {
@@ -39,28 +39,37 @@ export function MessageThreadNode({
     <Box sx={{ pl: depth > 0 ? 2 : 0 }}>
       <CommentContainer>
         <Box
-          display="flex"
-          flexDirection="row"
-          justifyContent="space-between"
-          alignItems="center"
+          sx={{
+            display: 'flex',
+            flexDirection: 'row',
+            justifyContent: 'space-between',
+            alignItems: 'center',
+          }}
         >
           <CommentDetails>
-            {t(TRANSLATIONS.AUTHOR_NAME)}: {message.author_name}
+            {t(TRANSLATION_GROUPS.COMMON.AUTHOR_NAME)}: {message.author_name}
           </CommentDetails>
-          <Box display="flex" flexDirection="row" flexWrap="wrap" gap={0.5}>
+          <Box
+            sx={{
+              display: 'flex',
+              flexDirection: 'row',
+              flexWrap: 'wrap',
+              gap: 0.5,
+            }}
+          >
             <ActionButtons
-              aria-label={t(TRANSLATIONS.MESSAGES_PAGE_REPLY)}
+              aria-label={t(TRANSLATION_GROUPS.MESSAGES.MESSAGES_PAGE_REPLY)}
               startIcon={<MapsUgcOutlinedIcon />}
               onClick={() => onReply(message.id)}
             />
             <ActionButtons
-              aria-label={t(TRANSLATIONS.MESSAGE_EDIT_HEADER)}
+              aria-label={t(TRANSLATION_GROUPS.MESSAGES.MESSAGE_EDIT_HEADER)}
               disabled={!isOwn}
               startIcon={<EditOutlinedIcon />}
               onClick={() => onEdit(message)}
             />
             <ActionButtons
-              aria-label={t(TRANSLATIONS.DELETE_MESSAGE)}
+              aria-label={t(TRANSLATION_GROUPS.MESSAGES.DELETE_MESSAGE)}
               disabled={!isOwn}
               startIcon={<DeleteForeverOutlinedIcon />}
               onClick={() => onDelete(message.id)}
@@ -71,8 +80,9 @@ export function MessageThreadNode({
           {message.body}
         </CommentText>
         <CommentDetails>
-          {message.is_edited && ` ${t(TRANSLATIONS.EDITED)} `}
-          {t(TRANSLATIONS.DATE)}: {formatDateForInput(message.updated_at)}
+          {message.is_edited && ` ${t(TRANSLATION_GROUPS.COMMON.EDITED)} `}
+          {t(TRANSLATION_GROUPS.COMMON.DATE)}:{' '}
+          {formatDateForInput(message.updated_at)}
         </CommentDetails>
       </CommentContainer>
       {message.replies.map((reply) => (

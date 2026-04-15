@@ -1,5 +1,5 @@
 'use client';
-import { TRANSLATIONS } from '@/locales';
+import { TRANSLATION_GROUPS } from '@/locales';
 import { useAlert } from '@/providers';
 import type { IProjectData } from '@/types';
 import AddProjectModal from './add-project';
@@ -32,7 +32,7 @@ export function ProjectModal({ type, projectData }: IProjectModalProps) {
   const { showAlert } = useAlert();
   if (!projectData && type !== 'add-project') {
     showAlert({
-      message: TRANSLATIONS.GENERAL_ERROR,
+      message: TRANSLATION_GROUPS.COMMON.GENERAL_ERROR,
       severity: 'error',
     });
     return null;

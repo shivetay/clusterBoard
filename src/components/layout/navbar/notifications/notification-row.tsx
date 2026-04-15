@@ -1,5 +1,5 @@
 'use client';
-import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
+import CheckCircleOutlineOutlinedIcon from '@mui/icons-material/CheckCircleOutlineOutlined';
 import { IconButton } from '@mui/material';
 import { useTranslation } from 'react-i18next';
 import {
@@ -8,7 +8,7 @@ import {
   notificationKindToTranslationKey,
 } from '@/lib/utils';
 import { formatDate } from '@/lib/utils/formatDate';
-import { TRANSLATIONS } from '@/locales';
+import { TRANSLATION_GROUPS } from '@/locales';
 import type { INotificationItem } from '@/types/notification.type';
 
 import {
@@ -46,19 +46,27 @@ export function NotificationRow({
           edge="end"
           size="small"
           disabled={isBusy}
-          aria-label={t(TRANSLATIONS.NOTIFICATIONS_MARK_ONE_READ)}
+          aria-label={t(
+            TRANSLATION_GROUPS.NOTIFICATIONS.NOTIFICATIONS_MARK_ONE_READ,
+          )}
           onClick={() => onMarkRead(notification.id)}
         >
-          <CheckCircleOutlineIcon fontSize="small" />
+          <CheckCircleOutlineOutlinedIcon fontSize="small" />
         </IconButton>
       }
     >
       <NotificationRowButton
         disabled={isBusy}
-        aria-label={t(TRANSLATIONS.NOTIFICATIONS_GO_TO_ITEM)}
+        aria-label={t(
+          TRANSLATION_GROUPS.NOTIFICATIONS.NOTIFICATIONS_GO_TO_ITEM,
+        )}
         onClick={() => onOpenAndMarkRead(notification.id, href)}
       >
         <NotificationListItemText
+          slotProps={{
+            primary: { component: 'div' },
+            secondary: { component: 'div' },
+          }}
           primary={
             <NotificationPrimaryText>
               {t(titleKey, params)}

@@ -4,7 +4,7 @@ import { Typography } from '@mui/material';
 import { useTranslation } from 'react-i18next';
 import { CustomButton } from '@/components';
 import { formatDateForInput } from '@/lib';
-import { TRANSLATIONS } from '@/locales';
+import { TRANSLATION_GROUPS } from '@/locales';
 import type { TPublicProjectMessage } from '@/types';
 import {
   MessageListItem,
@@ -36,12 +36,12 @@ export function MessagesThreadList({
         onClick={onNewThread}
         sx={{ alignSelf: 'flex-start', flexShrink: 0 }}
       >
-        {t(TRANSLATIONS.MESSAGES_PAGE_NEW_THREAD)}
+        {t(TRANSLATION_GROUPS.MESSAGES.MESSAGES_PAGE_NEW_THREAD)}
       </CustomButton>
       <MessagesListScrollArea>
         {messages.length === 0 ? (
           <Typography variant="body2" color="text.secondary" sx={{ mt: 1 }}>
-            {t(TRANSLATIONS.MESSAGES_PAGE_NO_THREADS)}
+            {t(TRANSLATION_GROUPS.MESSAGES.MESSAGES_PAGE_NO_THREADS)}
           </Typography>
         ) : (
           messages.map((root) => (

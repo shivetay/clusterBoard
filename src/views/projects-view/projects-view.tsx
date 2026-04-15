@@ -12,7 +12,7 @@ import {
 } from '@/components';
 import { useGetUserProjects } from '@/lib';
 import { formatSubscriptionLimit } from '@/lib/utils';
-import { TRANSLATIONS } from '@/locales';
+import { TRANSLATION_GROUPS } from '@/locales';
 import { useModal } from '@/providers';
 import { useUser } from '@/stores';
 import {
@@ -57,7 +57,7 @@ export function ProjectsView() {
     <PageContainer>
       <ActionContainer>
         <ActionContainerHeader>
-          <PageHeader title={TRANSLATIONS.AKTYWNE_PROJEKTY} />
+          <PageHeader title={TRANSLATION_GROUPS.PROJECTS.AKTYWNE_PROJEKTY} />
           <ProjectsCount>{projectsCountLabel}</ProjectsCount>
         </ActionContainerHeader>
         <ProjectAddButton onClick={handleModalOpen}>

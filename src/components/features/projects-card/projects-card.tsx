@@ -6,7 +6,7 @@ import { Box, CardActionArea, CardContent } from '@mui/material';
 import { useTranslation } from 'react-i18next';
 import { HexDecor } from '@/components/ui';
 import { formatDate } from '@/lib/utils';
-import { TRANSLATIONS } from '@/locales';
+import { TRANSLATION_GROUPS } from '@/locales';
 import type { IInvestorData } from '@/types';
 import { StatusTags } from '../tags';
 import {
@@ -84,8 +84,9 @@ export function ProjectsCard({ ...props }: IProjectsCardProps) {
                 {end_date && <span>{formatDate(end_date)}</span>}
               </ProjectDateContainer>
             </ProjectInfoContainer>
-            <Box display="flex" alignItems="center" gap={1}>
-              {t(TRANSLATIONS.DETAILS)} <KeyboardArrowRightOutlinedIcon />
+            <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+              {t(TRANSLATION_GROUPS.PROJECTS.DETAILS)}{' '}
+              <KeyboardArrowRightOutlinedIcon />
             </Box>
           </CardContent>
         </CardContainer>

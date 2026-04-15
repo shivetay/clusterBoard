@@ -4,7 +4,7 @@ import { useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 import { FormInput, Loader } from '@/components/ui';
 import { useSendInvitation } from '@/lib';
-import { TRANSLATIONS } from '@/locales';
+import { TRANSLATION_GROUPS } from '@/locales';
 import { useModal } from '@/providers';
 import {
   AddProjectModalContainer,
@@ -55,7 +55,7 @@ export function InvestorModal({ projectId }: IInvestorModalProps) {
         <>
           <AddProjectModalHeader>
             <AddProjectModalTitle as="h2" variant="h2">
-              {t(TRANSLATIONS.ADD_INVESTOR)}
+              {t(TRANSLATION_GROUPS.INVESTORS.ADD_INVESTOR)}
             </AddProjectModalTitle>
           </AddProjectModalHeader>
           <AddProjectModalForm
@@ -67,21 +67,28 @@ export function InvestorModal({ projectId }: IInvestorModalProps) {
                 required: 'required',
                 pattern: {
                   value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
-                  message: t(TRANSLATIONS.EMAIL_ERROR),
+                  message: t(TRANSLATION_GROUPS.INVESTORS.EMAIL_ERROR),
                 },
               })}
               name="investor_email"
-              label={t(TRANSLATIONS.INVESTOR_EMAIL)}
+              label={t(TRANSLATION_GROUPS.INVESTORS.INVESTOR_EMAIL)}
               type="email"
               error={errors.investor_email?.message}
             />
-            <Box display="flex" flexDirection="row" gap={2} width="100%">
+            <Box
+              sx={{
+                display: 'flex',
+                flexDirection: 'row',
+                gap: 2,
+                width: '100%',
+              }}
+            >
               <ModalButton
                 onClick={() => setIsOpen(false)}
                 variant="outlined"
                 color="secondary"
               >
-                {t(TRANSLATIONS.CANCEL)}
+                {t(TRANSLATION_GROUPS.COMMON.CANCEL)}
               </ModalButton>
               <ModalButton
                 type="submit"
@@ -89,7 +96,7 @@ export function InvestorModal({ projectId }: IInvestorModalProps) {
                 color="primary"
                 disabled={isDisabled}
               >
-                {t(TRANSLATIONS.ADD_INVESTOR_BTN)}
+                {t(TRANSLATION_GROUPS.INVESTORS.ADD_INVESTOR_BTN)}
               </ModalButton>
             </Box>
           </AddProjectModalForm>

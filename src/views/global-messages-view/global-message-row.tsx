@@ -14,7 +14,7 @@ import {
   CommentText,
 } from '@/components/ui/stage-task/stage-task.styled';
 import { formatDateForInput } from '@/lib';
-import { TRANSLATIONS } from '@/locales';
+import { TRANSLATION_GROUPS } from '@/locales';
 import type { TMySentProjectMessage } from '@/types/project-message.type';
 import { MessageThreadRoot } from '../messages-view/messages-view.styled';
 
@@ -39,21 +39,23 @@ export function GlobalMessageRow({
 
   const contextLine =
     message.parent_author_name !== null
-      ? t(TRANSLATIONS.MESSAGES_IN_REPLY_TO, {
+      ? t(TRANSLATION_GROUPS.MESSAGES.MESSAGES_IN_REPLY_TO, {
           author: message.parent_author_name,
         })
-      : t(TRANSLATIONS.MESSAGES_ROOT_THREAD);
+      : t(TRANSLATION_GROUPS.MESSAGES.MESSAGES_ROOT_THREAD);
 
   return (
     <MessageThreadRoot>
       <CommentContainer>
         <Box
-          display="flex"
-          flexDirection="row"
-          justifyContent="space-between"
-          alignItems="flex-start"
-          gap={1}
-          flexWrap="wrap"
+          sx={{
+            display: 'flex',
+            flexDirection: 'row',
+            justifyContent: 'space-between',
+            alignItems: 'flex-start',
+            gap: 1,
+            flexWrap: 'wrap',
+          }}
         >
           <Box sx={{ flex: 1, minWidth: 0 }}>
             <Typography variant="subtitle2" color="text.secondary" gutterBottom>
@@ -61,30 +63,39 @@ export function GlobalMessageRow({
             </Typography>
             <CommentDetails sx={{ mb: 0.5 }}>{contextLine}</CommentDetails>
             <CommentDetails>
-              {t(TRANSLATIONS.AUTHOR_NAME)}: {message.author_name}
+              {t(TRANSLATION_GROUPS.COMMON.AUTHOR_NAME)}: {message.author_name}
             </CommentDetails>
           </Box>
-          <Box display="flex" flexDirection="row" flexWrap="wrap" gap={0.5}>
+          <Box
+            sx={{
+              display: 'flex',
+              flexDirection: 'row',
+              flexWrap: 'wrap',
+              gap: 0.5,
+            }}
+          >
             <ActionButtons
-              aria-label={t(TRANSLATIONS.MESSAGES_OPEN_IN_PROJECT)}
+              aria-label={t(
+                TRANSLATION_GROUPS.MESSAGES.MESSAGES_OPEN_IN_PROJECT,
+              )}
               startIcon={<OpenInNewOutlinedIcon />}
               onClick={() =>
                 router.push(`/project/${message.project_id}/messages`)
               }
             />
             <ActionButtons
-              aria-label={t(TRANSLATIONS.MESSAGES_PAGE_REPLY)}
+              aria-label={t(TRANSLATION_GROUPS.MESSAGES.MESSAGES_PAGE_REPLY)}
               startIcon={<MapsUgcOutlinedIcon />}
               onClick={() => onReply(message.project_id, message.id)}
             />
             <ActionButtons
-              aria-label={t(TRANSLATIONS.MESSAGE_EDIT_HEADER)}
+              aria-label={t(TRANSLATION_GROUPS.MESSAGES.MESSAGE_EDIT_HEADER)}
               disabled={!isOwn}
               startIcon={<EditOutlinedIcon />}
               onClick={() => onEdit(message)}
             />
             <ActionButtons
-              aria-label={t(TRANSLATIONS.DELETE_MESSAGE)}
+              aria-label={t(TRANSLATION_GROUPS.MESSAGES.DELETE_MESSAGE)}
               disabled={!isOwn}
               startIcon={<DeleteForeverOutlinedIcon />}
               onClick={() => onDelete(message.project_id, message.id)}
@@ -95,8 +106,9 @@ export function GlobalMessageRow({
           {message.body}
         </CommentText>
         <CommentDetails>
-          {message.is_edited && ` ${t(TRANSLATIONS.EDITED)} `}
-          {t(TRANSLATIONS.DATE)}: {formatDateForInput(message.updated_at)}
+          {message.is_edited && ` ${t(TRANSLATION_GROUPS.COMMON.EDITED)} `}
+          {t(TRANSLATION_GROUPS.COMMON.DATE)}:{' '}
+          {formatDateForInput(message.updated_at)}
         </CommentDetails>
       </CommentContainer>
     </MessageThreadRoot>

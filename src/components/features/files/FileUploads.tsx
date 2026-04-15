@@ -15,7 +15,7 @@ import { useDropzone } from 'react-dropzone';
 import { useTranslation } from 'react-i18next';
 import { CustomButton } from '@/components/ui';
 import { uploadFile } from '@/lib/api/files/filesClient';
-import { TRANSLATIONS } from '@/locales/pl';
+import { TRANSLATION_GROUPS } from '@/locales/pl';
 import { useAlert } from '@/providers';
 import { ActionButtons } from '../project-stage-container/project-stage-container.styled';
 import { DragContainer, FileListItem } from './FileUpload.styled';
@@ -115,7 +115,7 @@ export function FileUpload({
       onUploadComplete?.();
     } catch (_error) {
       showAlert({
-        message: t(TRANSLATIONS.ERROR_ADD_FILE),
+        message: t(TRANSLATION_GROUPS.ERRORS.ERROR_ADD_FILE),
         severity: 'error',
       });
     } finally {
@@ -132,13 +132,13 @@ export function FileUpload({
           <Upload sx={{ fontSize: 48, color: 'text.secondary', mb: 2 }} />
           <Typography variant="body1" color="text.secondary">
             {isDragActive
-              ? t(TRANSLATIONS.DROP_FILES_HERE)
-              : t(TRANSLATIONS.DRAG_AND_DROP_FILES_HERE)}
+              ? t(TRANSLATION_GROUPS.FILES.DROP_FILES_HERE)
+              : t(TRANSLATION_GROUPS.FILES.DRAG_AND_DROP_FILES_HERE)}
           </Typography>
           <Typography variant="caption" color="text.secondary" sx={{ mt: 1 }}>
             {isInspiration
-              ? `${t(TRANSLATIONS.DROPZONE_IMAGES_ONLY)} • ${t(TRANSLATIONS.MAX_FILE_SIZE)}`
-              : t(TRANSLATIONS.MAX_FILE_SIZE)}
+              ? `${t(TRANSLATION_GROUPS.FILES.DROPZONE_IMAGES_ONLY)} • ${t(TRANSLATION_GROUPS.FILES.MAX_FILE_SIZE)}`
+              : t(TRANSLATION_GROUPS.FILES.MAX_FILE_SIZE)}
           </Typography>
         </DragContainer>
       ) : (
@@ -161,6 +161,7 @@ export function FileUpload({
                 >
                   <ListItemText
                     primary={file.name}
+                    slotProps={{ secondary: { component: 'div' } }}
                     secondary={
                       <Box>
                         <Typography variant="body2" component="span">
@@ -200,10 +201,10 @@ export function FileUpload({
             {isPending ? (
               <>
                 <CircularProgress size={20} sx={{ mr: 1 }} />
-                {t(TRANSLATIONS.UPLOADING)}
+                {t(TRANSLATION_GROUPS.FILES.UPLOADING)}
               </>
             ) : (
-              t(TRANSLATIONS.UPLOAD_FILES)
+              t(TRANSLATION_GROUPS.FILES.UPLOAD_FILES)
             )}
           </CustomButton>
         </Box>

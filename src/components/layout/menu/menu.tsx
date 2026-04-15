@@ -2,7 +2,7 @@
 import { useEffect, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useGetUserProjects, userProjectsListFetchLimit } from '@/lib';
-import { TRANSLATIONS } from '@/locales';
+import { TRANSLATION_GROUPS } from '@/locales';
 import { useNavigation } from '@/providers';
 import {
   MenuButton,
@@ -130,7 +130,7 @@ export function Menu() {
       </MenuContainer>
       {isProjectRoute ? (
         <MobileProjectMenuStrip
-          aria-label={t(TRANSLATIONS.PROJECT_PAGES_NAV_ARIA)}
+          aria-label={t(TRANSLATION_GROUPS.PROJECTS.PROJECT_PAGES_NAV_ARIA)}
         >
           {filteredMenuItems.map((item) => renderMenuLink(item, 'mobileStrip'))}
         </MobileProjectMenuStrip>

@@ -1,7 +1,7 @@
 import { useMutation } from '@tanstack/react-query';
 import { useRouter } from 'next/navigation';
 import { apiClient } from '@/lib';
-import { TRANSLATIONS } from '@/locales';
+import { TRANSLATION_GROUPS } from '@/locales';
 import { useAlert, useModal } from '@/providers';
 
 export const useAddStageTasks = (stageId: string) => {
@@ -30,7 +30,7 @@ export const useAddStageTasks = (stageId: string) => {
       router.refresh();
       setIsOpen(false);
       showAlert({
-        message: TRANSLATIONS.PROJECT_STAGE_ADDED_SUCCESSFULLY,
+        message: TRANSLATION_GROUPS.PROJECTS.PROJECT_STAGE_ADDED_SUCCESSFULLY,
         severity: 'success',
       });
     },

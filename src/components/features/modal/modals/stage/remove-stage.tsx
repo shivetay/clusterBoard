@@ -6,7 +6,7 @@ import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Loader } from '@/components/ui';
 import apiClient from '@/lib/api/apiClient';
-import { TRANSLATIONS } from '@/locales';
+import { TRANSLATION_GROUPS } from '@/locales';
 import { useAlert, useModal } from '@/providers';
 import {
   AddProjectModalContainer,
@@ -33,12 +33,12 @@ export function RemoveStageModal({ stage_id }: { stage_id: string }) {
 
       setIsOpen(false);
       showAlert({
-        message: t(TRANSLATIONS.SUCCESS_REMOVE_STAGE),
+        message: t(TRANSLATION_GROUPS.STAGES.SUCCESS_REMOVE_STAGE),
         severity: 'success',
       });
     } catch {
       showAlert({
-        message: t(TRANSLATIONS.ERROR_REMOVE_STAGE),
+        message: t(TRANSLATION_GROUPS.ERRORS.ERROR_REMOVE_STAGE),
         severity: 'error',
       });
       setIsDeleting(false);
@@ -53,23 +53,30 @@ export function RemoveStageModal({ stage_id }: { stage_id: string }) {
         <>
           <AddProjectModalHeader>
             <AddProjectModalTitle as="h2" variant="h2">
-              {t(TRANSLATIONS.REMOVE_STAGE_MODAL_TITLE)}
+              {t(TRANSLATION_GROUPS.STAGES.REMOVE_STAGE_MODAL_TITLE)}
             </AddProjectModalTitle>
           </AddProjectModalHeader>
-          <Box display="flex" flexDirection="row" gap={2} width="100%">
+          <Box
+            sx={{
+              display: 'flex',
+              flexDirection: 'row',
+              gap: 2,
+              width: '100%',
+            }}
+          >
             <ModalButton
               onClick={() => setIsOpen(false)}
               variant="outlined"
               color="secondary"
             >
-              {t(TRANSLATIONS.CANCEL)}
+              {t(TRANSLATION_GROUPS.COMMON.CANCEL)}
             </ModalButton>
             <ModalButton
               onClick={handleRemoveStage}
               variant="contained"
               color="primary"
             >
-              {t(TRANSLATIONS.PROJECT_REMOVE_BTN)}
+              {t(TRANSLATION_GROUPS.STAGES.STAGE_REMOVE_BTN)}
             </ModalButton>
           </Box>
         </>

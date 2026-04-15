@@ -8,7 +8,7 @@ import {
   EditProjectMessageModal,
 } from '@/components/features';
 import { deleteProjectMessageAction } from '@/lib/actions';
-import { TRANSLATIONS } from '@/locales';
+import { TRANSLATION_GROUPS } from '@/locales';
 import { useAlert, useModal } from '@/providers';
 import type { TMySentProjectMessage } from '@/types/project-message.type';
 import { filterMySentMessagesByProject } from './filter-by-project';
@@ -37,19 +37,21 @@ export function useGlobalMessages(
         const result = await deleteProjectMessageAction(projectId, messageId);
         if (result.success) {
           showAlert({
-            message: t(TRANSLATIONS.MESSAGE_REMOVED_SUCCESSFULLY),
+            message: t(
+              TRANSLATION_GROUPS.MESSAGES.MESSAGE_REMOVED_SUCCESSFULLY,
+            ),
             severity: 'success',
           });
           router.refresh();
         } else {
           showAlert({
-            message: t(TRANSLATIONS.ERROR_REMOVE_MESSAGE),
+            message: t(TRANSLATION_GROUPS.ERRORS.ERROR_REMOVE_MESSAGE),
             severity: 'error',
           });
         }
       } catch {
         showAlert({
-          message: t(TRANSLATIONS.ERROR_REMOVE_MESSAGE),
+          message: t(TRANSLATION_GROUPS.ERRORS.ERROR_REMOVE_MESSAGE),
           severity: 'error',
         });
       }
@@ -85,7 +87,7 @@ export function useGlobalMessages(
   const openNewMessage = useCallback(() => {
     if (!composeProjectId) {
       showAlert({
-        message: t(TRANSLATIONS.MESSAGES_PICK_PROJECT_FOR_NEW),
+        message: t(TRANSLATION_GROUPS.MESSAGES.MESSAGES_PICK_PROJECT_FOR_NEW),
         severity: 'warning',
       });
       return;

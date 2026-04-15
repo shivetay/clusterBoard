@@ -6,7 +6,7 @@ import { useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 import { FormInput, Loader } from '@/components/ui';
 import { formatDateForInput, useEditProject } from '@/lib';
-import { TRANSLATIONS } from '@/locales';
+import { TRANSLATION_GROUPS } from '@/locales';
 import {
   createProjectSchema,
   type EditProjectFormData,
@@ -90,7 +90,7 @@ export function EditProjectModal({ projectData }: IEditProjectModalProps) {
         <>
           <AddProjectModalHeader>
             <AddProjectModalTitle as="h2" variant="h2">
-              {t(TRANSLATIONS.PROJECT_EDIT_HEADER)}
+              {t(TRANSLATION_GROUPS.PROJECTS.PROJECT_EDIT_HEADER)}
             </AddProjectModalTitle>
           </AddProjectModalHeader>
           <AddProjectModalForm
@@ -100,31 +100,42 @@ export function EditProjectModal({ projectData }: IEditProjectModalProps) {
             <FormInput
               {...register('project_name')}
               name="project_name"
-              label={t(TRANSLATIONS.PROJECT_NAME)}
+              label={t(TRANSLATION_GROUPS.PROJECTS.PROJECT_NAME)}
               type="text"
-              helperText={t(TRANSLATIONS.PROJECT_NAME_HELPER_TEXT)}
+              helperText={t(
+                TRANSLATION_GROUPS.PROJECTS.PROJECT_NAME_HELPER_TEXT,
+              )}
               error={errors.project_name?.message}
             />
             <FormInput
               {...register('project_description')}
               name="project_description"
-              label={t(TRANSLATIONS.PROJECT_DESCRIPTION)}
+              label={t(TRANSLATION_GROUPS.PROJECTS.PROJECT_DESCRIPTION)}
               type="textarea"
-              helperText={t(TRANSLATIONS.STAGE_DESCRIPTION_HELPER_TEXT)}
+              helperText={t(
+                TRANSLATION_GROUPS.PROJECTS.PROJECT_DESCRIPTION_HELPER_TEXT,
+              )}
               error={errors.project_description?.message}
             />
-            <Box display="flex" flexDirection="row" gap={2} width="100%">
+            <Box
+              sx={{
+                display: 'flex',
+                flexDirection: 'row',
+                gap: 2,
+                width: '100%',
+              }}
+            >
               <FormInput
                 {...register('start_date')}
                 name="start_date"
-                label={t(TRANSLATIONS.START_DATE)}
+                label={t(TRANSLATION_GROUPS.PROJECTS.START_DATE)}
                 type="date"
                 error={errors.start_date?.message}
               />
               <FormInput
                 {...register('end_date')}
                 name="end_date"
-                label={t(TRANSLATIONS.END_DATE)}
+                label={t(TRANSLATION_GROUPS.PROJECTS.END_DATE)}
                 type="date"
                 error={errors.end_date?.message}
               />
@@ -136,7 +147,7 @@ export function EditProjectModal({ projectData }: IEditProjectModalProps) {
               variant="contained"
               color="primary"
             >
-              {t(TRANSLATIONS.PROJECT_EDIT_BTN)}
+              {t(TRANSLATION_GROUPS.PROJECTS.PROJECT_EDIT_BTN)}
             </ModalButton>
           </AddProjectModalForm>
         </>

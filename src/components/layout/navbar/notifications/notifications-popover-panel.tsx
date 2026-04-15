@@ -8,7 +8,7 @@ import {
   useDeleteNotificationMutation,
   useNotifications,
 } from '@/lib/api/hooks';
-import { TRANSLATIONS } from '@/locales';
+import { TRANSLATION_GROUPS } from '@/locales';
 
 import { NotificationRow } from './notification-row';
 import {
@@ -72,7 +72,7 @@ export function NotificationsPopoverPanel({
     <NotificationsPanelRoot>
       <NotificationsPanelHeader>
         <NotificationsPanelTitle>
-          {t(TRANSLATIONS.NOTIFICATIONS_TITLE)}
+          {t(TRANSLATION_GROUPS.NOTIFICATIONS.NOTIFICATIONS_TITLE)}
         </NotificationsPanelTitle>
         {hasItems && (
           <CustomButton
@@ -81,7 +81,7 @@ export function NotificationsPopoverPanel({
             disabled={busy}
             onClick={handleMarkAll}
           >
-            {t(TRANSLATIONS.NOTIFICATIONS_MARK_ALL_READ)}
+            {t(TRANSLATION_GROUPS.NOTIFICATIONS.NOTIFICATIONS_MARK_ALL_READ)}
           </CustomButton>
         )}
       </NotificationsPanelHeader>
@@ -91,14 +91,14 @@ export function NotificationsPopoverPanel({
           <NotificationsLoadingArea>
             <CircularProgress size={NOTIFICATIONS_LOADING_SPINNER_SIZE_PX} />
             <NotificationsLoadingCaption>
-              {t(TRANSLATIONS.NOTIFICATIONS_LOADING)}
+              {t(TRANSLATION_GROUPS.NOTIFICATIONS.NOTIFICATIONS_LOADING)}
             </NotificationsLoadingCaption>
           </NotificationsLoadingArea>
         )}
 
         {!isLoading && !hasItems && (
           <NotificationsEmptyText>
-            {t(TRANSLATIONS.NOTIFICATIONS_EMPTY)}
+            {t(TRANSLATION_GROUPS.NOTIFICATIONS.NOTIFICATIONS_EMPTY)}
           </NotificationsEmptyText>
         )}
 

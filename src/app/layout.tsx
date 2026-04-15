@@ -46,8 +46,8 @@ export default function RootLayout({
       signInForceRedirectUrl="/cluster"
       signUpForceRedirectUrl="/cluster"
     >
-      <html lang="pl" className={poppins.variable}>
-        <body>
+      <html lang="pl" className={poppins.variable} suppressHydrationWarning>
+        <body suppressHydrationWarning>
           <ThemeProvider>
             <AlertProvider>
               <NavigationProvider>

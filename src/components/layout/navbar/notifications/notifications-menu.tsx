@@ -5,7 +5,7 @@ import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import { useNotifications } from '@/lib/api/hooks';
-import { TRANSLATIONS } from '@/locales';
+import { TRANSLATION_GROUPS } from '@/locales';
 import {
   NotificationsPopover,
   NotificationsTriggerButton,
@@ -22,7 +22,7 @@ export function NotificationsMenu() {
   return (
     <>
       <NotificationsTriggerButton
-        aria-label={t(TRANSLATIONS.NOTIFICATIONS_ARIA)}
+        aria-label={t(TRANSLATION_GROUPS.NOTIFICATIONS.NOTIFICATIONS_ARIA)}
         $hasUnread={total > 0}
         onClick={(e) => setAnchorEl(e.currentTarget)}
       >

@@ -11,7 +11,7 @@ import {
 } from '@mui/material';
 import { useTranslation } from 'react-i18next';
 import { PageHeader } from '@/components';
-import { TRANSLATIONS } from '@/locales';
+import { TRANSLATION_GROUPS } from '@/locales';
 import {
   ActionContainer,
   ActionContainerHeader,
@@ -57,7 +57,7 @@ export function GlobalMessagesTopBar({
   return (
     <ActionContainer sx={{ flexWrap: 'wrap', rowGap: 2, columnGap: 2 }}>
       <ActionContainerHeader>
-        <PageHeader title={TRANSLATIONS.WIADOMOSCI} />
+        <PageHeader title={TRANSLATION_GROUPS.MESSAGES.WIADOMOSCI} />
         <ProjectsCount>
           {visibleCount}/{totalCount}
         </ProjectsCount>
@@ -87,11 +87,11 @@ export function GlobalMessagesTopBar({
             }}
           >
             <InputLabel id="global-messages-filter-label">
-              {t(TRANSLATIONS.MESSAGES_FILTER_LABEL)}
+              {t(TRANSLATION_GROUPS.MESSAGES.MESSAGES_FILTER_LABEL)}
             </InputLabel>
             <Select
               labelId="global-messages-filter-label"
-              label={t(TRANSLATIONS.MESSAGES_FILTER_LABEL)}
+              label={t(TRANSLATION_GROUPS.MESSAGES.MESSAGES_FILTER_LABEL)}
               value={filterProjectId ?? 'all'}
               sx={selectHoverTextSx}
               onChange={(e) => {
@@ -100,7 +100,7 @@ export function GlobalMessagesTopBar({
               }}
             >
               <MenuItem value="all">
-                {t(TRANSLATIONS.MESSAGES_ALL_PROJECTS)}
+                {t(TRANSLATION_GROUPS.MESSAGES.MESSAGES_ALL_PROJECTS)}
               </MenuItem>
               {projectOptions.map((p) => (
                 <MenuItem key={p.id} value={p.id}>
@@ -117,18 +117,25 @@ export function GlobalMessagesTopBar({
             }}
           >
             <InputLabel id="global-messages-compose-label" shrink>
-              {t(TRANSLATIONS.MESSAGES_COMPOSE_PROJECT_LABEL)}
+              {t(TRANSLATION_GROUPS.MESSAGES.MESSAGES_COMPOSE_PROJECT_LABEL)}
             </InputLabel>
             <Select
               labelId="global-messages-compose-label"
-              label={t(TRANSLATIONS.MESSAGES_COMPOSE_PROJECT_LABEL)}
+              label={t(
+                TRANSLATION_GROUPS.MESSAGES.MESSAGES_COMPOSE_PROJECT_LABEL,
+              )}
               displayEmpty
               value={composeProjectId}
               sx={selectHoverTextSx}
               onChange={(e) => onComposeProjectId(e.target.value as string)}
             >
               <MenuItem value="">
-                <em>{t(TRANSLATIONS.MESSAGES_COMPOSE_PROJECT_PLACEHOLDER)}</em>
+                <em>
+                  {t(
+                    TRANSLATION_GROUPS.MESSAGES
+                      .MESSAGES_COMPOSE_PROJECT_PLACEHOLDER,
+                  )}
+                </em>
               </MenuItem>
               {projectOptions.map((p) => (
                 <MenuItem key={p.id} value={p.id}>
