@@ -317,19 +317,19 @@ const baseTheme = createTheme({
           '&:hover': {
             boxShadow: '0 4px 12px rgba(0, 0, 0, 0.15)',
           },
-        },
-        containedPrimary: {
-          backgroundColor: colors.primary,
-          color: colors.primaryForeground,
-          '&:hover': {
+          '&.MuiButton-containedPrimary': {
             backgroundColor: colors.primary,
-            opacity: 0.9,
-          },
-          '&:active': {
-            opacity: 0.8,
-          },
-          '&:disabled': {
-            opacity: 0.5,
+            color: colors.primaryForeground,
+            '&:hover': {
+              backgroundColor: colors.primary,
+              opacity: 0.9,
+            },
+            '&:active': {
+              opacity: 0.8,
+            },
+            '&:disabled': {
+              opacity: 0.5,
+            },
           },
         },
         outlined: {

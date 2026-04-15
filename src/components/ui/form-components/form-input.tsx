@@ -24,7 +24,7 @@ export function FormInput({
   const hasError = !!error;
 
   return (
-    <Stack width="100%">
+    <Stack sx={{ width: '100%' }}>
       <InputLabel htmlFor={name}>{label}</InputLabel>
       <FormControl error={hasError}>
         {type === 'textarea' ? (

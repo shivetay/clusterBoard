@@ -30,7 +30,7 @@ export function CollectionPagination({
   };
 
   return (
-    <Stack spacing={1} alignItems="center" sx={{ mt: 3 }}>
+    <Stack spacing={1} sx={{ mt: 3, alignItems: 'center' }}>
       <Typography variant="body2" color="text.secondary" component="p">
         {t(TRANSLATION_GROUPS.COMMON.PAGINATION_PAGE_SUMMARY, {
           current: pagination.currentPage,
