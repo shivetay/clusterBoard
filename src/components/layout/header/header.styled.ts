@@ -6,10 +6,10 @@ import { glassEffects } from '@/theme';
 export const HeaderContainer = styled('header')(({ theme }) => ({
   display: 'flex',
   width: '100%',
-  minHeight: '64px',
+  minHeight: '54px',
   alignItems: 'center',
   marginBottom: theme.spacing(6),
-  padding: theme.spacing(6, 2),
+  padding: theme.spacing(4, 2),
   paddingLeft: `max(${theme.spacing(2)}, env(safe-area-inset-left, 0px))`,
   paddingRight: `max(${theme.spacing(2)}, env(safe-area-inset-right, 0px))`,
   ...glassEffects.light,

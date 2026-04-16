@@ -1,6 +1,7 @@
 export * from './alert-popup';
 export * from './files';
 export * from './image-grid';
+export * from './info-banner';
 export * from './inspiration-entries-list';
 export * from './modal';
 export * from './project-detail-card';
