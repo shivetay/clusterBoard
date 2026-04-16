@@ -4,6 +4,8 @@ export * from './imageHelper';
 export * from './messageThreadNavigation';
 export * from './notificationLabels';
 export * from './notificationNavigation';
+export * from './parse-app-error';
+export * from './resolve-api-error-message';
 export * from './taskNames';
 export * from './useFormatDisplayLocaleDate';
 export * from './useIsMobile';

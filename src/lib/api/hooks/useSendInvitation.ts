@@ -1,6 +1,8 @@
 import { useMutation } from '@tanstack/react-query';
+import { normalizeAppError, resolveApiErrorMessage } from '@/lib/utils';
 import { TRANSLATION_GROUPS } from '@/locales';
 import { useAlert, useModal } from '@/providers';
+import type { AppError } from '@/types';
 import apiClient from '../apiClient';
 
 type TSendInvitationData = {
@@ -15,16 +17,13 @@ export const useSendInvitation = () => {
     mutate: sendInvitation,
     isPending,
     error,
-  } = useMutation({
+  } = useMutation<void, AppError, TSendInvitationData>({
     mutationFn: async (data: TSendInvitationData) => {
       try {
         await apiClient.post('/invitations/invite', data);
-      } catch (error: any) {
-        showAlert({
-          message: error?.response?.data?.message,
-          severity: 'error',
-        });
-        throw new Error(error?.response?.data?.message);
+      } catch (error: unknown) {
+        const appError = normalizeAppError(error);
+        throw appError;
       }
     },
     onSuccess: () => {
@@ -34,9 +33,9 @@ export const useSendInvitation = () => {
         severity: 'success',
       });
     },
-    onError: (error: any) => {
+    onError: (error: AppError) => {
       showAlert({
-        message: error?.response?.data?.message,
+        message: resolveApiErrorMessage(error),
         severity: 'error',
       });
     },

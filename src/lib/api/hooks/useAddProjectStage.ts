@@ -1,8 +1,9 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { useRouter } from 'next/navigation';
+import { normalizeAppError, resolveApiErrorMessage } from '@/lib/utils';
 import { TRANSLATION_GROUPS } from '@/locales';
 import { useAlert, useModal } from '@/providers';
-import type { TStageFormData } from '@/types';
+import type { AppError, TStageFormData } from '@/types';
 import apiClient from '../apiClient';
 
 export const useAddProjectStage = (projectId: string) => {
@@ -15,16 +16,18 @@ export const useAddProjectStage = (projectId: string) => {
     mutate: addStage,
     isPending,
     error,
-  } = useMutation({
+  } = useMutation<void, AppError, TStageFormData>({
     mutationFn: async (data: TStageFormData) => {
       try {
         await apiClient.patch(`/projects/${projectId}/add-stage`, data);
-      } catch (error: any) {
+      } catch (error: unknown) {
+        const appError = normalizeAppError(error);
+        const message = resolveApiErrorMessage(appError);
         showAlert({
-          message: error?.response?.data?.message,
+          message,
           severity: 'error',
         });
-        throw new Error(error?.response?.data?.message);
+        throw appError;
       }
     },
     onSuccess: () => {
@@ -38,9 +41,9 @@ export const useAddProjectStage = (projectId: string) => {
         severity: 'success',
       });
     },
-    onError: (error: any) => {
+    onError: (error: AppError) => {
       showAlert({
-        message: error?.response?.data?.message,
+        message: resolveApiErrorMessage(error),
         severity: 'error',
       });
     },

@@ -324,6 +324,31 @@ export const TRANSLATIONS = {
   SUBSCRIPTION_INSPIRATIONS_LABEL: 'Wykorzystanie limitu inspiracji',
   SUBSCRIPTION_INVITATIONS_LABEL: 'Inwestorzy i oczekujące zaproszenia',
   CARD_NOT_ACTIVE: 'Karta nie jest aktywna',
+  AUTHENTICATION_REQUIRED:
+    'Musisz być zalogowany, aby uzyskać dostęp do tego zasobu',
+  AUTHENTICATION_FAILED: 'Uwierzytelnianie nie powiodło się',
+  FORBIDDEN: 'Nie masz uprawnień do wykonania tej akcji',
+  FORBIDDEN_NOT_PROJECT_OWNER:
+    'Tylko właściciel projektu może wykonać tę akcję',
+  FORBIDDEN_NOT_COMMENT_AUTHOR: 'Tylko autor komentarza może wykonać tę akcję',
+  PROJECT_NOT_FOUND: 'Nie znaleziono projektu',
+  COMMENT_NOT_FOUND: 'Nie znaleziono komentarza',
+  FILE_NOT_FOUND: 'Nie znaleziono pliku',
+  FILE_DATA_NOT_FOUND: 'Nie znaleziono danych pliku',
+  FILE_REQUIRED: 'Plik jest wymagany',
+  FILES_REQUIRED: 'Wymagany jest co najmniej jeden plik',
+  FILE_NAME_MAX_LENGTH: 'Nazwa pliku nie moze przekraczac 255 znakow',
+  FILE_TYPE_NOT_ALLOWED: 'Ten typ pliku nie jest dozwolony',
+  FILE_SIZE_MIN: 'Rozmiar pliku musi byc wiekszy niz 0',
+  FILE_SIZE_MAX: 'Rozmiar pliku nie moze przekraczac 10MB',
+  PROJECT_ID_REQUIRED: 'Id projektu jest wymagane',
+  CORS_NOT_ALLOWED: 'Dostep z tego adresu nie jest dozwolony',
+  NOT_IMPLEMENTED: 'Ta funkcja nie jest jeszcze dostepna',
+  PLAN_LIMIT_PROJECTS: 'Osiagnieto limit aktywnych projektow dla Twojego planu',
+  PLAN_LIMIT_FILES: 'Osiagnieto limit plikow dla Twojego planu',
+  PLAN_LIMIT_INSPIRATIONS: 'Osiagnieto limit inspiracji dla Twojego planu',
+  PLAN_LIMIT_INVESTORS:
+    'Osiagnieto limit inwestorow i oczekujacych zaproszen dla tego projektu',
 };
 
 export const TRANSLATION_GROUPS = {

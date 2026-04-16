@@ -1,5 +1,6 @@
 import { useMutation } from '@tanstack/react-query';
 import { useRouter } from 'next/navigation';
+import { resolveApiErrorMessage } from '@/lib/utils/resolve-api-error-message';
 import { TRANSLATION_GROUPS } from '@/locales';
 import { useAlert } from '@/providers';
 import apiClient from '../apiClient';
@@ -30,10 +31,10 @@ export const useDeleteInvitation = () => {
         router.refresh();
       }, ALERT_TIMEOUT);
     },
-    onError: (error: any) => {
+    onError: (error: unknown) => {
       showAlert({
         message:
-          error?.response?.data?.message ||
+          resolveApiErrorMessage(error) ||
           TRANSLATION_GROUPS.ERRORS.ERROR_DELETE_INVITATION,
         severity: 'error',
       });
