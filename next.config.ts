@@ -15,6 +15,11 @@ const nextConfig: NextConfig = {
         hostname: '**.imagedelivery.net',
         pathname: '/**',
       },
+      {
+        protocol: 'https',
+        hostname: 'cdn.clusterboard.pl',
+        pathname: '/**',
+      },
     ],
   },
 };
