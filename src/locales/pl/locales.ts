@@ -337,18 +337,18 @@ export const TRANSLATIONS = {
   FILE_DATA_NOT_FOUND: 'Nie znaleziono danych pliku',
   FILE_REQUIRED: 'Plik jest wymagany',
   FILES_REQUIRED: 'Wymagany jest co najmniej jeden plik',
-  FILE_NAME_MAX_LENGTH: 'Nazwa pliku nie moze przekraczac 255 znakow',
+  FILE_NAME_MAX_LENGTH: 'Nazwa pliku nie może przekraczać 255 znaków',
   FILE_TYPE_NOT_ALLOWED: 'Ten typ pliku nie jest dozwolony',
-  FILE_SIZE_MIN: 'Rozmiar pliku musi byc wiekszy niz 0',
-  FILE_SIZE_MAX: 'Rozmiar pliku nie moze przekraczac 10MB',
+  FILE_SIZE_MIN: 'Rozmiar pliku musi być większy niż 0',
+  FILE_SIZE_MAX: 'Rozmiar pliku nie może przekraczać 10MB',
   PROJECT_ID_REQUIRED: 'Id projektu jest wymagane',
-  CORS_NOT_ALLOWED: 'Dostep z tego adresu nie jest dozwolony',
-  NOT_IMPLEMENTED: 'Ta funkcja nie jest jeszcze dostepna',
-  PLAN_LIMIT_PROJECTS: 'Osiagnieto limit aktywnych projektow dla Twojego planu',
-  PLAN_LIMIT_FILES: 'Osiagnieto limit plikow dla Twojego planu',
-  PLAN_LIMIT_INSPIRATIONS: 'Osiagnieto limit inspiracji dla Twojego planu',
+  CORS_NOT_ALLOWED: 'Dostęp z tego adresu nie jest dozwolony',
+  NOT_IMPLEMENTED: 'Ta funkcja nie jest jeszcze dostępna',
+  PLAN_LIMIT_PROJECTS: 'Osiągnięto limit aktywnych projektów dla Twojego planu',
+  PLAN_LIMIT_FILES: 'Osiągnięto limit plików dla Twojego planu',
+  PLAN_LIMIT_INSPIRATIONS: 'Osiągnięto limit inspiracji dla Twojego planu',
   PLAN_LIMIT_INVESTORS:
-    'Osiagnieto limit inwestorow i oczekujacych zaproszen dla tego projektu',
+    'Osiągnięto limit inwestorów i oczekujących zaproszeń dla tego projektu',
 };
 
 export const TRANSLATION_GROUPS = {

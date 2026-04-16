@@ -17,9 +17,9 @@ export const useEditTask = (taskId: string) => {
     isPending,
     error,
   } = useMutation<unknown, AppError, TTaskData>({
-    mutationFn: (taskData: TTaskData) => {
+    mutationFn: async (taskData: TTaskData) => {
       try {
-        return apiClient.patch(`/tasks/${taskId}`, taskData);
+        return await apiClient.patch(`/tasks/${taskId}`, taskData);
       } catch (error: unknown) {
         const appError = normalizeAppError(error);
         const message = resolveApiErrorMessage(appError);

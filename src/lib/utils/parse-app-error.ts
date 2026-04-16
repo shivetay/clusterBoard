@@ -43,7 +43,9 @@ export const parseAppError = (error: unknown): TParsedAppError => {
     return {
       source: payload.errors?.length ? 'cloudflare' : 'backend',
       message,
-      translationKey: toTranslationKey(backendErrorKey ?? backendMessage),
+      translationKey: toTranslationKey(
+        backendErrorKey ?? backendMessage ?? message,
+      ),
       details: payload.errors?.map((detail) => ({
         code: detail.code ? String(detail.code) : undefined,
         message: detail.message ?? 'Unknown error',

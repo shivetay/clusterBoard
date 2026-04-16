@@ -1,5 +1,4 @@
 import axios from 'axios';
-import { resolveApiErrorMessage } from '@/lib/utils/resolve-api-error-message';
 
 const BASE_URL = process.env.NEXT_PUBLIC_API_URL;
 
@@ -31,26 +30,6 @@ apiClient.interceptors.request.use(
     return config;
   },
   (error) => {
-    return Promise.reject(error);
-  },
-);
-
-apiClient.interceptors.response.use(
-  (response) => {
-    return response;
-  },
-  (error) => {
-    const resolvedMessage = resolveApiErrorMessage(error);
-
-    if (error instanceof Error) {
-      error.message = resolvedMessage;
-    }
-
-    if (error?.response?.data) {
-      error.response.data.message = resolvedMessage;
-      error.response.data.resolvedMessage = resolvedMessage;
-    }
-
     return Promise.reject(error);
   },
 );

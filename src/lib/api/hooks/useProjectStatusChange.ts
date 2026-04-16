@@ -21,9 +21,9 @@ export const useProjectStatusChange = (
     isPending,
     error,
   } = useMutation<unknown, AppError, TProjectStatus>({
-    mutationFn: (project_status: TProjectStatus) => {
+    mutationFn: async (project_status: TProjectStatus) => {
       try {
-        return apiClient.patch(`projects/${projectId}/status`, {
+        return await apiClient.patch(`projects/${projectId}/status`, {
           project_status,
         });
       } catch (error: unknown) {

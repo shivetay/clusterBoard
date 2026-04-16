@@ -3,9 +3,9 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { useRouter } from 'next/navigation';
 import { useTranslation } from 'react-i18next';
+import { normalizeAppError } from '@/lib/utils';
 import { TRANSLATION_GROUPS } from '@/locales';
 import { useAlert } from '@/providers';
-import type { AppError } from '@/types';
 import apiClient from '../apiClient';
 
 type AcceptInvitationResponse = {
@@ -23,7 +23,7 @@ export const useAcceptInvitation = () => {
   const { t } = useTranslation();
   const { showAlert } = useAlert();
 
-  return useMutation<AcceptInvitationResponse, AppError, string>({
+  return useMutation<AcceptInvitationResponse, unknown, string>({
     mutationFn: async (token: string) => {
       const response = await apiClient.post<AcceptInvitationResponse>(
         '/invitations/accept',
@@ -50,8 +50,9 @@ export const useAcceptInvitation = () => {
         router.push('/projects');
       }
     },
-    onError: (error: AppError) => {
-      const errorMessage = error.translationKey ?? error.message;
+    onError: (error: unknown) => {
+      const appError = normalizeAppError(error);
+      const errorMessage = appError.translationKey ?? appError.message;
 
       // Handle specific error cases
       if (errorMessage.includes('EXPIRED')) {
