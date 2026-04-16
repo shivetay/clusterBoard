@@ -6,6 +6,7 @@ import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Loader } from '@/components/ui';
 import apiClient from '@/lib/api/apiClient';
+import { resolveApiErrorMessage } from '@/lib/utils/resolve-api-error-message';
 import { TRANSLATION_GROUPS } from '@/locales';
 import { useAlert, useModal } from '@/providers';
 import {
@@ -40,15 +41,15 @@ export function RemoveInvestorModal({
         severity: 'success',
       });
       setIsDeleting(false);
-    } catch (error: any) {
+    } catch (error: unknown) {
+      const message = resolveApiErrorMessage(error);
       showAlert({
         message:
-          error?.response?.data?.message ||
-          t(TRANSLATION_GROUPS.INVESTORS.ERROR_REMOVE_INVESTOR),
+          message || t(TRANSLATION_GROUPS.INVESTORS.ERROR_REMOVE_INVESTOR),
         severity: 'error',
       });
       setIsDeleting(false);
-      throw new Error(error?.response?.data?.message);
+      throw new Error(message);
     }
   };
 

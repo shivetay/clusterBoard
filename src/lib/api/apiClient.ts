@@ -34,13 +34,4 @@ apiClient.interceptors.request.use(
   },
 );
 
-apiClient.interceptors.response.use(
-  (response) => {
-    return response;
-  },
-  (error) => {
-    return Promise.reject(error);
-  },
-);
-
 export default apiClient;

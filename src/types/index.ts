@@ -1,5 +1,6 @@
 export * from './alert.type';
 export * from './comment.type';
+export * from './error.type';
 export * from './file.type';
 export * from './inspiration.type';
 export * from './invitation.type';

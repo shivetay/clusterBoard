@@ -1,6 +1,7 @@
 import { useMutation } from '@tanstack/react-query';
 import { useRouter } from 'next/navigation';
 import { apiClient } from '@/lib';
+import { resolveApiErrorMessage } from '@/lib/utils/resolve-api-error-message';
 import { TRANSLATION_GROUPS } from '@/locales';
 import { useAlert, useModal } from '@/providers';
 
@@ -19,9 +20,9 @@ export const useAddStageTasks = (stageId: string) => {
         await apiClient.post(`/tasks/${stageId}/add-tasks`, {
           stage_task: data,
         });
-      } catch (error: any) {
+      } catch (error: unknown) {
         showAlert({
-          message: error?.response?.data?.message,
+          message: resolveApiErrorMessage(error),
           severity: 'error',
         });
       }
@@ -34,9 +35,9 @@ export const useAddStageTasks = (stageId: string) => {
         severity: 'success',
       });
     },
-    onError: (error: any) => {
+    onError: (error: unknown) => {
       showAlert({
-        message: error?.response?.data?.message,
+        message: resolveApiErrorMessage(error),
         severity: 'error',
       });
     },

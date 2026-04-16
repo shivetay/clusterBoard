@@ -15,6 +15,7 @@ import { useDropzone } from 'react-dropzone';
 import { useTranslation } from 'react-i18next';
 import { CustomButton } from '@/components/ui';
 import { uploadFile } from '@/lib/api/files/filesClient';
+import { resolveApiErrorMessage } from '@/lib/utils';
 import { TRANSLATION_GROUPS } from '@/locales/pl';
 import { useAlert } from '@/providers';
 import { ActionButtons } from '../project-stage-container/project-stage-container.styled';
@@ -113,9 +114,11 @@ export function FileUpload({
       setUploadProgress({});
       router.refresh();
       onUploadComplete?.();
-    } catch (_error) {
+    } catch (error: unknown) {
       showAlert({
-        message: t(TRANSLATION_GROUPS.ERRORS.ERROR_ADD_FILE),
+        message:
+          resolveApiErrorMessage(error) ||
+          t(TRANSLATION_GROUPS.ERRORS.ERROR_ADD_FILE),
         severity: 'error',
       });
     } finally {

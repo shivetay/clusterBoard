@@ -1,8 +1,9 @@
 'use client';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { normalizeAppError, resolveApiErrorMessage } from '@/lib/utils';
 import { TRANSLATION_GROUPS } from '@/locales';
 import { useAlert, useModal } from '@/providers';
-import type { TFormData } from '@/types';
+import type { AppError, TFormData } from '@/types';
 import apiClient from '../apiClient';
 
 export const useCreateNewProject = () => {
@@ -13,16 +14,18 @@ export const useCreateNewProject = () => {
     mutate: createProject,
     isPending,
     error,
-  } = useMutation({
+  } = useMutation<void, AppError, TFormData>({
     mutationFn: async (data: TFormData) => {
       try {
         await apiClient.post('/projects/create', data);
-      } catch (error: any) {
+      } catch (error: unknown) {
+        const appError = normalizeAppError(error);
+        const message = resolveApiErrorMessage(appError);
         showAlert({
-          message: error?.response?.data?.message,
+          message,
           severity: 'error',
         });
-        throw new Error(error?.response?.data?.message);
+        throw appError;
       }
     },
     onSuccess: () => {

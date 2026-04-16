@@ -1,9 +1,10 @@
 'use client';
 import { useMutation } from '@tanstack/react-query';
 import { useRouter } from 'next/navigation';
+import { normalizeAppError, resolveApiErrorMessage } from '@/lib/utils';
 import { TRANSLATION_GROUPS } from '@/locales';
 import { useAlert, useModal } from '@/providers';
-import type { TStageFormData } from '@/types';
+import type { AppError, TStageFormData } from '@/types';
 import apiClient from '../apiClient';
 
 export const useEditStage = (stage_id: string) => {
@@ -14,15 +15,17 @@ export const useEditStage = (stage_id: string) => {
     mutate: editStage,
     isPending,
     error,
-  } = useMutation({
+  } = useMutation<void, AppError, TStageFormData>({
     mutationFn: async (data: TStageFormData) => {
       try {
         await apiClient.patch(`/stages/${stage_id}`, data);
-      } catch (error: any) {
+      } catch (error: unknown) {
+        const appError = normalizeAppError(error);
         showAlert({
-          message: error?.response?.data?.message,
+          message: resolveApiErrorMessage(appError),
           severity: 'error',
         });
+        throw appError;
       }
     },
     onSuccess: () => {
@@ -34,10 +37,10 @@ export const useEditStage = (stage_id: string) => {
         severity: 'success',
       });
     },
-    onError: (error: any) => {
+    onError: (error: AppError) => {
       setIsOpen(true);
       showAlert({
-        message: error?.response?.data?.message,
+        message: resolveApiErrorMessage(error),
         severity: 'error',
       });
     },

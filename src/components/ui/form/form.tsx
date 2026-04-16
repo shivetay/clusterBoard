@@ -1,9 +1,11 @@
 import { Form } from './form.styled';
 
+type TFormSubmitHandler = NonNullable<React.ComponentProps<'form'>['onSubmit']>;
+
 type TFormComponentProps = {
   children: React.ReactNode;
   formId: string;
-  onSubmit: (data: any) => void;
+  onSubmit: TFormSubmitHandler;
 };
 
 export function FormComponent({
@@ -11,7 +13,7 @@ export function FormComponent({
   formId,
   onSubmit,
 }: TFormComponentProps) {
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit: TFormSubmitHandler = (event) => {
     event.preventDefault();
     onSubmit(event);
   };
